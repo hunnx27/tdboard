@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+#인증파일 커밋 하지 않음
+src/main/resources/application-securityfile.yml
+
 ### STS ###
 .apt_generated
 .classpath
