@@ -1,0 +1,14 @@
+{{>layout/header}}
+
+<h1>Welcome!!</h1>
+<table>
+    {{#userList}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{uid}}</td>
+        <td>{{pw}}</td>
+    </tr>
+    {{/userList}}
+</table>
+
+{{>layout/footer}}
