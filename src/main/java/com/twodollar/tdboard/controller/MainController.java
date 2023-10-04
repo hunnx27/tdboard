@@ -18,8 +18,6 @@ public class MainController {
         for(int i = 1; i <= 5; i++) {
             User user = new User();
             user.setId((long) i);
-            user.setUid("Hello");
-            user.setPw("World");
             userList.add(user);
         }
 

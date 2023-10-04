@@ -1,0 +1,33 @@
+#spring.jpa.hibernate.ddl-auto=none
+#spring.datasource.url=jdbc:mariadb://rds??:???(??? 3306)/database?
+#spring.datasource.username=db??
+#spring.datasource.password=db??????
+#spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+# 1. request attribute? ??? model? ????.
+#spring.mustache.servlet.expose-request-attributes=true
+# 2. session attribute? ??? model? ????.
+#spring.mustache.servlet.expose-session-attributes=true
+
+server:
+  port: 8080  # ?? ?? ??
+  servlet:
+    context-path: /  # context-path ??
+    encoding:
+      charset: UTF-8  # ??? ?? ??
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # JDBC ???? ?? ??
+    url: jdbc:mysql://sehankdp.cafe24.com:3306/sehankdp?serverTimezone=Asia/Seoul  # DB ?? ?? ??
+    username: -  # DB ?? ??
+    password: -  # DB ???? ??
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # hibernate? ???? DDL? ???? ??.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true  # hibernate? ??? SQL ???? ?? ??
