@@ -1,0 +1,27 @@
+/* 노트북 분기점 */
+@mixin notebook_junction{
+    @media (max-width: 1536px){ 
+        @content;
+    }
+}
+
+/* 노트북 */
+@mixin notebook{
+  @media (max-width: 1000px){ 
+      @content;
+  }
+}
+
+/* 테블릿 */
+@mixin tablet{
+  @media (max-width: 768px){
+    	@content;
+  }
+}
+  
+/* 모바일 */
+@mixin mobile{
+  @media (max-width: 420px){ 
+    	@content;
+  }
+}

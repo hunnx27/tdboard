@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일 가이드</title>
+    <!-- 로컬소스 -->
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/font.css" />
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/main.js"></script>
+</head>
+<body style="overflow: auto;">
+    <nav style="height:80px;position:fixed;padding:0 50px;left:0;width:100%;top:0;background-color: #fff;box-shadow:3px 3px 15px #eee;">
+        
+        <ul style="position:relative;margin:0 auto;width:1440px;height:100%;display:flex;align-items: center;justify-content: flex-end;">
+            <div style="position:absolute;left:0;top:50%;transform:translateY(-50%);">
+                <h2 style="font-size:2.4rem">style guide</h2>
+            </div>
+            <li style="margin-right:20px;">
+                <a href="#itembox" style="font-size:2rem">item-box</a>
+            </li>
+            <li style="margin-right:20px;">
+                <a href="#itembox" style="font-size:2rem">item-box</a>
+            </li>
+            <li style="margin-right:20px;">
+                <a href="#btn" style="font-size:2rem">btn+input</a>
+            </li>
+            <li>
+                <a href="#itembox" style="font-size:2rem">common</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="itembox" class="style-guide" style="padding:100px 0 0px 0;">
+        <div class="style-guide-item">
+            <div style="width:1440px;margin:0 auto;">
+                <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">( guide ) 상단 Title</h2>
+                <!-- 복사구간 -->
+                <div class="item-wrap">
+                    <div class="content-title-wrap">
+                        <h2>
+                            Title <span>sub title</span>
+                        </h2>
+                        <ul class="location">
+                            <li>
+                                <a href="javascript:void:(0)">Home</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void:(0)">page name</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void:(0)">page name</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- //복사구간 -->
+            </div>
+        </div>
+        <div class="style-guide-item">
+            <div style="width:1440px;margin:0 auto;">
+                <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">item-wrap , item-box</h2>
+                <!-- 복사구간 -->
+                <div class="item-wrap">
+                    <div class="item-box">
+                        <!--삭제구간-->
+                        <p style="height:200px;line-height:200px;text-align: center;font-size:50px;">
+                            contents area
+                        </p>
+                        <!--삭제구간-->
+                    </div>
+                </div>
+                <!-- //복사구간 -->
+
+                <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">item-wrap , item-box col</h2>
+                <!-- 복사구간 -->
+                <div class="item-wrap">
+                    <div class="item-box col-4">
+                        <!--삭제구간-->
+                        <p style="height:200px;line-height:200px;text-align: center;font-size:50px;">
+                            contents area
+                        </p>
+                        <!--삭제구간-->
+                    </div>
+                    <div class="item-box col-2">
+                        <!--삭제구간-->
+                        <p style="height:200px;line-height:200px;text-align: center;font-size:50px;">
+                            contents area
+                        </p>
+                        <!--삭제구간-->
+                    </div>
+                    <div class="item-box col-auto">
+                        <!--삭제구간-->
+                        <p style="height:200px;line-height:200px;text-align: center;font-size:50px;">
+                            contents area
+                        </p>
+                        <!--삭제구간-->
+                    </div>
+                </div>
+                <!-- //복사구간 -->
+                
+            </div>
+
+            <div class="style-guide-item">
+                <div style="width:1440px;margin:0 auto;">
+                    <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">item-wrap , item-box scroll-wrap <span style="font-size:15px"><b style="color:red">*</b>scroll-wrap 클래스 추가시 height값이 필요.</span></h2>
+                    <!-- 복사구간 -->
+                    <div class="item-wrap">
+                        <div class="item-box scroll-wrap" style="height:234px">
+                            <div class="item-con">
+                            <!--삭제구간-->
+                            <p style="height:400px;line-height:400px;text-align: center;font-size:50px;">
+                                contents area
+                            </p>
+                            <!--삭제구간-->
+                            </div>
+                        </div>
+                        <div class="item-box">
+                            <div class="item-con">
+                                <div class="table-list scroll-wrap" style="height:200px;">
+                                    <table class="table">
+                                        <caption>롤 권한</caption>
+                                        <thead>
+                                            <tr>
+                                                <th class="col-2">
+                                                    <span>
+                                                        Menu ID
+                                                    </span>
+                                                </th>
+                                                <th class="col-auto">
+                                                    <span>
+                                                        Menu Name
+                                                    </span>
+                                                </th>
+                                                <th class="col-3">
+                                                    <span>
+                                                        접근 권한
+                                                    </span>
+                                                </th>
+                                                <th class="col-3">
+                                                    <span>
+                                                        수정 권한
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-2">
+                                                    <span>
+                                                        100
+                                                    </span>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <span title="값이 길어질 시 보이는 툴팁">
+                                                        Operation Manager
+                                                    </span>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList01-01">
+                                                        <label for="checkList01-01"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-01">
+                                                        <label for="checkList02-01"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-2">
+                                                    <span>
+                                                        101
+                                                    </span>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <span title="값이 길어질 시 보이는 툴팁">
+                                                        AC SKD
+                                                    </span>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList01-02" checked>
+                                                        <label for="checkList01-02"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-02" checked>
+                                                        <label for="checkList02-02"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-2">
+                                                    <span>
+                                                        103
+                                                    </span>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <span title="값이 길어질 시 보이는 툴팁">
+                                                        Global ACS
+                                                    </span>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList01-03" disabled checked>
+                                                        <label for="checkList01-03"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-03" disabled>
+                                                        <label for="checkList02-03"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>  
+                                            <tr>
+                                                <td class="col-2">
+                                                    <span>
+                                                        104
+                                                    </span>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <span title="값이 길어질 시 보이는 툴팁">
+                                                        Global ACS
+                                                    </span>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList01-04" >
+                                                        <label for="checkList01-04"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-04" >
+                                                        <label for="checkList02-04"></label>
+                                                    </div>
+                                                </td>
+                                            </tr> 
+                                            <tr>
+                                                <td class="col-2">
+                                                    <span>
+                                                        105
+                                                    </span>
+                                                </td>
+                                                <td class="col-auto">
+                                                    <span title="값이 길어질 시 보이는 툴팁">
+                                                        Global ACS
+                                                    </span>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList01-05" >
+                                                        <label for="checkList01-05"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="col-3">
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-05" >
+                                                        <label for="checkList02-05"></label>
+                                                    </div>
+                                                </td>
+                                            </tr> 
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- //복사구간 -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="btn" class="style-guide" style="padding:100px 0 50px 0;">
+        <div class="style-guide-item">
+            <div style="width:1440px;margin:0 auto;">
+                <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">btn-wrap</h2>
+                <div class="item-wrap">
+                    <div class="item-box">
+                        <div class="item-con">
+                            <!-- 복사구간 -->
+                            <div class="btn-wrap">
+                                <button class="btn btn-type01">text</button>
+                                <button class="btn btn-type02">text</button>
+                                <button class="btn btn-type03">text</button>
+                                <button class="btn btn-type04">text</button>
+                                <button class="btn btn-type05">text</button>
+                            </div>
+                            <!-- //복사구간 -->
+                            <hr style="height:20px;width:100%;border:0;"></hr>
+                            <div class="btn-wrap col-wrap">
+                                <button class="btn btn-size-s btn-type01 col-1">text</button>
+                                <button class="btn btn-size-s btn-type02 col-2">text</button>
+                                <button class="btn btn-size-s btn-type03 col-3">text</button>
+                                <button class="btn btn-size-s btn-type04 col-4">text</button>
+                                <button class="btn btn-size-s btn-type05 col-4">text</button>
+                            </div>
+                            <hr style="height:20px;width:100%;border:0;"></hr>
+                            <div class="btn-wrap">
+                                <button class="btn btn-size-m btn-type01">text</button>
+                                <button class="btn btn-size-m btn-type02">text</button>
+                                <button class="btn btn-size-m btn-type03">text</button>
+                                <button class="btn btn-size-m btn-type04">text</button>
+                                <button class="btn btn-size-m btn-type05">text</button>
+                            </div>
+                            <hr style="height:20px;width:100%;border:0;"></hr>
+                            <div class="btn-wrap">
+                                <button class="btn btn-size-lg btn-type01">text</button>
+                                <button class="btn btn-size-lg btn-type02">text</button>
+                                <button class="btn btn-size-lg btn-type03">text</button>
+                                <button class="btn btn-size-lg btn-type04">text</button>
+                                <button class="btn btn-size-lg btn-type05">text</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="style-guide-item">
+            <div style="width:1440px;margin:0 auto;">
+                <h2 style="border-bottom:1px solid #ddd;padding:10px 0;margin-bottom:20px;">input-wrap</h2>
+                <div class="item-wrap">
+                    <div class="item-box">
+                        <div class="item-con">
+                            <!-- 복사구간 -->
+                            <div class="form-wrap">
+                                <div class="input-group">
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="TEXT">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="dropdown" rel="dropdown" id="#dropdown">
+                                            <span class="dropdown-toggle">선택</span>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test01</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test02</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test03</a></li>
+                                                <li class="dropdown-list"><a href="javascript:void(0)" title="test01" data-value="test01">test04</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //복사구간 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
