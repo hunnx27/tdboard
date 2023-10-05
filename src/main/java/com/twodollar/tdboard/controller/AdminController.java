@@ -1,7 +1,7 @@
 package com.twodollar.tdboard.controller;
 
-import com.twodollar.tdboard.model.User;
-import com.twodollar.tdboard.repository.UserRepository;
+import com.twodollar.tdboard.model.Admin;
+import com.twodollar.tdboard.repository.AdminRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,22 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Controller
-public class LoginController {
+public class AdminController {
 
     @Autowired
-    private UserRepository userRepository; // 글 아래에서 생성할 예정
+    private AdminRepository adminRepository; // 글 아래에서 생성할 예정
     @Autowired
     private BCryptPasswordEncoder passwordEncoder; // 시큐리티에서 빈(Bean) 생성할 예정
 
     /**
-     * // TODO 삭제
      * 유저 페이지
      *
      * @return
      */
-    @GetMapping("user")
+    @GetMapping("admin")
     public String user() {
-        return "pages/user";
+        return "pages/admin/index";
     }
 
     /**
@@ -34,9 +33,9 @@ public class LoginController {
      *
      * @return
      */
-    @GetMapping("user/loginForm")
+    @GetMapping("admin/loginForm")
     public String loginForm() {
-        return "pages/user/loginForm";
+        return "pages/admin/loginForm";
     }
 
     /**
@@ -44,23 +43,22 @@ public class LoginController {
      *
      * @return
      */
-    @GetMapping("user/joinForm")
+    @GetMapping("admin/joinForm")
     public String joinForm() {
-        return "pages/user/joinForm";
+        return "pages/admin/joinForm";
     }
 
     /**
      * 회원 가입이 실행되는 부분
      *
-     * @param user
+     * @param admin
      * @return
      */
-    @PostMapping("user/join")
-    public String join(User user) {
-        //FIXME ROLE_?? 추가로정해야함..
-        user.setRole("ROLE_ADMIN"); // 권한 정보는 임시로 ROLE_ADMIN으로 넣는다.
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "redirect:/user/loginForm";
+    @PostMapping("admin/join")
+    public String join(Admin admin) {
+        admin.setRole("ROLE_ADMIN"); // 권한 정보는 임시로 ROLE_ADMIN으로 넣는다.
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        adminRepository.save(admin);
+        return "redirect:/admin/loginForm";
     }
 }

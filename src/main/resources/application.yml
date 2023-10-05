@@ -1,4 +1,3 @@
-
 #spring.jpa.hibernate.ddl-auto=none
 #spring.datasource.url=jdbc:mariadb://rds??:???(??? 3306)/database?
 #spring.datasource.username=db??
@@ -18,7 +17,3 @@ server:
       charset: UTF-8  # ??? ?? ??
       enabled: true
       force: true
-
-spring:
-  profiles:
-    include: securityfile # application-securityfile.yml? ??????
