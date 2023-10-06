@@ -14,14 +14,7 @@ import java.util.List;
 public class MainController {
     @GetMapping("")
     public String welcomePage(Model model) {
-        List<User> userList = new ArrayList<>();
-        for(int i = 1; i <= 5; i++) {
-            User user = new User();
-            user.setId((long) i);
-            userList.add(user);
-        }
-
-        model.addAttribute(userList);
-        return "index";
+        //return "index";
+        return "pages/common/commingsoon";
     }
 }
