@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -35,12 +37,18 @@ public class LoginController {
      * @return
      */
     @GetMapping("user/loginForm")
-    public String loginForm() {
+    public String loginForm(
+            @RequestParam(value="error", required=false)String error,
+            @RequestParam(value="exception", required=false)String exception,
+            Model model
+    ) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "pages/user/loginForm";
     }
 
     /**
-     * 회원 가입 페이지
+     * 회원 가입 페이지(일반회원)
      *
      * @return
      */
@@ -57,10 +65,25 @@ public class LoginController {
      */
     @PostMapping("user/join")
     public String join(User user) {
-        //FIXME ROLE_?? 추가로정해야함..
-        user.setRole("ROLE_ADMIN"); // 권한 정보는 임시로 ROLE_ADMIN으로 넣는다.
+        user.setRole("ROLE_USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/user/loginForm";
+    }
+    @PostMapping("user/join2")
+    public String join2(User user) {
+        user.setRole("ROLE_ORG");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return "redirect:/user/loginForm";
+    }
+    /**
+     * 회원 가입 페이지(기관회원)
+     *
+     * @return
+     */
+    @GetMapping("user/joinForm2")
+    public String joinForm2() {
+        return "pages/user/joinForm2";
     }
 }

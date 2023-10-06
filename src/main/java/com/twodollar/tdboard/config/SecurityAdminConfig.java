@@ -1,20 +1,18 @@
 package com.twodollar.tdboard.config;
 
-import com.twodollar.tdboard.config.auth.AdminPrincipalDetailsService;
+import com.twodollar.tdboard.service.auth.AdminPrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@Order(1)
+@Order(2)
 public class SecurityAdminConfig {
 
     @Bean
@@ -42,11 +40,11 @@ public class SecurityAdminConfig {
         http
             .csrf()
                 .disable()
+                .authenticationProvider(adminAuthenticationProvider())
                 .antMatcher("/admin/**").authorizeRequests(authorize -> authorize
-                    // TODO https://github.com/dedel009/securityLogin/blob/master/src/main/java/com/exam/configure/AdminSecurityConfiguration.java
                     .antMatchers("/admin/loginForm", "/admin/joinForm", "/admin/join", "/admin/login").permitAll()
                     .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
-                    .anyRequest().permitAll())
+                    )
 
             .formLogin(form -> form
                     .loginPage("/admin/loginForm") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)

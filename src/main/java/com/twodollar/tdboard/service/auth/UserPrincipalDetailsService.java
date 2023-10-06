@@ -1,4 +1,4 @@
-package com.twodollar.tdboard.config.auth;
+package com.twodollar.tdboard.service.auth;
 
 import com.twodollar.tdboard.model.User;
 import com.twodollar.tdboard.repository.UserRepository;

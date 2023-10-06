@@ -5,12 +5,17 @@
     <title>KDP Login Page</title>
 </head>
 <body>
-<h1>KDP Admin Login Page</h1>
+<h1>KDP 관리자 로그인</h1>
 <hr/>
 <form action="/admin/login" method="POST"> <!-- 시큐리티에서 /admin/login을 통해 인증처리를 할 예정 -->
     <input type="text" name="username" placeholder="username" autofocus/>
     <br/>
     <input type="password" name="password" placeholder="password"/>
+    <span>
+        {{#error}}
+                <p id="valid" style="color:red; font-weight:bolder">{{exception}}</p>
+        {{/error}}
+    </span>
     <button type="submit">Login</button>
 </form>
 <a href="/admin/joinForm">회원 가입</a>

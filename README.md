@@ -10,3 +10,6 @@
 기능 추가시 브랜치
 - feats/dev_pub :  퍼블리싱 적용
 - feats/dev_security : 스프링 시큐리티 적용(인증, 보안)
+
+# Security Multiple 구성 참고
+https://github.com/dedel009/securityLogin/blob/master/src/main/java/com/exam/configure/UserSecurityConfiguration.java
