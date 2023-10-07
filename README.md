@@ -13,3 +13,7 @@
 
 # Security Multiple 구성 참고
 https://github.com/dedel009/securityLogin/blob/master/src/main/java/com/exam/configure/UserSecurityConfiguration.java
+
+# URL 컨벤션
+- /{name}      : 페이지이동
+- /{name}_proc : 프로세스 구현(form, ajax)

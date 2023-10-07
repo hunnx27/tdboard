@@ -1,7 +1,6 @@
-package com.twodollar.tdboard.service.auth;
+package com.twodollar.tdboard.modules.auth.service;
 
-import com.twodollar.tdboard.model.Admin;
-import com.twodollar.tdboard.model.User;
+import com.twodollar.tdboard.modules.admin.entity.Admin;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

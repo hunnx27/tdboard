@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>KDP 회원가입(일반)</h1>
-<form action="/user/join" method="POST"> <!-- Controller에서 회원가입 로직을 처리할 예정 -->
+<form action="/user/join_proc" method="POST"> <!-- Controller에서 회원가입 로직을 처리할 예정 -->
     <input type="text" name="username" placeholder="username" autofocus/>
     <br/>
     <input type="password" name="password" placeholder="password"/>
@@ -15,6 +15,6 @@
     <br/>
     <button type="submit">가입하기</button>
 </form>
-<a href="/user/loginForm">로그인</a>
+<a href="/user/login">로그인</a>
 </body>
 </html>

@@ -1,7 +1,7 @@
-package com.twodollar.tdboard.service.auth;
+package com.twodollar.tdboard.modules.auth.service;
 
-import com.twodollar.tdboard.model.Admin;
-import com.twodollar.tdboard.repository.AdminRepository;
+import com.twodollar.tdboard.modules.admin.entity.Admin;
+import com.twodollar.tdboard.modules.admin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

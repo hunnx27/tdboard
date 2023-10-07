@@ -1,7 +1,6 @@
-package com.twodollar.tdboard.repository;
+package com.twodollar.tdboard.modules.admin.repository;
 
-import com.twodollar.tdboard.model.Admin;
-import com.twodollar.tdboard.model.User;
+import com.twodollar.tdboard.modules.admin.entity.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

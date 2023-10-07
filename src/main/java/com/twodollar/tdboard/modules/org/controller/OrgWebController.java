@@ -1,4 +1,4 @@
-package com.twodollar.tdboard.controller;
+package com.twodollar.tdboard.modules.org.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Slf4j
 @Controller
-public class OrgController {
+public class OrgWebController {
     @GetMapping("org/sample")
     public String mypage() {
         return "pages/org/sample";

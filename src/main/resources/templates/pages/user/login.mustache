@@ -7,7 +7,7 @@
 <body>
 <h1>KDP 로그인</h1>
 <hr/>
-<form action="/user/login" method="POST"> <!-- 시큐리티에서 /login을 통해 인증처리를 할 예정 -->
+<form action="/user/login_proc" method="POST"> <!-- 시큐리티에서 /login을 통해 인증처리를 할 예정 -->
     <input type="text" name="username" placeholder="username" autofocus/>
     <br/>
     <input type="password" name="password" placeholder="password"/>
@@ -18,7 +18,7 @@
     </span>
     <button type="submit">Login</button>
 </form>
-<a href="/user/joinForm">회원 가입(일반회원)</a>
-<a href="/user/joinForm2">회원 가입(기관회원)</a>
+<a href="/user/join">회원 가입(일반회원)</a>
+<a href="/user/join2">회원 가입(기관회원)</a>
 </body>
 </html>

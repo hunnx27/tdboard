@@ -1,9 +1,8 @@
 package com.twodollar.tdboard.config;
 
 import com.twodollar.tdboard.config.handler.UserAuthFailurHandler;
-import com.twodollar.tdboard.service.auth.UserPrincipalDetailsService;
+import com.twodollar.tdboard.modules.auth.service.UserPrincipalDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -48,21 +47,21 @@ public class SecurityUserConfig {
                 .disable()
                 .authenticationProvider(homepageAuthenticationProvider())
                 .antMatcher("/**").authorizeRequests(authorize -> authorize
-                    .antMatchers("/user/loginForm", "/user/joinForm", "/user/join", "/user/login"
-                            , "/user/joinForm2", "/user/join2"
+                    .antMatchers("/user/login", "/user/join", "/user/join_proc", "/user/login_proc"
+                            , "/user/join2", "/user/join2_proc"
                     ).permitAll()
                     .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG")
                     .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
                     .anyRequest().permitAll())
                 .formLogin(form -> form
-                        .loginPage("/user/loginForm") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
-                        .loginProcessingUrl("/user/login") // 로그인이 실제 이루어지는 곳(백엔드??)
+                        .loginPage("/user/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
+                        .loginProcessingUrl("/user/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
                         .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
                         .failureHandler(userAuthFailurHandler) //실패처리
                 ) 
                 
                 .logout(logout -> logout
-                        .logoutUrl("/user/logout")
+                        .logoutUrl("/user/logout_proc")
                         .logoutSuccessUrl("/"));
         return http.build();
     }

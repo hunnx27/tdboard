@@ -1,4 +1,4 @@
-package com.twodollar.tdboard.model;
+package com.twodollar.tdboard.modules.admin.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
