@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스타일 가이드</title>
+    <!-- 로컬소스 -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+    <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </head>
+  <body style="overflow: auto">
+    <nav
+      style="
+        z-index: 100;
+        height: 80px;
+        position: fixed;
+        padding: 0 50px;
+        left: 0;
+        width: 100%;
+        top: 0;
+        background-color: #fff;
+        box-shadow: 3px 3px 15px #eee;
+      "
+    >
+      <ul
+        style="
+          position: relative;
+          margin: 0 auto;
+          width: 1440px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        "
+      >
+        <div style="position: absolute; left: 0; top: 50%; transform: translateY(-50%)">
+          <h2 style="font-size: 2.4rem">style guide</h2>
+        </div>
+        <li style="margin-right: 20px">
+          <a href="#itembox" style="font-size: 2rem">layout_guide</a>
+        </li>
+        <li style="margin-right: 20px">
+          <a href="#tab" style="font-size: 2rem">tab</a>
+        </li>
+        <li style="margin-right: 20px">
+          <a href="./table_guide.html" style="font-size: 2rem">table_guide</a>
+        </li>
+        <li style="margin-right: 20px">
+          <a href="./style_guide.html#btn" style="font-size: 2rem">btn</a>
+        </li>
+        <li>
+          <a href="./style_guide.html#input" style="font-size: 2rem">input</a>
+        </li>
+      </ul>
+    </nav>
+    <section id="itembox" class="style-guide" style="padding: 100px 0 0px 0">
+      <div class="style-guide-item">
+        <div style="width: 1440px; margin: 0 auto">
+          <h2 style="border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px">( guide ) 상단 Title</h2>
+          <!-- 복사구간 -->
+          <div class="item-wrap">
+            <div class="content-title-wrap">
+              <h2>Title <span>sub title</span></h2>
+              <ul class="location">
+                <li>
+                  <a href="javascript:void:(0)">Home</a>
+                </li>
+                <li>
+                  <a href="javascript:void:(0)">page name</a>
+                </li>
+                <li>
+                  <a href="javascript:void:(0)">page name</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- //복사구간 -->
+        </div>
+      </div>
+      <div class="style-guide-item">
+        <div style="width: 1440px; margin: 0 auto">
+          <h2 style="border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px">item-wrap , item-box</h2>
+          <!-- 복사구간 -->
+          <div class="item-wrap">
+            <div class="item-box">
+              <!--삭제구간-->
+              <p style="height: 200px; line-height: 200px; text-align: center; font-size: 50px">contents area</p>
+              <!--삭제구간-->
+            </div>
+          </div>
+          <!-- //복사구간 -->
+
+          <h2 style="border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px">item-wrap , item-box col</h2>
+          <!-- 복사구간 -->
+          <div class="item-wrap">
+            <div class="item-box col-4">
+              <!--삭제구간-->
+              <p style="height: 200px; line-height: 200px; text-align: center; font-size: 50px">contents area</p>
+              <!--삭제구간-->
+            </div>
+            <div class="item-box col-2">
+              <!--삭제구간-->
+              <p style="height: 200px; line-height: 200px; text-align: center; font-size: 50px">contents area</p>
+              <!--삭제구간-->
+            </div>
+            <div class="item-box col-auto">
+              <!--삭제구간-->
+              <p style="height: 200px; line-height: 200px; text-align: center; font-size: 50px">contents area</p>
+              <!--삭제구간-->
+            </div>
+          </div>
+          <!-- //복사구간 -->
+        </div>
+
+        <div class="style-guide-item">
+          <div style="width: 1440px; margin: 0 auto">
+            <h2 style="border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px">
+              item-wrap , item-box scroll-wrap
+              <span style="font-size: 15px"><b style="color: red">*</b>scroll-wrap 클래스 추가시 height값이 필요.</span>
+            </h2>
+            <!-- 복사구간 -->
+            <div class="item-wrap">
+              <div class="item-box scroll-wrap" style="height: 234px">
+                <div class="item-con">
+                  <!--삭제구간-->
+                  <p style="height: 400px; line-height: 400px; text-align: center; font-size: 50px">contents area</p>
+                  <!--삭제구간-->
+                </div>
+              </div>
+              <div class="item-box">
+                <div class="item-con">
+                  <div class="table-list scroll-wrap" style="height: 200px">
+                    <table class="table">
+                      <caption>
+                        롤 권한
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th class="col-2">
+                            <span> Menu ID </span>
+                          </th>
+                          <th class="col-auto">
+                            <span> Menu Name </span>
+                          </th>
+                          <th class="col-3">
+                            <span> 접근 권한 </span>
+                          </th>
+                          <th class="col-3">
+                            <span> 수정 권한 </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="col-2">
+                            <span> 100 </span>
+                          </td>
+                          <td class="col-auto">
+                            <span title="값이 길어질 시 보이는 툴팁"> Operation Manager </span>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList01-01" />
+                              <label for="checkList01-01"></label>
+                            </div>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList02-01" />
+                              <label for="checkList02-01"></label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-2">
+                            <span> 101 </span>
+                          </td>
+                          <td class="col-auto">
+                            <span title="값이 길어질 시 보이는 툴팁"> AC SKD </span>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList01-02" checked />
+                              <label for="checkList01-02"></label>
+                            </div>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList02-02" checked />
+                              <label for="checkList02-02"></label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-2">
+                            <span> 103 </span>
+                          </td>
+                          <td class="col-auto">
+                            <span title="값이 길어질 시 보이는 툴팁"> Global ACS </span>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList01-03" disabled checked />
+                              <label for="checkList01-03"></label>
+                            </div>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList02-03" disabled />
+                              <label for="checkList02-03"></label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-2">
+                            <span> 104 </span>
+                          </td>
+                          <td class="col-auto">
+                            <span title="값이 길어질 시 보이는 툴팁"> Global ACS </span>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList01-04" />
+                              <label for="checkList01-04"></label>
+                            </div>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList02-04" />
+                              <label for="checkList02-04"></label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-2">
+                            <span> 105 </span>
+                          </td>
+                          <td class="col-auto">
+                            <span title="값이 길어질 시 보이는 툴팁"> Global ACS </span>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList01-05" />
+                              <label for="checkList01-05"></label>
+                            </div>
+                          </td>
+                          <td class="col-3">
+                            <div class="input-wrap checkbox">
+                              <input type="checkbox" id="checkList02-05" />
+                              <label for="checkList02-05"></label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- //복사구간 -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="tab" style="padding: 100px 0 0px 0">
+      <div class="style-guide-item">
+        <div style="width: 1440px; margin: 0 auto">
+          <h2 style="border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 20px">tab</h2>
+          <div class="item-wrap">
+            <div class="tab-wrap">
+              <div class="tab-top tab">
+                <ul>
+                  <li class="on">
+                    <span>운항결정</span>
+                  </li>
+                  <li>
+                    <span>공지사항</span>
+                  </li>
+                  <li>
+                    <span>사후조치</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <script>
+              tab('tab-top');
+            </script>
+          </div>
+          <div class="item-wrap">
+            <div class="item-box scroll-y-wrap">
+              <div class="item-con">
+                <div class="tab-wrap">
+                  <div class="tab tab-board tab-board01">
+                    <ul>
+                      <li class="on">
+                        <span>공지사항</span>
+                      </li>
+                      <li>
+                        <span>Report</span>
+                      </li>
+                      <div class="tab-line"></div>
+                    </ul>
+                  </div>
+                  <div class="table-list scroll-wrap tab-con on">
+                    <table class="table table-main-bottom">
+                      <caption>
+                        공지사항
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th class="col-4">
+                            <span> Title </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th>
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th class="col-1">
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> 수정 권한 </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-list scroll-wrap tab-con">
+                    <table class="table table-main-bottom">
+                      <caption>
+                        Report
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th class="col-4">
+                            <span> Title </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th>
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th class="col-1">
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> 수정 권한 </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차222 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <script>
+                  tab('tab-board01');
+                </script>
+              </div>
+            </div>
+            <div class="item-box scroll-y-wrap">
+              <div class="item-con">
+                <div class="tab-wrap">
+                  <div class="tab tab-board tab-board02">
+                    <ul>
+                      <li class="on">
+                        <span>공지사항2</span>
+                      </li>
+                      <li>
+                        <span>Report2</span>
+                      </li>
+                      <div class="tab-line"></div>
+                    </ul>
+                  </div>
+                  <div class="table-list scroll-wrap tab-con on">
+                    <table class="table table-main-bottom">
+                      <caption>
+                        공지사항
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th class="col-4">
+                            <span> Title </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th>
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th class="col-1">
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> 수정 권한 </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-list scroll-wrap tab-con">
+                    <table class="table table-main-bottom">
+                      <caption>
+                        Report
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th class="col-4">
+                            <span> Title </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th>
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> Edited </span>
+                          </th>
+                          <th class="col-1">
+                            <span> Effective </span>
+                          </th>
+                          <th>
+                            <span> 수정 권한 </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span> [업무절차] TCAS INOP 시 운영 절차222 </span>
+                          </td>
+                          <td>
+                            <span title="값이 길어질 시 보이는 툴팁"> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 2023 08 16 </span>
+                          </td>
+                          <td>
+                            <span> 이름 </span>
+                          </td>
+                          <td>
+                            <div class="btn-wrap flex-between">
+                              <button class="btn btn-type05 btn-size-s">FC</button>
+                              <button class="btn btn-type04 btn-size-s">FM</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <script>
+                  tab('tab-board02');
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

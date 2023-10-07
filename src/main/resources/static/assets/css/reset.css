@@ -99,6 +99,13 @@ input::-ms-reveal{
 input {
     -webkit-appearance: searchfield;
 }
+textarea:focus,
+textarea:active,
+input:focus,
+input:active {
+  box-shadow: none;
+  outline: none;
+}
 *::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
 }
@@ -126,5 +133,5 @@ select{
     appearance:none /* 화살표 없애기 */
 }
 *::-webkit-scrollbar {width: 3px;height: 3px;}
-*::-webkit-scrollbar-thumb {background: #0063A5;border-radius: 3px;}
+*::-webkit-scrollbar-thumb {background: #0063A5;border-radius: 3px;border: 2px solid transparent;}
 *::-webkit-scrollbar-track {background: #ccc;border-radius: 3px;}

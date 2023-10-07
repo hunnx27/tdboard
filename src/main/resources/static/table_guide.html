@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일 가이드</title>
+    <!-- 로컬소스 -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+    <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/main.js"></script>
+</head>
+<body style="overflow: auto;">
+    <nav style="z-index:100;height:80px;position:fixed;padding:0 50px;left:0;width:100%;top:0;background-color: #fff;box-shadow:3px 3px 15px #eee;">
+        
+        <ul style="position:relative;margin:0 auto;width:1440px;height:100%;display:flex;align-items: center;justify-content: flex-end;">
+            <div style="position:absolute;left:0;top:50%;transform:translateY(-50%);">
+                <h2 style="font-size:2.4rem">style guide</h2>
+            </div>
+            <li style="margin-right:20px;">
+                <a href="./layout_guide.html" style="font-size:2rem">layout_guide</a>
+            </li>
+            <li style="margin-right:20px;">
+                <a href="./layout_guide.html#tab" style="font-size:2rem">tab</a>
+            </li>
+            <li style="margin-right:20px;">
+                <a href="#table" style="font-size:2rem">table_guide</a>
+            </li>
+            <li style="margin-right:20px;">
+                <a href="./style_guide.html#btn" style="font-size:2rem">btn</a>
+            </li>
+            <li>
+                <a href="./style_guide.html#input" style="font-size:2rem">input</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="table" style="padding:100px 0 0px 0;">
+        <div class="style-guide-item">
+            <div style="width:1440px;margin:0 auto;">
+                <div class="item-wrap">
+                    <div class="item-box">
+                        <div class="item-con">
+                            <div class="board-wrap">
+                                <div class="board-top padtop-16 flex-wrap between">
+                                    <div class="flex-wrap">
+                                        
+                                    </div>
+                                    <div class="flex-wrap end">
+                                        <!-- select option값에 맞는 리스트만 보이게 진행 -->
+                                        <div class="input-wrap select">
+                                            <div class="dropdown dropdown-type02" rel="dropdown" id="#dropdown">
+                                                <span class="dropdown-toggle">Complete</span>
+                                                <ul class="dropdown-menu option-color">
+                                                    <li class="dropdown-list option-white"><a href="javascript:void(0)" title="All" data-value="All">All</a></li>
+                                                    <li class="dropdown-list option-green"><a href="javascript:void(0)" title="Complete" data-value="Complete">Complete</a></li>
+                                                    <li class="dropdown-list option-yellow"><a href="javascript:void(0)" title="Modify" data-value="Modify">Modify</a></li>
+                                                    <li class="dropdown-list option-red"><a href="javascript:void(0)" title="Delete" data-value="Delete">Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap search">
+                                            <input type="search" class="" placeholder="테이블(가칭) 내 검색">
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <button class="btn btn-icon table-add-icon"></button>
+                                            <button class="btn btn-icon table-remove-icon"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="board-list board-list-FPL">
+                                    <table class="table modify-table">
+                                        <caption>FPL Flight NOTE Management</caption>
+                                        <thead>
+                                            <tr>
+                                                <th class="table-head-check-sm">
+                                                    <span>
+                                                        <div class="input-wrap checkbox">
+                                                            <input type="checkbox" class="board-all-check" id="checkList04-01">
+                                                            <label for="checkList04-01"></label>
+                                                        </div>
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        NO.
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        Flight
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        DEP
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        ARR
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        Type
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        Reg
+                                                    </span>
+                                                </th>
+                                                <th class="col-2">
+                                                    <span>
+                                                        contents
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        Start Date
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        End Date
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-02">
+                                                        <label for="checkList02-02"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">0819</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-03">
+                                                        <label for="checkList02-03"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">0819</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-04">
+                                                        <label for="checkList02-04"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">08195</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-05">
+                                                        <label for="checkList02-05"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">0819</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-06">
+                                                        <label for="checkList02-06"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">08193</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-07">
+                                                        <label for="checkList02-07"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">0819</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-wrap checkbox">
+                                                        <input type="checkbox" id="checkList02-08">
+                                                        <label for="checkList02-08"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">0819</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">33E</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">HL8025</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">ICN</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">CSX</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="modify-cell">
+                                                    <span title="값이 길어질 시 보이는 툴팁">252</span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td class="col-2 td-max modify-cell">
+                                                    <span title="OPERATION FOR KE490 IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT CONSIDER APPLYING MEL 34-50-08F AND">
+                                                        OPERATION FOR KE490
+                                                        IF GPS 1+2 FAULT DUE TO GPS SIGNAL RECEPTION FAILURE AT VYYY AIRPORT
+                                                        CONSIDER APPLYING MEL 34-50-08F AND
+                                                    </span>
+                                                    <div class="input-wrap modify-cell-write">
+                                                        <textarea row="1"></textarea>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-02-23</span>
+                                                </td>
+                                                <td>
+                                                    <span title="값이 길어질 시 보이는 툴팁">2023-03-31</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="board-bottom">
+                                    <div class="btn-wrap flex-end">
+                                        <button class="btn btn-type03 btn-size-lg">
+                                            Reset
+                                        </button>
+                                        <button class="btn btn-type04 btn-size-lg">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                // one click text long
+                                // .table tbody tr td.td-max 
+                                function modifyTableClick(tableName){
+                                    let modifyTable = document.querySelectorAll('.'+tableName)[0];
+                                    let modifyTableTbody = modifyTable.querySelector('tbody');
+                                    let modifyTableCell = modifyTableTbody.querySelectorAll('td');
+
+                                    modifyTableCell.forEach(function(thisCell){
+                                        thisCell.addEventListener('click',function(){
+
+                                            if(thisCell.classList.contains('no-ellipsis') && thisCell.classList.contains('td-max')){
+                                                thisCell.classList.remove('no-ellipsis');
+                                            }else if(thisCell.classList.contains('no-ellipsis') == false && thisCell.classList.contains('td-max')){
+                                                modifyTableCell.forEach(function(allCell){
+                                                    allCell.classList.remove('no-ellipsis');
+                                                });
+                                                thisCell.classList.add('no-ellipsis');
+                                            }
+                                        });
+                                    });
+                                }
+                                modifyTableClick('board-list-FPL');
+                                // modify-row on
+                                function modifyCellOn(row){
+                                    let modifyTableCellOn = row.querySelectorAll('.modify-cell');
+                                    modifyTableCellOn.forEach(function(cellAll){
+                                        cellAll.classList.add('modify-cell-on');
+                                        cellAll.querySelectorAll('textarea')[0].value = cellAll.querySelectorAll('span')[0].innerText.replace(/\s{2,}/gi, ' ');
+                                
+                                        let modifyCellOn = document.querySelectorAll('.modify-cell-on');
+                                        modifyCellOn.forEach(function(modifyCellAll){
+                                            modifyCellAll.querySelector('textarea').addEventListener('keyup',function(){
+                                                modifyCellAll.closest('tr').classList.add('modify-row');
+                                            });
+                                        })
+                                    });
+                                };
+                                // modify-row off
+                                function modifyCellOff(){
+                                    let modifyTableCellOn = document.querySelectorAll('.modify-cell');
+                                    modifyTableCellOn.forEach(function(cellAll){
+                                        if(cellAll.classList.contains('modify-cell-on')){
+                                            cellAll.querySelectorAll('span')[0].innerText = cellAll.querySelectorAll('textarea')[0].value.replace(/\s{2,}/gi, ' ');
+                                            cellAll.classList.remove('modify-cell-on');
+                                        }
+                                    });
+                                };
+                                // modify-row event
+                                function modifyTableOn(tableName){
+                                    let modifyTable = document.querySelectorAll('.'+tableName)[0];
+                                    let modifyTableTbody = modifyTable.querySelectorAll('tbody')[0];
+                                    let modifyTableRow = modifyTableTbody.querySelectorAll('tr');
+
+                                    modifyTableRow.forEach(function(row){
+                                        row.addEventListener('dblclick',function(){
+                                            let row_cell =  row.querySelectorAll('.modify-cell');
+
+                                            if(row.classList.contains('this-row') == true){
+                                                row.classList.remove('this-row');
+                                                modifyCellOff();
+                                            }else if(row.classList.contains('delete-row') == false){
+                                                modifyTableRow.forEach(function(thisrow){
+                                                    thisrow.classList.remove('this-row');
+                                                })
+                                                row_cell.forEach(function(cell){
+                                                    modifyCellOff()
+                                                    modifyCellOn(row);
+                                                    row.classList.add('this-row');
+                                                    textareaHeight();
+                                                });
+                                            }
+                                        });
+                                    });
+                                }
+                                modifyTableOn('board-list-FPL');
+                                // add btn click
+                                function addRow(tableName){
+                                    let modifyTable = document.querySelectorAll("."+tableName)[0];
+                                    let modifyTableTbody = modifyTable.querySelectorAll('tbody')[0];
+                                    let count = modifyTableTbody.querySelectorAll('tr').length + 1;
+                                    let addRowNode = document.createElement("tr");
+                                    addRowNode.classList.add('add-row');
+                                    addRowNode.classList.add('this-row');
+                                    addRowNode.innerHTML = "<td><div class='input-wrap checkbox'><input type='checkbox' id='checkList03-"+count+"'><label for='checkList03-"+count+"'></label></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td><td class='modify-cell modify-cell-on'><span title=''></span> <div class='input-wrap modify-cell-write'><textarea row='1'></textarea></div></td>"
+                                    modifyTableTbody.prepend(addRowNode)
+                                }
+                                document.getElementsByClassName('table-add-icon')[0].addEventListener('click',function(){
+                                    addRow('board-list-FPL');
+                                    modifyTableOn('board-list-FPL');
+                                })
+                               // delete-row click checkbox == true
+                               function deleteRow(tableName){
+                                    let modifyTable = document.querySelectorAll("."+tableName)[0];
+                                    let modifyTableTbody = modifyTable.querySelectorAll('tbody')[0];
+                                    let inputCheckbox = modifyTableTbody.querySelectorAll('input[type="checkbox"]');
+                               
+                                    inputCheckbox.forEach(function(checkbox){
+                                        if(checkbox.checked == true){
+                                            checkbox.closest('tr').classList.add('delete-row');
+                                            checkbox.closest('tr').querySelectorAll('textarea').forEach(function(idx){
+                                                idx.setAttribute('disabled','disabled');
+                                            })
+                                        }
+                                    })
+                                }
+                                document.getElementsByClassName('table-remove-icon')[0].addEventListener('click',function(){
+                                    deleteRow('board-list-FPL');
+                                })
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
