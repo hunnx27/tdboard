@@ -5,71 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>대한항공</title>
     <!-- 로컬소스 -->
-    <link rel="stylesheet" href="../../../assets/css/reset.css" />
-    <link rel="stylesheet" href="../../../assets/css/font.css" />
-    <link rel="stylesheet" href="../../../assets/css/main.css" />
-    <script src="../../../assets/js/common.js"></script>
+    <link rel="shortcut icon" href="../../../../public/images/icon/favicon.ico" />
+    <link rel="stylesheet" href="../../../../public/css/reset.css" />
+    <link rel="stylesheet" href="../../../../public/css/font.css" />
+    <link rel="stylesheet" href="../../../../public/css/main.css" />
   </head>
   <body>
     <div class="wrap" id="root">
       <!--content -->
       <section class="main content">
         <!-- header -->
-        <header>
-          <div class="inner">
-            <div class="lnb">
-              <div class="btn-wrap">
-                <button class="btn btn-icon btn-hamburger"></button>
-              </div>
-              <h2 class="head-text">OPS CORE <span class="">(가칭08.18기준)</span></h2>
-            </div>
-            <div class="head-search-wrap rnb">
-              <div class="input-wrap head-search">
-                <input type="search" placeholder="Search" />
-              </div>
-              <div class="input-wrap select">
-                <button class="btn btn-icon btn-head-search" type="submit"></button>
-                <div class="dropdown" rel="dropdown">
-                  <span href="javascript:void(0)" class="dropdown-toggle">선택</span>
-                  <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)" title="test01">test01</a></li>
-                    <li><a href="javascript:void(0)" title="test01">test02</a></li>
-                    <li><a href="javascript:void(0)" title="test01">test03</a></li>
-                    <li><a href="javascript:void(0)" title="test01">test04</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        <div class="nav-wrap on">
+        <header data-include="../../include/header.html"></header>
+        <div class="nav-wrap">
           <div class="nav-wrap-con">
             <div class="nav-top">
               <div class="nav-profile">
                 <div class="img-box">
-                  <img src="../../../assets/images/icon/nav_profile.png" alt="박상현" />
+                  <img src="../../../../public/images/icon/nav_profile.png" alt="박상현" />
                 </div>
                 <div class="text-box">
                   <span>박상현 님</span>
-                  <span>parksh9014@db-fi.com</span>
+                  <span>parksh9014@hanmail..com</span>
                 </div>
+              </div>
+              <div class="btn-wrap">
+                <button class="btn">로그아웃</button>
               </div>
               <div class="nav-btnwrap">
                 <button class="btn btn-icon nav-close"></button>
               </div>
             </div>
-            <div class="nav-con">
+            <div class="nav-body">
               <nav>
-                <ul class="nav-depth">
+                <ul>
                   <li>
-                    <a href="javascript:void:(0)">
-                      <span>TEXT_1</span>
-                    </a>
+                    <a href="javascript:void:(0)"><span>TEXT_1</span></a>
                   </li>
                   <li class="nav-depth-in on">
-                    <a href="javascript:void:(0)">
-                      <span>TEXT_2</span>
-                    </a>
+                    <a href="javascript:void:(0)"><span>TEXT_2</span></a>
                   </li>
                   <li class="nav-depth-in">
                     <a href="javascript:void:(0)"> <span>TEXT_3</span></a>
@@ -81,16 +54,40 @@
                     <a href="javascript:void:(0)"> <span>TEXT_5</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void:(0)">
-                      <span>TEXT_6</span>
-                    </a>
+                    <a href="javascript:void:(0)"><span>TEXT_6</span></a>
+                  </li>
+                  <li class="nav-depth-in">
+                    <a href="javascript:void:(0)"> <span>TEXT_4</span></a>
+                  </li>
+                  <li class="nav-depth-in">
+                    <a href="javascript:void:(0)"> <span>TEXT_5</span></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void:(0)"><span>TEXT_6</span></a>
                   </li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class=""></div>
+          <div class="nav-depth-wrap">
+            <div class="nav-depth-con">
+              <div class="nav-depth-body">
+                <ul>
+                  <li>
+                    <a href="javascript:void:(0)"><span>TEXT_1</span></a>
+                  </li>
+                  <li class="nav-depth-in on">
+                    <a href="javascript:void:(0)"><span>TEXT_2</span></a>
+                  </li>
+                  <li class="nav-depth-in">
+                    <a href="javascript:void:(0)"> <span>TEXT_3</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- // header -->
         <!-- content container -->
         <div class="container">
           <div class="inner">
@@ -715,9 +712,6 @@
                       </table>
                     </div>
                   </div>
-                  <script>
-                    tab('tab-board');
-                  </script>
                 </div>
               </div>
               <div class="item-box item-box-col main-bottom-box">
@@ -817,7 +811,11 @@
       <!--//content-->
 
       <!--chat-wrap -->
-      <section class="chat-wrap right-content"></section>
+      <section class="right-content" data-include="../../include/chat.html"></section>
     </div>
+    <script src="../../../../public/js/common.js"></script>
+    <script>
+      tab('tab-board');
+    </script>
   </body>
 </html>

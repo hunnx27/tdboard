@@ -1,0 +1,25 @@
+[
+  {
+    "roleName" : "1",
+    "authority": true
+  },
+  {
+    "roleName" : "2",
+    "authority": false
+  }
+  ,
+  {
+    "roleName" : "3",
+    "authority": false
+  }
+  ,
+  {
+    "roleName" : "4",
+    "authority": true
+  }
+  ,
+  {
+    "roleName" : "5",
+    "authority": false
+  }
+]

@@ -1,92 +1,74 @@
 /* noto sans */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans:wght@400;500;600;700&display=swap');
-/*
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans:wght@400;500;600;700&display=swap');*/
+
 @font-face {
-	font-family: 'SpoqaHanSansNeo';
-	src:url('../font/SpoqaHanSansNeo-Light.woff2') format('woff2'),
-		url('../font/SpoqaHanSansNeo-Light.woff') format('woff'),
-		url('../font/SpoqaHanSansNeo-Light.ttf') format('truetype');
-		font-weight: 300;
-		font-style: normal;
+  font-family: 'AppleSDGothicNeo';
+  src: url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('woff2'),
+    url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('woff'),
+    url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'SpoqaHanSansNeo';
-	src:url('../font/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
-		url('../font/SpoqaHanSansNeo-Regular.woff') format('woff'),
-		url('../font/SpoqaHanSansNeo-Regular.ttf') format('truetype');
-		font-weight: 400;
-		font-style: normal;
+  font-family: 'AppleSDGothicNeo';
+  src: url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('woff2'),
+    url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('woff'),
+    url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'SpoqaHanSansNeo';
-	src:url('../font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
-		url('../font/SpoqaHanSansNeo-Medium.woff') format('woff'),
-		url('../font/SpoqaHanSansNeo-Medium.ttf') format('truetype');
-		font-weight: 500;
-		font-style: normal;
+  font-family: 'AppleSDGothicNeo';
+  src: url('../font/notosans/NotoSansKR-Bold.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'SpoqaHanSansNeo';
-	src:url('../font/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
-		url('../font/SpoqaHanSansNeo-Bold.woff') format('woff'),
-		url('../font/SpoqaHanSansNeo-Bold.ttf') format('truetype');
-		font-weight: 600;
-		font-style: normal;
+  font-family: 'AppleSDGothicNeo';
+  src: url('../font/notosans/NotoSansKR-Bold.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
 }
 
 @font-face {
-	font-family: 'Play';
-	src:url('../font/Play-Regular.ttf') format('truetype');
-		font-weight: 400;
-		font-style: normal;
+  font-family: 'Noto Sans';
+  src: url('../font/notosans/NotoSansKR-Light.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-Light.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'Play';
-	src:url('../font/Play-Bold.ttf') format('truetype');
-		font-weight: 600;
-		font-style: normal;
-}
-
-
-
-*/
-@font-face {
-	font-family: 'AppleSDGothicNeo';
-	src:url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('woff2'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('woff'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoUL.ttf') format('truetype');
-		font-weight: 300;
-		font-style: normal;
+  font-family: 'Noto Sans';
+  src: url('../font/notosans/NotoSansKR-Regular.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-Regular.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'AppleSDGothicNeo';
-	src:url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('woff2'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('woff'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoR.ttf') format('truetype');
-		font-weight: 400;
-		font-style: normal;
+  font-family: 'Noto Sans';
+  src: url('../font/notosans/NotoSansKR-Bold.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: bold;
 }
 
 @font-face {
-	font-family: 'AppleSDGothicNeo';
-	src:url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('woff2'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('woff'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('truetype');
-		font-weight: 600;
-		font-style: normal;
-}
-
-
-@font-face {
-	font-family: 'AppleSDGothicNeo';
-	src:url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('woff2'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('woff'),
-		url('../font/AppleSDGothicNeo/AppleSDGothicNeoB.ttf') format('truetype');
-		font-weight: 700;
-		font-style: bold;
+  font-family: 'Noto Sans';
+  src: url('../font/notosans/NotoSansKR-ExtraBold.ttf') format('woff2'),
+    url('../font/notosans/NotoSansKR-ExtraBold.ttf') format('woff'),
+    url('../font/notosans/NotoSansKR-ExtraBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: border;
 }
