@@ -64,6 +64,33 @@ h5 {
 }
 
 /*** text color ***/
+.text-bold {
+  font-weight: 700;
+}
+.text-size-28 {
+  font-size: 2.8rem;
+}
+.text-size-22 {
+  font-size: 2.2rem;
+}
+.text-size-20 {
+  font-size: 2rem;
+}
+.text-size-18 {
+  font-size: 1.8rem;
+}
+.text-size-16 {
+  font-size: 1.6rem;
+}
+.text-size-14 {
+  font-size: 1.4rem;
+}
+.text-size-13 {
+  font-size: 1.3rem;
+}
+.text-size-12 {
+  font-size: 1.2rem;
+}
 .text-center {
   text-align: center !important;
 }
@@ -74,7 +101,7 @@ h5 {
   text-align: right !important;
 }
 .text-red {
-  color: #ff455c;
+  color: #ff455c !important;
 }
 .text-yellow {
   color: #ffc700;
@@ -82,7 +109,7 @@ h5 {
 .text-green {
   color: #54dc00;
 }
-.text-maincolor {
+.text-primary {
   color: #2283c7;
 }
 
