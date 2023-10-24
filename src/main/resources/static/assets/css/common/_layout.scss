@@ -121,6 +121,9 @@ footer{
   @include flexbox(row, flex-start, flex-start);
   margin-right:-1.6rem;
   margin-bottom:-1.6rem;
+  & + .item-wrap{
+    margin-top:1.6rem;
+  }
   &.justify-end {
     -webkit-box-pack: end;
     -moz-box-justify-content: flex-end;
@@ -166,10 +169,10 @@ footer{
     margin-right:1.6rem;
     margin-bottom:1.6rem;
     .item-top{
-      padding:0 1.6rem;
+    
     }
     .item-con{
-      padding: 1.6rem;
+      
     }
   }
 }

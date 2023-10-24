@@ -12172,6 +12172,9 @@ footer .foot-top .foot-nav ul li a {
   margin-right: -1.6rem;
   margin-bottom: -1.6rem;
 }
+.item-wrap + .item-wrap {
+  margin-top: 1.6rem;
+}
 .item-wrap.justify-end {
   -webkit-box-pack: end;
   -moz-box-justify-content: flex-end;
@@ -12207,13 +12210,6 @@ footer .foot-top .foot-nav ul li a {
   margin-right: 1.6rem;
   margin-bottom: 1.6rem;
 }
-.item-wrap .item-box .item-top {
-  padding: 0 1.6rem;
-}
-.item-wrap .item-box .item-con {
-  padding: 1.6rem;
-}
-
 /* 노트북 분기점 */
 /* 노트북 */
 /* 테블릿 */
