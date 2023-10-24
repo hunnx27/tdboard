@@ -207,6 +207,9 @@ h5 {
   &-right {
     text-align: right !important;
   }
+  &-white{
+    color:$white;
+  }
   &-red {
     color: $red !important;
   }
@@ -1151,41 +1154,61 @@ button btn-wrap
 icon
 ***************************/
 .icon-box {
-  width: 2.4rem;
-  height: 2.4rem;
-  background-position: center;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  position:relative;
   border: 0;
+  font-size:0;
   display: inline-block;
   vertical-align: middle;
+  &::after{
+    content:'';
+    display:block;
+    width:100%;
+    height:100%;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
   &.warning-icon {
     background-image: url(../images/icon/warning_icon.svg);
   }
   &.uproad-icon {
-    width: 1.8rem;
-    height: 1.8rem;
     background-image: url(../images/icon/btn_uproad_icon.svg);
-    margin-right: 0.8rem;
-    position: relative;
-    bottom: 0.1rem;
   }
   &.icon-search {
-    width: 2rem;
-    height: 2rem;
     background-image: url(../images/icon/search_white_icon.svg);
-    margin-right: 0.8rem;
-    position: relative;
-    bottom: 0.1rem;
   }
   &.exel-icon {
-    width: 2.3rem;
-    height: 2.2rem;
     background-image: url(../images/icon/exel_btn_icon.png);
-    margin-right: 0.8rem;
-    position: relative;
-    bottom: 0.1rem;
+  }
+  
+  &.icon-main01{
+    width:10rem;
+    height: 10rem;
+    &::after{
+      background-image: url(../images/main/icon_main01.png);
+    }
+  }
+  &.icon-main02{
+    width:10rem;
+    height: 10rem;
+    &::after{
+      background-image: url(../images/main/icon_main02.png);
+    }
+  }
+  &.icon-main03{
+    width:10rem;
+    height: 10rem;
+    &::after{
+      background-image: url(../images/main/icon_main03.png);
+    }
+  }
+  &.icon-main04{
+    width:10rem;
+    height: 10rem;
+    &::after{
+      background-image: url(../images/main/icon_main04.png);
+    }
   }
 }
 /**************************
@@ -1511,9 +1534,6 @@ table
     table-layout: initial;
     width: 100%;
   }
-  @include tablet {
-    //table-layout: initial;
-  }
   thead {
     tr {
       &:first-child {
@@ -1670,122 +1690,137 @@ table
   }
 }
 /**************************
-col
+col  wb mo tb
 ***************************/
-.col-mg-wrap {
-  position: relative;
-  margin-right: -$box-margin-right;
-}
-.col-mg-1 {
-  max-width: calc(8.333333333333333% - $box-margin-right);
-  width: calc(8.333333333333333% - $box-margin-right);
-}
-.col-mg-2 {
-  max-width: calc(16.66666666666667% - $box-margin-right);
-  width: calc(16.66666666666667% - $box-margin-right);
-}
-.col-mg-3 {
-  max-width: calc(25% - $box-margin-right);
-  width: calc(25% - $box-margin-right);
-}
-.col-mg-4 {
-  max-width: calc(33.33333333333333% - $box-margin-right);
-  width: calc(33.33333333333333% - $box-margin-right);
-}
-.col-mg-5 {
-  max-width: calc(41.66666666666667% - $box-margin-right);
-  width: calc(41.66666666666667% - $box-margin-right);
-}
-.col-mg-6 {
-  max-width: calc(50% - $box-margin-right);
-  width: calc(50% - $box-margin-right);
-}
-.col-mg-7 {
-  max-width: calc(58.333333333333333% - $box-margin-right);
-  width: calc(58.333333333333333% - $box-margin-right);
-}
-.col-mg-8 {
-  max-width: calc(66.66666666666667% - $box-margin-right);
-  width: calc(66.66666666666667% - $box-margin-right);
-}
-.col-mg-9 {
-  max-width: calc(75% - $box-margin-right);
-  width: calc(75% - $box-margin-right);
-}
-.col-mg-10 {
-  max-width: calc(83.33333333333333% - $box-margin-right);
-  width: calc(83.33333333333333% - $box-margin-right);
-}
-.col-mg-11 {
-  max-width: calc(91.66666666666667% - $box-margin-right);
-  width: calc(91.66666666666667% - $box-margin-right);
-}
-.col-mg-12 {
-  max-width: calc(100% - $box-margin-right);
-  width: calc(100% - $box-margin-right);
-}
-.col-wrap {
-  position: relative;
-}
-.col-1 {
-  max-width: 8.333333333333333%;
-  width: 8.333333333333333%;
-  /* max-width: calc(8.333333333333333% - $m-right-16);
-  width: calc(8.333333333333333% - $m-right-16);
-  */
-}
-.col-2 {
-  max-width: 16.66666666666667%;
-  width: 16.66666666666667%;
-}
-.col-3 {
-  max-width: 25%;
-  width: 25%;
-}
-.col-4 {
-  max-width: 33.33333333333333%;
-  width: 33.33333333333333%;
-}
-.col-5 {
-  max-width: 41.66666666666667%;
-  width: 41.66666666666667%;
-}
-.col-6 {
-  max-width: 50%;
-  width: 50%;
-}
-.col-7 {
-  max-width: 58.333333333333333%;
-  width: 58.333333333333333%;
-}
-.col-8 {
-  max-width: 66.66666666666667%;
-  width: 66.66666666666667%;
-}
-.col-9 {
-  max-width: 75%;
-  width: 75%;
-}
-.col-10 {
-  max-width: 83.33333333333333%;
-  width: 83.33333333333333%;
-}
-.col-11 {
-  max-width: 91.66666666666667%;
-  width: 91.66666666666667%;
-}
-.col-12 {
-  max-width: 100%;
-  width: 100%;
-}
-.col-auto {
-  width: auto;
-  max-width: auto;
-}
-
-//#root lg, md , s
-@for $i from 0 through 200 {
-  #root {
+@include web {
+  /**************************
+  col  wb mo tb
+  ***************************/
+  .col-mg-wrap {
+    position: relative;
+    margin-right: -$box-margin-right;
+  }
+  .col-mg-1 {
+    max-width: calc(8.333333333333333% - $box-margin-right);
+    width: calc(8.333333333333333% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-2 {
+    max-width: calc(16.66666666666667% - $box-margin-right);
+    width: calc(16.66666666666667% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-3 {
+    max-width: calc(25% - $box-margin-right);
+    width: calc(25% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-4 {
+    max-width: calc(33.33333333333333% - $box-margin-right);
+    width: calc(33.33333333333333% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-5 {
+    max-width: calc(41.66666666666667% - $box-margin-right);
+    width: calc(41.66666666666667% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-6 {
+    max-width: calc(50% - $box-margin-right);
+    width: calc(50% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-7 {
+    max-width: calc(58.333333333333333% - $box-margin-right);
+    width: calc(58.333333333333333% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-8 {
+    max-width: calc(66.66666666666667% - $box-margin-right);
+    width: calc(66.66666666666667% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-9 {
+    max-width: calc(75% - $box-margin-right);
+    width: calc(75% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-10 {
+    max-width: calc(83.33333333333333% - $box-margin-right);
+    width: calc(83.33333333333333% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-11 {
+    max-width: calc(91.66666666666667% - $box-margin-right);
+    width: calc(91.66666666666667% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-mg-12 {
+    max-width: calc(100% - $box-margin-right);
+    width: calc(100% - $box-margin-right);
+    margin-right:$box-margin-right;
+  }
+  .col-wrap {
+    position: relative;
+  }
+  .col-1 {
+    max-width: 8.333333333333333%;
+    width: 8.333333333333333%;
+    /* max-width: calc(8.333333333333333% - $m-right-16);
+    width: calc(8.333333333333333% - $m-right-16);
+    */
+  }
+  .col-2 {
+    max-width: 16.66666666666667%;
+    width: 16.66666666666667%;
+  }
+  .col-3 {
+    max-width: 25%;
+    width: 25%;
+  }
+  .col-4 {
+    max-width: 33.33333333333333%;
+    width: 33.33333333333333%;
+  }
+  .col-5 {
+    max-width: 41.66666666666667%;
+    width: 41.66666666666667%;
+  }
+  .col-6 {
+    max-width: 50%;
+    width: 50%;
+  }
+  .col-7 {
+    max-width: 58.333333333333333%;
+    width: 58.333333333333333%;
+  }
+  .col-8 {
+    max-width: 66.66666666666667%;
+    width: 66.66666666666667%;
+  }
+  .col-9 {
+    max-width: 75%;
+    width: 75%;
+  }
+  .col-10 {
+    max-width: 83.33333333333333%;
+    width: 83.33333333333333%;
+  }
+  .col-11 {
+    max-width: 91.66666666666667%;
+    width: 91.66666666666667%;
+  }
+  .col-12 {
+    max-width: 100%;
+    width: 100%;
+  }
+  .col-auto {
+    width: auto;
+    max-width: auto;
+  }
+  
+  //margin,padding,input-width wb mo tb
+  @for $i from 0 through 200 {
     .m-top-#{$i} {
       margin-top: $i * 0.1rem;
     }
@@ -1814,8 +1849,7 @@ col
       width: $i * 1rem;
     }
   }
-}
-#root {
+
   .m {
     &-right-auto {
       margin-right: auto;
@@ -1824,32 +1858,41 @@ col
       margin-left: auto;
     }
   }
+
+
+  @for $i from 0 through 400 {
+
+      .min-w-#{$i * 1} {
+        min-width: $i * 0.1rem;
+      }
+      .max-w-#{$i * 1} {
+        max-width: $i * 0.1rem;
+      }
+      .w-#{$i * 1} {
+        width: $i * 0.1rem;
+      }
+      .h-#{$i * 1} {
+        height: $i * 0.1rem;
+      }
+    
+  }
 }
 
-@for $i from 0 through 400 {
-  #root {
-    .min-w-#{$i * 1} {
-      min-width: $i * 0.1rem;
-    }
-    .max-w-#{$i * 1} {
-      max-width: $i * 0.1rem;
-    }
-    .w-#{$i * 1} {
-      width: $i * 0.1rem;
-    }
-    .h-#{$i * 1} {
-      height: $i * 0.1rem;
-    }
-  }
+@include notebook {
+
 }
-.tab-wrap {
+
+
+@include tablet {
+
 }
-.tab-con {
-  display: none;
-  &.on {
-    display: block;
-  }
+
+
+@include mobile {
+
 }
+
+
 /*****************
 status 
 */ /////////
@@ -1969,4 +2012,22 @@ date range picker
   background: $mainColor;
   color: $white;
   font-weight: bold;
+}
+
+@include web {
+
+}
+
+@include notebook {
+
+}
+
+
+@include tablet {
+
+}
+
+
+@include mobile {
+
 }
