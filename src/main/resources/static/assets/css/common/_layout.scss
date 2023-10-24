@@ -172,7 +172,9 @@ footer{
     
     }
     .item-con{
-      
+      &.item-con-pad{
+        padding:1.6rem;
+      }
     }
   }
 }

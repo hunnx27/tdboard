@@ -12205,6 +12205,10 @@ footer .foot-top .foot-nav ul li a {
   margin-right: 1.6rem;
   margin-bottom: 1.6rem;
 }
+.item-wrap .item-box .item-con.item-con-pad {
+  padding: 1.6rem;
+}
+
 /* 노트북 분기점 */
 /* 노트북 */
 /* 테블릿 */
