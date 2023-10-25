@@ -143,6 +143,9 @@ body {
     overflow: hidden !important;
   }
 }
+.shadow{
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
 h1 {
   font-weight: 700;
   font-size: 2.4rem;
@@ -1527,6 +1530,7 @@ table
   }
 }
 .table {
+  
   table-layout: fixed;
   border: 1px solid $gray03;
   border-top: 0;

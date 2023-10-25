@@ -33,6 +33,10 @@ body.fixed {
   overflow: hidden !important;
 }
 
+.shadow {
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
 h1 {
   font-weight: 700;
   font-size: 2.4rem;
@@ -12239,7 +12243,6 @@ footer .foot-top .foot-nav ul li a {
 .main-box-wrap .main-box .main-box-con {
   padding: 1.6rem;
 }
-
 .style-guide .style-guide-container {
   width: 80vw;
 }
