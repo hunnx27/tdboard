@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,6 +19,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @Order(1)
 public class SecurityUserConfig {
+    private static final String[] PERMIT_URL_ARRAY = {
+            /* swagger v2 */
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            /* swagger v3 */
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+    };
 
     private final UserAuthFailurHandler userAuthFailurHandler;
     private final UserPrincipalDetailsService userPrincipalDetailsService;
@@ -46,9 +61,12 @@ public class SecurityUserConfig {
                 .csrf()
                 .disable()
                 .authenticationProvider(homepageAuthenticationProvider())
-                .antMatcher("/**").authorizeRequests(authorize -> authorize
-                    .antMatchers("/user/login", "/user/join", "/user/join_proc", "/user/login_proc"
-                            , "/user/join2", "/user/join2_proc"
+                .authorizeRequests().antMatchers(PERMIT_URL_ARRAY).permitAll()
+                .and()
+                .antMatcher("/**").authorizeRequests(
+                        authorize ->
+                                authorize.antMatchers("/user/login", "/user/join", "/user/join_proc", "/user/login_proc"
+                                                , "/user/join2", "/user/join2_proc"
                     ).permitAll()
                     .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG")
                     .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
@@ -58,11 +76,21 @@ public class SecurityUserConfig {
                         .loginProcessingUrl("/user/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
                         .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
                         .failureHandler(userAuthFailurHandler) //실패처리
-                ) 
-                
+                )
                 .logout(logout -> logout
                         .logoutUrl("/user/logout_proc")
                         .logoutSuccessUrl("/"));
         return http.build();
+    }
+
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+        return (web) -> web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**");
     }
 }

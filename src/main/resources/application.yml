@@ -9,11 +9,18 @@
 # 2. session attribute? ??? model? ????.
 #spring.mustache.servlet.expose-session-attributes=true
 
+#서버
 server:
-  port: 8080  # ?? ?? ??
+  port: 8080
   servlet:
-    context-path: /  # context-path ??
+    context-path: /
     encoding:
-      charset: UTF-8  # ??? ?? ??
+      charset: UTF-8
       enabled: true
       force: true
+
+#swagger
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
