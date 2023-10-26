@@ -25,17 +25,16 @@ public class SecurityUserJWTConfig {
 
     @Bean
     public SecurityFilterChain jwtFilterChain(HttpSecurity http) throws Exception {
+
+
         http
                 .csrf()
                 .disable()
-                .antMatcher("/api/**").authorizeRequests(
-                        authorize -> authorize
-                                        //.antMatchers("/").permitAll()
-                                        //.antMatchers("/api/org/**").hasAnyAuthority("ROLE_ORG")
-                                        .antMatchers("").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
-                                        .anyRequest().permitAll())
-                .addFilterBefore(new JwtUserAuthenticationFilter(userJwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .authorizeRequests()
+                .antMatchers("/api/v1/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
+                .and()
+                .addFilterBefore(new JwtUserAuthenticationFilter(userJwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         return http.build();
     }

@@ -70,7 +70,7 @@ public class SecurityUserConfig {
                     ).permitAll()
                     .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG")
                     .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
-                    .anyRequest().permitAll())
+                    )
                 .formLogin(form -> form
                         .loginPage("/user/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
                         .loginProcessingUrl("/user/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
