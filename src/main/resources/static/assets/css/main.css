@@ -1,7 +1,10 @@
 @charset "UTF-8";
 /* 노트북 분기점 */
+/* lg */
 /* 노트북 */
+/* md */
 /* 테블릿 */
+/* sm */
 /* 모바일 */
 * {
   box-sizing: border-box;
@@ -142,7 +145,7 @@ h5 {
 .d-pc {
   display: block;
 }
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   .d-pc {
     display: none;
   }
@@ -151,7 +154,7 @@ h5 {
 .d-mb {
   display: none;
 }
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   .d-mb {
     display: block;
   }
@@ -200,6 +203,68 @@ flex-item
   -moz-align-items: baseline;
   align-items: baseline;
 }
+@media (max-width: 1200px) {
+  .flex-box.md-column-type {
+    flex-direction: column;
+  }
+  .flex-box.md-justify-end {
+    -webkit-box-pack: end;
+    -moz-box-justify-content: flex-end;
+    justify-content: flex-end;
+  }
+  .flex-box.md-justify-between {
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+  }
+  .flex-box.md-justify-center {
+    -webkit-box-pack: center;
+    -moz-box-justify-content: center;
+    justify-content: center;
+  }
+  .flex-box.md-align-center {
+    -moz-align-items: center;
+    align-items: center;
+  }
+  .flex-box.md-align-end {
+    -moz-align-items: flex-end;
+    align-items: flex-end;
+  }
+  .flex-box.md-align-baseline {
+    -moz-align-items: baseline;
+    align-items: baseline;
+  }
+}
+@media (max-width: 568px) {
+  .flex-box.sm-column-type {
+    flex-direction: column;
+  }
+  .flex-box.sm-justify-end {
+    -webkit-box-pack: end;
+    -moz-box-justify-content: flex-end;
+    justify-content: flex-end;
+  }
+  .flex-box.sm-justify-between {
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+  }
+  .flex-box.sm-justify-center {
+    -webkit-box-pack: center;
+    -moz-box-justify-content: center;
+    justify-content: center;
+  }
+  .flex-box.sm-align-center {
+    -moz-align-items: center;
+    align-items: center;
+  }
+  .flex-box.sm-align-end {
+    -moz-align-items: flex-end;
+    align-items: flex-end;
+  }
+  .flex-box.sm-align-baseline {
+    -moz-align-items: baseline;
+    align-items: baseline;
+  }
+}
 
 .flex-wrap {
   flex-wrap: wrap;
@@ -221,6 +286,40 @@ flex-item
   flex: 5 1 auto;
 }
 
+@media (max-width: 1200px) {
+  .md-flex-1 {
+    flex: 1 1 auto;
+  }
+  .md-flex-2 {
+    flex: 2 1 auto;
+  }
+  .md-flex-3 {
+    flex: 3 1 auto;
+  }
+  .md-flex-4 {
+    flex: 4 1 auto;
+  }
+  .md-flex-5 {
+    flex: 5 1 auto;
+  }
+}
+@media (max-width: 568px) {
+  .sm-flex-1 {
+    flex: 1 1 auto;
+  }
+  .sm-flex-2 {
+    flex: 2 1 auto;
+  }
+  .sm-flex-3 {
+    flex: 3 1 auto;
+  }
+  .sm-flex-4 {
+    flex: 4 1 auto;
+  }
+  .sm-flex-5 {
+    flex: 5 1 auto;
+  }
+}
 .flex-basis-0 {
   flex-basis: 0;
 }
@@ -241,6 +340,40 @@ flex-item
   flex-grow: 4;
 }
 
+@media (max-width: 1200px) {
+  .md-flex-grow-1 {
+    flex: 1 1 auto;
+  }
+  .md-flex-grow-2 {
+    flex: 2 1 auto;
+  }
+  .md-flex-grow-3 {
+    flex: 3 1 auto;
+  }
+  .md-flex-grow-4 {
+    flex: 4 1 auto;
+  }
+  .md-flex-grow-5 {
+    flex: 5 1 auto;
+  }
+}
+@media (max-width: 568px) {
+  .sm-flex-grow-1 {
+    flex: 1 1 auto;
+  }
+  .sm-flex-grow-2 {
+    flex: 2 1 auto;
+  }
+  .sm-flex-grow-3 {
+    flex: 3 1 auto;
+  }
+  .sm-flex-grow-4 {
+    flex: 4 1 auto;
+  }
+  .sm-flex-grow-5 {
+    flex: 5 1 auto;
+  }
+}
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* Dropdown (셀렉트박스 커스텀)
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -480,6 +613,40 @@ input group
 }
 .input-group.align-end {
   align-items: flex-end;
+}
+@media (max-width: 1200px) {
+  .input-group .md-justify-end {
+    justify-content: flex-end;
+  }
+  .input-group .md-justify-between {
+    justify-content: space-between;
+  }
+  .input-group .md-justify-center {
+    justify-content: center;
+  }
+  .input-group .md-align-center {
+    align-items: center;
+  }
+  .input-group .md-align-end {
+    align-items: flex-end;
+  }
+}
+@media (max-width: 568px) {
+  .input-group .sm-justify-end {
+    justify-content: flex-end;
+  }
+  .input-group .sm-justify-between {
+    justify-content: space-between;
+  }
+  .input-group .sm-justify-center {
+    justify-content: center;
+  }
+  .input-group .sm-align-center {
+    align-items: center;
+  }
+  .input-group .sm-align-end {
+    align-items: flex-end;
+  }
 }
 .input-group .input-wrap {
   max-width: 100%;
@@ -12051,6 +12218,7 @@ header {
   z-index: 999;
 }
 header .inner {
+  width: 164rem;
   height: 6rem;
 }
 
@@ -12214,8 +12382,11 @@ footer .foot-top .foot-nav ul li a {
 }
 
 /* 노트북 분기점 */
+/* lg */
 /* 노트북 */
+/* md */
 /* 테블릿 */
+/* sm */
 /* 모바일 */
 .main-box-wrap .main-box {
   border: 1px solid #dddddd;
