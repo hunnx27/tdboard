@@ -12208,6 +12208,12 @@ date range picker
   font-weight: bold;
 }
 
+@media (max-width: 1200px) {
+  body, html {
+    width: 100%;
+    overflow: hidden;
+  }
+}
 header {
   width: 100%;
   box-shadow: 3px 3px 15px rgba(100, 100, 100, 0.1);

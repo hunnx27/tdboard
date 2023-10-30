@@ -1,5 +1,14 @@
 $headH:6rem;
 $containerW:120rem;
+body{
+ 
+}
+@include tablet{
+  body,html{
+    width:100%;
+    overflow: hidden;
+  }
+}
 header{
   width:100%;
   //border-bottom:1px solid $gray03;

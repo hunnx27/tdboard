@@ -1,3 +1,5 @@
+
+
 /* tab function */
 function tab(usetab) {
   let tab = document.getElementsByClassName(usetab);
@@ -103,7 +105,14 @@ function boardAllChecked(boardcheck) {
       checkbox.checked = false;
     });
   }
-  
+  var checkBoxTables = document.querySelectorAll('.table');
+  checkBoxTables.forEach(function (checkBoxTable) {
+    checkBoxTable.querySelectorAll('input[type="checkbox"]').forEach(function (checkBoxCellAll) {
+      checkBoxCellAll.addEventListener('click', function () {
+        boardAllChecked(checkBoxCellAll);
+      });
+    });
+  });
 }*/
 function includeHTML() {
   let z, elmnt, file, xhttp;
@@ -139,36 +148,5 @@ function includeHTML() {
 includeHTML();
 window.onload = function () {
   selectCustom();
-  //textareaHeight();
-  // all check handler
-  var checkBoxTables = document.querySelectorAll('.table');
-  checkBoxTables.forEach(function (checkBoxTable) {
-    checkBoxTable.querySelectorAll('input[type="checkbox"]').forEach(function (checkBoxCellAll) {
-      checkBoxCellAll.addEventListener('click', function () {
-        boardAllChecked(checkBoxCellAll);
-      });
-    });
-  });
-  /*
-  var allcheckbox = document.querySelectorAll('.board-all-check');
-  allcheckbox.forEach(function (checkThis) {
-    checkThis.addEventListener('click', function () {
-      boardAllChecked(checkThis);
-    }) ;
-  });
-  */
-  function rightContentOn() {
-    if (document.getElementsByClassName('btn-chat-wide')[0]) {
-      document.getElementsByClassName('btn-chat-wide')[0].addEventListener('click', function () {
-        if (document.getElementsByClassName('right-content')[0].classList.contains('on')) {
-          document.getElementsByClassName('right-content')[0].classList.remove('on');
-        } else {
-          document.getElementsByClassName('right-content')[0].classList.add('on');
-        }
-      });
-    } else {
-      return false;
-    }
-  }
-  rightContentOn();
+
 };
