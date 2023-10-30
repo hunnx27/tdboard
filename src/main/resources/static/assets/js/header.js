@@ -8,15 +8,15 @@ window.onload = function () {
 }
 
 if(media_web.matches){
-  alert('web')
+  console.log('web')
 }
 
 /* only tablet */
 if(media_only_tablet.matches){
-  alert('tab')
+  console.log('tab')
 }
 if(media_mobile.matches){
-  alert('mo')
+  console.log('mo')
 }
 /*
 media_web.addListener(function(e){
