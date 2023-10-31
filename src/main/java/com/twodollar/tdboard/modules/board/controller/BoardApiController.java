@@ -11,6 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +38,12 @@ public class BoardApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/boards/type/notices")
-    public ResponseEntity<ApiCmnResponse<List<Board>>> noticeAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardService.getNoticeBoards()));
+    public ResponseEntity<ApiCmnResponse<Page<Board>>> noticeAll(
+            @RequestParam(value="page", defaultValue="0") int page,
+            @RequestParam(value="size", defaultValue="10", required = false) int size
+    ){
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardService.getNoticeBoards(pageable)));
     }
 
     @Operation(summary = "공지사항 검색", description = "공지사항 검색")
@@ -45,16 +52,21 @@ public class BoardApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/boards/type/notices/search")
-    public ResponseEntity<ApiCmnResponse<List<Board>>> noticeSearch(
+    public ResponseEntity<ApiCmnResponse<Page<Board>>> noticeSearch(
             @RequestParam("searchCode")String searchCode,
-            @RequestParam("keyword") String keyword){
-        List<Board> boardList = new ArrayList<>();
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value="page", defaultValue="0") int page,
+            @RequestParam(value="size", defaultValue="10", required = false) int size
+
+    ){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Board> boardList = Page.empty();
             switch (searchCode){
                 case "title":
-                    boardList = boardService.getNoticeBoardsWithTitle(keyword);
+                    boardList = boardService.getNoticeBoardsWithTitle(keyword, pageable);
                     break;
                 case "context":
-                    boardList = boardService.getNoticeBoardsWithContext(keyword);
+                    boardList = boardService.getNoticeBoardsWithContext(keyword, pageable);
                     break;
                 default:
                     log.error("Keyword not matching");
@@ -62,7 +74,6 @@ public class BoardApiController {
             }
         return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardList));
     }
-
 
 
 

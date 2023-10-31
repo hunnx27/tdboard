@@ -3,6 +3,8 @@ import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import com.twodollar.tdboard.modules.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,57 +46,57 @@ public class BoardService {
     /*
         게시판 유형별 조회
      */
-    public List<Board> getNoticeBoards() {
-        return boardRepository.findByBoardType(BoardTypeEnum.NOTICE).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getNoticeBoards(Pageable pageable) {
+        return boardRepository.findByBoardType(BoardTypeEnum.NOTICE, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getDataBoards() {
-        return boardRepository.findByBoardType(BoardTypeEnum.DATA).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getDataBoards(Pageable pageable) {
+        return boardRepository.findByBoardType(BoardTypeEnum.DATA, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getFAQBoards() {
-        return boardRepository.findByBoardType(BoardTypeEnum.FAQ).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getFAQBoards(Pageable pageable) {
+        return boardRepository.findByBoardType(BoardTypeEnum.FAQ, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getQNABoards() {
-        return boardRepository.findByBoardType(BoardTypeEnum.QNA).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getQNABoards(Pageable pageable) {
+        return boardRepository.findByBoardType(BoardTypeEnum.QNA, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
         공지사항
      */
-    public List<Board> getNoticeBoardsWithTitle(String title) {
-        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.NOTICE, title).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getNoticeBoardsWithTitle(String title, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.NOTICE, title, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getNoticeBoardsWithContext(String context) {
-        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.NOTICE, context).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getNoticeBoardsWithContext(String context, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.NOTICE, context, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
         자료실
      */
-    public List<Board> getDataBoardsWithTitle(String title) {
-        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.DATA, title).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getDataBoardsWithTitle(String title, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.DATA, title, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getDataBoardsWithContext(String context) {
-        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.DATA, context).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getDataBoardsWithContext(String context, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.DATA, context, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
         FAQ
      */
-    public List<Board> getFAQBoardsWithTitle(String title) {
-        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.FAQ, title).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getFAQBoardsWithTitle(String title, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.FAQ, title, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getFAQBoardsWithContext(String context) {
-        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.FAQ, context).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getFAQBoardsWithContext(String context, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.FAQ, context, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
         QNA
      */
-    public List<Board> getQNABoardsWithTitle(String title) {
-        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.QNA, title).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getQNABoardsWithTitle(String title, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndTitleContains(BoardTypeEnum.QNA, title, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
-    public List<Board> getQNABoardsWithContext(String context) {
-        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.QNA, context).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public Page<Board> getQNABoardsWithContext(String context, Pageable pageable) {
+        return boardRepository.findByBoardTypeAndContextContains(BoardTypeEnum.QNA, context, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
 
