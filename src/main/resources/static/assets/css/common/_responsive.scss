@@ -1,10 +1,27 @@
 /* 노트북 분기점 */
 
 
-/* lg */
-/* 노트북 */
+
+
+
+
+/* lg 노트북 */
 @mixin web {
   @media (min-width: 1201px) {
+    @content;
+  }
+}
+
+/* xl */
+@mixin xl_web {
+  @media (min-width: 1400) {
+    @content;
+  }
+}
+
+/* xxl */
+@mixin xxl_web {
+  @media (min-width: 1600) {
     @content;
   }
 }
