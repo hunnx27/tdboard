@@ -5,6 +5,8 @@
 /********
 main
 ******/
+$mainColorGreen:#7DAD2D;
+$mainColorRed:#EF9A2D;
 .main-content{
     padding-top:12rem;
 }
@@ -12,6 +14,18 @@ main
     width:100%;
     height:48rem;
     overflow: hidden;
+    @include mobile{
+        height:250px;
+    }
+}
+.main-spot-1{
+    width:100%;
+    height:480px;
+    background-image:url(../assets/images/main/main_spot_1.svg);
+    background-size:cover;
+    @include mobile{
+        height:250px;
+    }
 }
 .main-sect-1{
     ul{

@@ -1,4 +1,7 @@
-$headH:6rem;
+$headH:12rem;
+@include tablet{
+  $headH:8rem;
+}
 $containerW:120rem;
 body{
  
@@ -115,17 +118,100 @@ header{
   .rnb{
     margin-left:auto;
   }
-}
-.content{
- 
-  .inner{
+  @include tablet{
+    .gnb{
+      display:none;
+      nav{
+        display:block;
+        > ul{
+          height:100%;
+          display: block;
+          .gnb-depth-01{
+            display:block;
+              > a{
+                @include flexbox(row, flex-start, center);
+                height:100%;
+                -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+                > span{
+                  font-size:1.8rem;
+                }
+              }
+              &:hover,&.on{
+                > a{
+                  span{
+                    color:#0082C8;
+                    -webkit-transition: all 0.25s ease-in-out;
+                    transition: all 0.25s ease-in-out;
+                  }
+                } 
+              }
+          }
+          .gnb-depth-02{
+            display: none;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: calc(100% + 4rem);
+            ul{
+              li{
+                margin-bottom:0.8rem;
+                text-align: center;
+                span{
+                  font-size: 1.6rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
+@include tablet{
+  .head-top{
+    background-color: #1A4079;
+    > div{
+      @include flexbox(row, flex-end, center);
+      height:40px;
+      width:100%;
+      max-width:164rem;
+      margin:0 auto;
+      a{
+        margin-right:10rem;
+        font-size:1.4rem;
+        font-weight: 400;
+        color:#fff;
+        &:last-child{
+          margin-right:0;
+        }
+      }
+    }
+    
+  }
+}
+@include mobile{
+  .header{
+    //border-bottom:1px solid #ddd;
+    box-shadow:3px 3px 15px rgba(0,0,0,0.1);
+  }
+  .head-top{
+    display:none;
+    > div{
+      a{
+        &:last-child{
+        }
+      }
+    }
+    
+  }
+}
+
 /********
 main
 ******/
 .main-content{
-  padding-top:12rem;
+  padding-top:$headH;
 }
 .main-content .mian-spot{
   width:100%;
