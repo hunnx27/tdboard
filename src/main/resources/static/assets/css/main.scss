@@ -53,13 +53,16 @@ $headH:12rem;
                 height:8rem;
                 position: relative;
                 &::after{
-                content:'';
-                display:inline-block;
-                width:3.2rem;
-                height: 3.2rem;
-                @include background(main, icon_white_plus, svg, no-repeat, cover, center);
-                position: absolute;
-                right:20%;
+                    content:'';
+                    display:inline-block;
+                    width:3.2rem;
+                    height: 3.2rem;
+                    @include background(main, icon_white_plus, svg, no-repeat, cover, center);
+                    position: absolute;
+                    right:20%;
+                    @include mobile{
+                        display:none;
+                    }
                 }
                 span{
                 color:$white;
@@ -84,14 +87,34 @@ $headH:12rem;
 }
 .main-sect-3{
     padding: 7.6rem 0;
+    background-color: #EFEFEF;
     .inner{
         max-width:120rem;
+    }
+    .main-board-wrap{
+        background-color:#fff;
+        border-radius:30px;
+        padding:4rem 3rem 3rem 3rem;
+    }
+    .main-board-wrap .border-top{
+        margin-bottom:2.4rem;
     }
 }
 .main-title{
     text-align: center;
     margin-bottom:3rem;
+    position: relative;
     h3{
         font-size:2.4rem;
+        span{
+            font-size:2.4rem;
+            font-weight: 700;
+        }
+        .btn{
+            position:absolute;
+            right:0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     }
 }

@@ -126,6 +126,12 @@ $box-margin-right: 1.6rem;
 }
 html {
   font-size: 10px;
+  @include tablet{
+    font-size:8px;
+  }
+  @include mobile{
+    font-size:10px;
+  }
 }
 body {
   font-size: 1.4rem;
@@ -2227,7 +2233,46 @@ table
     }
   }
 }
-
+@include mobile{
+  .board-list{
+    .table{
+      display:block;
+      border:0;
+      thead{
+        display:none;
+        tr{
+          
+        }
+      }
+      tbody{
+        display:block;
+        tr{
+          padding:1.6rem;
+          display:block;
+          border:1px solid #ddd;
+          border-radius:0.8rem;
+          margin-bottom:1.6rem;
+          td{
+            display:inline-block;
+            border:0;
+            &.board-title{
+              display:block;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+    /*
+	  span::before {
+        content: attr(data-label);
+		display:inline;
+		font-size:1.4rem;
+    }
+    */
+  }
+   
+}
 
 
 /*****************

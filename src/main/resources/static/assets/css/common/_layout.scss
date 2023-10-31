@@ -41,6 +41,19 @@ header{
   
 }
 
+.gnb_bg{
+  width:100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height:250px;
+  background-color: #fff;
+  z-index: 1;
+}
+.nav_btn_wrap{
+  display:none;
+}
+
 .head-con{
   @include flexbox(row, flex-start, flex-start);
   align-items: center;
@@ -56,6 +69,8 @@ header{
     }
   }
   .gnb{
+    position: relative;
+    z-index: 2;
     margin-left: auto;
     height:100%;
     nav{
@@ -68,8 +83,10 @@ header{
           height:100%;
             position: relative;
             flex:1 1 auto;
-            //margin-right:2rem;
-            padding:0 2rem;
+            padding:0 3rem;
+            &:last-child{
+
+            }
             > a{
               @include flexbox(row, flex-start, center);
               position:relative;
@@ -84,6 +101,8 @@ header{
                 bottom:0;
                 left:0;
                 height: 3px;
+                -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
                 background-color: #2993D1;
 
               }
@@ -105,17 +124,24 @@ header{
             }
         }
         .gnb-depth-02{
-          display: none;
           position: absolute;
           width: 100%;
           left: 0;
-          top: calc(100% + 4rem);
+          top: calc(100% + 0.4rem);
+          padding-left:3rem;
           ul{
             li{
+              display: flex;
               margin-bottom:0.8rem;
-              text-align: center;
+              text-align: left;
+              padding-left:0;
               span{
-                font-size: 1.6rem;
+                font-size: 1.8rem;
+                -webkit-transition: all 0.25s ease-in-out;
+                  transition: all 0.25s ease-in-out;
+                &:hover{
+                  color:#0082C8;
+                }
               }
             }
           }
@@ -123,13 +149,15 @@ header{
       }
     }
   }
+  
   .rnb{
     margin-left:auto;
   }
-}
-.content{
- 
-  .inner{
+  @include tablet{
+
+  }
+  @include mobile{
+
   }
 }
 
