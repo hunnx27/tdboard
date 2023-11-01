@@ -238,6 +238,7 @@ select {
   appearance: none; 
   */
 }
+/*
 *::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -251,3 +252,4 @@ select {
   background: #ccc;
   border-radius: 3px;
 }
+*/

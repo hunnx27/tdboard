@@ -1,84 +1,147 @@
 $headH:6rem;
 $containerW:120rem;
+body{
+ 
+}
+.inner{
+  margin: 0 auto;
+  padding:0 3rem;
+}
 header{
   width:100%;
-  //border-bottom:1px solid $gray03;
-  box-shadow: 3px 3px 15px rgba(100,100,100,0.1);
+  background-color: #fff;
   position: fixed;
   top: 0;
   left:0;
   width:100%;
   z-index: 999;
   .inner{
-    height:$headH;
+    width:100%;
+    max-width:164rem;
   }
 }
-.inner{
-  padding: 0 3rem;
-  //width:$containerW;
-  margin: 0 auto;
+.head-top{
+  background-color: #1A4079;
+  > div{
+    @include flexbox(row, flex-end, center);
+    height:40px;
+    width:100%;
+    max-width:164rem;
+    margin:0 auto;
+    a{
+      margin-right:10rem;
+      font-size:1.4rem;
+      font-weight: 400;
+      color:#fff;
+      &:last-child{
+        margin-right:0;
+      }
+    }
+  }
+  
 }
+
+.gnb_bg{
+  width:100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height:250px;
+  background-color: #fff;
+  z-index: 1;
+}
+.nav_btn_wrap{
+  display:none;
+}
+
 .head-con{
   @include flexbox(row, flex-start, flex-start);
-  //justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 8rem;
   .logo-wrap{
-    margin-right:2.4rem;
+    margin-right:auto;
     width:15rem;
+    a{
+      width:100%;
+      img{
+        height: 5rem;
+      }
+    }
   }
   .gnb{
-    margin-right:auto ;
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    height:100%;
     nav{
+      height:100%;
       > ul{
+        height:100%;
         //margin-right:-2rem;
-        @include flexbox(row, flex-start, flex-start);
+        @include flexbox(row, flex-end, flex-start);
         .gnb-depth-01{
+          height:100%;
             position: relative;
             flex:1 1 auto;
-            //margin-right:2rem;
-            padding:0 2rem;
+            padding:0 3rem;
+            &:last-child{
+
+            }
             > a{
+              @include flexbox(row, flex-start, center);
+              position:relative;
+              height:100%;
               -webkit-transition: all 0.25s ease-in-out;
               transition: all 0.25s ease-in-out;
-            }
-            span{
-              font-size:1.8rem;
-            }
-            &::after{
-              content:'';
-              display:block;
-              height:2px;
-              width:0;
-              position:absolute;
-              left:0;
-              top:100%;
-              background: $mainColor;
-              -webkit-transition: all 0.25s ease-in-out;
-              transition: all 0.25s ease-in-out;
+              &::after{
+                content:'';
+                position: absolute;
+                display: block;
+                width:0;
+                bottom:0;
+                left:0;
+                height: 3px;
+                -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+                background-color: #2993D1;
+
+              }
+              > span{
+                font-size:1.8rem;
+              }
             }
             &:hover,&.on{
               > a{
-                color:$mainColor;
-              }
-              &::after{
-                width:100%;
-              }
+                &::after{
+                  width:100%;
+                }
+                span{
+                  color:#0082C8;
+                  -webkit-transition: all 0.25s ease-in-out;
+                  transition: all 0.25s ease-in-out;
+                }
+              } 
             }
-          
         }
         .gnb-depth-02{
-          display: none;
           position: absolute;
           width: 100%;
           left: 0;
-          top: calc(100% + 4rem);
+          top: calc(100% + 0.4rem);
+          padding-left:3rem;
           ul{
             li{
+              display: flex;
               margin-bottom:0.8rem;
-              text-align: center;
+              text-align: left;
+              padding-left:0;
               span{
-                font-size: 1.6rem;
+                font-size: 1.8rem;
+                -webkit-transition: all 0.25s ease-in-out;
+                  transition: all 0.25s ease-in-out;
+                &:hover{
+                  color:#0082C8;
+                }
               }
             }
           }
@@ -86,18 +149,19 @@ header{
       }
     }
   }
+  
   .rnb{
     margin-left:auto;
   }
-}
+  @include tablet{
 
-.content{
-  padding-top:$headH;
-  min-height:calc(100vh - 12rem);
-  .inner{
-    padding: 0 3rem;
+  }
+  @include mobile{
+
   }
 }
+
+
 footer{
   .inner{
 
