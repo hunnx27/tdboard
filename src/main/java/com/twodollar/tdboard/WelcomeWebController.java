@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WelcomeWebController {
     @GetMapping("")
     public String welcomePage(Model model) {
-        //return "index";
-        return "pages/common/commingsoon";
+        return "index";
+        // return "pages/common/commingsoon";
     }
 }
