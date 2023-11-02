@@ -1,0 +1,35 @@
+.input-group{
+    @include flexbox(row, center, center);
+}
+input{}
+
+
+.input-wrap .input-error-text {
+    opacity: 0 !important;
+    position: absolute !important;
+    background-color: $red;
+    border: 1px solid $red;
+    padding: 0.4rem 1.2rem;
+    border-radius: 0 0.8rem 0.8rem 0.8rem;
+}
+.input-wrap input.input-error + .input-error-text {
+    position: absolute;
+    left: 3rem;
+    top: calc(100% + 0.4rem);
+    opacity: 1 !important;
+  
+    /* animate */
+    animation-name: inputErrorText;
+    animation-duration: 0.25s;
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    /*animation-play-state: paused;*/
+    /*animation-timing-function: 1s;*/
+    animation-fill-mode: both;
+}
+.input-wrap input.input-error + .input-error-text span {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}

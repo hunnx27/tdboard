@@ -88,3 +88,18 @@
     -webkit-line-clamp: $num;
   }
 }
+
+/*
+  background
+  @include background(icon, search_more_icon, svg, no-repeat, 2.5rem, center);
+  @include background(icon, search_more_icon, svg);
+*/
+@mixin backgroundImg($folder: folder_name, $img: file, $type: png) {
+  background-image: url(../../images/#{$folder}/#{$img}.#{$type});
+}
+@mixin background($folder: folder_name, $img: file, $type: png, $repeat: no-repeat, $size, $x: 0, $y: 0) {
+  background-image: url(../../images/#{$folder}/#{$img}.#{$type});
+  background-repeat: #{$repeat};
+  background-size: #{$size};
+  background-position: #{$x} #{$y};
+}
