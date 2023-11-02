@@ -1,5 +1,5 @@
 @import 'responsive';
-$mainColor: #2283c7;
+$primary: #2283c7;
 $subColor: #1cb2e7;
 $subColor01: #f38337;
 $subColor02: #fdb934;
@@ -114,13 +114,6 @@ $box-margin-right: 1.6rem;
   background-size: #{$size};
   background-position: #{$x} #{$y};
 }
-@mixin foucsBorder {
-  content: '';
-  position: absolute;
-  background: $mainColor;
-  transition: all 0.35s;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -266,7 +259,7 @@ h5 {
 }
 
 /************** 
-flex-item 
+flex-box
 *****************/
 .flex-box {
   position: relative;
@@ -559,7 +552,6 @@ $colmobileYGutter: 3rem;
 }
 .row > *{
   flex: 0 0 auto;
-  max-width: 100%;
   padding-right: calc($colXGutter * 0.5);
   padding-left: calc($colXGutter * 0.5);
   margin-top: $colYGutter;
@@ -839,11 +831,25 @@ $colmobileYGutter: 3rem;
   .p-bottom-#{$i} {
     padding-bottom: $i * 0.1rem;
   }
-  .input-w-#{$i * 10} {
-    width: $i * 1rem;
+}
+@for $i from 0 through 400 {
+  .w-#{$i} {
+    width: $i * 0.1rem;
+  }
+  @include tablet{
+    .w-md-#{$i} {
+      width: $i * 0.1rem;
+    }
+  }
+  @include mobile{
+    .w-sm-#{$i} {
+      width: $i * 0.1rem;
+    }
   }
 }
-
+.w-full{
+  width:100% !important;
+}
 .m {
   &-right-auto {
     margin-right: auto;
@@ -853,7 +859,6 @@ $colmobileYGutter: 3rem;
   }
 }
 @for $i from 0 through 400 {
-
     .min-w-#{$i * 1} {
       min-width: $i * 0.1rem;
     }
@@ -866,7 +871,6 @@ $colmobileYGutter: 3rem;
     .h-#{$i * 1} {
       height: $i * 0.1rem;
     }
-  
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */

@@ -1,0 +1,40 @@
+$button-primary : $primary;
+$button-subColor : $subColor;
+$button-disabled : $gray05;
+$button-disabled-border : $gray06;
+
+.btn {
+  @include flexbox(row, center, center);
+  border-radius: 0.2rem;
+  padding: 0rem 1.2rem;
+  background-color:$white;
+  border:1px solid $button-primary;
+  font-size:1.4rem;
+  &-size{
+    &-xxl{
+      height:4.4rem;
+      padding:0 4.4rem;
+    }
+    &-xl{
+      height:4.0rem;
+      padding:0 4.0rem;
+    }
+    &-lg{
+      height:3.6rem;
+      padding:0 3.6rem;
+    }
+    &-md{
+      height:3.2rem;
+      padding:0 3.2rem;
+    }
+    &-sm{
+      height:2.8rem;
+      padding:0 2.8rem;
+    }
+    &-xs{
+      height:2.4rem;
+      padding:0 2.4rem;
+      font-size:1.2rem;
+    }
+  } 
+}
