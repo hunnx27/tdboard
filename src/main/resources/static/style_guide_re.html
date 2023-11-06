@@ -5,34 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>스타일 가이드</title>
     <!-- 로컬소스 -->
-    <link rel="stylesheet" href="../public/css/reset.css" />
-    <link rel="stylesheet" href="../public/css/font.css" />
-    <link rel="stylesheet" href="../public/css/styleguide.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+    <link rel="stylesheet" href="./assets/css/guide/styleguide.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <!--
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    -->
   </head>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
   <body class="style-guide" style="overflow: initial" id="root">
-    <div class="style-top-head">
-      <div class="style-container">
-        <div class="inner">
-          <div class="flex-box justify-between">
-            <div class="left flex-box">
-              <div class="logo-wrap"></div>
-              <div class="menu-btn-wrap">
-                <button class="btn"></button>
-              </div>
-            </div>
-            <div class="right flex-box"></div>
+    <div class="guide-head">
+      <div class="flex-box justify-between align-center h-full p-left-16 p-right-16">
+        <div class="left flex-box align-center h-full">
+          <div class="menu-btn-wrap m-right-16">
+            <button class="btn btn-icon"><span class="material-symbols-outlined"> menu </span></button>
+          </div>
+          <div class="logo-wrap">
+            <h1 class="guide-logo"></h1>
+          </div>
+        </div>
+        <div class="right flex-box">
+          <div class="flex-box">
+            <button class="btn btn-icon"><span class="material-symbols-outlined"> group </span></button>
+            <ul class="guide-tool-tip" style="display: none">
+              <li class="m-right-16">
+                <a href="">
+                  <span> 디자이너 : 김민세 </span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <span> 퍼블리셔 : 임대한 </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="style-left-head">
-      <div class="left">
+    <section class="guide-contents">
+      <div class="guide-side">
+        <div class="guide-side-con">
+          <nav>
+            <div class="sidenav-menu-heading"><span>Common</span></div>
+            <div class="guide-side-list"><span class="icon-box"></span><span class="text-size-14">Color</span></div>
+            <div class="guide-collapse show" style="display: none">
+              <ul>
+                <li>
+                  <a href="">
+                    <span>Defalut</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="sidenav-menu-heading"><span>Form</span></div>
+            <div class="guide-side-list"><span class="icon-box"></span><span class="text-size-14">Color</span></div>
+            <div class="guide-side-list"><span class="icon-box"></span><span class="text-size-14">Color</span></div>
+            <div class="guide-side-list"><span class="icon-box"></span><span class="text-size-14">Color</span></div>
+            <div class="sidenav-menu-heading"><span>Page</span></div>
+            <div class="guide-side-list"><span class="icon-box"></span><span class="text-size-14">Color</span></div>
+          </nav>
+        </div>
         <div class="head-top">
           <div class="nav-btn-wrap"></div>
           <div class="logo-wrap"></div>
         </div>
       </div>
-    </div>
+      <div class="guide-container">
+        <main class="guide-con">
+          <div class="guide-con-top">
+          </div>
+          <div class="guide-con-body">
+            <div class="guide-inner">
+              <div class="style-inner row">
+                <div class="style-guide-box col-12" data-include="./guide/button.html"></div>
+                <div class="style-guide-box col-12" data-include="./guide/icon.html"></div>
+                <div class="style-guide-box col-12" data-include="./guide/color.html"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+
     <div class="style-set">
       <div class="style-set-top">
         <div class=""></div>
@@ -41,17 +104,74 @@
         <div class=""></div>
       </div>
     </div>
+    <!--
     <div class="style-guide-body flex-box flex-wrap justify-center">
       <div class="style-guide-container">
         <div class="style-inner flex-box flex-wrap justify-center col-mg-wrap">
-          <div class="style-guide-box flex-1" data-include="./guide/color.html"></div>
           <div class="style-guide-box flex-1" data-include="./guide/button.html"></div>
+          <div class="style-guide-box flex-1" data-include="./guide/font.html"></div>
+          <div class="style-guide-box flex-1" data-include="./guide/color.html"></div>
+
           <div class="style-guide-box flex-1" data-include="./guide/icon.html"></div>
           <div class="style-guide-box flex-1" data-include="./guide/flexbox.html"></div>
         </div>
       </div>
     </div>
+    -->
   </body>
 </html>
-<script src="../public/js/common.js"></script>
-<script src="../public/js/main.js"></script>
+
+<!---->
+
+<script>
+  function includeHTML() {
+    let z, elmnt, file, xhttp;
+
+    z = document.getElementsByTagName('*');
+
+    for (let i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      file = elmnt.getAttribute('data-include');
+
+      if (file) {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              elmnt.innerHTML = this.responseText;
+            }
+            if (this.status == 404) {
+              elmnt.innerHTML = 'Page not found.';
+            }
+            /* Remove the attribute, and call this function once more: */
+            elmnt.removeAttribute('data-include');
+            includeHTML();
+          } //if
+        }; //onreadystatechange
+
+        xhttp.open('GET', file, true);
+        xhttp.send();
+        return;
+      } //if - file
+    } //for
+  } //includeHTML
+  includeHTML();
+
+  window.onload = function () {
+    setTimeout(function () {
+      var colorFilterTab = document.querySelectorAll('.colorfiltertab');
+      colorFilterTab.forEach(function (btns, idx) {
+        let colorbox = btns.parentElement.getElementsByClassName('colorbox')[0];
+        let filterbox = btns.parentElement.getElementsByClassName('filter')[0];
+        btns.querySelector('.stylebtn').addEventListener('click', function () {
+          colorbox.style.display = 'block';
+          filterbox.style.display = 'none';
+        });
+        btns.querySelector('.stylefilter').addEventListener('click', function () {
+          colorbox.style.display = 'none';
+          filterbox.style.display = 'block';
+        });
+      });
+    }, 500);
+  };
+</script>
