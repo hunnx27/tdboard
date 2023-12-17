@@ -282,32 +282,36 @@ $colmobileYGutter: 3rem;
 
 //margin,padding,input-width wb mo tb
 @for $i from 0 through 200 {
-  .m-top-#{$i} {
+  .m-t-#{$i} {
     margin-top: $i * 0.1rem;
   }
-  .m-bottom-#{$i} {
+  .m-b-#{$i} {
     margin-bottom: $i * 0.1rem;
   }
-  .m-right-#{$i} {
+  .m-r-#{$i} {
     margin-right: $i * 0.1rem;
   }
-  .m-left-#{$i} {
+  .m-l-#{$i} {
     margin-left: $i * 0.1rem;
   }
   .m-x-#{$i} {
     margin-right: $i * 0.1rem;
     margin-left: $i * 0.1rem;
   }
-  .p-right-#{$i} {
+  .p-r-#{$i} {
     padding-right: $i * 0.1rem;
   }
-  .p-left-#{$i} {
+  .p-l-#{$i} {
     padding-left: $i * 0.1rem;
   }
-  .p-top-#{$i} {
+  .p-t-#{$i} {
     padding-top: $i * 0.1rem;
   }
-  .p-bottom-#{$i} {
+  .p-b-#{$i} {
+    padding-bottom: $i * 0.1rem;
+  }
+  .p-y-#{&i} {
+    padding-top: $i * 0.1rem;
     padding-bottom: $i * 0.1rem;
   }
   .p-x-#{&i} {
@@ -315,71 +319,79 @@ $colmobileYGutter: 3rem;
     padding-left: $i * 0.1rem;
   }
   @include tablet {
-    .m-top-md-#{$i} {
+    .m-t-md-#{$i} {
       margin-top: $i * 0.1rem;
     }
-    .m-bottom-md-#{$i} {
+    .m-b-md-#{$i} {
       margin-bottom: $i * 0.1rem;
     }
-    .m-right-md-#{$i} {
+    .m-r-md-#{$i} {
       margin-right: $i * 0.1rem;
     }
-    .m-left-md-#{$i} {
+    .m-l-md-#{$i} {
       margin-left: $i * 0.1rem;
     }
     .m-x-md-#{$i} {
       margin-right: $i * 0.1rem;
       margin-left: $i * 0.1rem;
     }
-    .p-right-md-#{$i} {
+    .p-r-md-#{$i} {
       padding-right: $i * 0.1rem;
     }
-    .p-left-md-#{$i} {
+    .p-l-md-#{$i} {
       padding-left: $i * 0.1rem;
     }
-    .p-top-md-#{$i} {
+    .p-t-md-#{$i} {
       padding-top: $i * 0.1rem;
     }
-    .p-bottom-md-#{$i} {
+    .p-b-md-#{$i} {
       padding-bottom: $i * 0.1rem;
     }
     .p-x-md-#{&i} {
       padding-right: $i * 0.1rem;
       padding-left: $i * 0.1rem;
     }
+    .p-y-md-#{&i} {
+      padding-top: $i * 0.1rem;
+      padding-bottom: $i * 0.1rem;
+    }
   }
   @include mobile {
-    .m-top-sm-#{$i} {
+    .m-t-sm-#{$i} {
       margin-top: $i * 0.1rem;
     }
-    .m-bottom-sm-#{$i} {
+    .m-b-sm-#{$i} {
       margin-bottom: $i * 0.1rem;
     }
-    .m-right-sm-#{$i} {
+    .m-r-sm-#{$i} {
       margin-right: $i * 0.1rem;
     }
-    .m-left-sm-#{$i} {
+    .m-l-sm-#{$i} {
       margin-left: $i * 0.1rem;
     }
     .m-x-sm-#{$i} {
       margin-right: $i * 0.1rem;
       margin-left: $i * 0.1rem;
     }
-    .p-right-sm-#{$i} {
+    .p-r-sm-#{$i} {
       padding-right: $i * 0.1rem;
     }
-    .p-left-sm-#{$i} {
+    .p-l-sm-#{$i} {
       padding-left: $i * 0.1rem;
     }
-    .p-top-sm-#{$i} {
+    .p-t-sm-#{$i} {
       padding-top: $i * 0.1rem;
     }
-    .p-bottom-sm-#{$i} {
+    .p-b-sm-#{$i} {
       padding-bottom: $i * 0.1rem;
     }
     .p-x-sm-#{&i} {
       padding-right: $i * 0.1rem;
       padding-left: $i * 0.1rem;
+    }
+    .p-y-sm-#{&i} {
+      padding-top: $i * 0.1rem;
+      padding-bottom: $i * 0.1rem;
     }
   }
 }
