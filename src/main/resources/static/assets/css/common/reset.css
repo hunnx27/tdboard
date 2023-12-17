@@ -170,7 +170,7 @@ input[type='number']::-webkit-inner-spin-button {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  line-height: 1.5;
+  line-height: 1;
   overflow-wrap: break-word;
   -moz-tab-size: 4;
   tab-size: 4;

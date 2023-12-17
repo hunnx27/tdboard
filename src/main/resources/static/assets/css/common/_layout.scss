@@ -3,10 +3,6 @@ $containerW:120rem;
 body{
  
 }
-.inner{
-  margin: 0 auto;
-  padding:0 3rem;
-}
 header{
   width:100%;
   background-color: #fff;
@@ -15,10 +11,6 @@ header{
   left:0;
   width:100%;
   z-index: 999;
-  .inner{
-    width:100%;
-    max-width:164rem;
-  }
 }
 .head-top{
   background-color: #1A4079;
@@ -26,10 +18,9 @@ header{
     @include flexbox(row, flex-end, center);
     height:40px;
     width:100%;
-    max-width:164rem;
     margin:0 auto;
     a{
-      margin-right:10rem;
+      margin-right:4rem;
       font-size:1.4rem;
       font-weight: 400;
       color:#fff;
@@ -163,12 +154,24 @@ header{
 
 
 footer{
-  .inner{
-
-  }
-  .foot-top{
-    .foot-nav{
+  padding:4rem 0;
+    .foot-top{
+      @include flexbox(row, flex-start, flex-start);
+    }
+    .foot-logo{
+      margin-right:14rem;
       ul{
+        @include flexbox(row, flex-start, flex-start);
+        li{
+          margin-right:5rem;
+          &:last-child{
+            margin-right:0;
+          }
+        }
+      }
+    }
+    .foot-nav{
+      ul{ 
         @include flexbox(row, flex-start, flex-start);
         li{
           margin-right: 1.6rem;
@@ -178,7 +181,7 @@ footer{
         }
       }
     }
-  }
+  
 }
 
 .item-wrap{
