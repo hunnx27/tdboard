@@ -97,18 +97,17 @@ table
   }
 }
 .table {
-  
-  table-layout: fixed;
-  border: 1px solid $gray03;
+ 
   border-top: 0;
-  &.table-initial {
-    table-layout: initial;
+  &.table-fixed {
+    table-layout: fixed;
     width: 100%;
   }
   thead {
     tr {
       &:first-child {
-        border-top: 2px solid $mainColor;
+        border-top: 2px solid $black;
+        border-bottom:1px solid $black;
         th {
           &:first-child {
             span {
@@ -121,15 +120,15 @@ table
         }
       }
       th {
-        background-color: #f8f8f8;
+        background-color: #fff;
         position: sticky;
         top: 0;
-        height: 4rem;
+        height: 6rem;
         z-index: 10;
         padding: 0.4rem 0;
         span {
           @include flexbox(row, center, center);
-          background-color: #f8f8f8;
+          background-color: #fff;
           width: 100%;
           color: $black;
           font-size: 1.4rem;
@@ -145,38 +144,10 @@ table
   tbody {
     background-color: $white;
     tr {
-      &:first-child {
-        border-top: 1px solid $gray03;
-        td {
-          &:first-child {
-            border-radius: 0.4rem 0 0 0;
-          }
-          &:last-child {
-            border-radius: 0 0.4rem 0 0;
-          }
-        }
-      }
-      &:first-child,
-      &:last-child {
-        td {
-          border-top: 0;
-        }
-      }
-      &:last-child {
-        td {
-          border-bottom: 0;
-          &:first-child {
-            border-radius: 0 0 0 0.4rem;
-          }
-          &:last-child {
-            border-radius: 0 0 0.4rem 0;
-          }
-        }
-      }
       td {
         padding: 0.6rem 1.6rem;
-        height: 4rem;
-        border: 1px solid $gray03;
+        height: 6rem;
+        border-bottom: 1px solid $gray03;
         color: $black;
         font-size: 1.2rem;
         font-weight: 400;
