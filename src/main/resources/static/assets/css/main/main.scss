@@ -161,7 +161,7 @@ $headH: 12rem;
             border-radius:50%;
             width:12rem;height:12rem;
         }
-        a{
+        .main-card-body{
             display:block;
             position:relative;
             z-index: 1;
@@ -310,21 +310,21 @@ $headH: 12rem;
 sub page
 *************************/
 .summary{
-    padding-top: 7.2rem;
+
     .card-wrap{
-      margin-bottom:6rem;
-      .card-head{
+        margin-bottom:6rem;
+        .card-head{
         h3{
-          font-size:2.4rem;
-          font-weight: 500;
+            font-size:2.4rem;
+            font-weight: 500;
         }
         margin-bottom:1.6rem;
-      }
-      .card-body{
+        }
+        .card-body{
         p{
-          font-size:18px;
-          font-weight: 400;
-          line-height: 1.5;
+            font-size:18px;
+            font-weight: 400;
+            line-height: 1.5;
         }
         table{
             th{
@@ -389,7 +389,7 @@ sub page
                     }
                 }
                 &:nth-child(2){
-      
+        
                     .bg-box{
                         background-color: #EAF8D4;
                     }
@@ -398,7 +398,7 @@ sub page
                     }
                 }
                 &:nth-child(3){
-   
+
                     .bg-box{
                         background-color: #E2F5FF;
                     }
@@ -416,7 +416,7 @@ sub page
                     }
                 }
                 &:nth-child(5){
-             
+                
                     .bg-box{
                         background-color: #EEE1F6;
                     }
@@ -426,40 +426,75 @@ sub page
                 }
             }
         }
-      }
-    }
-  }
-.group-qna{
-padding-top: 7.2rem;
-.card-wrap{
-    margin-bottom:4.3rem;
-    .card-body{
-        p{
-            font-size:1.6rem;
-            font-weight: 400;
-            line-height: 1.5;
         }
-        table{
-            th{
-                background-color: #1A4079;
-                color: #fff;
-                border-right: 1px solid #fff;
+    }
+}
+.group-qna{
+    .card-wrap{
+        margin-bottom:4.3rem;
+        .card-body{
+            ul{
+                li{
+                    font-size:1.6rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                }
             }
-            th,td{
-                padding:1.5rem 0;
-                font-size:18px;
-                text-align: center;
+        
+            table{
+                th{
+                    background-color: #1A4079;
+                    color: #fff;
+                    border-right: 1px solid #fff;
+                }
+                th,td{
+                    padding:1.5rem 0;
+                    font-size:18px;
+                    text-align: center;
+                }
+                td{
+                    border-right: 1px solid #B3B3B3;
+                    border-bottom: 1px solid #B3B3B3;
+                    color:#333333;
+                    &:last-child{
+                        border-right:0;
+                    }
+                }
             }
-            td{
-                border-right: 1px solid #B3B3B3;
-                border-bottom: 1px solid #B3B3B3;
-                color:#333333;
-                &:last-child{
-                    border-right:0;
+        
+        }
+    }
+}
+/* board */
+.board-tab{
+    margin-top:-3.2rem;
+    margin-bottom: 4rem;
+    ul{
+        @include flexbox(row, flex-start, flex-start);
+        li{
+            flex:1 1 auto;
+            a{
+                position: relative;
+                @include flexbox(row, center, center);
+                background-color:#E8E8E8;   
+                padding:2.1rem 0;
+                -webkit-transition:all 0.25s ease-in-out;
+                transition:all 0.25s ease-in-out;
+                span{
+                    font-size:18px;
+                    -webkit-transition:all 0.25s ease-in-out;
+                    transition:all 0.25s ease-in-out;
+                }
+                &:focus{
+                    z-index: 1;
+                }
+                &.on,&:hover{
+                    background-color: $primary;
+                    span{
+                        color:#fff;
+                    }
                 }
             }
         }
-    
     }
-}
 }
