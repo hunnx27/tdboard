@@ -1,15 +1,186 @@
-{{>layout/admin-header}}
+{{>layout/header}}
 
-<!--item-wrap-->
-<div class="item-wrap">
-    <div class="content-title-wrap">
+<section class="sub-top">
+    <div class="inner">
         <h2>
-            캘린더
+            KDP일정
         </h2>
     </div>
-</div>
-<!--item-wrap-->
-<div class="item-wrap">
-<div>
+</section>
+<style>
+    #calendar {
+        max-width: 1100px;
+        margin: 40px auto;
+        margin-top: 92px;
+    }
+</style>
+<div id='calendar'></div>
+<hr/>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+<script>
+    // TODO `캘린더 데이터 로드` 구현해야함
+    // 캘린더 데이터 로드
+    var _loc_url = ""; // TODO 기입해야함
+    var _loc_enm = "EduSchedule";
+    var dataArr = [];
+    // $.ajax({url : _loc_url+"/select"+_loc_enm+"List.do",data:"data_type=json"
+    //     ,async : false,dataType : 'json',type : 'GET',error : function(){alert(ScrUtil.getMsg("fail.common.internal"));},success : function(data){
+    //         if(data){
+    //             console.log(data)
+    //             var now = new Date();  // 현재 날짜 및 시간을 가져옵니다.
+    //             for(var i=0; i<data.list.length; i++) {
+    //                 var start = new Date(data.list[i].start_app_period);
+    //                 var end = new Date(data.list[i].end_app_period);
+    //                 var url;
+    //                 console.log("now:" + now)
+    //                 console.log("start:" +start)
+    //                 console.log("end:" +end)
+    //                 console.log(data.list[i].end_app_period)
+    //                 if (now < start) {
+    //                     // 현재 시간이 시작 시간보다 이전인 경우
+    //                     url = "/contents/edu/selectEduView.do?menuId=343&edu_id="+data.list[i].edu_id+"&start=Y"
+    //                 } else if (now > end) {
+    //                     // 현재 시간이 종료 시간보다 이후인 경우
+    //                     url = "/contents/edu/selectEduView.do?menuId=343&edu_id="+data.list[i].edu_id+"&end=Y"
+    //                 } else {
+    //                     // 현재 시간이 시작 및 종료 시간 사이인 경우
+    //                     url = "/contents/edu/selectEduView.do?menuId=343&edu_id="+data.list[i].edu_id
+    //                 }
+    //
+    //                 dataArr.push({
+    //                     title: data.list[i].edu_nm,
+    //                     start: data.list[i].start_edu_period,
+    //                     end: data.list[i].end_edu_period,
+    //                     dataChk: data.list[i].category_cd,
+    //                     url: url
+    //                 })
+    //             }
+    //         }
+    //         console.log(dataArr)
+    //     }
+    // });
 
-{{>layout/admin-footer}}
+
+    // 캘린더 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            locale: 'ko',
+            height: 'auto',
+            navLinks: true,
+            businessHours: true,
+            editable: false,// 드래그 방지함
+            selectable: true,
+            // eventContent: function(arg){// TODO 구현해야함
+                // TODO 구현해야함
+                // var startTime = moment(arg.event.start).format('HH:mm');
+                // var endTime = moment(arg.event.end).format('HH:mm');
+                // var backgroundColor = '#f5f5f5'; // 기본 배경색
+                // var border = '#333';
+                // var color = '#333';
+                //
+                // if (arg.event.extendedProps.dataChk === 'CATEGORY01') {
+                //     backgroundColor = '#e0f5d2';
+                //     border = '#208120';
+                //     color = '#045404';
+                // } else if (arg.event.extendedProps.dataChk === 'CATEGORY02') {
+                //     var backgroundColor = '#d7e6ff'; // 기본 배경색
+                //     var border = '#7f90af';
+                //     var color = '#133470';
+                // } else if (arg.event.extendedProps.dataChk === 'CATEGORY03') {
+                //     backgroundColor = '#ffe892';
+                //     border = '#d1892f';
+                //     color = '#cb3800';
+                // } else if (arg.event.extendedProps.dataChk === 'CATEGORY04') {
+                //     backgroundColor = '#ffe6eb';
+                //     border = '#f95867';
+                //     color = '#d72d3d';
+                // }
+                //
+                // return {
+                //     html: '<div style="padding:3px 7px; border-radius:3px; height:100%; background-color: ' + backgroundColor + '; border: 1px solid ' + border + '; color: ' + color + '; cursor: pointer;" onclick="location.href=\'' + arg.event.url + '\'">' +
+                //         arg.event.title +
+                //         '</div>'
+                // };
+            // },
+            buttonText: {
+                today : "오늘",
+                month : "월",
+                week : "주",
+                day : "일",
+            },
+            eventClick: function(req) {
+                console.log('zz');
+            },
+            eventChange: function(req) {
+                console.log('zz2');
+            },
+            eventDidMount: function(req) {
+                console.log('ddd');
+            },
+            events: [ // data출력
+                {
+                    title: 'K - 디지털 플랫폼 동아리 리빙랩',
+                    start: '2023-11-26',
+                    end: '2023-12-01'
+                },
+                {
+                    title: '문제해결기반 기초 파이썬 교육',
+                    start: '2023-11-26',
+                    end: '2023-11-28'
+                },
+                {
+                    title: '여러 일자 일정',
+                    start: '2023-12-07',
+                    end: '2023-12-10'
+                },
+                {
+                    groupId: '999',
+                    title: '반복 이벤트(999)',
+                    start: '2023-12-09T16:00:00'
+                },
+                {
+                    groupId: '999',
+                    title: '반복 이벤트(999)',
+                    start: '2023-12-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2023-12-11',
+                    end: '2023-12-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-12-12T10:30:00',
+                    end: '2023-12-12T12:30:00'
+                },
+                {
+                    title: '점심 먹기(시간)',
+                    start: '2023-12-12T12:00:00'
+                },
+                {
+                    title: '점심 먹기(시간)',
+                    start: '2023-12-12T14:30:00'
+                },
+                {
+                    title: '생일(시간)',
+                    start: '2023-12-13T07:00:00'
+                },
+                {
+                    title: '구글 링크 하이퍼링크',
+                    url: 'https://google.com/',
+                    start: '2023-12-28'
+                }
+            ]
+        });
+        calendar.render();
+    });
+
+    </script>
+{{>layout/footer}}
