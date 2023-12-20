@@ -1,3 +1,12 @@
+<!--FIXME SCSS로 변경 필요-->
+<style>
+    #navigation.inner.on .head-con .gnb nav > ul .gnb-depth-02{
+        height:150px;
+    }
+    #navigation.inner.on .gnb_bg{
+        height:150px;
+    }
+</style>
 
 <div class="head-top">  
     <div class="inner">
@@ -18,7 +27,7 @@
     </div>
 </div>
 
-<div class="inner">
+<div class="inner" id="navigation">
     <div class="head-con">
         <div class="logo-wrap">
             <div class="logo">
@@ -263,3 +272,14 @@
     </div>
     <div class="gnb_bg"></div>
 </div>
+<script>
+    var nav = document.getElementById("navigation")
+    nav.onmouseenter = () =>{
+        console.log('on mouseenter')
+        nav.classList.add("on")
+    };
+    nav.onmouseleave = () =>{
+        console.log('on mouseleave')
+        nav.classList.remove("on")
+    };
+</script>
