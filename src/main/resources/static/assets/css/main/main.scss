@@ -327,7 +327,99 @@ sub page
           line-height: 1.5;
         }
         table{
-  
+            th{
+                background-color: #1A4079;
+                color: #fff;
+                border-right: 1px solid #fff;
+            }
+            th,td{
+                padding:1.5rem 0;
+                font-size:18px;
+                text-align: center;
+            }
+            td{
+                border-right: 1px solid #B3B3B3;
+                border-bottom: 1px solid #B3B3B3;
+                color:#333333;
+            }
+        }
+        ul{
+            @include flexbox(row, flex-start, flex-start);
+           
+            li{
+                width: 21.6rem;
+                padding-right:1.6rem;
+                height:14rem;
+                margin-right: 1.6rem;
+                &:last-child{margin-right: 0rem;}
+                .bg-box{
+                    width: 100%;
+                    height: 100%;
+                    padding:1rem;
+                    border-radius: 3rem;
+                    div:first-child{
+                        padding:13px 0 16px;
+                    }
+                }
+                h4{
+                    text-align: center;
+                    font-size:1.8rem;
+                    font-weight: 700;
+                }
+                p{
+                    width:18rem;
+                    margin:0 auto;
+                    padding:2.5rem 0 2.4rem 0;
+                    background-color: #fff;
+                    font-size:18px; 
+                    text-align: center;
+                    border-radius:0 0 2.5rem 2.5rem;      
+                }
+                &:nth-child(1){
+                    .bg-box{
+                        background-color: #FDF0DB;
+                    }
+                    h4{
+                        color:#EEA531;
+                    }
+                }
+                &:nth-child(2){
+      
+                    .bg-box{
+                        background-color: #EAF8D4;
+                    }
+                    h4{
+                        color:#82BA41;
+                    }
+                }
+                &:nth-child(3){
+   
+                    .bg-box{
+                        background-color: #E2F5FF;
+                    }
+                    h4{
+                        color:#2B93D1;
+                    }
+                }
+                &:nth-child(4){
+            
+                    .bg-box{
+                        background-color: #D9E7FC;
+                    }
+                    h4{
+                        color:#1E4079;
+                    }
+                }
+                &:nth-child(5){
+             
+                    .bg-box{
+                        background-color: #EEE1F6;
+                    }
+                    h4{
+                        color:#713397;
+                    }
+                }
+            }
         }
       }
     }

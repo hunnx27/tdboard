@@ -51983,7 +51983,8 @@ footer .foot-nav p {
   background-size: cover;
   background-position: 0 0;
 }
-.sub-top h2 {
+.sub-top .inner {
+  height: 100%;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -51992,8 +51993,11 @@ footer .foot-nav p {
   -webkit-box-pack: center;
   -moz-box-justify-content: center;
   justify-content: center;
-  font-size: 2.4rem;
+}
+.sub-top h2 {
+  font-size: 4.8rem;
   font-weight: 700;
+  color: #fff;
 }
 
 .sub-con {
@@ -52360,4 +52364,91 @@ sub page
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
+}
+.summary .card-wrap .card-body table th {
+  background-color: #1A4079;
+  color: #fff;
+  border-right: 1px solid #fff;
+}
+.summary .card-wrap .card-body table th, .summary .card-wrap .card-body table td {
+  padding: 1.5rem 0;
+  font-size: 18px;
+  text-align: center;
+}
+.summary .card-wrap .card-body table td {
+  border-right: 1px solid #B3B3B3;
+  border-bottom: 1px solid #B3B3B3;
+  color: #333333;
+}
+.summary .card-wrap .card-body ul {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.summary .card-wrap .card-body ul li {
+  width: 21.6rem;
+  padding-right: 1.6rem;
+  height: 14rem;
+  margin-right: 1.6rem;
+}
+.summary .card-wrap .card-body ul li:last-child {
+  margin-right: 0rem;
+}
+.summary .card-wrap .card-body ul li .bg-box {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 3rem;
+}
+.summary .card-wrap .card-body ul li .bg-box div:first-child {
+  padding: 13px 0 16px;
+}
+.summary .card-wrap .card-body ul li h4 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.summary .card-wrap .card-body ul li p {
+  width: 18rem;
+  margin: 0 auto;
+  padding: 2.5rem 0 2.4rem 0;
+  background-color: #fff;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 0 0 2.5rem 2.5rem;
+}
+.summary .card-wrap .card-body ul li:nth-child(1) .bg-box {
+  background-color: #FDF0DB;
+}
+.summary .card-wrap .card-body ul li:nth-child(1) h4 {
+  color: #EEA531;
+}
+.summary .card-wrap .card-body ul li:nth-child(2) .bg-box {
+  background-color: #EAF8D4;
+}
+.summary .card-wrap .card-body ul li:nth-child(2) h4 {
+  color: #82BA41;
+}
+.summary .card-wrap .card-body ul li:nth-child(3) .bg-box {
+  background-color: #E2F5FF;
+}
+.summary .card-wrap .card-body ul li:nth-child(3) h4 {
+  color: #2B93D1;
+}
+.summary .card-wrap .card-body ul li:nth-child(4) .bg-box {
+  background-color: #D9E7FC;
+}
+.summary .card-wrap .card-body ul li:nth-child(4) h4 {
+  color: #1E4079;
+}
+.summary .card-wrap .card-body ul li:nth-child(5) .bg-box {
+  background-color: #EEE1F6;
+}
+.summary .card-wrap .card-body ul li:nth-child(5) h4 {
+  color: #713397;
 }/*# sourceMappingURL=main.css.map */
