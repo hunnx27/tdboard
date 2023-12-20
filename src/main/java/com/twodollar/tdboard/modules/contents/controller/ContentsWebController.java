@@ -87,6 +87,20 @@ public class ContentsWebController {
         return "pages/contents/board/qna";
     }
 
+    @GetMapping("contents/notice/0")
+    public String noticeDetail() {
+        return "pages/contents/board/noticeDetail";
+    }
+
+    @GetMapping("contents/data/0")
+    public String dataDetail() {
+        return "pages/contents/board/dataDetail";
+    }
+    @GetMapping("contents/qna/0")
+    public String qnaDetail() {
+        return "pages/contents/board/qnaDetail";
+    }
+
     @GetMapping("contents/group-qna")
     public String groupQna() {
         return "pages/contents/groupQna";
