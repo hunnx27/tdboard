@@ -1,0 +1,136 @@
+/**************************
+icon
+***************************/
+.icon-box {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  font-size: 0;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+  &.icon-size {
+    &-xs {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+    &-sm {
+      width: 2rem;
+      height: 2rem;
+    }
+    &-md {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+    &-lg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+  }
+  &.warning-icon {
+    &::after {
+      background-image: url(../../images/icon/warning_icon.svg);
+    }
+  }
+  &.icon-upload {
+    &::after {
+      background-image: url(../../images/icon/btn_upload_icon.svg);
+      position: relative;
+    }
+  }
+  &.icon-search {
+    &::after {
+      background-image: url(../../images/icon/search_icon.svg);
+    }
+  }
+  &.icon-excel {
+    &::after {
+      background-image: url(../../images/icon/excel_icon.png);
+      filter : none !important;
+    }
+  }
+  &.icon-minus {
+    &::after {
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+      background-image: url(../../images/icon/minus_icon.svg);
+    }
+  }
+  &.icon-minus-box {
+    &::after {
+      background-image: url(../../images/icon/table_remove_icon.svg);
+    }
+    &:hover,
+    &.on {
+      &::after {
+        background-image: url(../../images/icon/table_remove_icon_on.svg);
+      }
+    }
+  }
+  &.icon-plus {
+    &::after {
+      background-image: url(../../images/icon/plus_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+    &:hover,
+    &.on {
+      &::after {
+      }
+    }
+  }
+  &.icon-plus-box {
+    &::after {
+      background-image: url(../../images/icon/table_add_icon.svg);
+    }
+    &:hover,
+    &.on {
+      &::after {
+        background-image: url(../../images/icon/table_add_icon_on.svg);
+      }
+    }
+  }
+  &.icon-dss-add {
+    &::after {
+      background-image: url(../../images/icon/dss_add_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-arrow-r {
+    &::after {
+      background-image: url(../../images/icon/swipe_next_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-upload {
+    &::after {
+      background-image: url(../../images/icon/btn_upload_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-download {
+    &::after {
+      background-image: url(../../images/icon/btn_download_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-warning {
+    &::after {
+      background-image: url(../../images/icon/warning_icon.svg);
+    }
+  }
+}
