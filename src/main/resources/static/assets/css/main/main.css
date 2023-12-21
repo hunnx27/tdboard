@@ -51297,8 +51297,8 @@ icon
 }
 
 .detail-head {
-  border-top: 2px solid #333;
   padding: 32px 40px;
+  border-top: 2px solid #333;
 }
 .detail-head h5 {
   font-size: 18px;
@@ -51310,6 +51310,7 @@ icon
 }
 
 .detail-body {
+  border-bottom: 1px solid #333;
   padding: 32px 40px;
 }
 .detail-body p {
@@ -51335,8 +51336,10 @@ icon
 }
 
 .detail-foot {
-  border-top: 1px solid #333;
   margin-bottom: 20px;
+}
+.detail-foot .detail-re {
+  background-color: #F4F4F4;
 }
 
 /**************************
