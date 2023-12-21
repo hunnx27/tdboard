@@ -29,6 +29,47 @@
     }
   }
 }
+
+.detail-head{
+  border-top:1px solid #333;
+  padding:32px 40px;
+  h5{
+    font-size:18px;
+    font-weight: 500;
+    margin-bottom:16px;
+  }
+  p{
+    font: size 14px;
+  }
+}
+.detail-body{
+  border-bottom: 1px solid #333;
+  padding:32px 40px;
+
+  p{
+    font-size: 16px;
+  }
+  img{
+    max-width: 100% !important;
+  }
+  div.detail-file{
+    margin:32px 0;
+    background-color: #F4F4F4;
+    padding:24px 40px;
+    ul{
+      li{
+        margin-bottom: 1.6rem;
+        span:last-child{
+          font-size:16px;
+          color:#333;
+        }
+        &:last-child{
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+}
 /**************************
 table
 ***************************/
@@ -126,7 +167,7 @@ table
           background-color: #fff;
           width: 100%;
           color: $black;
-          font-size: 1.4rem;
+          font-size: 1.6rem;
           font-weight: 400;
           text-align: center;
         }
@@ -150,7 +191,7 @@ table
         height: 6rem;
         border-bottom: 1px solid $gray03;
         color: $black;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: 400;
         text-align: center;
         overflow: hidden;
