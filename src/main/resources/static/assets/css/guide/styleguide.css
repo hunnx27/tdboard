@@ -51297,7 +51297,7 @@ icon
 }
 
 .detail-head {
-  border-top: 1px solid #333;
+  border-top: 2px solid #333;
   padding: 32px 40px;
 }
 .detail-head h5 {
@@ -51310,7 +51310,6 @@ icon
 }
 
 .detail-body {
-  border-bottom: 1px solid #333;
   padding: 32px 40px;
 }
 .detail-body p {
@@ -51320,7 +51319,7 @@ icon
   max-width: 100% !important;
 }
 .detail-body div.detail-file {
-  margin: 32px 0;
+  margin: 32px 0 0 0;
   background-color: #F4F4F4;
   padding: 24px 40px;
 }
@@ -51333,6 +51332,11 @@ icon
 }
 .detail-body div.detail-file ul li:last-child {
   margin-bottom: 0;
+}
+
+.detail-foot {
+  border-top: 1px solid #333;
+  margin-bottom: 20px;
 }
 
 /**************************
@@ -52127,7 +52131,7 @@ footer .foot-nav p {
 }
 
 .sub-con {
-  min-height: calc(100vh - 56rem);
+  min-height: 1000px;
 }
 
 /************************************************/
