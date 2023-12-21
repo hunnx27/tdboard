@@ -49,6 +49,18 @@ public class ContentsWebController {
     public String shareList() {
         return "pages/contents/share/list";
     }
+    @GetMapping("contents/share-detail")
+    public String shareDetail() {
+        return "pages/contents/share/detail";
+    }
+    @GetMapping("contents/equipments-list")
+    public String equipmentsList() {
+        return "pages/contents/equipments/list";
+    }
+    @GetMapping("contents/equipments-detail")
+    public String equipmentsDetail() {
+        return "pages/contents/equipments/detail";
+    }
 
     @GetMapping("contents/share-calendar")
     public String shareCalendar() {
