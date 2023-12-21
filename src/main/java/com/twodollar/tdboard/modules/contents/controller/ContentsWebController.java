@@ -63,7 +63,7 @@ public class ContentsWebController {
     // KDP 세한 달력
     @GetMapping("contents/calendar")
     public String calendar() {
-        return "pages/contents/sehanKdp/calendar";
+        return "pages/contents/sehankdp/calendar";
     }
 
     // 게시판
