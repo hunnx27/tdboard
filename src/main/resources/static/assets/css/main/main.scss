@@ -170,6 +170,7 @@ $headH: 12rem;
                 width:16rem;height:10rem;
                 margin-bottom:30px;
                 @include background(main, main_box_1, png, no-repeat,100%  100%, center);
+
             }
         }
         p{
@@ -183,7 +184,7 @@ $headH: 12rem;
             &::after{
                 background-color: #C1D7F9;
             }
-            a{
+            .main-card-body{
                 div{
                     @include background(main, main_box_1, png, no-repeat,100%  100%, center);
                 }
@@ -196,7 +197,7 @@ $headH: 12rem;
             &::after{
                 background-color: #C9EBFD;
             }
-            a{
+            .main-card-body{
                 div{
                     @include background(main, main_box_2, png, no-repeat,100%  100%, center);
                 }
@@ -209,7 +210,7 @@ $headH: 12rem;
             &::after{
                 background-color: #D1ECB1;
             }
-            a{
+            .main-card-body{
                 div{
                     @include background(main, main_box_3, png, no-repeat,100%  100%, center);
                 }
@@ -223,7 +224,7 @@ $headH: 12rem;
             &::after{
                 background-color: #FBDFBB;
             }
-            a{
+            .main-card-body{
                 div{
                     @include background(main, main_box_4, png, no-repeat,100%  100%, center);
                 }

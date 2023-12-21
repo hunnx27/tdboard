@@ -51296,6 +51296,45 @@ icon
   font-weight: 700;
 }
 
+.detail-head {
+  border-top: 1px solid #333;
+  padding: 32px 40px;
+}
+.detail-head h5 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.detail-head p {
+  font: size 14px;
+}
+
+.detail-body {
+  border-bottom: 1px solid #333;
+  padding: 32px 40px;
+}
+.detail-body p {
+  font-size: 16px;
+}
+.detail-body img {
+  max-width: 100% !important;
+}
+.detail-body div.detail-file {
+  margin: 32px 0;
+  background-color: #F4F4F4;
+  padding: 24px 40px;
+}
+.detail-body div.detail-file ul li {
+  margin-bottom: 1.6rem;
+}
+.detail-body div.detail-file ul li span:last-child {
+  font-size: 16px;
+  color: #333;
+}
+.detail-body div.detail-file ul li:last-child {
+  margin-bottom: 0;
+}
+
 /**************************
 table
 ***************************/
@@ -51390,7 +51429,7 @@ table
   background-color: #fff;
   width: 100%;
   color: #333;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   text-align: center;
 }
@@ -51411,7 +51450,7 @@ table
   height: 6rem;
   border-bottom: 1px solid #b9b9b9;
   color: #333;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
   overflow: hidden;
@@ -52298,7 +52337,7 @@ main
 .main-sect-2 .main-card-1::after {
   background-color: #C1D7F9;
 }
-.main-sect-2 .main-card-1 a div {
+.main-sect-2 .main-card-1 .main-card-body div {
   background-image: url(../../images/main/main_box_1.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -52311,7 +52350,7 @@ main
 .main-sect-2 .main-card-2::after {
   background-color: #C9EBFD;
 }
-.main-sect-2 .main-card-2 a div {
+.main-sect-2 .main-card-2 .main-card-body div {
   background-image: url(../../images/main/main_box_2.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -52324,7 +52363,7 @@ main
 .main-sect-2 .main-card-3::after {
   background-color: #D1ECB1;
 }
-.main-sect-2 .main-card-3 a div {
+.main-sect-2 .main-card-3 .main-card-body div {
   background-image: url(../../images/main/main_box_3.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -52338,7 +52377,7 @@ main
 .main-sect-2 .main-card-4::after {
   background-color: #FBDFBB;
 }
-.main-sect-2 .main-card-4 a div {
+.main-sect-2 .main-card-4 .main-card-body div {
   background-image: url(../../images/main/main_box_4.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
