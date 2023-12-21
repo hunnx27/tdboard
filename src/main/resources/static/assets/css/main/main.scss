@@ -439,6 +439,8 @@ sub page
                     font-size:1.6rem;
                     font-weight: 400;
                     line-height: 1.5;
+                    list-style: outside;
+                    margin-left:2.4rem;
                 }
             }
         
@@ -465,6 +467,14 @@ sub page
         
         }
     }
+}
+.group-qna-title{
+    h3{
+        text-align: center;
+        font-size:3.2rem;
+        font-weight: 500;
+    }
+    margin-bottom:6rem;
 }
 /* board */
 .board-tab{
@@ -498,4 +508,269 @@ sub page
             }
         }
     }
+}
+
+
+.faq-list {
+    .table{
+        border-top:2px solid #333;
+        td:first-child{
+            width:10rem;
+            span{
+                font-size:2.4rem;
+                font-weight: 500;
+            }
+        }
+    }
+    .faq-q{
+         td:first-child{
+                span{
+                    font-size:2.4rem;
+                    font-weight: 500;
+                    color:$primary;
+                }
+        }
+        td{
+            span{
+                font-size:1.8rem;
+                font-weight: 500;
+            }
+        }
+        .faq-title{
+            @include flexbox(row, space-between,center);
+            .btn{
+                border:0;
+                width:30px;
+                height:30px;
+            }
+        }
+    }
+        
+    
+    .faq-a{
+        background-color: #F4F4F4;
+        td:first-child{
+            width:10rem;
+            span{
+                font-size:0;
+                font-weight: 500;
+                -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+            }
+        }
+        td{
+            font-size:0;
+            height:0;
+            padding:0;
+            border-bottom:0;
+            overflow: hidden;
+            -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+        }
+    }
+    .faq-q.on + .faq-a{
+        td:first-child{
+            width:10rem;
+            span{
+                font-size:2.4rem;
+                font-weight: 500;
+            }
+        }
+        td{
+            padding:1.5rem 0;
+            height:auto;
+            border-bottom:1px solid #B3B3B3;
+            span{
+                font-size:1.6rem;
+                font-weight: 400;
+            }
+        }
+    }
+  }
+
+/*gallery-list*/
+.gallery{
+    
+}
+.gallery-list{
+    margin-bottom:6rem;
+    border-radius: 3rem;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+    a{
+        @include flexbox(row, flex-start, flex-start);
+        padding:4rem;
+    }
+    .img-box{
+        width:36rem;height:26rem;
+        margin-right:4.4rem;
+        @include flexbox(row, flex-start, center);
+        img{
+            max-width:100%;
+        }
+    }
+    .text-box{
+        height: 26rem;
+        @include flexbox(column, space-between, space-between);
+        padding:2rem 0;
+        .text-box-head{
+
+        }
+        .title{
+            h6{
+                font-size:2rem;
+                font-weight: 700;
+                line-height: 1.5;
+            }
+            margin-bottom:2rem;
+        }
+        ul{
+            margin-bottom:4rem;
+            li{
+                margin-bottom:0.4rem;
+                font-size:1.6rem;
+                line-height: 1.5;
+            }
+        }
+    }
+    .btn-wrap{
+        .btn{
+            height: 4.8rem;
+            font-size:1.6rem;
+            font-weight: 700;
+            .icon-box{
+                margin-left:0.4rem;
+            }
+        }
+    }
+    &:last-child{
+        margin-bottom:0;
+    }
+}
+.gallery-detail{}
+.block-text-wrap{
+    .block-text{
+        display: inline-block;
+        padding:1px 8px;
+        font-size:1.6rem;
+        line-height:24px;
+        border:1px solid $primary;
+        color:$primary;
+    }
+}
+.textarea-wrap{
+    p{
+        line-height: 1.5;
+    }
+    margin-bottom:2rem;
+}
+.gallery-detail-head{
+    margin-bottom:7.2rem;
+    @include flexbox(row, flex-start, flex-start);
+    .img-box{
+        @include flexbox(row, flex-start, flex-start);
+        width:58rem;
+        height:41.6rem;
+        margin-right: 4rem;
+        img{
+            width:100%;
+            max-width:100%;
+        }
+    }
+    .text-box{
+        @include flexbox(column, space-between, space-between);
+        height:41.6rem;
+        .gallery-detail-info{
+            
+        }
+        .block-text-wrap{
+            margin-bottom: 8px;
+        }
+        ul{
+            margin-bottom:4rem;
+            li{
+                margin-bottom:0.4rem;
+                font-size:1.6rem;
+                line-height: 1.5;
+            }
+        }
+        .title{
+            h6{
+                font-size:2rem;
+                font-weight: 700;
+                line-height: 1.5;
+            }
+            margin-bottom:3.4rem;
+        }
+        .btn-wrap{
+            max-width: 100%;
+            .btn{
+                height: 4.8rem;
+                font-size:1.6rem;
+                font-weight: 700;
+                .icon-box{
+                    margin-left:0.4rem;
+                }
+            }
+        }
+    }
+}
+.gallery-detail-body{
+    .block-text-wrap{
+        margin-bottom:2rem;
+    }
+}
+.share-list{
+    .text-box-head{
+        > div{
+            margin-bottom: 2rem;
+            p{
+                font-size:16px;
+                font-weight: 500;
+                line-height:1.5;
+                &:first-child{
+                    color:$Secondary;
+                    font-weight: 600;
+                }
+            }
+
+        }
+    }
+}
+.equipments-body{
+    width:100%;
+    @include flexbox(row, flex-start, flex-start);
+    flex-wrap: wrap;
+}
+.equipments-list{
+    width:calc(33.33333% - 1.333333rem);
+    border-radius: 3rem;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+    margin-right:2rem;
+    margin-bottom:3rem;
+    padding:2rem;
+    
+    .img-box{
+        border-radius: 2rem;
+        overflow: hidden;
+        height:24rem;
+        margin-bottom:2rem;
+        img{
+            max-width:100%;
+        }
+    }
+    .text-box{
+        p{
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size:1.8rem;
+            line-height: 1.5;
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+    &:nth-child(3n){
+        margin:0;
+    }
+
 }

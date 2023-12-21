@@ -112,6 +112,7 @@ header{
                   color:#0082C8;
                   -webkit-transition: all 0.25s ease-in-out;
                   transition: all 0.25s ease-in-out;
+                  
                 }
               } 
             }
@@ -121,12 +122,13 @@ header{
           width: 100%;
           left: 0;
           top: calc(100% + 1rem);
-          padding-left:2rem;
+          //padding-left:2rem;
           height:0;
           overflow:hidden;
           ul{
             li{
               display: flex;
+              justify-content:center;
               margin-bottom:1rem;
               text-align: left;
               padding-left:0;
@@ -285,4 +287,5 @@ footer{
 .sub-con{
   //min-height: calc(100vh -  56rem  );
   min-height: 1000px;
+  padding-bottom:100px;
 }
