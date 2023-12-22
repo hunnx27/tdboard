@@ -278,9 +278,18 @@
     nav.onmouseenter = () =>{
         console.log('on mouseenter')
         nav.classList.add("on")
+
+        // borderBottom 생성
+        gnb_bg = document.querySelector("#navigation .gnb_bg");
+        gnb_bg.style.cssText = "border-bottom: 1px solid #D3D3D3";
+
     };
     nav.onmouseleave = () =>{
         console.log('on mouseleave')
         nav.classList.remove("on")
+
+        // borderBottom 삭제
+        gnb_bg = document.querySelector("#navigation .gnb_bg");
+        gnb_bg.style.cssText = "border-bottom: 0";
     };
 </script>
