@@ -27,6 +27,7 @@ public class UserJwtTokenProvider {
     private long tokenValidTime = 30 * 60 * 1000L;
 
     private final UserPrincipalDetailsService userPrincipalDetailsService;
+    private final AdminPrincipalDetailsService adminPrincipalDetailsService;
 
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
