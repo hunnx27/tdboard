@@ -1,6 +1,15 @@
 .input-group{
     @include flexbox(row, center, center);
 }
+.input-wrap{
+
+}
+.input-tit{
+  size:1.6rem;
+  font-weight:500;
+  line-height:1.5;
+  margin-bottom:0.8rem;
+}
 input{}
 
 

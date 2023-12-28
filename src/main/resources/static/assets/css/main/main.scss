@@ -679,6 +679,7 @@ sub page
     .text-box{
         @include flexbox(column, space-between, space-between);
         height:41.6rem;
+        flex:1 1 auto;
         .gallery-detail-info{
             
         }
