@@ -1,15 +1,54 @@
-{{>layout/admin-header}}
+{[>layout/header]}
 
-<!--item-wrap-->
-<div class="item-wrap">
-    <div class="content-title-wrap">
+<section class="sub-top ">
+    <div class="inner">
         <h2>
             오시는 길
         </h2>
     </div>
-</div>
-<!--item-wrap-->
-<div class="item-wrap">
-<div>
+</section>
+<section class="sub-con content group-qna">
+    <div class="inner">
 
-{{>layout/admin-footer}}
+        <div id="target"></div>
+
+    </div>
+</section>
+
+
+
+<!-- Mustache.js 라이브러리 추가 -->
+<script src="https://unpkg.com/mustache@latest"></script>
+
+<!-- 템플릿 -->
+<script id="template" type="text/template">
+    <h1>{{ title }}</h1>
+    <ul>
+        {{#items}}
+            <li>{{ name }}</li>
+        {{/items}}
+    </ul>
+</script>
+
+<!-- 데이터 -->
+<script>
+    // 데이터 객체
+    var data = {
+        title: "Mustache.js 예제",
+        items: [
+            { name: "항목 1" },
+            { name: "항목 2" },
+            { name: "항목 3" }
+        ]
+    };
+
+    // Mustache.js를 사용하여 템플릿을 렌더링
+    var template = document.getElementById("template").innerHTML;
+    var rendered = Mustache.render(template, data);
+
+    // 결과를 화면에 출력
+    document.getElementById("target").innerHTML = rendered;
+</script>
+
+
+{[>layout/footer]}
