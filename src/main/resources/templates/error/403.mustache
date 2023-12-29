@@ -1,16 +1,16 @@
-{{>layout/header}}
+{[>layout/header]}
 <h1>
-    권한이 없습니다. 관리자에게 문의하세요.({{status}})
+    권한이 없습니다. 관리자에게 문의하세요.({[status]})
 </h1>
 <p>정상 서비스를 위해 <b>아래 버튼</b>을 이용해 데이터 정리 후 이용해주세요.(주의. 로그아웃됩니다)</p>
 <br/><br/>
 <button id="logout" class="btn btn-type01">데이터 정리</button>
 <br/><br/>
 <div>
-    <p>timestamp : {{timestamp}}</p>
-    <p>status : {{status}}</p>
-    <p>error : {{error}}</p>
-    <p>path : {{path}}</p>
+    <p>timestamp : {[timestamp]}</p>
+    <p>status : {[status]}</p>
+    <p>error : {[error]}</p>
+    <p>path : {[path]}</p>
 </div>
 
 <script>
@@ -24,4 +24,4 @@
         window.location.href = "/";
     })
 </script>
-{{>layout/footer}}
+{[>layout/footer]}
