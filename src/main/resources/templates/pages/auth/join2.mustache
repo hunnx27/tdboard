@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8"/>
-    <title>KDP 회원가입(일반)</title>
+    <title>KDP 회원가입(기관)</title>
 </head>
 <body>
-<h1>KDP 회원가입(일반)</h1>
-<form action="/user/join_proc" method="POST"> <!-- Controller에서 회원가입 로직을 처리할 예정 -->
+<h1>KDP 회원가입(기관)</h1>
+<form action="/auth/join2_proc" method="POST"> <!-- Controller에서 회원가입 로직을 처리할 예정 -->
     <input type="text" name="username" placeholder="username" autofocus/>
     <br/>
     <input type="password" name="password" placeholder="password"/>
@@ -15,6 +15,6 @@
     <br/>
     <button type="submit">가입하기</button>
 </form>
-<a href="/user/login">로그인</a>
+<a href="/auth/loginForm">로그인</a>
 </body>
 </html>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class AuthUserWebController {
+public class AuthWebController {
 
     private final AuthService authService;
 
@@ -22,7 +22,7 @@ public class AuthUserWebController {
      *
      * @return
      */
-    @GetMapping("user/login")
+    @GetMapping("auth/login")
     public String loginForm(
             @RequestParam(value="error", required=false)String error,
             @RequestParam(value="exception", required=false)String exception,
@@ -30,7 +30,7 @@ public class AuthUserWebController {
     ) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-        return "pages/user/login";
+        return "pages/auth/login";
     }
 
     /**
@@ -38,18 +38,28 @@ public class AuthUserWebController {
      *
      * @return
      */
-    @GetMapping("user/join")
+    @GetMapping("auth/join")
     public String joinForm() {
-        return "pages/user/join";
+        return "pages/auth/join";
     }
     /**
      * 회원 가입 페이지(기관회원)
      *
      * @return
      */
-    @GetMapping("user/join2")
+    @GetMapping("auth/join2")
     public String joinForm2() {
-        return "pages/user/join2";
+        return "pages/auth/join2";
+    }
+
+    /**
+     * 회원 가입 페이지(관리자)
+     *
+     * @return
+     */
+    @GetMapping("auth/join3")
+    public String joinForm3() {
+        return "pages/auth/join3";
     }
 
     /**
@@ -66,15 +76,21 @@ public class AuthUserWebController {
      * @param user
      * @return
      */
-    @PostMapping("user/join_proc")
+    @PostMapping("auth/join_proc")
     public String join(User user) {
         authService.join(user);
-        return "redirect:/user/login";
+        return "redirect:/auth/login";
     }
-    @PostMapping("user/join2_proc")
+    @PostMapping("auth/join2_proc")
     public String join2(User user) {
-        authService.join2(user);
-        return "redirect:/user/login";
+        authService.join_orgtest(user);
+        return "redirect:/auth/login";
+    }
+
+    @PostMapping("auth/join3_proc")
+    public String join3(User user) {
+        authService.join_admintest(user);
+        return "redirect:/auth/login";
     }
 
 }

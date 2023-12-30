@@ -1,6 +1,5 @@
-//package com.twodollar.tdboard.config;
-//
-//
+package com.twodollar.tdboard.config;
+
 //import com.twodollar.tdboard.config.handler.UserAuthFailurHandler;
 //import com.twodollar.tdboard.modules.auth.controller.JwtUserAuthenticationFilter;
 //import com.twodollar.tdboard.modules.auth.service.UserJwtTokenProvider;
@@ -22,7 +21,8 @@
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //
 //@EnableWebSecurity
-//public class SecurityCommonConfig {
+@Deprecated
+public class SecurityCommonConfig {
 //
 //    @RequiredArgsConstructor
 //    @Configuration
@@ -118,4 +118,4 @@
 //                            .logoutSuccessUrl("/"));
 //        }
 //    }
-//}
+}

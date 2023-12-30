@@ -1,6 +1,6 @@
 package com.twodollar.tdboard.modules.auth.controller;
 
-import com.twodollar.tdboard.modules.auth.service.UserJwtTokenProvider;
+import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,9 +15,9 @@ import java.io.IOException;
 
 // 요청시 JWT 인증 구간
 @RequiredArgsConstructor
-public class JwtUserAuthenticationFilter extends GenericFilterBean {
+public class JwtAuthenticationFilter extends GenericFilterBean {
 
-    private final UserJwtTokenProvider userJwtTokenProvider;
+    private final AuthJwtTokenProvider userJwtTokenProvider;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

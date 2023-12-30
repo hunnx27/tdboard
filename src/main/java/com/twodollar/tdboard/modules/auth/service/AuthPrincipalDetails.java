@@ -1,6 +1,6 @@
 package com.twodollar.tdboard.modules.auth.service;
 
-import com.twodollar.tdboard.modules.admin.entity.Admin;
+import com.twodollar.tdboard.modules.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,12 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class AdminPrincipalDetails implements UserDetails {
+public class AuthPrincipalDetails implements UserDetails {
 
-    private Admin admin;
+    private User user;
 
-    public AdminPrincipalDetails(Admin admin) {
-        this.admin = admin;
+    public AuthPrincipalDetails(User user) {
+        this.user = user;
     }
 
     /**
@@ -24,7 +24,7 @@ public class AdminPrincipalDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(admin.getRole()));
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
         return authorities;
     }
 
@@ -35,12 +35,12 @@ public class AdminPrincipalDetails implements UserDetails {
      */
     @Override
     public String getPassword() {
-        return admin.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return admin.getUsername();
+        return user.getUsername();
     }
 
     /**

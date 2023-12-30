@@ -6,6 +6,7 @@ import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.auth.service.AuthPrincipalDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,11 +18,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @RequiredArgsConstructor
-//@Configuration
+@Configuration
 @Order(1)
-@Deprecated
-public class SecurityUserConfig {
+public class SecurityConfig {
     private static final String[] PERMIT_URL_ARRAY = {
             /* swagger v2 */
             "/v2/api-docs",
@@ -63,8 +64,8 @@ public class SecurityUserConfig {
         http
                 .csrf()
                 .disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
-                .and()
+                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 사용 안 함
+                //.and()
                 .authenticationProvider(homepageAuthenticationProvider())
                 .authorizeRequests().antMatchers(PERMIT_URL_ARRAY).permitAll()
                 .and()
@@ -73,21 +74,23 @@ public class SecurityUserConfig {
                             //authorize.antMatchers("/user/login", "/user/join", "/user/join_proc", "/user/login_proc"
                             //                    , "/user/join2", "/user/join2_proc"
                             //).authenticated()
-                            authorize.antMatchers("/user/login", "/user/join", "/user/join_proc", "/user/login_proc"
-                                                , "/user/join2", "/user/join2_proc"
+                            authorize.antMatchers("/auth/login", "/auth/join", "/auth/join_proc", "/auth/login_proc"
+                                                , "/auth/join2", "/auth/join2_proc"
+                                                , "/auth/join3", "/auth/join3_proc"
                             ).permitAll()
-                            .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG")
-                            .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
+                            .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG", "ROLE_ADMIN")
+                            .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG", "ROLE_ADMIN")
+                            .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 
                 )
                 .formLogin(form -> form
-                        .loginPage("/user/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
-                        .loginProcessingUrl("/user/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
+                        .loginPage("/auth/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
+                        .loginProcessingUrl("/auth/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
                         .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
                         .failureHandler(userAuthFailurHandler) //실패처리
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/user/logout_proc")
+                        .logoutUrl("/auth/logout_proc")
                         .logoutSuccessUrl("/"));
         return http.build();
     }
@@ -104,10 +107,6 @@ public class SecurityUserConfig {
                 .requestMatchers(machers -> {
                     machers.antMatchers("/api/**");
                 })
-                .authorizeRequests(auth -> auth
-                        .antMatchers("/api/v1/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG")
-                        .anyRequest().authenticated()
-                )
                 .addFilterBefore(new JwtAuthenticationFilter(userJwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

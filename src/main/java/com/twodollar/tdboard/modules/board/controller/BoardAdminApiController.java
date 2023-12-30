@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
+@Deprecated
 public class BoardAdminApiController {
 
     private final BoardService boardService;

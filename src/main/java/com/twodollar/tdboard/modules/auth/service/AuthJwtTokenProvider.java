@@ -20,13 +20,13 @@ import java.util.List;
 // 해당 컴포넌트는 필터클래스에서 사전 검증을 거칩니다.
 @RequiredArgsConstructor
 @Component
-public class AdminJwtTokenProvider {
+public class AuthJwtTokenProvider {
     private String secretKey = "twodollar";
 
     // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
 
-    private final AdminPrincipalDetailsService adminPrincipalDetailsService;
+    private final AuthPrincipalDetailsService authPrincipalDetailsService;
 
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
@@ -51,7 +51,7 @@ public class AdminJwtTokenProvider {
 
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = adminPrincipalDetailsService.loadUserByUsername(this.getUserPk(token));
+        UserDetails userDetails = authPrincipalDetailsService.loadUserByUsername(this.getUserPk(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

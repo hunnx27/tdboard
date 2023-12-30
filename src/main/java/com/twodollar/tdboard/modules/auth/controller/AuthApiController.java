@@ -1,6 +1,6 @@
 package com.twodollar.tdboard.modules.auth.controller;
 
-import com.twodollar.tdboard.modules.auth.service.UserJwtTokenProvider;
+import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,20 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-//TODO AuthAdminApiController도 만들어야함
-//TODO AuthAdminApiController도 만들어야함
-//TODO AuthAdminApiController도 만들어야함
-//TODO AuthAdminApiController도 만들어야함
-//TODO AuthAdminApiController도 만들어야함
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class AuthUserApiController {
-    private final UserJwtTokenProvider userJwtTokenProvider;
+public class AuthApiController {
+    private final AuthJwtTokenProvider userJwtTokenProvider;
     private final UserRepository userRepository;
 
     final String BIRTH = "001200";

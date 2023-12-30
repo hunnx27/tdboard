@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserPrincipalDetailsService implements UserDetailsService {
+public class AuthPrincipalDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -21,7 +21,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
         Optional<User> optionalUser = userRepository.findByUsername(username);
 
         return optionalUser
-                .map(UserPrincipalDetails::new) // 입력받은 username에 해당하는 사용자가 있다면, PrincipalDetails 객체를 생성한다.
+                .map(AuthPrincipalDetails::new) // 입력받은 username에 해당하는 사용자가 있다면, PrincipalDetails 객체를 생성한다.
                 .orElse(null); // 없다면 null을 반환한다. (인증 실패)
     }
 }

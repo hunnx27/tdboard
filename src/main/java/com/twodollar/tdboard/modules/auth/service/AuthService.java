@@ -1,7 +1,5 @@
 package com.twodollar.tdboard.modules.auth.service;
 
-import com.twodollar.tdboard.modules.admin.entity.Admin;
-import com.twodollar.tdboard.modules.admin.repository.AdminRepository;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final UserRepository userRepository; // 글 아래에서 생성할 예정
-    private final AdminRepository adminRepository; // 글 아래에서 생성할 예정
     private final BCryptPasswordEncoder passwordEncoder; // 시큐리티에서 빈(Bean) 생성할 예정
 
     public void join(User user){
@@ -24,17 +21,16 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public void join2(User user){
+    public void join_orgtest(User user){
         user.setRole("ROLE_ORG");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    public void adminJoin(Admin admin){
-        admin.setRole("ROLE_ADMIN"); // 권한 정보는 임시로 ROLE_ADMIN으로 넣는다.
-        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        adminRepository.save(admin);
+    public void join_admintest(User user){
+        user.setRole("ROLE_ADMIN");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
-
 
 }

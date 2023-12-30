@@ -1,4 +1,4 @@
-//package com.twodollar.tdboard.config;
+package com.twodollar.tdboard.config;
 //
 //import com.twodollar.tdboard.modules.auth.controller.JwtUserAuthenticationFilter;
 //import com.twodollar.tdboard.modules.auth.service.UserJwtTokenProvider;
@@ -18,7 +18,8 @@
 //@RequiredArgsConstructor
 //@Configuration
 //@Order(1)
-//public class SecurityUserJWTConfig {
+@Deprecated
+public class SecurityUserJWTConfig {
 //    private final UserJwtTokenProvider userJwtTokenProvider;
 //
 //    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
@@ -44,4 +45,4 @@
 //
 //        return http.build();
 //    }
-//}
+}
