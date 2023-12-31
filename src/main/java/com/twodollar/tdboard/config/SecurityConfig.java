@@ -1,6 +1,7 @@
 package com.twodollar.tdboard.config;
 
-import com.twodollar.tdboard.config.handler.UserAuthFailurHandler;
+import com.twodollar.tdboard.config.handler.AuthFailurHandler;
+import com.twodollar.tdboard.config.handler.AuthSuccessHandler;
 import com.twodollar.tdboard.modules.auth.controller.JwtAuthenticationFilter;
 import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.auth.service.AuthPrincipalDetailsService;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @Configuration
 @Order(1)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private static final String[] PERMIT_URL_ARRAY = {
             /* swagger v2 */
@@ -37,7 +40,8 @@ public class SecurityConfig {
             "/swagger-ui/**"
     };
 
-    private final UserAuthFailurHandler userAuthFailurHandler;
+    private final AuthFailurHandler authFailurHandler;
+    private final AuthSuccessHandler authSuccessHandler;
     private final AuthPrincipalDetailsService userPrincipalDetailsService;
     @Bean
     public UserDetailsService UserDetailService(){
@@ -87,7 +91,8 @@ public class SecurityConfig {
                         .loginPage("/auth/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
                         .loginProcessingUrl("/auth/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
                         .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
-                        .failureHandler(userAuthFailurHandler) //실패처리
+                        .successHandler(authSuccessHandler) // 성공 후 처리
+                        .failureHandler(authFailurHandler)  // 실패 시 처리
                 )
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout_proc")

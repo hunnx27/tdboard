@@ -1,10 +1,8 @@
 package com.twodollar.tdboard.modules.auth.service;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,11 +18,14 @@ import java.util.List;
 // 해당 컴포넌트는 필터클래스에서 사전 검증을 거칩니다.
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class AuthJwtTokenProvider {
     private String secretKey = "twodollar";
 
     // 토큰 유효시간 30분
-    private long tokenValidTime = 30 * 60 * 1000L;
+    //private long tokenValidTime = 30 * 60 * 1000L;
+    private long tokenValidTime = 10 * 1000L;
+    private long refreshTokenValidTime = 24 * 60 * 60 * 1000L;
 
     private final AuthPrincipalDetailsService authPrincipalDetailsService;
 
@@ -49,6 +50,16 @@ public class AuthJwtTokenProvider {
                 .compact();
     }
 
+    public String createRefreshToken(String userPk) {
+        Date now = new Date();
+        return Jwts.builder()
+                .setIssuedAt(now) // 토큰 발행 시간 정보
+                .setExpiration(new Date(now.getTime() + refreshTokenValidTime)) // set Expire Time
+                .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
+                // signature 에 들어갈 secret값 세팅
+                .compact();
+    }
+
     // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = authPrincipalDetailsService.loadUserByUsername(this.getUserPk(token));
@@ -66,12 +77,25 @@ public class AuthJwtTokenProvider {
     }
 
     // 토큰의 유효성 + 만료일자 확인
-    public boolean validateToken(String jwtToken) {
-        try {
+    public boolean validateToken(String jwtToken) throws MalformedJwtException, ExpiredJwtException, UnsupportedJwtException, IllegalArgumentException, Exception{
+//        try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
             return !claims.getBody().getExpiration().before(new Date());
-        } catch (Exception e) {
-            return false;
-        }
+//        } catch (MalformedJwtException e) {
+//            log.info("잘못된 JWT 서명입니다.");
+//            return false;
+//        } catch (ExpiredJwtException e) {
+//            log.info("만료된 JWT 토큰입니다.");
+//            return false;
+//        } catch (UnsupportedJwtException e) {
+//            log.info("지원되지 않는 JWT 토큰입니다.");
+//            return false;
+//        } catch (IllegalArgumentException e) {
+//            log.info("JWT 토큰이 잘못되었습니다.(IllegalArgumentException)");
+//            return false;
+//        } catch (Exception e){
+//            log.info("JWT 토큰이 잘못되었습니다.(Exception)");
+//            return false;
+//        }
     }
 }

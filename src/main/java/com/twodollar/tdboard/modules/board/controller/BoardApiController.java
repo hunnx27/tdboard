@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,19 +33,27 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
-    //@PreAuthorize("hasRole('USER')")
-    @Secured("ROLE_ANONYMOUS")
     @Operation(summary = "공지사항 전체 조회", description = "공지사항 전체 조회")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/boards/type/notices")
-    public ResponseEntity<ApiCmnResponse<List<Board>>> noticeAll(){
+    public ResponseEntity<ApiCmnResponse<List<Board>>> noticeAll(@AuthenticationPrincipal UserDetails user){
         return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardService.getNoticeBoards()));
     }
 
-    @Secured("ROLE_USER")
+    @PreAuthorize("hasAnyRole('ANONYMOUS','USER', 'ORG')")
+    @Operation(summary = "공지사항 전체 조회", description = "공지사항 전체 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/boards/type/notices2")
+    public ResponseEntity<ApiCmnResponse<List<Board>>> noticeAll2(@AuthenticationPrincipal UserDetails user){
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardService.getNoticeBoards()));
+    }
+
     @Operation(summary = "공지사항 검색", description = "공지사항 검색")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),

@@ -1,6 +1,6 @@
 package com.twodollar.tdboard.config;
 
-import com.twodollar.tdboard.config.handler.UserAuthFailurHandler;
+import com.twodollar.tdboard.config.handler.AuthFailurHandler;
 import com.twodollar.tdboard.modules.auth.controller.JwtAuthenticationFilter;
 import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.auth.service.AuthPrincipalDetailsService;
@@ -36,7 +36,7 @@ public class SecurityUserConfig {
             "/swagger-ui/**"
     };
 
-    private final UserAuthFailurHandler userAuthFailurHandler;
+    private final AuthFailurHandler userAuthFailurHandler;
     private final AuthPrincipalDetailsService userPrincipalDetailsService;
     @Bean
     public UserDetailsService UserDetailService(){

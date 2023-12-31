@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 @Component
-public class UserAuthFailurHandler extends SimpleUrlAuthenticationFailureHandler {
+public class AuthFailurHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {

@@ -37,4 +37,6 @@ public class User {
     // 계정 생성일
     @CreationTimestamp
     private LocalDateTime createdDate;
+
+    private String refreshToken;
 }

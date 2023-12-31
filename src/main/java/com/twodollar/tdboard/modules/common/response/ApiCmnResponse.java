@@ -15,9 +15,8 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ApiCmnResponse<T> {
 
-    private static final String SUCCESS_STATUS = "success";
-    private static final String FAIL_STATUS = "fail";
-    private static final String ERROR_STATUS = "error";
+    private static final String SUCCESS_STATUS = "200";
+    private static final String ERROR_STATUS = "500";
 
     private String status;
     private T data;
@@ -43,12 +42,15 @@ public class ApiCmnResponse<T> {
                 errors.put( error.getObjectName(), error.getDefaultMessage());
             }
         }
-        return new ApiCmnResponse<>(FAIL_STATUS, errors, "errors");
+        return new ApiCmnResponse<>(ERROR_STATUS, errors, "errors");
     }
 
     // 예외 발생으로 API 호출 실패시 반환
     public static ApiCmnResponse<?> error(String message) {
-        return new ApiCmnResponse<>(ERROR_STATUS, null, "error");
+        return new ApiCmnResponse<>(ERROR_STATUS, null, message);
+    }
+    public static ApiCmnResponse<?> error(String status, String message) {
+        return new ApiCmnResponse<>(status, null, message);
     }
 
     private ApiCmnResponse(String status, T data, String message) {
