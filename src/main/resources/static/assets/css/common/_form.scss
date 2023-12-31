@@ -1,5 +1,5 @@
 .input-group{
-    @include flexbox(row, center, center);
+    @include flexbox(row, flex-start, center);
 }
 .input-wrap{
 
@@ -67,7 +67,7 @@ input{}
       line-height: 3.2rem;
       font-size: 1.4rem;
       border-radius: 0.4rem;
-      border: 1px solid $gray04;
+      border: 1px solid $black;
       color: #141414;
       background-color: #fff;
       cursor: pointer;
@@ -78,18 +78,18 @@ input{}
       overflow: hidden;
       white-space: nowrap;
       &:hover {
-        border-color: $mainColor;
+        border-color: $primary;
       }
       &::after {
         content: '';
         position: absolute;
         top: 50%;
-        right: 1.2rem;
+        right: 0.5rem;
         transform: translateY(-50%) rotate(0);
         width: 1.8rem;
         height: 1.8rem;
         display: inline-block;
-        background: url(../images/icon/dropdown_icon.svg) no-repeat center/contain;
+        background: url(../../images/icon/dropdown_icon.png) no-repeat center/contain;
         transition: all 0.3s;
       }
       &.disabled {
@@ -159,7 +159,7 @@ input{}
     &.on {
       .dropdown-toggle {
         border-radius: 0.4rem 0.4rem 0 0;
-        border-color: $mainColor;
+        border-color: $primary;
         border-bottom: 1px solid transparent;
         &::after {
           transform: translateY(-50%) rotate(180deg);
@@ -167,7 +167,7 @@ input{}
       }
       .dropdown-menu {
         top: calc(100% - 0.2rem);
-        border-color: $mainColor;
+        border-color: $primary;
         background-color: $white;
         border-top: 0;
         max-height: 256px;
@@ -188,19 +188,19 @@ input{}
       &.on {
         .dropdown-toggle {
           border-radius: 0 0 0.4rem 0.4rem;
-          border-color: $mainColor;
+          border-color: $primary;
           border-top: 0;
-          border-bottom: 1px solid $mainColor;
+          border-bottom: 1px solid $primary;
           &::after {
             transform: translateY(-50%) rotate(0);
           }
         }
         .dropdown-menu {
-          border-color: $mainColor;
+          border-color: $primary;
           background-color: $white;
           top: initial;
           bottom: calc(100% - 0.1rem);
-          border-top: 1px solid $mainColor;
+          border-top: 1px solid $primary;
           border-bottom: 0;
           max-height: 256px;
           overflow-y: auto;
