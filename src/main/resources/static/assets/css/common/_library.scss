@@ -16,11 +16,14 @@
   max-width:118rem;
   margin:0 auto;
   @include tablet {
+    max-width:100%;
     &.md-inner{
       max-width:100%;
     }
   }
   @include mobile {
+    max-width:100%;
+    padding:0 1.6rem;
     &.sm-inner{
       max-width:100%;
     }
