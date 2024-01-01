@@ -1,0 +1,14 @@
+
+<div class="pagination">
+  <ul id="pagination"></ul>
+</div>
+<script id="pagination-template" type="text/template">
+  <li><a href="#" data-page="{{previous}}"></a></li>
+  {{#pages}}
+    <li {{#isActive}}class="on"{{/isActive}}><a href="#">{{.}}</a></li>
+  {{/pages}}
+  <li><a href="#" data-page="{{next}}"></a></li>
+</script>
+<script type="module" src="/assets/js/pagination.js"></script>
+
+
