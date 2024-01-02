@@ -44,8 +44,8 @@
         <div class="table-wrap board-list">
             <div class="table-head">
                 <div class="flex-box  align-center">
-                    <span>
-                        Total 1건 1 페이지
+                    <span id="tableHeadText">
+                        Total 0건 1 페이지
                     </span>
            
                 </div>
@@ -66,6 +66,9 @@
                         </tr>
                     </thead>
                     <tbody id="notice-body">
+                        <tr>
+                            <td colspan="3">등록된 글이 없습니다.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -76,11 +79,11 @@
     </div>
 </section>
 <script id="notice-table-template" type="text/template">
-{{#items}}
+{{#content}}
     <tr>
         <td>
             <span>
-                {{no}}
+                {{id}}
             </span>
         </td>
         <td class="title">
@@ -90,11 +93,11 @@
         </td>
         <td>
             <span>
-                {{date}}
+                {{createdDateText}}
             </span>
         </td>
     </tr>
-{{/items}}
+{{/content}}
 </script>
 
 <script type="module" src="/assets/js/home/notice.js"></script>
