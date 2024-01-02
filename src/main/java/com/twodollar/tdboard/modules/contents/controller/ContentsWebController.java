@@ -49,6 +49,18 @@ public class ContentsWebController {
     public String shareList() {
         return "pages/contents/share/list";
     }
+    @GetMapping("contents/share-detail")
+    public String shareDetail() {
+        return "pages/contents/share/detail";
+    }
+    @GetMapping("contents/equipments-list")
+    public String equipmentsList() {
+        return "pages/contents/equipments/list";
+    }
+    @GetMapping("contents/equipments-detail")
+    public String equipmentsDetail() {
+        return "pages/contents/equipments/detail";
+    }
 
     @GetMapping("contents/share-calendar")
     public String shareCalendar() {
@@ -63,7 +75,7 @@ public class ContentsWebController {
     // KDP 세한 달력
     @GetMapping("contents/calendar")
     public String calendar() {
-        return "pages/contents/sehanKdp/calendar";
+        return "pages/contents/sehankdp/calendar";
     }
 
     // 게시판
@@ -85,6 +97,20 @@ public class ContentsWebController {
     @GetMapping("contents/qna")
     public String qna() {
         return "pages/contents/board/qna";
+    }
+
+    @GetMapping("contents/notice/0")
+    public String noticeDetail() {
+        return "pages/contents/board/noticeDetail";
+    }
+
+    @GetMapping("contents/data/0")
+    public String dataDetail() {
+        return "pages/contents/board/dataDetail";
+    }
+    @GetMapping("contents/qna/0")
+    public String qnaDetail() {
+        return "pages/contents/board/qnaDetail";
     }
 
     @GetMapping("contents/group-qna")

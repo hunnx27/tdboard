@@ -12,9 +12,9 @@
     <br/>
     <input type="password" name="password" placeholder="password"/>
     <span>
-        {{#error}}
-            <p id="valid" style="color:red; font-weight:bolder">{{exception}}</p>
-        {{/error}}
+        {[#error]}
+            <p id="valid" style="color:red; font-weight:bolder">{[exception]}</p>
+        {[/error]}
     </span>
     <button type="submit">Login</button>
 </form>

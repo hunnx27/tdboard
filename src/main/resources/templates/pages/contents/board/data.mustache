@@ -1,15 +1,139 @@
-{{>layout/admin-header}}
+{[>layout/header]}
 
-<!--item-wrap-->
-<div class="item-wrap">
-    <div class="content-title-wrap">
+<section class="sub-top ">
+    <div class="inner">
         <h2>
             자료실
         </h2>
     </div>
-</div>
-<!--item-wrap-->
-<div class="item-wrap">
-<div>
+</section>
+<section class="sub-con content board-content">
+    <div class="inner">
+        <div class="board-tab">
+            <ul>
+                <li>
+                    <a href="/contents/notice">
+                        <span>
+                            공지사항
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/data" class="on">
+                        <span>
+                            자료실
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/faq">
+                        <span>
+                            FAQ
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/qna">
+                        <span>
+                            QnA
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="table-wrap board-list">
+            <div class="table-head">
+                <div class="flex-box  align-center">
+                    <span>
+                        Total 1건 1 페이지
+                    </span>
 
-{{>layout/admin-footer}}
+                </div>
+            </div>
+            <div class="table-body">
+                <table class="table table-fixed ">
+                    <thead>
+                    <tr>
+                        <th class="number">
+                            번호
+                        </th>
+                        <th class="title">
+                            제목
+                        </th>
+                        <th class="date">
+                            날짜
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<!--                    <tr>-->
+<!--                        <td>-->
+<!--                                <span>-->
+<!--                                    1-->
+<!--                                </span>-->
+<!--                        </td>-->
+<!--                        <td class="title">-->
+<!--                            <a href="#">-->
+<!--                                q-->
+<!--                            </a>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                                <span>-->
+<!--                                    2023.12.20-->
+<!--                                </span>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+                        <tr>
+                            <td colspan="3">등록된 글이 없습니다.</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-foot">
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <span></span>
+                            </a>
+                        </li>
+                        <li class="on">
+                            <a href="" >
+                                <span>1</span>
+                            </a>
+                        </li>
+                        {[! <li>
+                            <a href="">
+                                <span>2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>5</span>
+                            </a>
+                        </li> ]}
+                        <li>
+                            <a href="">
+                                <span></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{[>layout/footer]}

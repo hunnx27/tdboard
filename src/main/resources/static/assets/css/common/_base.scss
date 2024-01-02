@@ -1,0 +1,47 @@
+html {
+    font-size: 10px;
+@include tablet{
+    font-size:8px;
+}
+@include mobile{
+    font-size:10px;
+}
+}
+body {
+    font-size: 1.4rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: $black;
+    * {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 400;
+        line-height: 1;
+    }
+    &.fixed {
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+}
+.hide {
+    position: absolute;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+  .d-pc {
+    display: block;
+    @include tablet {
+      display: none;
+    }
+  }
+  .d-mb {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
