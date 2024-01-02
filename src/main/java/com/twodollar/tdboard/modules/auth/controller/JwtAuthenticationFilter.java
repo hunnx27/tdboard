@@ -41,46 +41,48 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // 유효한 토큰인지 확인합니다.
         if (token != null) {
             try{
-                authJwtTokenProvider.validateToken(token);
+                authJwtTokenProvider.validateToken(token, false);
                 // 토큰이 유효하면 토큰으로부터 유저 정보를 받아옵니다.
                 Authentication authentication = authJwtTokenProvider.getAuthentication(token);
                 // SecurityContext 에 Authentication 객체를 저장합니다.
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 filterChain.doFilter(request, response);
             } catch (MalformedJwtException e) {
-                log.info("잘못된 JWT 서명입니다.");
+                String errorMsg = String.format("잘못된 JWT 서명입니다. message : %s", e.getMessage());
+                log.info(errorMsg);
+                new ObjectMapper().writeValue(response.getWriter(), errorMsg);
             } catch (ExpiredJwtException e) {
-                log.info("CustomAuthorizationFilter : Access Token이 만료되었습니다.");
+                String errorMsg = String.format("Access Token이 만료되었습니다. message : %s", e.getMessage());
+                log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_UNAUTHORIZED);
                 response.setContentType(APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding("utf-8");
-                ApiCmnResponse errorResponse =  ApiCmnResponse.error("401","Access Token이 만료되었습니다.(401)");
+                ApiCmnResponse errorResponse =  ApiCmnResponse.error("401",errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
-                log.info("만료된 JWT 토큰입니다.");
             } catch (UnsupportedJwtException e) {
-                log.info("CustomAuthorizationFilter : JWT 토큰이 잘못되었습니다. message : {}", e.getMessage());
+                String errorMsg = String.format("JWT 토큰이 잘못되었습니다. message : %s", e.getMessage());
+                log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_BAD_REQUEST);
                 response.setContentType(APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding("utf-8");
-                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", "잘못된 JWT Token 입니다.(400)");
+                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
-                log.info("지원되지 않는 JWT 토큰입니다.");
             } catch (IllegalArgumentException e) {
-                log.info("CustomAuthorizationFilter : JWT 토큰이 잘못되었습니다. message : {}", e.getMessage());
+                String errorMsg = String.format("JWT 토큰이 잘못되었습니다. message : %s", e.getMessage());
+                log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_BAD_REQUEST);
                 response.setContentType(APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding("utf-8");
-                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", "잘못된 JWT Token 입니다.(400)");
+                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
-                log.info("JWT 토큰이 잘못되었습니다.(IllegalArgumentException)");
             } catch (Exception e){
-                log.info("CustomAuthorizationFilter : JWT 토큰이 잘못되었습니다. message : {}", e.getMessage());
+                String errorMsg = String.format("JWT 토큰이 잘못되었습니다. message : %s", e.getMessage());
+                log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_BAD_REQUEST);
                 response.setContentType(APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding("utf-8");
-                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", "잘못된 JWT Token 입니다.(400)");
+                ApiCmnResponse errorResponse = ApiCmnResponse.error("400", errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
-                log.info("JWT 토큰이 잘못되었습니다.(Exception)");
             }
         }else{
             filterChain.doFilter(request, response);

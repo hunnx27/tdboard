@@ -2,6 +2,7 @@ package com.twodollar.tdboard.modules.auth.service;
 
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,8 +25,12 @@ public class AuthJwtTokenProvider {
 
     // 토큰 유효시간 30분
     //private long tokenValidTime = 30 * 60 * 1000L;
-    private long tokenValidTime = 10 * 1000L;
-    private long refreshTokenValidTime = 24 * 60 * 60 * 1000L;
+
+    @Value("${tokenValidTimeout}")
+    private long tokenValidTimeSecond = 60; // 1분
+
+    @Value("${server.servlet.session.timeout}")
+    private long refreshTokenValidTimeSecond = 24 * 60 * 60; // 1일
 
     private final AuthPrincipalDetailsService authPrincipalDetailsService;
 
@@ -44,7 +49,7 @@ public class AuthJwtTokenProvider {
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + tokenValidTime)) // set Expire Time
+                .setExpiration(new Date(now.getTime() + tokenValidTimeSecond*1000)) // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
                 // signature 에 들어갈 secret값 세팅
                 .compact();
@@ -56,7 +61,7 @@ public class AuthJwtTokenProvider {
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + refreshTokenValidTime)) // set Expire Time
+                .setExpiration(new Date(now.getTime() + refreshTokenValidTimeSecond*1000 + 5000)) // set Expire Time (세션만료시간보다 5초 더)
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
                 // signature 에 들어갈 secret값 세팅
                 .compact();
@@ -82,10 +87,13 @@ public class AuthJwtTokenProvider {
     }
 
     // 토큰의 유효성 + 만료일자 확인
-    public boolean validateToken(String jwtToken) throws MalformedJwtException, ExpiredJwtException, UnsupportedJwtException, IllegalArgumentException, Exception{
+    public void validateToken(String jwtToken, boolean isRefresh) throws MalformedJwtException, ExpiredJwtException, UnsupportedJwtException, IllegalArgumentException, Exception{
 //        try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
-            return !claims.getBody().getExpiration().before(new Date());
+            if(!isRefresh && claims.getBody().get("roles")==null){
+                throw new Exception("Refresh Token입니다.");
+            }
+
 //        } catch (MalformedJwtException e) {
 //            log.info("잘못된 JWT 서명입니다.");
 //            return false;

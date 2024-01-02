@@ -4,6 +4,7 @@ import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -14,16 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.nio.file.attribute.UserPrincipal;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class AuthSuccessHandler extends
         SavedRequestAwareAuthenticationSuccessHandler {
 
-    private final AuthJwtTokenProvider userJwtTokenProvider;
+    private final AuthJwtTokenProvider authJwtTokenProvider;
     private final UserRepository userRepository;
 
     @Override
@@ -32,15 +32,22 @@ public class AuthSuccessHandler extends
         super.onAuthenticationSuccess(request, response, authentication);
         HttpSession session = request.getSession(true);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-
-        String accessToken = userJwtTokenProvider.createToken(userDetails.getUsername(), Collections.singletonList("USER"));
-        String refreshToken = userJwtTokenProvider.createRefreshToken(userDetails.getUsername());
-
+        String role = "USER";
+        if(!userDetails.getAuthorities().isEmpty()){
+            role = String.valueOf(userDetails.getAuthorities().stream().findFirst().get()).replace("ROLE_","");
+        }
+        String accessToken =
+                authJwtTokenProvider.createToken(userDetails.getUsername()
+                                        , Collections.singletonList(role));
+        String refreshToken = authJwtTokenProvider.createRefreshToken(userDetails.getUsername());
+        log.info("accessToken : {}", accessToken);
+        log.info("refreshToken : {}", refreshToken);
         session.setAttribute("accessToken", accessToken);
         session.setAttribute("refreshToken", refreshToken);
         // Refresh Token DB에 저장
         User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
         user.setRefreshToken(refreshToken);
+        userRepository.save(user);
     }
 
 }

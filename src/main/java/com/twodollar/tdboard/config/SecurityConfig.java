@@ -120,7 +120,9 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-        return (web) -> web.ignoring().antMatchers("/v2/api-docs",
+        return (web) -> web.ignoring().antMatchers(
+                "/api/v1/refresh",
+                "/v2/api-docs",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
