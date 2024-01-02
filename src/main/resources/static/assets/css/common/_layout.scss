@@ -157,7 +157,41 @@ header{
 
   }
 }
+@include tablet{
 
+}
+@include mobile{
+  header{
+    
+    .head-top{
+      
+      > div{
+
+      }
+    }
+    .head-con{
+      .gnb{
+        position:absolute;
+        left:0;
+
+        nav{
+          ul{
+            li{
+              a{
+                span{
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .nav_btn_wrap{
+      display:inline-block;
+    }
+  }
+}
 
 footer{
   padding:4rem 0;
@@ -200,7 +234,13 @@ footer{
     }
   
 }
-
+@include tablet{}
+@include mobile{
+  footer .foot-top{
+    max-width:100%;
+    display:block;
+  }
+}
 .item-wrap{
   @include flexbox(row, flex-start, flex-start);
   margin-right:-1.6rem;
