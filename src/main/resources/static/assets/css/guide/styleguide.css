@@ -57823,6 +57823,9 @@ header {
 }
 
 @media (max-width: 568px) {
+  header .head-top {
+    display: none;
+  }
   header .head-con .gnb {
     position: absolute;
     left: 0;
@@ -57841,15 +57844,21 @@ header {
     -webkit-box-pack: start;
     -moz-box-justify-content: flex-start;
     justify-content: flex-start;
+    padding: 24px 16px;
   }
   header .head-con .gnb nav > ul .gnb-depth-01 {
     flex: none;
     height: auto;
     width: 100%;
+    padding: 0;
+    margin-bottom: 8px;
   }
-  header .head-con .gnb nav > ul .gnb-depth-01 a {
-    padding: 1rem 2rem;
+  header .head-con .gnb nav > ul .gnb-depth-01 > a {
+    padding: 1.2rem 1.6rem;
     height: auto;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 > a span {
+    font-weight: 600;
   }
   header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 {
     position: relative;
