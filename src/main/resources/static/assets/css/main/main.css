@@ -57821,10 +57821,72 @@ header {
 .head-con .rnb {
   margin-left: auto;
 }
+
 @media (max-width: 568px) {
   header .head-con .gnb {
     position: absolute;
     left: 0;
+    height: 100vh;
+    width: 100%;
+  }
+  header .head-con .gnb nav {
+    background-color: #ffffff;
+  }
+  header .head-con .gnb nav > ul {
+    display: flex;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -moz-box-justify-content: flex-start;
+    justify-content: flex-start;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 {
+    flex: none;
+    height: auto;
+    width: 100%;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 a {
+    padding: 1rem 2rem;
+    height: auto;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 {
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 li {
+    font-size: 0;
+    margin: 0;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 li a {
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    transition: all 0.25s ease-in-out;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 li a span {
+    font-size: 0;
+    transition: none;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on .gnb-depth-02 {
+    position: relative;
+    top: 0;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on .gnb-depth-02 li {
+    font-size: 1.6rem;
+    border-bottom: 1px solid #ddd;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on .gnb-depth-02 li a {
+    padding: 1rem 0;
+    text-align: left;
+    width: 100%;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on .gnb-depth-02 li a span {
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    text-align: left;
   }
   header .nav_btn_wrap {
     display: inline-block;
@@ -58430,6 +58492,18 @@ sub page
 }
 .summary .card-wrap .card-body ul li:nth-child(5) h4 {
   color: #713397;
+}
+@media (max-width: 568px) {
+  .summary .card-wrap .card-body ul {
+    display: flex;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -moz-box-justify-content: flex-start;
+    justify-content: flex-start;
+  }
 }
 
 .group-qna .card-wrap {
