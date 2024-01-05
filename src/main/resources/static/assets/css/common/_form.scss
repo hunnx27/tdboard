@@ -240,3 +240,72 @@ input{}
   .dropdown.dropdown-disabled .dropdown-toggle::after {
     border-color: #b1b1b1 !important;
   }
+
+
+
+  /* ------------------------------------------------------------------------------------------------------------------ */
+/* Dropdown button 방식 (셀렉트박스 커스텀)
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* textfield
+/* ------------------------------------------------------------------------------------------------------------------ */
+.textfield {
+  display: inline-block;
+  vertical-align: middle;
+  input {
+    width: 100%;
+    color: $black;
+    height: 4.8rem;
+    border: 0;
+    border: 1px solid #ddd;
+  }
+  .error-text {
+    height: 0;
+    padding-top: 0px;
+    overflow: hidden;
+    color: red;
+    font-size: 0rem;
+    line-height: 1;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+  }
+  &[data-status='default'] {
+  }
+  &[data-status='confirm'] {
+    input {
+    }
+  }
+  &[data-status='error'] {
+    input {
+      border: 1px solid red !important;
+    }
+    .error-text {
+      height: auto;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      padding-top: 0.5rem;
+    }
+  }
+  &[data-status='disabled'] {
+    input {
+      &:disabled {
+      }
+    }
+  }
+  &[data-type='text'] {
+  }
+  &[data-type='search'] {
+  }
+  /* size */
+  &[data-size='LG'] {
+    height: 4.8rem;
+  }
+  &[data-size='MD'] {
+    height: 4.8rem;
+  }
+  &[data-size='SM'] {
+    height: 4.8rem;
+  }
+}

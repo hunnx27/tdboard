@@ -56863,6 +56863,10 @@ icon
   background-size: 100%;
   transition: all 0.25s ease-in-out;
 }
+.icon-box.icon-prev::after {
+  background-image: url(../../images/icon/arrow_r_x0_icon.svg);
+  filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+}
 .icon-box.icon-arrow-r::after {
   background-image: url(../../images/icon/swipe_next_icon.svg);
   filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
@@ -57119,6 +57123,52 @@ icon
 
 .dropdown.dropdown-disabled .dropdown-toggle::after {
   border-color: #b1b1b1 !important;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Dropdown button 방식 (셀렉트박스 커스텀)
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* textfield
+/* ------------------------------------------------------------------------------------------------------------------ */
+.textfield {
+  display: inline-block;
+  vertical-align: middle;
+  /* size */
+}
+.textfield input {
+  width: 100%;
+  color: #333;
+  height: 4.8rem;
+  border: 0;
+  border: 1px solid #ddd;
+}
+.textfield .error-text {
+  height: 0;
+  padding-top: 0px;
+  overflow: hidden;
+  color: red;
+  font-size: 0rem;
+  line-height: 1;
+  transition: all 0.25s ease-in-out;
+}
+.textfield[data-status=error] input {
+  border: 1px solid red !important;
+}
+.textfield[data-status=error] .error-text {
+  height: auto;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  padding-top: 0.5rem;
+}
+.textfield[data-size=LG] {
+  height: 4.8rem;
+}
+.textfield[data-size=MD] {
+  height: 4.8rem;
+}
+.textfield[data-size=SM] {
+  height: 4.8rem;
 }
 
 .detail-head {
