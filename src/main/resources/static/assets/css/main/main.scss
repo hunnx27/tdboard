@@ -429,6 +429,18 @@ sub page
         }
         }
     }
+    @include mobile{
+        .card-wrap{
+            .card-body{
+                ul{
+                    @include flexbox(column, flex-start, flex-start);
+                    li{
+
+                    }
+                }
+            }
+        }
+    }
 }
 .group-qna{
     .card-wrap{
