@@ -4,10 +4,7 @@ import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +20,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private BoardTypeEnum boardType;
 
     // 제목
