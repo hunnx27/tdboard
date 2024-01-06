@@ -58,6 +58,14 @@ icon
   &.icon-prev{
     &::after {
       background-image: url(../../images/icon/arrow_r_x0_icon.svg);
+      transform: rotate(180deg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-next{
+    &::after {
+      background-image: url(../../images/icon/arrow_r_x0_icon.svg);
+      
       filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
     }
   }

@@ -52,7 +52,7 @@ $button-disabled-border : $gray04;
   }
   .icon-box{
     &::after{
-      filter : $filter-white;
+      //filter : $filter-white;
     }
   }
   .icon-box + em{
@@ -127,12 +127,12 @@ $button-disabled-border : $gray04;
   }
   /* btn type */
   &.btn{
-    &-type01{
+    &-type-01{
       color:$white;
       background-color:$button-primary;  
       .icon-box{
         &::after{
-          filter : $filter-white;
+          //filter : $filter-white;
         }
       }
       &.on{
@@ -143,13 +143,13 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type02{
+    &-type-02{
       color:$button-primary;
       background-color:$white;
       border-color:$button-primary;
       .icon-box{
         &::after{
-          filter : $filter-primary;
+          //filter : $filter-primary;
         }
       }
       &.on{
@@ -160,7 +160,7 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type03{
+    &-type-03{
       color:$white;
       background-color:$button-normal;
       border-color:$button-normal;
@@ -172,7 +172,7 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type04{
+    &-type-04{
       color:$black;
       background-color:$white;
       border-color:$gray04;
