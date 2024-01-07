@@ -79052,12 +79052,10 @@ icon
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* Dropdown button 방식 (셀렉트박스 커스텀)
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------------ */
 /* textfield
 /* ------------------------------------------------------------------------------------------------------------------ */
 .textfield {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   transition: all 0.25s ease-in-out;
@@ -79073,6 +79071,16 @@ icon
   padding-left: 0.8rem;
   transition: all 0.25s ease-in-out;
 }
+.textfield::before {
+  content: "";
+  position: absolute;
+  left: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+}
 .textfield .error-text {
   height: 0;
   padding-top: 0px;
@@ -79086,6 +79094,12 @@ icon
 .textfield[data-status=active] input {
   color: #797F8B;
   border: 1px solid #797F8B;
+}
+.textfield[data-status=active][data-status=active]::before {
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+}
+.textfield[data-icon=true] input {
+  padding-left: 4.2rem;
 }
 .textfield[data-status=confirm] input {
   color: #797F8B;
@@ -79104,51 +79118,17 @@ icon
   line-height: 1.5;
   padding-top: 0.5rem;
 }
-.textfield[data-type=id] {
-  position: relative;
-}
 .textfield[data-type=id]::before {
-  content: "";
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
   background-image: url(../../images/icon/user_icon.svg);
   background-repeat: no-repeat;
   background-size: 2rem;
   background-position: center 0;
-  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
-}
-.textfield[data-type=id] input {
-  padding-left: 4.2rem;
-}
-.textfield[data-type=id][data-status=active]::before {
-  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
-}
-.textfield[data-type=password] {
-  position: relative;
 }
 .textfield[data-type=password]::before {
-  content: "";
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
   background-image: url(../../images/icon/lock_icon.svg);
   background-repeat: no-repeat;
   background-size: 2rem;
   background-position: center 0;
-  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
-}
-.textfield[data-type=password] input {
-  padding-left: 4.2rem;
-}
-.textfield[data-type=password][data-status=active]::before {
-  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
 .textfield[data-size=LG] input {
   height: 4.8rem;
@@ -79156,6 +79136,79 @@ icon
 .textfield[data-size=MD] input {
   height: 4rem;
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* checkbox
+/* ------------------------------------------------------------------------------------------------------------------ */
+.checkbox {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  padding-left: 2.8rem;
+  min-height: 2rem;
+}
+.checkbox input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  border-color: transparent;
+  background-color: transparent;
+  border-radius: 4px;
+}
+.checkbox input[type=checkbox]:focus {
+  outline: 1px solid #01A0E8;
+  outline-offset: 2px;
+}
+.checkbox input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #D0D5DD;
+  border-radius: 4px;
+}
+.checkbox input[type=checkbox]::after {
+  content: "";
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #01A0E8;
+  border-radius: 4px;
+  background-image: url(../../images/icon/checkbox_check_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 1.8;
+  background-position: center center;
+}
+.checkbox input[type=checkbox]:checked::after {
+  display: block;
+}
+.checkbox label {
+  position: relative;
+  bottom: 1px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* select
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -79255,8 +79308,21 @@ icon
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* textarea
 /* ------------------------------------------------------------------------------------------------------------------ */
+.textarea-box {
+  border: 1px solid #D0D5DD;
+  padding: 1.2rem;
+  border-radius: 4px;
+  max-width: 100%;
+}
 .textarea-box .textarea-con {
   overflow-y: scroll;
+  padding-right: 4px;
+  height: 100%;
+}
+.textarea-box .textarea-con p {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #797F8B;
 }
 
 .detail-head {

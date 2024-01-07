@@ -243,15 +243,13 @@ input{}
 
 
 
-  /* ------------------------------------------------------------------------------------------------------------------ */
-/* Dropdown button 방식 (셀렉트박스 커스텀)
-/* ------------------------------------------------------------------------------------------------------------------ */
 
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* textfield
 /* ------------------------------------------------------------------------------------------------------------------ */
 .textfield {
+  position:relative;
   display: inline-block;
   vertical-align: middle;
   -webkit-transition: all 0.25s ease-in-out;
@@ -266,7 +264,16 @@ input{}
     padding-left:0.8rem;
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
-    
+  }
+  &::before{
+    content:'';
+    position: absolute;
+    left: 1.4rem;
+    top:50%;
+    transform: translateY(-50%);
+    width:2rem;
+    height: 2rem;
+    filter:invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
   }
   .error-text {
     height: 0;
@@ -285,6 +292,16 @@ input{}
     input{
       color:#797F8B;
       border:1px solid #797F8B;
+    }
+    &[data-status='active']{
+      &::before{
+        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+      }
+    }
+  }
+  &[data-icon="true"]{
+    input{
+      padding-left:4.2rem;
     }
   }
   &[data-status='confirm'] {
@@ -317,47 +334,13 @@ input{}
   &[data-type='search'] {
   }
   &[data-type='id'] {
-    position:relative;
     &::before{
-      content:'';
-      position: absolute;
-      left: 1rem;
-      top:50%;
-      transform: translateY(-50%);
-      width:2rem;
-      height: 2rem;
       @include background(icon, user_icon, svg, no-repeat, 2rem,center);
-      filter:invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
-    }
-    input{
-      padding-left:4.2rem;
-    }
-    &[data-status='active']{
-      &::before{
-        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
-      }
     }
   }
   &[data-type='password'] {
-    position:relative;
     &::before{
-      content:'';
-      position: absolute;
-      left: 1rem;
-      top:50%;
-      transform: translateY(-50%);
-      width:2rem;
-      height: 2rem;
       @include background(icon, lock_icon, svg, no-repeat, 2rem,center);
-      filter:invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
-    }
-    input{
-      padding-left:4.2rem;
-    }
-    &[data-status='active']{
-      &::before{
-        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
-      }
     }
   }
   /* size */
@@ -373,6 +356,67 @@ input{}
   }
   &[data-size='SM'] {
 
+  }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* checkbox
+/* ------------------------------------------------------------------------------------------------------------------ */
+.checkbox{
+  @include flexbox(row,flex-start,center);
+  position:relative;
+  padding-left:2.8rem;
+  min-height:2rem;
+  
+  input[type='checkbox']{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position:absolute;
+    width:2rem;height:2rem;
+    left:0;
+    top:0;
+    padding:0;margin:0;
+    border-color:transparent;
+    background-color: transparent;
+    border-radius: 4px;
+    &:focus{
+      outline: 1px solid $primary;
+      outline-offset: 2px;
+    }
+    &::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:2rem;height:2rem;
+      border:1px solid $gray07;
+      border-radius: 4px;
+    }
+    &::after{
+      content:'';
+      display:none;
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:2rem;height:2rem;
+      border:1px solid $primary;
+      border-radius: 4px;
+      @include background(icon, checkbox_check_icon, svg, no-repeat, 1.8,center,center);
+    }
+    &:checked{
+      &::after{
+        display:block;
+      }
+    }
+  }
+  label{
+    position:relative;
+    bottom:1px;
+    font-size:1.6rem;
+    font-weight: 400;
+    cursor:pointer;
   }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -497,8 +541,19 @@ input{}
 /* textarea
 /* ------------------------------------------------------------------------------------------------------------------ */
 .textarea-box{
+  border:1px solid $gray07;
+  padding:1.2rem;
+  border-radius:4px;
+  max-width:100%;
   .textarea-con{
     overflow-y:scroll;
+    padding-right:4px;
+    height: 100%;
+    p{
+      font-size:1.4rem;
+      line-height: 1.5;
+      color:$gray02;
+    }
   }
 }
 .textarea{
