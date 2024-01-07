@@ -256,14 +256,17 @@ input{}
   transition: all 0.25s ease-in-out;
   input {
     width: 100%;
-    color: $black;
     height: 4.8rem;
     border: 0;
-    border: 1px solid #ddd;
+    border: 1px solid $gray07;
+    color:$gray02;
     border-radius:4px;
     padding-left:0.8rem;
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
+    &::placeholder {
+      color: $gray07;
+    }
   }
   &::before{
     content:'';
@@ -287,6 +290,7 @@ input{}
     transition: all 0.25s ease-in-out;
   }
   &[data-status='default'] {
+    
   }
   &[data-status='active'] {
     input{

@@ -564,6 +564,12 @@ $colmobileYGutter: 3rem;
   .max-h-#{$i * 1} {
     max-height: $i * 0.1rem;
   }
+  .i-w-#{$i} {
+    width: $i * 0.1rem !important;
+  }
+  .i-h-#{$i * 1} {
+    height: $i * 0.1rem !important;
+  }
   @include tablet {
     .md{
       &-w-#{$i} {
@@ -583,6 +589,12 @@ $colmobileYGutter: 3rem;
       }
       &-max-h-#{$i * 1} {
         max-height: $i * 0.1rem;
+      }
+      &-i-w-#{$i} {
+        width: $i * 0.1rem !important;
+      }
+      &-i-h-#{$i * 1} {
+        height: $i * 0.1rem !important;
       }
     }
     
@@ -606,6 +618,12 @@ $colmobileYGutter: 3rem;
       }
       &-max-h-#{$i * 1} {
         max-height: $i * 0.1rem;
+      }
+      &-i-w-#{$i} {
+        width: $i * 0.1rem !important;
+      }
+      &-i-h-#{$i * 1} {
+        height: $i * 0.1rem !important;
       }
     }
     
@@ -763,7 +781,9 @@ flex-box
 .flex-wrap {
   flex-wrap: wrap;
 }
-
+.flex-shink{
+  flex-shrink: 1;
+}
 /*.flex-1 .flex-md-1 , .flex-sm-1 */
 .flex {
   &-1 {

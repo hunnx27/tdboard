@@ -193,6 +193,31 @@ $button-disabled-border : #D0D5DD;
         }
       }
     }
+    &-type-05{
+      color:#D0D5DD;
+      background-color:$white;
+      border-color:#D0D5DD;
+      &[ data-status="active"]{
+        color:$gray02;
+        background-color:$white;
+        border-color:$gray02;
+      }
+      .icon-box{
+        &::after{
+          filter : $filter-black;
+        }
+      }
+      &.on{
+        color: $white;
+        background-color: $button-primary;
+        border-color:$button-primary;
+        .icon-box{
+          &:after{
+            filter : $filter-white;
+          }
+        }
+      }
+    }
     /* icon-only */
     &.btn-icon-only{
       width:auto;
