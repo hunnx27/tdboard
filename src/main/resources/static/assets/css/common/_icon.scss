@@ -69,6 +69,18 @@ icon
       filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
     }
   }
+  &.icon-smile{
+    &::after {
+      background-image: url(../../images/icon/smile_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-birth{
+    &::after {
+      background-image: url(../../images/icon/calendar_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
   &.icon-arrow-r {
     &::after {
       background-image: url(../../images/icon/swipe_next_icon.svg);

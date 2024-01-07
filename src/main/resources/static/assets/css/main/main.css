@@ -86817,6 +86817,14 @@ icon
   background-image: url(../../images/icon/arrow_r_x0_icon.svg);
   filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
 }
+.icon-box.icon-smile::after {
+  background-image: url(../../images/icon/smile_icon.svg);
+  filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+}
+.icon-box.icon-birth::after {
+  background-image: url(../../images/icon/calendar_icon.svg);
+  filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+}
 .icon-box.icon-arrow-r::after {
   background-image: url(../../images/icon/swipe_next_icon.svg);
   filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
@@ -87101,15 +87109,11 @@ icon
 .textfield input::placeholder {
   color: #D0D5DD;
 }
-.textfield::before {
-  content: "";
-  position: absolute;
-  left: 1.4rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
-  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+.textfield input:hover {
+  border-color: #A2D2EB !important;
+}
+.textfield input:focus {
+  border-color: #01A0E8 !important;
 }
 .textfield .error-text {
   height: 0;
@@ -87121,19 +87125,25 @@ icon
   line-height: 1;
   transition: all 0.25s ease-in-out;
 }
-.textfield[data-status=active] input {
+.textfield[data-status=active] input, .textfield[data-status=confirm] input {
   color: #797F8B;
   border: 1px solid #797F8B;
 }
-.textfield[data-status=active][data-status=active]::before {
-  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+.textfield[data-icon=true]::before {
+  content: "";
+  position: absolute;
+  left: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
 }
 .textfield[data-icon=true] input {
   padding-left: 4.2rem;
 }
-.textfield[data-status=confirm] input {
-  color: #797F8B;
-  border: 1px solid #797F8B;
+.textfield[data-icon=true][data-status=active]::before, .textfield[data-icon=true][data-status=confirm]::before {
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
 .textfield[data-status=error] {
   margin-bottom: 2.6rem;
@@ -87148,6 +87158,12 @@ icon
   line-height: 1.5;
   padding-top: 0.5rem;
 }
+.textfield[data-size=LG] input {
+  height: 4.8rem;
+}
+.textfield[data-size=MD] input {
+  height: 4rem;
+}
 .textfield[data-type=id]::before {
   background-image: url(../../images/icon/user_icon.svg);
   background-repeat: no-repeat;
@@ -87160,12 +87176,25 @@ icon
   background-size: 2rem;
   background-position: center 0;
 }
-.textfield[data-size=LG] input {
-  height: 4.8rem;
+.textfield[data-type=passwordCheck]::before {
+  background-image: url(../../images/icon/lockcheck_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
 }
-.textfield[data-size=MD] input {
-  height: 4rem;
+.textfield[data-type=email]::before {
+  background-image: url(../../images/icon/mail_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
 }
+.textfield[data-type=phone]::before {
+  background-image: url(../../images/icon/smartphone_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* checkbox
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -87248,6 +87277,7 @@ icon
   /* size */
 }
 .select .select-btn {
+  position: relative;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -87259,7 +87289,7 @@ icon
   width: 100%;
   height: 4rem;
   background-color: #fff;
-  border: 1px solid #333;
+  border: 1px solid #D0D5DD;
   text-align: left;
   padding-left: 0.8rem;
   padding-right: 4.2rem;
@@ -87267,6 +87297,7 @@ icon
   border-radius: 4px;
 }
 .select .select-btn span {
+  color: #D0D5DD;
   font-size: 1.4rem;
 }
 .select .select-btn::after {
@@ -87275,16 +87306,17 @@ icon
   top: 50%;
   right: 0.8rem;
   transform: translateY(-50%) rotate(0);
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2rem;
+  height: 2rem;
   display: inline-block;
-  background: url(../../images/icon/dropdown_icon.png) no-repeat center;
+  background: url(../../images/icon/arrow_b_icon.svg) no-repeat center;
   background-size: cover;
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
 }
 .select .option-box {
   position: absolute;
   left: 0;
-  top: 100%;
+  top: calc(100% - 1px);
   z-index: 1;
   width: 100%;
   max-height: 180px;
@@ -87293,8 +87325,16 @@ icon
   background-color: #fff;
   transition: height 0.25s ease-in-out;
   border: 0px solid #ddd;
+  border-radius: 0 0 4px 4px;
+  padding-right: 1.4rem;
+}
+.select .option-box > div {
+  max-height: 172px;
+  overflow-y: scroll;
+  padding-right: 1.4rem;
 }
 .select .option-box .option {
+  position: relative;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -87304,13 +87344,23 @@ icon
   -moz-box-justify-content: flex-start;
   justify-content: flex-start;
   width: 100%;
-  height: 3.2rem;
+  padding-right: 4.2rem;
+  height: 0;
+  overflow: hidden;
   background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  padding-left: 0.8rem;
+  padding-left: 1.4rem;
+  transition: height 0.25s ease-in-out;
 }
 .select .option-box .option span {
   font-size: 1.4rem;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-size: 1.4rem;
+  color: #797F8B;
+  text-align: left;
 }
 .select .option-box .option:last-child {
   border-bottom: 0;
@@ -87318,13 +87368,57 @@ icon
 .select .option-box .option:disabled {
   pointer-events: none;
 }
-.select[data-status=active] .select-btn::after {
-  transform: translateY(-50%) rotate(180deg);
+.select .option-box .option:hover {
+  background-color: #F9FAFB;
 }
-.select[data-status=active] .option-box {
+.select .option-box .option:hover::after {
+  content: "";
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../../images/icon/check_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+  filter: invert(69%) sepia(54%) saturate(7500%) hue-rotate(170deg) brightness(103%) contrast(100%);
+}
+.select .icon-box {
+  display: none;
+}
+.select[data-icon=true] .select-btn {
+  padding-left: 4.2rem;
+}
+.select[data-icon=true] .icon-box {
+  display: inline-block;
+  position: absolute;
+  left: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.select[data-icon=true] .icon-box::after {
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+}
+.select[data-icon=true][data-status=active] .icon-box::after, .select[data-icon=true][data-status=confirm] .icon-box::after {
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+}
+.select[data-status=active] .select-btn, .select[data-status=confirm] .select-btn {
+  color: #797F8B;
+}
+.select[data-status=active] .select-btn::after, .select[data-status=confirm] .select-btn::after {
+  transform: translateY(-50%) rotate(180deg);
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+}
+.select[data-status=active] .option-box, .select[data-status=confirm] .option-box {
   height: auto;
-  overflow: auto;
   border: 1px solid #ddd;
+  border-top: 0;
+  padding-top: 0.4rem;
+}
+.select[data-status=active] .option-box .option, .select[data-status=confirm] .option-box .option {
+  height: 4rem;
 }
 .select[data-size=LG] .select-btn {
   height: 4.8rem;
@@ -87754,7 +87848,7 @@ table
   -webkit-box-pack: center;
   -moz-box-justify-content: center;
   justify-content: center;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   padding: 0rem 1.2rem;
   background-color: #fff;
   border: 1px solid #333;

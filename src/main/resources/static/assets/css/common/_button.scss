@@ -37,7 +37,7 @@ $button-disabled-border : #D0D5DD;
 
 .btn {
   @include flexbox(row, center, center);
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   padding: 0rem  1.2rem;
   background-color:#fff;
   border:1px solid $black;
