@@ -930,6 +930,9 @@ flex-box
   &-700 {
     font-weight: 700;
   }
+  &-size-32 {
+    font-size: 3.2rem;
+  }
   &-size-28 {
     font-size: 2.8rem;
   }
@@ -977,6 +980,15 @@ flex-box
   }
   &-primary {
     color: $mainColor;
+  }
+  &-gray {
+    color: $mainColor;
+  }
+  &-gray02 {
+    color: $gray02;
+  }
+  &-info{
+    color: $info;
   }
 }
   @include tablet {
@@ -1111,7 +1123,6 @@ flex-box
       }
     }
   }
-
 .card-wrap{
   position: relative;
 }

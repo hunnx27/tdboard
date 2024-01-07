@@ -262,16 +262,18 @@ input{}
     height: 4.8rem;
     border: 0;
     border: 1px solid #ddd;
+    border-radius:4px;
     padding-left:0.8rem;
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
+    
   }
   .error-text {
     height: 0;
     padding-top: 0px;
     padding-left:0.8rem;
     overflow: hidden;
-    color: red;
+    color: #F04438;
     font-size: 0rem;
     line-height: 1;
     -webkit-transition: all 0.25s ease-in-out;
@@ -279,15 +281,25 @@ input{}
   }
   &[data-status='default'] {
   }
+  &[data-status='active'] {
+    input{
+      color:#797F8B;
+      border:1px solid #797F8B;
+    }
+  }
   &[data-status='confirm'] {
-    input {
+    input{
+      color:#797F8B;
+      border:1px solid #797F8B;
     }
   }
   &[data-status='error'] {
+    margin-bottom:2.6rem;
     input {
-      border: 1px solid red !important;
+      border: 1px solid #FDA29B !important;
     }
     .error-text {
+      position:absolute;
       height: auto;
       font-size: 1.4rem;
       line-height: 1.5;
@@ -303,6 +315,50 @@ input{}
   &[data-type='text'] {
   }
   &[data-type='search'] {
+  }
+  &[data-type='id'] {
+    position:relative;
+    &::before{
+      content:'';
+      position: absolute;
+      left: 1rem;
+      top:50%;
+      transform: translateY(-50%);
+      width:2rem;
+      height: 2rem;
+      @include background(icon, user_icon, svg, no-repeat, 2rem,center);
+      filter:invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+    }
+    input{
+      padding-left:4.2rem;
+    }
+    &[data-status='active']{
+      &::before{
+        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+      }
+    }
+  }
+  &[data-type='password'] {
+    position:relative;
+    &::before{
+      content:'';
+      position: absolute;
+      left: 1rem;
+      top:50%;
+      transform: translateY(-50%);
+      width:2rem;
+      height: 2rem;
+      @include background(icon, lock_icon, svg, no-repeat, 2rem,center);
+      filter:invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+    }
+    input{
+      padding-left:4.2rem;
+    }
+    &[data-status='active']{
+      &::before{
+        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+      }
+    }
   }
   /* size */
   &[data-size='LG'] {
@@ -434,4 +490,17 @@ input{}
       }
     }
   }
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* textarea
+/* ------------------------------------------------------------------------------------------------------------------ */
+.textarea-box{
+  .textarea-con{
+    overflow-y:scroll;
+  }
+}
+.textarea{
+  
 }

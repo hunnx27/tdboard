@@ -1,8 +1,8 @@
 $button-primary : $primary;
 $button-normal : $normal;
-$button-disabled-text : $gray03;
-$button-disabled : $gray05;
-$button-disabled-border : $gray04;
+$button-disabled-text : #fff;
+$button-disabled : #D0D5DD;
+$button-disabled-border : #D0D5DD;
 
 .btn-wrap{
   @include flexbox(row, flex-start, flex-start);
@@ -97,8 +97,8 @@ $button-disabled-border : $gray04;
   /* btn size */
   &.btn-size{
     &-xxl{
-      height:4.4rem;
-      padding:0 4.4rem;
+      height:4.7rem;
+      padding:0 4.7rem;
     }
     &-xl{
       height:4.0rem;
@@ -129,7 +129,8 @@ $button-disabled-border : $gray04;
   &.btn{
     &-type-01{
       color:$white;
-      background-color:$button-primary;  
+      background-color:$button-primary;
+      border-color:$button-primary;
       .icon-box{
         &::after{
           //filter : $filter-white;

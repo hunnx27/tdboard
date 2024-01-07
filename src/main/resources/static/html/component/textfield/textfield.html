@@ -34,21 +34,45 @@
 <section class="sub-con content gallery-content">
     <div class="inner">
         <div class="flex-box gap-20">
-            <button class="btn btn-type-01">
-                btn
-            </button>
-            <button class="btn btn-type-02">
-                btn
-            </button>
-            <button class="btn btn-type-03">
-                btn
-            </button>
-            <button class="btn btn-type-04">
-                btn
-            </button>
-            <button class="btn">
-                btn
-            </button>
+            <div class="textfield" data-type="text" data-status="confirm" data-size="LG">
+                <input type="text" placeholder="text">
+                <p class="error-text">TEXT</p>
+            </div>
+            <div 
+            class="textfield" 
+            data-type="number" 
+            data-status="disabled default confirm" 
+            data-size="SM"
+            data-appearance="Outline Underline Filled"
+            >
+                <input type="text" placeholder="010-0000-0000">
+                <p class="error-text">TEXT</p>
+            </div>
+            <div class="textfield" data-type="email" data-status="" data-size="MD">
+                <div class="flex-box gap-8 align-center">
+                    <div class="textfield-email">
+                        <input type="text" placeholder="email">
+                        <p class="error-text">TEXT</p>
+                    </div>
+                    <span>@</span>
+                    <div class="textfield-email">
+                        <input type="text" placeholder="text.net">
+                        <p class="error-text">TEXT</p>
+                    </div>
+                </div>
+            </div>
+            <div class="textfield" data-type="search" data-status="confirm" data-size="LG">
+                <input type="text" placeholder="검색">
+                <p class="error-text">TEXT</p>
+            </div>
+            <div class="textfield" data-type="text" data-status="confirm" data-size="LG">
+                <input type="text" placeholder="아이디">
+                <p class="error-text">TEXT</p>
+            </div>
+            <div class="textfield" data-type="password" data-status="confirm" data-size="LG">
+                <input type="password" placeholder="비밀번호">
+                <p class="error-text">TEXT</p>
+            </div>
         </div>
         
     </div>

@@ -78540,6 +78540,9 @@ flex-box
 .text-700 {
   font-weight: 700;
 }
+.text-size-32 {
+  font-size: 3.2rem;
+}
 .text-size-28 {
   font-size: 2.8rem;
 }
@@ -78587,6 +78590,15 @@ flex-box
 }
 .text-primary {
   color: #002d85;
+}
+.text-gray {
+  color: #002d85;
+}
+.text-gray02 {
+  color: #797F8B;
+}
+.text-info {
+  color: #00AAF6;
 }
 
 @media (max-width: 1200px) {
@@ -79057,6 +79069,7 @@ icon
   height: 4.8rem;
   border: 0;
   border: 1px solid #ddd;
+  border-radius: 4px;
   padding-left: 0.8rem;
   transition: all 0.25s ease-in-out;
 }
@@ -79065,19 +79078,77 @@ icon
   padding-top: 0px;
   padding-left: 0.8rem;
   overflow: hidden;
-  color: red;
+  color: #F04438;
   font-size: 0rem;
   line-height: 1;
   transition: all 0.25s ease-in-out;
 }
+.textfield[data-status=active] input {
+  color: #797F8B;
+  border: 1px solid #797F8B;
+}
+.textfield[data-status=confirm] input {
+  color: #797F8B;
+  border: 1px solid #797F8B;
+}
+.textfield[data-status=error] {
+  margin-bottom: 2.6rem;
+}
 .textfield[data-status=error] input {
-  border: 1px solid red !important;
+  border: 1px solid #FDA29B !important;
 }
 .textfield[data-status=error] .error-text {
+  position: absolute;
   height: auto;
   font-size: 1.4rem;
   line-height: 1.5;
   padding-top: 0.5rem;
+}
+.textfield[data-type=id] {
+  position: relative;
+}
+.textfield[data-type=id]::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../../images/icon/user_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+}
+.textfield[data-type=id] input {
+  padding-left: 4.2rem;
+}
+.textfield[data-type=id][data-status=active]::before {
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+}
+.textfield[data-type=password] {
+  position: relative;
+}
+.textfield[data-type=password]::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../../images/icon/lock_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+  filter: invert(96%) sepia(2%) saturate(2582%) hue-rotate(184deg) brightness(97%) contrast(78%);
+}
+.textfield[data-type=password] input {
+  padding-left: 4.2rem;
+}
+.textfield[data-type=password][data-status=active]::before {
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
 .textfield[data-size=LG] input {
   height: 4.8rem;
@@ -79181,6 +79252,13 @@ icon
 .select[data-size=SM] .select-btn {
   height: 4.8rem;
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* textarea
+/* ------------------------------------------------------------------------------------------------------------------ */
+.textarea-box .textarea-con {
+  overflow-y: scroll;
+}
+
 .detail-head {
   padding: 32px 40px;
   border-top: 2px solid #333;
@@ -79618,9 +79696,9 @@ table
 }
 .btn:disabled {
   pointer-events: none;
-  color: #b9b9b9 !important;
-  background-color: #f5f5f5 !important;
-  border-color: #dadada !important;
+  color: #fff !important;
+  background-color: #D0D5DD !important;
+  border-color: #D0D5DD !important;
 }
 .btn:disabled .icon-box::after {
   filter: invert(100%) sepia(0%) saturate(7442%) hue-rotate(207deg) brightness(94%) contrast(53%) !important;
@@ -79630,8 +79708,8 @@ table
   filter: none !important;
 }
 .btn.btn-size-xxl {
-  height: 4.4rem;
-  padding: 0 4.4rem;
+  height: 4.7rem;
+  padding: 0 4.7rem;
 }
 .btn.btn-size-xl {
   height: 4rem;
@@ -79663,6 +79741,7 @@ table
 .btn.btn-type-01 {
   color: #ffffff;
   background-color: #01A0E8;
+  border-color: #01A0E8;
 }
 .btn.btn-type-02 {
   color: #01A0E8;
@@ -79712,6 +79791,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 999;
+  border-bottom: 1px solid #D3D3D3;
 }
 
 .head-top {
@@ -80946,4 +81026,8 @@ sub page
 }
 .equipments-list:nth-child(3n) {
   margin: 0;
+}
+
+.user-wrap {
+  width: 380px;
 }/*# sourceMappingURL=main.css.map */
