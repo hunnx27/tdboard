@@ -15,17 +15,8 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    /*
-        게시판 공통
-     */
-    public List<Board> getBoards() {
-        List<Board> todos = boardRepository.findAll();
-
-        if(!todos.isEmpty()) return boardRepository.findAll();
-        else throw new IllegalArgumentException("no such data");
-    }
-    public Board getBoardById(final Long id) {
-        return boardRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("no such data"));
+    public Board getBoardById(final Long id, BoardTypeEnum boardTypeEnum) {
+        return boardRepository.findByBoardTypeById(boardTypeEnum, id).orElseThrow(()-> new IllegalArgumentException("no such data"));
     }
 
     public Board createBoard(final Board createBoard) {
@@ -34,7 +25,7 @@ public class BoardService {
     }
 
     public Board updateBoard(final long id, final Board updateBoard) {
-        Board Board = getBoardById(id);
+        Board Board = getBoardById(id, updateBoard.getBoardType());
         Board.setTitle(updateBoard.getTitle());
         Board.setContext(updateBoard.getContext());
         return boardRepository.save(Board);
