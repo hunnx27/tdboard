@@ -9,7 +9,7 @@ $(function(){
 })
 async function getFaqApi(pageNumber){
     await useAxios.get('/api/v1/boards/type/faqs',
-        {page: pageNumber-1}
+        {page: pageNumber}
         ,(res)=> {
         console.log('res',res.data)
         if(res.data.paging.totalElements > 0){
@@ -18,7 +18,7 @@ async function getFaqApi(pageNumber){
             })
             handleSetList(pageNumber, res.data)
         }else {
-            paginationModule.setPage(1,0,0)
+            paginationModule.setPage(1,1,0)
         }
         // const tableHeadText = `Total ${res.data.paging.totalElements}건 ${res.data.paging.totalPages} 페이지`
         // document.getElementById("tableHeadText").innerHTML = tableHeadText
