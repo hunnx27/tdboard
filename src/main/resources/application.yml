@@ -24,3 +24,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+
+  # JPA 기본설정
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        one-indexed-parameters: true # paging 0부터 index 1로 변경
