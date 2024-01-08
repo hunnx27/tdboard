@@ -44,7 +44,7 @@
         <div class="table-wrap faq-list">
             <div class="table-body">
                 <table class="table table-fixed">
-                    <tbody>
+                    <tbody id="faq-body">
                         <tr class="faq-q" onClick="handleTitleClick(this)">
                             <td>
                                 <span>
@@ -135,4 +135,35 @@ function handleTitleClick(obj){
     obj.classList.toggle('on')
 }
 </script>
+<script id="faq-table-template" type="text/template">
+{{#contents}}
+     <tr class="faq-q" onClick="handleTitleClick(this)">
+        <td>
+            <span>
+                Q.
+            </span>
+        </td>
+        <td class="title">
+            <div class="faq-title">
+                <span>{{title}}</span>
+                <button class="btn btn-icon icon-btn"><span class="icon-box icon-size-lg"></span></button>
+            </div>
+        </td>
+    </tr>
+    <tr class="faq-a">
+        <td>
+            <span>
+                A.
+            </span>
+        </td>
+        <td class="title">
+            <div class="faq-title">
+                <span>{{context}}</span>
+            </div>
+        </td>
+    </tr>
+{{/contents}}
+</script>
+
+<script type="module" src="/assets/js/home/board/faq.js"></script>
 {[>layout/footer]}

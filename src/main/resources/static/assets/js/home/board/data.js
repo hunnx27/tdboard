@@ -5,15 +5,15 @@ import useFilters from '/assets/js/useFilters.js'
 const paginationModule = createPaginationModule();
 $(function(){
 
-    getNoticeApi(1)
+    getDataApi(1)
  
     paginationModule.setClickPageNumberHandler((pageNumber)=> {
         console.log(`Page number clicked: ${pageNumber}`);
-        getNoticeApi(pageNumber)
+        getDataApi(pageNumber)
      })
 })
-async function getNoticeApi(pageNumber){
-    await useAxios.get('/api/v1/boards/type/notices',
+async function getDataApi(pageNumber){
+    await useAxios.get('/api/v1/boards/type/datas',
         {page: pageNumber-1}
         ,(res)=> {
         console.log('res',res.data)
@@ -35,9 +35,9 @@ async function getNoticeApi(pageNumber){
 }
 
 function handleSetList(pageNumber, data){
-    var template = document.getElementById("notice-table-template").innerHTML;
+    var template = document.getElementById("data-table-template").innerHTML;
     var result = Mustache.render(template, data);
-    document.getElementById("notice-body").innerHTML = result;
+    document.getElementById("data-body").innerHTML = result;
     
     paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
