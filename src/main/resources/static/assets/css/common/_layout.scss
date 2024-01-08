@@ -150,39 +150,80 @@ header{
   .rnb{
     margin-left:auto;
   }
-  @include tablet{
-
-  }
-  @include mobile{
-
-  }
 }
 @include tablet{
 
 }
 @include mobile{
   header{
-    
     .head-top{
-      
-      > div{
-
-      }
+      display:none;
     }
     .head-con{
       .gnb{
         position:absolute;
         left:0;
-
+        height:100vh;
+        width:100%;
         nav{
-          ul{
-            li{
-              a{
+          background-color: $white;
+          > ul{
+            @include flexbox(column, flex-start, flex-start);
+            padding:24px 16px;
+            .gnb-depth-01{
+              flex:none;
+              height:auto;
+              width:100%;
+              padding:0;
+              margin-bottom:8px;
+              > a{
+                padding:1.2rem 1.6rem;
+                height:auto;
                 span{
-
+                  font-weight: 600;
                 }
               }
-            }
+              .gnb-depth-02{
+                position:relative;
+                top:0;
+                height:auto;
+
+                li{
+                  font-size:0;
+                  margin:0;
+                  a{
+                    padding:0;
+                    text-align: left;
+                    width:100%;
+                    transition: all 0.25s ease-in-out;
+                    span{
+                      font-size:0;
+                      transition:none;
+                    }
+                  }
+                }
+              }
+              &.on{
+                .gnb-depth-02{
+                  position:relative;
+                  top:0;
+                  li{
+                    font-size:1.6rem;
+                    border-bottom:1px solid #ddd;
+                    a{
+                      padding:1rem 0;
+                      text-align: left;
+                      width:100%;
+                      span{
+                        padding:0 2rem;
+                        font-size:1.4rem;
+                        text-align: left;
+                      }
+                    }
+                  }
+                }
+              }
+            }  
           }
         }
       }
@@ -191,6 +232,7 @@ header{
       display:inline-block;
     }
   }
+  
 }
 
 footer{

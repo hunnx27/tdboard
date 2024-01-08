@@ -2,6 +2,7 @@ package com.twodollar.tdboard.modules.board.controller;
 
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.service.BoardService;
+import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import io.swagger.annotations.Tag;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,12 +39,11 @@ public class BoardApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/boards/type/notices")
-    public ResponseEntity<ApiCmnResponse<Page<Board>>> noticeAll(
-            @RequestParam(value="page", defaultValue="0") int page,
-            @RequestParam(value="size", defaultValue="10", required = false) int size
+    public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> noticeAll(
+            Pageable pageable
     ){
-        Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardService.getNoticeBoards(pageable)));
+        List<Board> boardList = boardService.getNoticeBoards(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
     }
 
     @Operation(summary = "공지사항 검색", description = "공지사항 검색")
@@ -53,14 +53,12 @@ public class BoardApiController {
     })
     @GetMapping("/boards/type/notices/search")
     public ResponseEntity<ApiCmnResponse<Page<Board>>> noticeSearch(
-            @RequestParam("searchCode")String searchCode,
-            @RequestParam("keyword") String keyword,
-            @RequestParam(value="page", defaultValue="0") int page,
-            @RequestParam(value="size", defaultValue="10", required = false) int size
+            @RequestParam(value = "searchCode",defaultValue = "title")String searchCode,
+            @RequestParam(value = "keyword", defaultValue = "") String keyword,
+            Pageable pageable
 
     ){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Board> boardList = Page.empty();
+        List<Board> boardList = null;
             switch (searchCode){
                 case "title":
                     boardList = boardService.getNoticeBoardsWithTitle(keyword, pageable);
@@ -72,7 +70,44 @@ public class BoardApiController {
                     log.error("Keyword not matching");
                     throw new IllegalArgumentException ("Codes only 'title' and 'context' are avaiable.");
             }
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(boardList));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+    }
+
+    @Operation(summary = "자료실 전체 조회", description = "자료실 전체 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/boards/type/datas")
+    public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> dataAll(
+            Pageable pageable
+    ){
+        List<Board> boardList = boardService.getDataBoards(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+    }
+    @Operation(summary = "FAQ 전체 조회", description = "FAQ 전체 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/boards/type/faqs")
+    public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> faqAll(
+            Pageable pageable
+    ){
+        List<Board> boardList = boardService.getFAQBoards(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+    }
+    @Operation(summary = "QNA 전체 조회", description = "자료실 전체 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/boards/type/qnas")
+    public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> qnaAll(
+            Pageable pageable
+    ){
+        List<Board> boardList = boardService.getQNABoards(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
     }
 
 
