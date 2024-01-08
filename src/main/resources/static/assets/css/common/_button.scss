@@ -1,8 +1,8 @@
 $button-primary : $primary;
 $button-normal : $normal;
-$button-disabled-text : $gray03;
-$button-disabled : $gray05;
-$button-disabled-border : $gray04;
+$button-disabled-text : #fff;
+$button-disabled : #D0D5DD;
+$button-disabled-border : #D0D5DD;
 
 .btn-wrap{
   @include flexbox(row, flex-start, flex-start);
@@ -37,7 +37,7 @@ $button-disabled-border : $gray04;
 
 .btn {
   @include flexbox(row, center, center);
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   padding: 0rem  1.2rem;
   background-color:#fff;
   border:1px solid $black;
@@ -52,7 +52,7 @@ $button-disabled-border : $gray04;
   }
   .icon-box{
     &::after{
-      filter : $filter-white;
+      //filter : $filter-white;
     }
   }
   .icon-box + em{
@@ -97,8 +97,8 @@ $button-disabled-border : $gray04;
   /* btn size */
   &.btn-size{
     &-xxl{
-      height:4.4rem;
-      padding:0 4.4rem;
+      height:4.7rem;
+      padding:0 4.7rem;
     }
     &-xl{
       height:4.0rem;
@@ -127,12 +127,13 @@ $button-disabled-border : $gray04;
   }
   /* btn type */
   &.btn{
-    &-type01{
+    &-type-01{
       color:$white;
-      background-color:$button-primary;  
+      background-color:$button-primary;
+      border-color:$button-primary;
       .icon-box{
         &::after{
-          filter : $filter-white;
+          //filter : $filter-white;
         }
       }
       &.on{
@@ -143,13 +144,13 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type02{
+    &-type-02{
       color:$button-primary;
       background-color:$white;
       border-color:$button-primary;
       .icon-box{
         &::after{
-          filter : $filter-primary;
+          //filter : $filter-primary;
         }
       }
       &.on{
@@ -160,7 +161,7 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type03{
+    &-type-03{
       color:$white;
       background-color:$button-normal;
       border-color:$button-normal;
@@ -172,10 +173,35 @@ $button-disabled-border : $gray04;
         }
       }
     }
-    &-type04{
+    &-type-04{
       color:$black;
       background-color:$white;
       border-color:$gray04;
+      .icon-box{
+        &::after{
+          filter : $filter-black;
+        }
+      }
+      &.on{
+        color: $white;
+        background-color: $button-primary;
+        border-color:$button-primary;
+        .icon-box{
+          &:after{
+            filter : $filter-white;
+          }
+        }
+      }
+    }
+    &-type-05{
+      color:#D0D5DD;
+      background-color:$white;
+      border-color:#D0D5DD;
+      &[ data-status="active"]{
+        color:$gray02;
+        background-color:$white;
+        border-color:$gray02;
+      }
       .icon-box{
         &::after{
           filter : $filter-black;

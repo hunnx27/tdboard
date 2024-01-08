@@ -55,6 +55,32 @@ icon
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
   }
+  &.icon-prev{
+    &::after {
+      background-image: url(../../images/icon/arrow_r_x0_icon.svg);
+      transform: rotate(180deg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-next{
+    &::after {
+      background-image: url(../../images/icon/arrow_r_x0_icon.svg);
+      
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-smile{
+    &::after {
+      background-image: url(../../images/icon/smile_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-birth{
+    &::after {
+      background-image: url(../../images/icon/calendar_icon.svg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
   &.icon-arrow-r {
     &::after {
       background-image: url(../../images/icon/swipe_next_icon.svg);
@@ -80,7 +106,6 @@ icon
   }
   &.gallery-next-icon {
     &::after {
-      
       background-image: url(../../images/icon/gallery_next_icon.png);
       filter:none !important;
     }
