@@ -1,6 +1,7 @@
 package com.twodollar.tdboard.modules.board.controller;
 
 import com.twodollar.tdboard.modules.board.entity.Board;
+import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import com.twodollar.tdboard.modules.board.service.BoardService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
@@ -42,8 +43,9 @@ public class BoardApiController {
     public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> noticeAll(
             Pageable pageable
     ){
+        int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.NOTICE);
         List<Board> boardList = boardService.getNoticeBoards(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, totalSize)));
     }
 
     @Operation(summary = "공지사항 검색", description = "공지사항 검색")
@@ -58,6 +60,7 @@ public class BoardApiController {
             Pageable pageable
 
     ){
+        int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.NOTICE);
         List<Board> boardList = null;
             switch (searchCode){
                 case "title":
@@ -70,7 +73,7 @@ public class BoardApiController {
                     log.error("Keyword not matching");
                     throw new IllegalArgumentException ("Codes only 'title' and 'context' are avaiable.");
             }
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, totalSize)));
     }
 
     @Operation(summary = "자료실 전체 조회", description = "자료실 전체 조회")
@@ -82,8 +85,9 @@ public class BoardApiController {
     public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> dataAll(
             Pageable pageable
     ){
+        int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.DATA);
         List<Board> boardList = boardService.getDataBoards(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, totalSize)));
     }
     @Operation(summary = "FAQ 전체 조회", description = "FAQ 전체 조회")
     @ApiResponses(value = {
@@ -94,8 +98,9 @@ public class BoardApiController {
     public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> faqAll(
             Pageable pageable
     ){
+        int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.FAQ);
         List<Board> boardList = boardService.getFAQBoards(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, totalSize)));
     }
     @Operation(summary = "QNA 전체 조회", description = "자료실 전체 조회")
     @ApiResponses(value = {
@@ -106,8 +111,9 @@ public class BoardApiController {
     public ResponseEntity<ApiCmnResponse<CustomPageImpl<Board>>> qnaAll(
             Pageable pageable
     ){
+        int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.QNA);
         List<Board> boardList = boardService.getQNABoards(pageable);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, pageable.getPageSize())));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardList, pageable, totalSize)));
     }
 
 

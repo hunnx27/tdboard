@@ -44,6 +44,9 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    public int getTotalBoardSize(BoardTypeEnum boardTypeEnum){
+        return boardRepository.countByBoardType(boardTypeEnum);
+    }
     /*
         게시판 유형별 조회
      */
