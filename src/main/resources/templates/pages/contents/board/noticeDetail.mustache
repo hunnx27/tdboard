@@ -12,28 +12,28 @@
         <div class="board-tab">
             <ul>
                 <li>
-                    <a href="" class="on">
+                    <a href="/contents/notice" class="on">
                         <span>
                             공지사항
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/contents/data">
                         <span>
                             자료실
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/contents/faq">
                         <span>
                             FAQ
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/contents/qna">
                         <span>
                             QnA
                         </span>
@@ -54,15 +54,16 @@
                     </div>
                 </div>
             </div>
-            <div class="table-body">
+            <div class="table-body" id="notice-detail-body">
                 <div class="detail-head">
-                    <h5>K-디지털 플랫폼 홈페이지 개설</h5>
-                    <p>2023.12.21</p>
+                    <h5>{{title}}</h5>
+                    <p>{{date}}</p>
                 </div>
                 <div class="detail-body">
                     <div>
                         <p>
-                            안녕하세요, 여러분!<br/>
+                        {{content}}
+                            {{! 안녕하세요, 여러분!<br/>
                             세한대학교 K-디지털 플랫폼 홈페이지가 개설되었습니다.<br/>
                             <br/>
                             우리 대학은 한국산업인력공단의 지원을 받아 k-디지털 플랫폼을 구축하고 있습니다.<br/>
@@ -81,7 +82,7 @@
                             <br/>
                             여러분은 우리와 함께 성장하는 디지털 전문가로 거듭나실 것입니다.<br/>
                             언제든지 궁금한 점이나 도움이 필요하면 자유롭게 문의해주세요.<br/>
-                            함께하는 모든 순간을 소중히 여기며, 성공적인 여정이 되기를 기대합니다!<br/>
+                            함께하는 모든 순간을 소중히 여기며, 성공적인 여정이 되기를 기대합니다!<br/> }}
                         </p>
                     </div>
                     <div class="detail-file">
@@ -109,4 +110,5 @@
     </div>
 </section>
 
+<script type="module" src="/assets/js/home/board/notice-detail.js"></script>
 {[>layout/footer]}
