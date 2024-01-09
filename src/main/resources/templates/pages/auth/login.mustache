@@ -8,30 +8,31 @@
           로그인
         </p>  
         <p class="text-400 text-size-16 text-center m-b-32">아이디와 비밀번호를 입력해주세요.</p>
-        <div class="login-form flex-box gap-20 flex-wrap">
-         <form id="loginForm" action="/auth/login_proc" method="POST">
-            <div class="textfield w-full"  data-type="id"  data-status="active" data-size="LG" data-icon="true">
-                <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요">
-                <p class="error-text">아이디 오류 메시지</p>
+        <form id="loginForm" action="/auth/login_proc" method="POST">
+            <div class="login-form flex-box gap-20 flex-wrap">
+                <div class="textfield w-full"  data-type="id"  data-status="active" data-size="LG" data-icon="true">
+                    <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요">
+                    <p class="error-text">아이디 오류 메시지</p>
+                </div>
+                <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+                    <p class="error-text">비밀번호 오류 메시지</p>
+                </div>
+                <span>
+                    {[#error]}
+                        <p id="valid" style="color:red; font-weight:bolder">{[exception]}</p>
+                    {[/error]}
+                </span>
+                <button type="button" onClick="handleLogin()" class="btn btn-type-01 w-full btn-size-xxl m-b-16">
+                    <span class="text-700 text-size-16">로그인</span>
+                </button>
+            
+            <div class="flex-box justify-center align-center gap-12 w-full">
+                <a href="" class="text-size-16 text-gray02">아이디 찾기</a><span class="text-size-14 text-gray02">|</span>
+                <a href="" class="text-size-16 text-gray02">비밀번호 찾기</a><span class="text-size-14 text-gray02">|</span>
+                <a href="/auth/join/terms" class="text-size-16 text-gray02">회원가입</a>
             </div>
-            <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
-                <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
-                <p class="error-text">비밀번호 오류 메시지</p>
-            </div>
-             <span>
-                {[#error]}
-                    <p id="valid" style="color:red; font-weight:bolder">{[exception]}</p>
-                {[/error]}
-            </span>
-            <button type="button" onClick="handleLogin()" class="btn btn-type-01 w-full btn-size-xxl m-b-16">
-                <span class="text-700 text-size-16">로그인</span>
-            </button>
           </form>
-          <div class="flex-box justify-center align-center gap-12 w-full">
-            <a href="" class="text-size-16 text-gray02">아이디 찾기</a><span class="text-size-14 text-gray02">|</span>
-            <a href="" class="text-size-16 text-gray02">비밀번호 찾기</a><span class="text-size-14 text-gray02">|</span>
-            <a href="" class="text-size-16 text-gray02">회원가입</a>
-          </div>
         </div>
         
       </div>

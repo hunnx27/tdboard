@@ -2,7 +2,9 @@ package com.twodollar.tdboard.modules.contents.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Slf4j
 @Controller
@@ -99,17 +101,20 @@ public class ContentsWebController {
         return "pages/contents/board/qna";
     }
 
-    @GetMapping("contents/notice/0")
-    public String noticeDetail() {
+    @GetMapping("contents/notice/{id}")
+    public String noticeDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/noticeDetail";
     }
 
-    @GetMapping("contents/data/0")
-    public String dataDetail() {
+    @GetMapping("contents/data/{id}")
+    public String dataDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/dataDetail";
     }
-    @GetMapping("contents/qna/0")
-    public String qnaDetail() {
+    @GetMapping("contents/qna/{id}")
+    public String qnaDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/qnaDetail";
     }
 

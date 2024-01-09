@@ -43,6 +43,15 @@ public class AuthWebController {
         return "pages/auth/join";
     }
     /**
+     * 회원 가입 이용약관 페이지(일반회원)
+     *
+     * @return
+     */
+    @GetMapping("auth/join/terms")
+    public String joinTerms() {
+        return "pages/auth/join-terms";
+    }
+    /**
      * 회원 가입 페이지(기관회원)
      *
      * @return
@@ -61,6 +70,8 @@ public class AuthWebController {
     public String joinForm3() {
         return "pages/auth/join3";
     }
+
+    
 
     /**
      *
