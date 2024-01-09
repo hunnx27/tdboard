@@ -1,15 +1,93 @@
 {[>layout/header]}
 
-<!--item-wrap-->
-<div class="item-wrap">
-    <div class="content-title-wrap">
+<section class="sub-top ">
+    <div class="inner">
         <h2>
             자료실
         </h2>
     </div>
-</div>
-<!--item-wrap-->
-<div class="item-wrap">
-<div>
+</section>
+<section class="sub-con content board-content">
+    <div class="inner">
+        <div class="board-tab">
+            <ul>
+                <li>
+                    <a href="/contents/notice">
+                        <span>
+                            공지사항
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/data" class="on">
+                        <span>
+                            자료실
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/faq">
+                        <span>
+                            FAQ
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/qna">
+                        <span>
+                            QnA
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="table-wrap board-detail">
+            <div class="table-head">
+                <div class="flex-box justify-end align-center">
+                    <div class="btn-wrap">
+                        <button class="btn btn-type-02" onclick="javascript:alert('이전 글이 없습니다.')">
+                            <span class="icon-box icon-size-sm icon-prev"></span>이전글
+                        </button>
+                        <button class="btn btn-type-02" onclick="javascript:alert('다음 글이 없습니다.')">
+                            다음글<span class="icon-box icon-size-sm icon-next"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-body" id="data-detail-body">
+                <div class="detail-head">
+                    <h5>{{title}}</h5>
+                    <p>{{createdDateText}}</p>
+                </div>
+                <div class="detail-body">
+                    <div>
+                         {{context}}
+                    </div>
+                    <div class="detail-file">
+                        <ul>
+<!--                            <li>-->
+<!--                                <a href="">-->
+<!--                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="">-->
+<!--                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+                        </ul>
+                    </div>
+                </div>
 
+            </div>
+            <div class="table-foot">
+
+            </div>
+        </div>
+
+    </div>
+    <input type="hidden" id="dataId" name="id" value="{[id]}"/>
+</section>
+
+<script type="module" src="/assets/js/home/board/data-detail.js"></script>
 {[>layout/footer]}
