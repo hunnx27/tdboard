@@ -34,20 +34,27 @@
 <section class="sub-con content gallery-content">
     <div class="inner">
         <div class="flex-box gap-20">
+            
+            <!--
+            <div 
+                class="textfield" 
+                data-type="number" 
+                data-status="disabled default confirm readonly" 
+                data-size="SM MD LG "
+                data-appearance="Outline Underline Filled"
+                data-icon="true"
+            >
+                <input type="text" placeholder="010-0000-0000" >
+                <p class="error-text">TEXT</p>
+            </div>
+            -->
             <div class="textfield" data-type="text" data-status="confirm" data-size="LG">
                 <input type="text" placeholder="text">
                 <p class="error-text">TEXT</p>
             </div>
-            <div 
-            class="textfield" 
-            data-type="number" 
-            data-status="disabled default confirm" 
-            data-size="SM"
-            data-appearance="Outline Underline Filled"
-            data-icon="true"
-            >
-                <input type="text" placeholder="010-0000-0000">
-                <p class="error-text">TEXT</p>
+            <div class="textfield flex-1"  data-type="id"  data-status="readonly" data-size="LG" data-icon="true">
+                <input type="text" placeholder="아이디를 입력해주세요" value="ID_홍길동" readonly>
+                <p class="error-text">아이디 오류 메시지</p>
             </div>
             <div class="textfield" data-type="email" data-status="" data-size="MD">
                 <div class="flex-box gap-8 align-center">

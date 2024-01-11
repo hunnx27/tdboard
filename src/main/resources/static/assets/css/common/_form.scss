@@ -268,10 +268,14 @@ input{}
       color: $gray07;
     }
     &:hover{
-      border-color:$hover !important;
+      border-color: $hover;
+      outline-offset: 0;
+      outline: 0px solid $hover;
     }
     &:focus{
-      border-color:$primary !important;
+      border-color: $focus;
+      outline-offset: 0;
+      outline:0px solid  $primary ;
     }
   }
   .error-text {
@@ -288,12 +292,26 @@ input{}
   &[data-status='default'] {
     
   }
-  &[data-status='active'],&[data-status='confirm'] {
+  &[data-status='active'],&[data-status='confirm'],&[data-status='readonly'] {
     input{
       color:#797F8B;
       border:1px solid #797F8B;
+      &:hover{
+        border-color: $hover;
+        outline-offset: 0;
+        outline: 0px solid $hover;
+      }
+      &:focus{
+        border-color: $focus;
+        outline-offset: 0;
+        outline:0px solid  $primary ;
+      }
     }
-    
+  }
+  &[data-status='readonly']{
+    input{
+      border:1px solid #797F8B;
+    }
   }
   &[data-icon="true"]{
     &::before{
@@ -309,7 +327,7 @@ input{}
     input{
       padding-left:4.2rem;
     }
-    &[data-status='active'],&[data-status='confirm']{
+    &[data-status='active'],&[data-status='confirm'],&[data-status='readonly']{
       &::before{
         filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
       }

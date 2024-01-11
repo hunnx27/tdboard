@@ -1,4 +1,28 @@
 
+// keyup event 
+function textfieldChange(use,e){
+	let value = use.value;
+    let textfield = use.parentNode;
+    let textfieldStatus;
+    if(value != ''){
+    	textfield.setAttribute('data-status','active');
+		textfieldStatus = textfield.getAttribute('data-status');
+        
+    }else{
+        textfield.setAttribute('data-status','default');
+        textfieldStatus = textfield.getAttribute('data-status');
+    };
+
+    return
+}
+
+// header event 
+function headerEvent(){
+  let header = document.querySelector('header')
+
+
+}
+
 
 /* tab function */
 function tab(usetab) {
