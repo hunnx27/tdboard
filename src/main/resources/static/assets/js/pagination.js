@@ -10,7 +10,7 @@ export default function () {
     const contentElement = document.getElementById('content');
    // 페이지를 클릭할 때마다 해당 페이지의 게시물 표시
    paginationElement.addEventListener('click', function (event) {
-        if (event.target.tagName === 'A') {
+        if (event.target.tagName === 'SPAN' || event.target.tagName === 'A') {
             const pageNumber = parseInt(event.target.dataset.page || event.target.textContent);
             // showPosts(pageNumber);
             handleClickPageNumber(pageNumber)
@@ -34,7 +34,7 @@ export default function () {
                 hasNext: currentPage < totalPages,
                 previous: currentPage - 1,
                 next: currentPage + 1,
-                pages: Array.from({ length: totalPages }, (_, index) => index + 1),
+                pages: Array.from({ length: totalPages === 0 ? 1 : totalPages }, (_, index) => index + 1),
                 isActive: function () {
                     return this === currentPage;
                 },

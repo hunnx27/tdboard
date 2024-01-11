@@ -5,7 +5,7 @@
 <script id="pagination-template" type="text/template">
   <li><a href="#" data-page="{{previous}}"></a></li>
   {{#pages}}
-    <li {{#isActive}}class="on"{{/isActive}}><a href="#">{{.}}</a></li>
+    <li {{#isActive}}class="on"{{/isActive}}><a href="#"><span>{{.}}</span></a></li>
   {{/pages}}
   <li><a href="#" data-page="{{next}}"></a></li>
 </script>

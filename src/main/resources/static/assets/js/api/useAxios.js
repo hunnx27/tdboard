@@ -8,7 +8,7 @@ const appendAuth = (config) => {
   if (token) {
     if (!config) config = { headers: {} }
     if (!config.headers) config.headers = {}
-    config.headers.Authorization = token // 추후 토큰 세팅 필요
+    // config.headers.Authorization = token // 추후 토큰 세팅 필요
   }
   return config
 }
@@ -20,8 +20,8 @@ const appendMultipart = (config) => {
 }
 
 export default {
-  async get (url, success, fail = err => err.response?.data.message, config) {
-    await axios.get(wrap(url), appendAuth(config))
+  async get (url, params, success, fail = err => err.response?.data.message, config) {
+    await axios.get(wrap(url),{params}, appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
