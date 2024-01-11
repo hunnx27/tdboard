@@ -71,7 +71,22 @@ public class AuthWebController {
         return "pages/auth/join3";
     }
 
-    
+    /**
+     * 아이디 찾기
+     * @return
+     */
+    @GetMapping("auth/find/id")
+    public String findId() {
+        return "pages/auth/id-find";
+    }
+    /**
+     * 비밀번호 찾기
+     * @return
+     */
+    @GetMapping("auth/find/password")
+    public String findPassword() {
+        return "pages/auth/password-find";
+    }
 
     /**
      *
