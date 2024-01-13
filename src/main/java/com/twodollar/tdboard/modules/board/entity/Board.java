@@ -41,10 +41,10 @@ public class Board {
 
     // 게시글 생성일
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
 
     // 게시글 수정일
-    private LocalDateTime modifiedDate;
+    private LocalDateTime updateAt;
 
     public BoardResponse toResponse() {
         return BoardResponse.builder()
@@ -55,8 +55,8 @@ public class Board {
             .userId(this.userId)
             .upId(this.upId)
             .hit(this.hit)
-            .createdDate(this.createdDate)
-            .modifiedDate(this.modifiedDate)
+            .createdAt(this.createdAt)
+            .updatedAt(this.updateAt)
             .build();
     }
 }
