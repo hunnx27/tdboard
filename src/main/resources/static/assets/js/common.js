@@ -1,5 +1,5 @@
 
-// keyup event 
+// textfield keyup event 
 function textfieldChange(use,e){
 	  let value = use.value;
     let textfield = use.parentNode;
@@ -75,6 +75,19 @@ function selectboxEvent(){
   });
   // 다른 타겟 클릭시 off
   /*
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.parentNode.classList.contains('dropdown') == false &&
+      e.target.classList.contains('dropdown') == false
+    ) {
+      //all close
+      labels.forEach(function (labelThis) {
+        labelThis.classList.remove('on');
+      });
+    }
+  });
+
+
   document.addEventListener('click',function(e){
     let documentSelectAll = selectAll;
     console.log(e.target);
@@ -88,7 +101,7 @@ function selectboxEvent(){
 };
 selectboxEvent();
 
-// btn active
+// gender btn active
 function genderActive(use){
   let value = use.getAttribute('data-status');
   let btn = use.parentNode.querySelectorAll('.btn-gender');
@@ -102,11 +115,45 @@ function genderActive(use){
 function headerEvent(){
   let header = document.querySelector('header')
 
-
 }
 
+//  include HTML
+function includeHTML() {
+  let z, elmnt, file, xhttp;
 
-/* tab function */
+  z = document.getElementsByTagName('*');
+
+  for (let i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    file = elmnt.getAttribute('data-include');
+
+    if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = 'Page not found.';
+          }
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute('data-include');
+          includeHTML();
+        } //if
+      }; //onreadystatechange
+
+      xhttp.open('GET', file, true);
+      xhttp.send();
+      return;
+    } //if - file
+  } //for
+} //includeHTML
+includeHTML();
+
+
+
+/* tab function 
 function tab(usetab) {
   let tab = document.getElementsByClassName(usetab);
   let tabWrap = document.querySelectorAll('.tab');
@@ -142,7 +189,8 @@ function tab(usetab) {
     });
   });
 }
-/* selectCustom function */
+*/
+/* selectCustom function 
 function selectCustom() {
   var labels = document.querySelectorAll('.dropdown');
   for (let index = 0; index < labels.length; index++) {
@@ -167,17 +215,9 @@ function selectCustom() {
       });
     });
   }
-  document.addEventListener('click', function (e) {
-    if (
-      e.target.parentNode.classList.contains('dropdown') == false &&
-      e.target.classList.contains('dropdown') == false
-    ) {
-      labels.forEach(function (labelThis) {
-        labelThis.classList.remove('on');
-      });
-    }
-  });
+  
 }
+*/
 // textareaHeight()  -- textarea 텍스트 추가 자동크기변경
 function textareaHeight() {
   const DEFAULT_HEIGHT = 32; // textarea 기본 height
@@ -220,39 +260,4 @@ function boardAllChecked(boardcheck) {
     });
   });
 }*/
-function includeHTML() {
-  let z, elmnt, file, xhttp;
 
-  z = document.getElementsByTagName('*');
-
-  for (let i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    file = elmnt.getAttribute('data-include');
-
-    if (file) {
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = 'Page not found.';
-          }
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute('data-include');
-          includeHTML();
-        } //if
-      }; //onreadystatechange
-
-      xhttp.open('GET', file, true);
-      xhttp.send();
-      return;
-    } //if - file
-  } //for
-} //includeHTML
-includeHTML();
-window.onload = function () {
-  selectCustom();
-
-};
