@@ -508,12 +508,12 @@ input{}
     background-color: #fff;
     -webkit-transition: height 0.25s ease-in-out;
     transition: height 0.25s ease-in-out;
-    border:0px solid #ddd;
+    border:0px;
     border-radius: 0 0 4px 4px;
     padding-right:1.4rem;
     > div{
       max-height:172px;
-      overflow-y:scroll;
+      overflow-y:auto;
       padding-right:1.4rem;
     }
     .option{
@@ -521,13 +521,23 @@ input{}
       @include flexbox(row, flex-start, center);
       width:100%;
       padding-right:4.2rem;
-      height: 0;
+      height: 4rem;
       overflow:hidden;
       background-color: #fff;
       padding-left:1.4rem;
       -webkit-transition: height 0.25s ease-in-out;
       transition: height 0.25s ease-in-out;
+      &::before{
+        content:'';
+        position:absolute;
+        width: calc(100% + 5.6rem);
+        height:100%;
+        z-index: 1;
+        left:0;top:0;
+      }
       span{
+        position: relative;
+        z-index: 2;
         font-size: 1.4rem;
         display: block;
         text-overflow: ellipsis;
@@ -546,9 +556,13 @@ input{}
       }
       &:hover{
         background-color:#F9FAFB;
+        &::before{
+          background-color:#F9FAFB;
+        }
         &::after{
           content:'';
           position:absolute;
+          z-index: 3;
           right:1.4rem;
           top:50%;
           transform: translateY(-50%);
@@ -557,6 +571,19 @@ input{}
           filter:$filter-info;
         }
       }
+    }
+  }
+  &.on{
+    .select-btn{
+      &::after {
+        transform: translateY(-50%) rotate(180deg);
+        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+      }
+    }
+    .option-box{
+      border:1px solid $gray02;
+      border-top:0;
+      padding-top:0.4rem;
     }
   }
   .icon-box{
@@ -583,29 +610,27 @@ input{}
         &::after{
           filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
         }
-        
       }
     }
   }
-  &[data-status='active'],&[data-status='confirm'] {
+  &[data-status='active']{
     .select-btn{
-      color:$gray02;
-      &::after {
-        transform: translateY(-50%) rotate(180deg);
-        filter:invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+      border:1px solid $gray02;
+      span{
+        color:$gray07;
       }
+      
     }
-    .option-box{
-      height: auto;
-      border:1px solid #ddd;
-      border-top:0;
-      padding-top:0.4rem;
-      > div{
+  }
+  &[data-status='confirm'] {
+    .select-btn{
+      border:1px solid $gray02;
+      span{
+        color:$gray02;
       }
-      .option{
-        height:4rem;
-      }
+      
     }
+    
   }
   &[data-status='disabled']{
 

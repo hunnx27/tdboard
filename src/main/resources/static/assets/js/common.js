@@ -1,19 +1,101 @@
 
 // keyup event 
 function textfieldChange(use,e){
-	let value = use.value;
+	  let value = use.value;
     let textfield = use.parentNode;
     let textfieldStatus;
     if(value != ''){
     	textfield.setAttribute('data-status','active');
-		textfieldStatus = textfield.getAttribute('data-status');
+		  textfieldStatus = textfield.getAttribute('data-status');
         
     }else{
         textfield.setAttribute('data-status','default');
         textfieldStatus = textfield.getAttribute('data-status');
     };
-
     return
+}
+// select box
+function selectboxEvent(){
+  let selectAll = document.querySelectorAll('.select');
+  // all select close
+  function allSelectClose(){
+    selectAll.forEach((all)=>{
+      all.classList.remove('on');
+      all.querySelector('.option-box').style.height = 0;
+      if(all.querySelector('.select-value').getAttribute('data-defailt-text') == all.querySelector('.select-value').innerText){
+        all.setAttribute('data-status','default');
+      };
+    });
+  };
+
+  // select-btn click 셀렉트박스 on off
+  function selectClick(use,btn,status){
+    let optionBox = use.querySelector('.option-box');
+    let optionAll = use.querySelectorAll('.option');
+    if(use.classList.contains('on') == false){
+      allSelectClose();
+      use.classList.add('on');
+      btn.parentNode.setAttribute('data-status','active');
+      optionAll.forEach((option)=>{
+        option.disabled = false;
+      });
+      optionBox.style.height = (Number(getComputedStyle(optionAll[0]).height.replace('px','')) * optionAll.length) + 4 + 'px';
+    }else{
+      use.classList.remove('on');
+      if(use.querySelector('.select-value').getAttribute('data-defailt-text') == use.querySelector('.select-value').innerText){
+        btn.parentNode.setAttribute('data-status','default');
+      }else{
+        btn.parentNode.setAttribute('data-status','confirm');
+      };
+      optionAll.forEach((option)=>{
+        option.disabled = true;
+      });
+      optionBox.style.height = 0;
+    }
+    // option click 시 이벤트
+    optionAll.forEach((option) =>{
+      option.addEventListener('click',()=>{
+        //optionClick(option,option.querySelector('span').textContent)
+        use.querySelector('.select-value').innerText = option.querySelector('span').innerText
+        use.setAttribute('data-status','confirm');
+        use.classList.remove('on');
+        optionBox.style.height = 0;
+      })
+    })
+    
+  }
+
+  // 모든 select 이벤트 on
+  selectAll.forEach((select) => {
+      let selectBtn = select.querySelector('.select-btn')
+      selectBtn.addEventListener('click',()=>{
+        let thisStatus = selectBtn.parentNode.getAttribute('data-status');
+        selectClick(select,selectBtn,thisStatus);
+      });
+  });
+  // 다른 타겟 클릭시 off
+  /*
+  document.addEventListener('click',function(e){
+    let documentSelectAll = selectAll;
+    console.log(e.target);
+    documentSelectAll.forEach((documentSelect)=>{
+      if(documentSelect.has(e.target).length === 0){
+        documentSelect.classList.remove('on');
+      };
+    });
+  });
+  */
+};
+selectboxEvent();
+
+// btn active
+function genderActive(use){
+  let value = use.getAttribute('data-status');
+  let btn = use.parentNode.querySelectorAll('.btn-gender');
+  btn.forEach((index)=>{
+    index.setAttribute('data-status','default');
+  })
+  use.setAttribute('data-status','active');
 }
 
 // header event 
