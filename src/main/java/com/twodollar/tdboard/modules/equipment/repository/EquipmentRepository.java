@@ -11,8 +11,4 @@ import java.util.Optional;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
-    // username을 가지고 User 정보를 가져올 수 있게 메소드 생성
-    int countAll();
-    Optional<List<Equipment>> findAll(String title, Pageable pageable);
-    Optional<Equipment> findByById(Long id);
 }

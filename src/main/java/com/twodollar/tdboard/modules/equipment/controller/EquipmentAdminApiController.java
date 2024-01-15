@@ -2,6 +2,7 @@ package com.twodollar.tdboard.modules.equipment.controller;
 
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
+import com.twodollar.tdboard.modules.equipment.controller.request.EquipmentRequest;
 import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
 import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import com.twodollar.tdboard.modules.equipment.service.EquipmentService;
@@ -9,10 +10,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@PreAuthorize("hasAnyRole('ADMIN')")
+@RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
-public class EquipmentApiController {
+public class EquipmentAdminApiController {
 
     private final EquipmentService equipmentService;
 
@@ -33,10 +35,10 @@ public class EquipmentApiController {
     })
     @PostMapping("/equipments")
     public ResponseEntity<ApiCmnResponse<EquipmentResponse>> equipmentDetail(
-            @RequestBody(required = true)Equipment equipment
+            @RequestBody(required = true)EquipmentRequest equipmentRequest
     ){
-        Equipment equipment = equipmentService.createEquipment(equipment);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
+        Equipment equipmentEntity = equipmentService.createEquipment(equipmentRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipmentEntity.toResponse()));
     }
 
     @Operation(summary = "장비 수정", description = "장비 수정")
@@ -45,11 +47,11 @@ public class EquipmentApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PutMapping("/equipments/{id}")
-    public ResponseEntity<ApiCmnResponse<EquipmentResponse>> equipmentDetail(
+    public ResponseEntity<ApiCmnResponse<EquipmentResponse>> equipmentUpdate(
             @PathVariable("id") Long id,
-            @RequestBody(required = true)Equipment equipment
+            @RequestBody(required = true) EquipmentRequest equipmentRequest
     ){
-        Equipment equipment = equipmentService.updateEquipment(id, equipment);
+        Equipment equipment = equipmentService.updateEquipment(id, equipmentRequest);
         return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
     }
 
@@ -76,7 +78,7 @@ public class EquipmentApiController {
     @GetMapping("/equipments/{id}")
     public ResponseEntity<ApiCmnResponse<EquipmentResponse>> equipmentDetail(
             @PathVariable("id") Long id
-    ){
+    ) throws Exception {
         Equipment equipment = equipmentService.getEquipmentById(id);
         return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
     }

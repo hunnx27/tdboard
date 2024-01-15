@@ -2,46 +2,35 @@ package com.twodollar.tdboard.modules.equipment.controller.response;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Getter
 public class EquipmentResponse {
     private Long id;
-
-    private String boardType;
-
-    // 제목
-    private String title;
-
-    // 내용
-    private String context;
-
-    // 이메일
-    private long userId;
-
-    // 답글시
-    private long upId;
-
-    // 조회 수
-    private long hit;
-
-    // 게시글 생성일
-    private LocalDateTime createdDate;
-
-    // 게시글 수정일
-    private LocalDateTime modifiedDate;
+    // 시설ID TODO Entity로 변경해야함 ManyToOne
+    private Long facilityId;
+    // 장비명
+    private String name;
+    // 장비설명
+    private String description;
+    // imageUrl
+    private String imageUrl;
+    // 생성일
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    // 수정일
+    private LocalDateTime updatedAt;
 
     @Builder
-    public EquipmentResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+    public EquipmentResponse(Long id, Long facilityId, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.boardType = boardType;
-        this.title = title;
-        this.context = context;
-        this.userId = userId;
-        this.upId = upId;
-        this.hit = hit;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.facilityId = facilityId;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

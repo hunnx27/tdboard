@@ -1,4 +1,5 @@
 package com.twodollar.tdboard.modules.equipment.service;
+import com.twodollar.tdboard.modules.equipment.controller.request.EquipmentRequest;
 import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import com.twodollar.tdboard.modules.equipment.repository.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,20 +28,27 @@ public class EquipmentService {
         return equipmentRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("no such data"));
     }
 
-    public Equipment createEquipment(final Equipment createEquipment) {
+    public Equipment createEquipment(final EquipmentRequest createEquipment) {
         if(createEquipment == null) throw new IllegalArgumentException("item cannot be null");
-        return equipmentRepository.save(createEquipment);
+        return equipmentRepository.save(createEquipment.toEntity());
     }
 
-    public Equipment updateEquipment(final long id, final Equipment updateEquipment) {
-        Equipment Equipment = getEquipmentById(id);
-        Equipment.setTitle(updateEquipment.getTitle());
-        Equipment.setContext(updateEquipment.getContext());
-        return equipmentRepository.save(Equipment);
+    public Equipment updateEquipment(final long id, final EquipmentRequest updateEquipment) {
+        Equipment equipment = getEquipmentById(id);
+        equipment.setFacilityId(updateEquipment.getFacilityId());
+        equipment.setName(updateEquipment.getName());
+        equipment.setDescription(updateEquipment.getDescription());
+        equipment.setImageUrl(updateEquipment.getImageUrl());
+        equipment.setUseYn(updateEquipment.getUseYn());
+        equipment.setDelYn(updateEquipment.getDelYn());
+        equipment.setUpdatedAt(null);
+        return equipmentRepository.save(equipment);
     }
 
     public void deleteEquipmentById(final Long id) {
-        equipmentRepository.deleteById(id);
+        Equipment equipment = getEquipmentById(id);
+        equipment.setDelYn("Y");
+        equipmentRepository.save(equipment);
     }
 
 }
