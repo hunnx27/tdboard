@@ -1,6 +1,159 @@
 
+// textfield keyup event 
+function textfieldChange(use,e){
+	  let value = use.value;
+    let textfield = use.parentNode;
+    let textfieldStatus;
+    if(value != ''){
+    	textfield.setAttribute('data-status','active');
+		  textfieldStatus = textfield.getAttribute('data-status');
+        
+    }else{
+        textfield.setAttribute('data-status','default');
+        textfieldStatus = textfield.getAttribute('data-status');
+    };
+    return
+}
+// select box
+function selectboxEvent(){
+  let selectAll = document.querySelectorAll('.select');
+  // all select close
+  function allSelectClose(){
+    selectAll.forEach((all)=>{
+      all.classList.remove('on');
+      all.querySelector('.option-box').style.height = 0;
+      if(all.querySelector('.select-value').getAttribute('data-default-text') == all.querySelector('.select-value').innerText){
+        all.setAttribute('data-status','default');
+      };
+    });
+  };
 
-/* tab function */
+  // select-btn click 셀렉트박스 on off
+  function selectClick(use,btn,status){
+    let optionBox = use.querySelector('.option-box');
+    let optionAll = use.querySelectorAll('.option');
+    if(use.classList.contains('on') == false){
+      allSelectClose();
+      use.classList.add('on');
+      btn.parentNode.setAttribute('data-status','active');
+      optionAll.forEach((option)=>{
+        option.disabled = false;
+      });
+      optionBox.style.height = (Number(getComputedStyle(optionAll[0]).height.replace('px','')) * optionAll.length) + 4 + 'px';
+    }else{
+      use.classList.remove('on');
+      if(use.querySelector('.select-value').getAttribute('data-default-text') == use.querySelector('.select-value').innerText){
+        btn.parentNode.setAttribute('data-status','default');
+      }else{
+        btn.parentNode.setAttribute('data-status','confirm');
+      };
+      optionAll.forEach((option)=>{
+        option.disabled = true;
+      });
+      optionBox.style.height = 0;
+    }
+    // option click 시 이벤트
+    optionAll.forEach((option) =>{
+      option.addEventListener('click',()=>{
+        //optionClick(option,option.querySelector('span').textContent)
+        use.querySelector('.select-value').innerText = option.querySelector('span').innerText
+        use.setAttribute('data-status','confirm');
+        use.classList.remove('on');
+        optionBox.style.height = 0;
+      })
+    })
+    
+  }
+
+  // 모든 select 이벤트 on
+  selectAll.forEach((select) => {
+      let selectBtn = select.querySelector('.select-btn')
+      selectBtn.addEventListener('click',()=>{
+        let thisStatus = selectBtn.parentNode.getAttribute('data-status');
+        selectClick(select,selectBtn,thisStatus);
+      });
+  });
+  // 다른 타겟 클릭시 off
+  /*
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.parentNode.classList.contains('dropdown') == false &&
+      e.target.classList.contains('dropdown') == false
+    ) {
+      //all close
+      labels.forEach(function (labelThis) {
+        labelThis.classList.remove('on');
+      });
+    }
+  });
+
+
+  document.addEventListener('click',function(e){
+    let documentSelectAll = selectAll;
+    console.log(e.target);
+    documentSelectAll.forEach((documentSelect)=>{
+      if(documentSelect.has(e.target).length === 0){
+        documentSelect.classList.remove('on');
+      };
+    });
+  });
+  */
+};
+selectboxEvent();
+
+// gender btn active
+function genderActive(use){
+  let value = use.getAttribute('data-status');
+  let btn = use.parentNode.querySelectorAll('.btn-gender');
+  btn.forEach((index)=>{
+    index.setAttribute('data-status','default');
+  })
+  use.setAttribute('data-status','active');
+}
+
+// header event 
+function headerEvent(){
+  let header = document.querySelector('header')
+
+}
+
+//  include HTML
+function includeHTML() {
+  let z, elmnt, file, xhttp;
+
+  z = document.getElementsByTagName('*');
+
+  for (let i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    file = elmnt.getAttribute('data-include');
+
+    if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = 'Page not found.';
+          }
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute('data-include');
+          includeHTML();
+        } //if
+      }; //onreadystatechange
+
+      xhttp.open('GET', file, true);
+      xhttp.send();
+      return;
+    } //if - file
+  } //for
+} //includeHTML
+includeHTML();
+
+
+
+/* tab function 
 function tab(usetab) {
   let tab = document.getElementsByClassName(usetab);
   let tabWrap = document.querySelectorAll('.tab');
@@ -36,7 +189,8 @@ function tab(usetab) {
     });
   });
 }
-/* selectCustom function */
+*/
+/* selectCustom function 
 function selectCustom() {
   var labels = document.querySelectorAll('.dropdown');
   for (let index = 0; index < labels.length; index++) {
@@ -61,17 +215,9 @@ function selectCustom() {
       });
     });
   }
-  document.addEventListener('click', function (e) {
-    if (
-      e.target.parentNode.classList.contains('dropdown') == false &&
-      e.target.classList.contains('dropdown') == false
-    ) {
-      labels.forEach(function (labelThis) {
-        labelThis.classList.remove('on');
-      });
-    }
-  });
+  
 }
+*/
 // textareaHeight()  -- textarea 텍스트 추가 자동크기변경
 function textareaHeight() {
   const DEFAULT_HEIGHT = 32; // textarea 기본 height
@@ -114,39 +260,4 @@ function boardAllChecked(boardcheck) {
     });
   });
 }*/
-function includeHTML() {
-  let z, elmnt, file, xhttp;
 
-  z = document.getElementsByTagName('*');
-
-  for (let i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    file = elmnt.getAttribute('data-include');
-
-    if (file) {
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = 'Page not found.';
-          }
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute('data-include');
-          includeHTML();
-        } //if
-      }; //onreadystatechange
-
-      xhttp.open('GET', file, true);
-      xhttp.send();
-      return;
-    } //if - file
-  } //for
-} //includeHTML
-includeHTML();
-window.onload = function () {
-  selectCustom();
-
-};

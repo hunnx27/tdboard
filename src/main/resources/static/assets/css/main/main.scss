@@ -805,5 +805,7 @@ sub page
 
 .user-wrap{
     width:380px;
-    
+    @include mobile{
+        width:100%;
+    }
 }

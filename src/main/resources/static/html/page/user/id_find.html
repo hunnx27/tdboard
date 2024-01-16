@@ -36,7 +36,7 @@
         <div class="login-form flex-box gap-20 flex-wrap">
           <div class="flex-box gap-8 flex-wrap w-full">
             <div class="textfield flex-1"  data-type="phone" data-status="default" data-size="LG" data-icon="true">
-                <input type="text" placeholder="핸드폰 번호">
+                <input type="text" placeholder="핸드폰 번호" onKeyUp='textfieldChange(this,event)'>
                 <p class="error-text">핸드폰 번호 오류 메시지</p>
             </div>
             <button class="btn btn-type-01 flex-shink w-96 i-h-48" >
@@ -45,7 +45,7 @@
           </div>
           <div class="flex-box gap-8 flex-wrap w-full">
             <div class="textfield flex-1"  data-type="phone" data-status="default" data-size="LG" data-icon="true">
-                <input type="text" placeholder="핸드폰 번호">
+                <input type="text" placeholder="핸드폰 번호"  onKeyUp='textfieldChange(this,event)'>
                 <p class="error-text">핸드폰 번호 오류 메시지</p>
             </div>
             <button class="btn btn-type-01 flex-shink w-96 i-h-48" disabled>

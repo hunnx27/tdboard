@@ -218,6 +218,17 @@ $button-disabled-border : #D0D5DD;
         }
       }
     }
+    &-type-06{
+      color:#fff;
+      background-color:$white;
+      border-color:#D0D5DD;
+      background-color:#D0D5DD;
+      &[ data-status="active"]{
+        color:$gray02;
+        background-color:$white;
+        border-color:$gray02;
+      }
+    }
     /* icon-only */
     &.btn-icon-only{
       width:auto;

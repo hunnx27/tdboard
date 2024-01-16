@@ -87113,10 +87113,14 @@ icon
   color: #D0D5DD;
 }
 .textfield input:hover {
-  border-color: #A2D2EB !important;
+  border-color: #A2D2EB;
+  outline-offset: 0;
+  outline: 0px solid #A2D2EB;
 }
 .textfield input:focus {
-  border-color: #01A0E8 !important;
+  border-color: #5F9DCF;
+  outline-offset: 0;
+  outline: 0px solid #01A0E8;
 }
 .textfield .error-text {
   height: 0;
@@ -87128,8 +87132,21 @@ icon
   line-height: 1;
   transition: all 0.25s ease-in-out;
 }
-.textfield[data-status=active] input, .textfield[data-status=confirm] input {
+.textfield[data-status=active] input, .textfield[data-status=confirm] input, .textfield[data-status=readonly] input {
   color: #797F8B;
+  border: 1px solid #797F8B;
+}
+.textfield[data-status=active] input:hover, .textfield[data-status=confirm] input:hover, .textfield[data-status=readonly] input:hover {
+  border-color: #A2D2EB;
+  outline-offset: 0;
+  outline: 0px solid #A2D2EB;
+}
+.textfield[data-status=active] input:focus, .textfield[data-status=confirm] input:focus, .textfield[data-status=readonly] input:focus {
+  border-color: #5F9DCF;
+  outline-offset: 0;
+  outline: 0px solid #01A0E8;
+}
+.textfield[data-status=readonly] input {
   border: 1px solid #797F8B;
 }
 .textfield[data-icon=true]::before {
@@ -87145,7 +87162,7 @@ icon
 .textfield[data-icon=true] input {
   padding-left: 4.2rem;
 }
-.textfield[data-icon=true][data-status=active]::before, .textfield[data-icon=true][data-status=confirm]::before {
+.textfield[data-icon=true][data-status=active]::before, .textfield[data-icon=true][data-status=confirm]::before, .textfield[data-icon=true][data-status=readonly]::before {
   filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
 .textfield[data-status=error] {
@@ -87327,13 +87344,13 @@ icon
   overflow: hidden;
   background-color: #fff;
   transition: height 0.25s ease-in-out;
-  border: 0px solid #ddd;
+  border: 0px;
   border-radius: 0 0 4px 4px;
   padding-right: 1.4rem;
 }
 .select .option-box > div {
   max-height: 172px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-right: 1.4rem;
 }
 .select .option-box .option {
@@ -87348,13 +87365,24 @@ icon
   justify-content: flex-start;
   width: 100%;
   padding-right: 4.2rem;
-  height: 0;
+  height: 4rem;
   overflow: hidden;
   background-color: #fff;
   padding-left: 1.4rem;
   transition: height 0.25s ease-in-out;
 }
+.select .option-box .option::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 5.6rem);
+  height: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
 .select .option-box .option span {
+  position: relative;
+  z-index: 2;
   font-size: 1.4rem;
   display: block;
   text-overflow: ellipsis;
@@ -87374,9 +87402,13 @@ icon
 .select .option-box .option:hover {
   background-color: #F9FAFB;
 }
+.select .option-box .option:hover::before {
+  background-color: #F9FAFB;
+}
 .select .option-box .option:hover::after {
   content: "";
   position: absolute;
+  z-index: 3;
   right: 1.4rem;
   top: 50%;
   transform: translateY(-50%);
@@ -87387,6 +87419,15 @@ icon
   background-size: 2rem;
   background-position: center 0;
   filter: invert(69%) sepia(54%) saturate(7500%) hue-rotate(170deg) brightness(103%) contrast(100%);
+}
+.select.on .select-btn::after {
+  transform: translateY(-50%) rotate(180deg);
+  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
+}
+.select.on .option-box {
+  border: 1px solid #797F8B;
+  border-top: 0;
+  padding-top: 0.4rem;
 }
 .select .icon-box {
   display: none;
@@ -87407,21 +87448,17 @@ icon
 .select[data-icon=true][data-status=active] .icon-box::after, .select[data-icon=true][data-status=confirm] .icon-box::after {
   filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
-.select[data-status=active] .select-btn, .select[data-status=confirm] .select-btn {
+.select[data-status=active] .select-btn {
+  border: 1px solid #797F8B;
+}
+.select[data-status=active] .select-btn span {
+  color: #D0D5DD;
+}
+.select[data-status=confirm] .select-btn {
+  border: 1px solid #797F8B;
+}
+.select[data-status=confirm] .select-btn span {
   color: #797F8B;
-}
-.select[data-status=active] .select-btn::after, .select[data-status=confirm] .select-btn::after {
-  transform: translateY(-50%) rotate(180deg);
-  filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
-}
-.select[data-status=active] .option-box, .select[data-status=confirm] .option-box {
-  height: auto;
-  border: 1px solid #ddd;
-  border-top: 0;
-  padding-top: 0.4rem;
-}
-.select[data-status=active] .option-box .option, .select[data-status=confirm] .option-box .option {
-  height: 4rem;
 }
 .select[data-size=LG] .select-btn {
   height: 4.8rem;
@@ -87982,6 +88019,17 @@ table
 }
 .btn.btn-type-05.on .icon-box:after {
   filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(305deg) brightness(103%) contrast(101%);
+}
+.btn.btn-type-06 {
+  color: #fff;
+  background-color: #ffffff;
+  border-color: #D0D5DD;
+  background-color: #D0D5DD;
+}
+.btn.btn-type-06[data-status=active] {
+  color: #797F8B;
+  background-color: #ffffff;
+  border-color: #797F8B;
 }
 .btn.btn.btn-icon-only {
   width: auto;
@@ -89244,6 +89292,11 @@ sub page
 
 .user-wrap {
   width: 380px;
+}
+@media (max-width: 568px) {
+  .user-wrap {
+    width: 100%;
+  }
 }
 
 * {
