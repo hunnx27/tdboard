@@ -32,13 +32,13 @@ public class BoardResponse {
     private long hit;
 
     // 게시글 생성일
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
 
     // 게시글 수정일
-    private LocalDateTime modifiedDate;
+    private LocalDateTime updatedAt;
 
     @Builder
-    public BoardResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+    public BoardResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.boardType = boardType;
         this.title = title;
@@ -46,7 +46,7 @@ public class BoardResponse {
         this.userId = userId;
         this.upId = upId;
         this.hit = hit;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

@@ -16,7 +16,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     public Board getBoardById(final Long id, BoardTypeEnum boardTypeEnum) {
-        return boardRepository.findByBoardTypeById(boardTypeEnum, id).orElseThrow(()-> new IllegalArgumentException("no such data"));
+        return boardRepository.findByBoardTypeAndId(boardTypeEnum, id).orElseThrow(()-> new IllegalArgumentException("no such data"));
     }
 
     public Board createBoard(final Board createBoard) {
