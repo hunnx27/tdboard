@@ -22,7 +22,7 @@ function selectboxEvent(){
     selectAll.forEach((all)=>{
       all.classList.remove('on');
       all.querySelector('.option-box').style.height = 0;
-      if(all.querySelector('.select-value').getAttribute('data-defailt-text') == all.querySelector('.select-value').innerText){
+      if(all.querySelector('.select-value').getAttribute('data-default-text') == all.querySelector('.select-value').innerText){
         all.setAttribute('data-status','default');
       };
     });
@@ -42,7 +42,7 @@ function selectboxEvent(){
       optionBox.style.height = (Number(getComputedStyle(optionAll[0]).height.replace('px','')) * optionAll.length) + 4 + 'px';
     }else{
       use.classList.remove('on');
-      if(use.querySelector('.select-value').getAttribute('data-defailt-text') == use.querySelector('.select-value').innerText){
+      if(use.querySelector('.select-value').getAttribute('data-default-text') == use.querySelector('.select-value').innerText){
         btn.parentNode.setAttribute('data-status','default');
       }else{
         btn.parentNode.setAttribute('data-status','confirm');
