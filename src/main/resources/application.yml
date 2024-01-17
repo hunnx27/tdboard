@@ -24,3 +24,17 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+
+  # JPA 기본설정
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        one-indexed-parameters: true # paging 0부터 index 1로 변경
+
+
+  # 세션 프론트에서 노출 허용
+  mustache:
+    servlet:
+      expose-session-attributes: true
+    expose-session-attributes: true
