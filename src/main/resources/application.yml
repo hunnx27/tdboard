@@ -34,6 +34,9 @@ spring:
 
 
   # 세션 프론트에서 노출 허용
+  #  - principal.username: { [ SPRING_SECURITY_CONTEXT.Authentication.Principal.username ] }
+  #  - accessToken: { [ accessToken ] }
+  #  - refresjToken: { [ refreshToken ] }
   mustache:
     servlet:
       expose-session-attributes: true
