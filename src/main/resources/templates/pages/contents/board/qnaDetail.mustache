@@ -12,28 +12,28 @@
         <div class="board-tab">
             <ul>
                 <li>
-                    <a href="" >
+                    <a href="/contents/notice">
                         <span>
                             공지사항
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/contents/data">
                         <span>
                             자료실
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/contents/faq">
                         <span>
                             FAQ
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="on">
+                    <a href="/contents/qna" class="on">
                         <span>
                             QnA
                         </span>
@@ -49,36 +49,19 @@
                             <span class="icon-box icon-size-sm icon-prev"></span>이전글
                         </button>
                         <button class="btn btn-type-02">
-                            다음글<span class="icon-box icon-size-sm icon-prev"></span>
+                            다음글<span class="icon-box icon-size-sm icon-next"></span>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="table-body">
+            <div class="table-body" id="qna-detail-body">
                 <div class="detail-head">
-                    <h5>공지공지공지공지공지공지공지공지공지공지공지공지공지공지</h5>
-                    <p>2023.11.11</p>
+                    <h5>{{title}}</h5>
+                    <p>{{createdDateText}}</p>
                 </div>
                 <div class="detail-body">
                     <div>
-                        <p>
-                            공지입니다.<br/>
-                            공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지......<br/>
-                            공지사항<br/>
-                            공지사랑공지공지<br/>
-                            공지공지공지<br/>
-                            공지입니다.<br/>
-                            공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지......<br/>
-                            공지사항<br/>
-                            공지사랑공지공지<br/>
-                            공지공지공지<br/>
-                            공지입니다.<br/>
-                            공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지......<br/>
-                            공지사항<br/>
-                            공지사랑공지공지<br/>
-                            공지공지공지<br/>
-                        </p>
-                        <img src="../../../../assets/images/main/main_spot_1.png" alt="더미이미지">
+                        {{context}}
                     </div>
                 </div>
                 <div class="detail-foot">
@@ -111,5 +94,7 @@
         </div>
 
     </div>
+    <input type="hidden" id="qnaId" name="id" value="{[id]}"/>
 </section>
+<script type="module" src="/assets/js/home/board/qna-detail.js"></script>
 {[>layout/footer]}

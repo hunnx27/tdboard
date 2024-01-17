@@ -15,7 +15,9 @@ import java.util.Optional;
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
     // username을 가지고 User 정보를 가져올 수 있게 메소드 생성
-    Optional<Page<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
-    Optional<Page<Board>> findByBoardTypeAndTitleContains(BoardTypeEnum boardTypeEnum, String title, Pageable pageable);
-    Optional<Page<Board>> findByBoardTypeAndContextContains(BoardTypeEnum boardTypeEnum, String context, Pageable pageable);
+    int countByBoardType(BoardTypeEnum boardTypeEnum);
+    Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
+    Optional<Board> findByBoardTypeAndId(BoardTypeEnum boardTypeEnum, Long id);
+    Optional<List<Board>> findByBoardTypeAndTitleContains(BoardTypeEnum boardTypeEnum, String title, Pageable pageable);
+    Optional<List<Board>> findByBoardTypeAndContextContains(BoardTypeEnum boardTypeEnum, String context, Pageable pageable);
 }

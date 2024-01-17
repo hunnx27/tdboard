@@ -429,6 +429,18 @@ sub page
         }
         }
     }
+    @include mobile{
+        .card-wrap{
+            .card-body{
+                ul{
+                    @include flexbox(column, flex-start, flex-start);
+                    li{
+
+                    }
+                }
+            }
+        }
+    }
 }
 .group-qna{
     .card-wrap{
@@ -786,4 +798,14 @@ sub page
         margin:0;
     }
 
+}
+
+
+
+
+.user-wrap{
+    width:380px;
+    @include mobile{
+        width:100%;
+    }
 }

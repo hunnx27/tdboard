@@ -43,6 +43,15 @@ public class AuthWebController {
         return "pages/auth/join";
     }
     /**
+     * 회원 가입 이용약관 페이지(일반회원)
+     *
+     * @return
+     */
+    @GetMapping("auth/join/terms")
+    public String joinTerms() {
+        return "pages/auth/join-terms";
+    }
+    /**
      * 회원 가입 페이지(기관회원)
      *
      * @return
@@ -60,6 +69,23 @@ public class AuthWebController {
     @GetMapping("auth/join3")
     public String joinForm3() {
         return "pages/auth/join3";
+    }
+
+    /**
+     * 아이디 찾기
+     * @return
+     */
+    @GetMapping("auth/find/id")
+    public String findId() {
+        return "pages/auth/id-find";
+    }
+    /**
+     * 비밀번호 찾기
+     * @return
+     */
+    @GetMapping("auth/find/password")
+    public String findPassword() {
+        return "pages/auth/password-find";
     }
 
     /**
