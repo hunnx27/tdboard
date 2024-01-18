@@ -9,7 +9,7 @@ $(async function(){
             ,(res)=> {
             // console.log('res',res.data)
             const data = {
-                createdDateText: useFilters().YYYYMMDD(res.data.createdDate),
+                createdDateText: useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt),
                 ...res.data
             }
             var template = document.getElementById("dataㄴ-detail-body").innerHTML;

@@ -20,7 +20,7 @@ async function getNoticeApi(pageNumber){
         if(res.data.paging.totalElements > 0){
             let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
             res.data.contents.map((data)=>{
-                data.createdDateText = useFilters().YYYYMMDD(data.createdDate)
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
                 data.no = firstPostNumber
                 firstPostNumber--;
             })
