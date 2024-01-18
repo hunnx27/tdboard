@@ -1,0 +1,69 @@
+ {[>layout/header]}
+
+<!--item-wrap-->
+<section class="sub-top sub-top-mypage">
+  <div class="inner">
+      <h2>
+          마이페이지
+      </h2>
+  </div>
+</section>
+<!--item-wrap-->
+<section class="sub-con content user-content">
+  <div class="inner">
+    <div class="board-tab">
+      <ul>
+          <li>
+              <a href="/user/mypage">
+                  <span>
+                    개인정보 수정 
+                  </span>
+              </a>
+          </li>
+          <li>
+              <a href="/user/edu-list">
+                  <span>
+                    교육이력
+                  </span>
+              </a>
+          </li>
+          <li>
+              <a href="/user/share-list">
+                  <span>
+                    공유이력(시설/장비)
+                  </span>
+              </a>
+          </li>
+          <li>
+              <a href="/user/secession" class="on">
+                  <span>
+                    회원탈퇴
+                  </span>
+              </a>
+          </li>
+      </ul>
+    </div>
+    <div class="flex-box align-center justify-center">
+      <div class="p-t-96 user-wrap">
+        <p class="user-wrap-title text-500 text-size-24 text-center m-b-12">
+          회원탈퇴
+        </p>  
+        <p class="text-400 text-size-16 text-center m-b-32">비밀번호를 입력해주세요.</p>
+        <div class="login-form flex-box gap-24 flex-wrap">
+          <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
+            <input type="password" placeholder="비밀번호를 입력해주세요">
+            <p class="error-text">비밀번호 오류 메시지</p>
+          </div>
+          <button class="btn btn-type-01 w-full btn-size-xxl m-b-16">
+            <span class="text-700 text-size-16">탈퇴하기</span>
+          </button>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+    
+</section>
+
+{[>layout/footer]}
