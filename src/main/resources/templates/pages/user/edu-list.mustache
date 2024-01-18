@@ -45,12 +45,12 @@
     </div>
     <div class="table-wrap board-list">
       <p class="user-wrap-title text-500 text-size-24 text-center m-b-12">
-        공유이력(시설/장비)
+        교육이력
       </p>
       <div class="table-head">
           <div class="flex-box  align-center">
-              <span>
-                  Total 11건 1 페이지
+              <span id="tableHeadText">
+                Total 0건 1 페이지
               </span>
      
           </div>
@@ -70,71 +70,41 @@
                       </th>
                   </tr>
               </thead>
-              <tbody>
-                  <tr>
-                      <td>
-                          <span>
-                              5
-                          </span>
-                      </td>
-                      <td class="title">
-                          <a href="#">
-                              공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지
-                          </a>
-                      </td>
-                      <td>
-                          <span>
-                              2323.11.14
-                          </span>
-                      </td>
-                  </tr>
+              <tbody id="list-body">
+                    <tr>
+                        <td colspan="3">등록된 글이 없습니다.</td>
+                    </tr>
               </tbody>
           </table>
       </div>
-      <div class="table-foot">
-          <div class="pagination">
-              <ul>
-                  <li>
-                      <a href="">
-                          <span></span>
-                      </a>
-                  </li>
-                  <li class="on">
-                      <a href="" >
-                          <span>1</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <span>2</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <span>3</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <span>4</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <span>5</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <span></span>
-                      </a>
-                  </li>
-              </ul>
-          </div>
-      </div>
+       <div class="table-foot">
+            {[>layout/pagination]}
+        </div>
     </div>
   </div>
     
 </section>
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr>
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="title">
+            <a href="#">
+                {{title}}
+            </a>
+        </td>
+        <td>
+            <span>
+                {{createdDateText}}
+            </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>
 
+<script type="module" src="/assets/js/home/mypage/edu-list.js"></script>
 {[>layout/footer]}

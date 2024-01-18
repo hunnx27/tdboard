@@ -1,0 +1,46 @@
+import createPaginationModule from "/assets/js/pagination.js";
+import useAxios from '/assets/js/api/useAxios.js'
+import useFilters from '/assets/js/useFilters.js'
+
+const paginationModule = createPaginationModule();
+$(function(){
+
+    getBoardApi(1)
+ 
+    paginationModule.setClickPageNumberHandler((pageNumber)=> {
+        console.log(`Page number clicked: ${pageNumber}`);
+        getBoardApi(pageNumber)
+     })
+})
+async function getBoardApi(pageNumber){
+    await useAxios.get('/api/v1/boards/type/notices',
+        {page: pageNumber}
+        ,(res)=> {
+        if(res.data.paging.totalElements > 0){
+            let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
+            res.data.contents.map((data)=>{
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdDate)
+                data.no = firstPostNumber
+                firstPostNumber--;
+            })
+            handleSetList(pageNumber, res.data)
+        }else {
+            paginationModule.setPage(1,1,0)
+        }
+        const tableHeadText = `Total ${res.data.paging.totalElements}건 ${res.data.paging.totalPages} 페이지`
+        document.getElementById("tableHeadText").innerHTML = tableHeadText
+
+    },(err)=> {
+        console.log('err',err)
+    })
+
+}
+
+function handleSetList(pageNumber, data){
+    var template = document.getElementById("table-template").innerHTML;
+    var result = Mustache.render(template, data);
+    document.getElementById("list-body").innerHTML = result;
+    
+    paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
+}
+
