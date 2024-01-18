@@ -27,7 +27,7 @@ public class AuthJwtTokenProvider {
     //private long tokenValidTime = 30 * 60 * 1000L;
 
     @Value("${tokenValidTimeout}")
-    private long tokenValidTimeSecond = 60; // 1분
+    private long tokenValidTimeSecond = 30 * 60 * 1000L; // 30분
 
     @Value("${server.servlet.session.timeout}")
     private long refreshTokenValidTimeSecond = 24 * 60 * 60; // 1일

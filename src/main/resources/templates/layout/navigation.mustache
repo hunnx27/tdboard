@@ -9,15 +9,25 @@
 <div class="head-top">  
     <div class="inner">
         <div class="flex-box justify-end sm-justify-center">
-            <a href="/auth/login" >
+      
+            {[#accessToken]}
+            <a href="/auth/logout_proc">
+                로그아웃
+            </a>
+            <a href="/user/mypage" >
+                마이페이지
+            </a>
+             {[/accessToken]}
+             {[^accessToken]}
+             <a href="/auth/login" >
                 로그인
             </a>
-            <a href="javascript:alert('준비 중입니다.')" >
+            <a href="/auth/join/terms" >
                 회원가입
             </a>
-<!--            <a href="#">-->
-<!--                마이페이지-->
-<!--            </a>-->
+             {[/accessToken]}
+            
+
         </div>
     </div>
 </div>
@@ -292,4 +302,5 @@
         gnb_bg = document.querySelector("#navigation .gnb_bg");
         gnb_bg.style.cssText = "border-bottom: 0";
     };
+   
 </script>

@@ -11,7 +11,7 @@ public class MustacheConfig {
     public Mustache.Compiler mustacheCompiler(
             Mustache.TemplateLoader mustacheTemplateLoader) {
         return Mustache.compiler()
-                .defaultValue("Some default value")
+                .defaultValue("")
                 .withLoader(mustacheTemplateLoader)
                 .withDelims("{[ ]}");
     }
