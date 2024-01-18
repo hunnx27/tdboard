@@ -50,11 +50,11 @@
         </p>  
         <p class="text-400 text-size-16 text-center m-b-32">비밀번호를 입력해주세요.</p>
         <div class="login-form flex-box gap-24 flex-wrap">
-          <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
-            <input type="password" placeholder="비밀번호를 입력해주세요">
-            <p class="error-text">비밀번호 오류 메시지</p>
+          <div id="passwordCheckField" class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
+            <input id="passwordCheckInput" type="password" placeholder="비밀번호를 입력해주세요">
+            <p id="passwordCheckInputError" class="error-text">비밀번호가 일치하지 않습니다.</p>
           </div>
-          <button class="btn btn-type-01 w-full btn-size-xxl m-b-16">
+          <button id="pwdConfirmBtn" class="btn btn-type-01 w-full btn-size-xxl m-b-16" disabled>
             <span class="text-700 text-size-16">탈퇴하기</span>
           </button>
         </div>
@@ -65,5 +65,5 @@
   </div>
     
 </section>
-
+<script type="module" src="/assets/js/home/mypage/secession.js"></script>
 {[>layout/footer]}

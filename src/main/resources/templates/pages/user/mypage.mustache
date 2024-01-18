@@ -4,7 +4,7 @@
 <section class="sub-top sub-top-mypage">
   <div class="inner">
       <h2>
-          마이페이지{[username]}{{username}}
+          마이페이지
       </h2>
   </div>
 </section>
@@ -48,19 +48,21 @@
         <p class="user-wrap-title text-500 text-size-24 text-center m-b-12">
           개인정보 수정
         </p>  
-        <p class="text-400 text-size-16 text-center m-b-32">비밀번호를 입력해주세요.</p>
-        <!-- 비밀번호 확인 -->
-        <div class="login-form flex-box gap-24 flex-wrap">
-          <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
-            <input type="password" placeholder="비밀번호를 입력해주세요">
-            <p class="error-text">비밀번호 오류 메시지</p>
+        <div id="passwordChekForm">
+          <p class="text-400 text-size-16 text-center m-b-32">비밀번호를 입력해주세요.</p>
+          <!-- 비밀번호 확인 -->
+          <div class="login-form flex-box gap-24 flex-wrap">
+            <div id="passwordCheckField" class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
+              <input id="passwordCheckInput" type="password" placeholder="비밀번호를 입력해주세요">
+              <p id="passwordCheckInputError" class="error-text">비밀번호가 일치하지 않습니다.</p>
+            </div>
+            <button id="pwdConfirmBtn" class="btn btn-type-01 w-full btn-size-xxl m-b-16" disabled>
+              <span class="text-700 text-size-16">확인</span>
+            </button>
           </div>
-          <button class="btn btn-type-01 w-full btn-size-xxl m-b-16">
-            <span class="text-700 text-size-16">확인</span>
-          </button>
         </div>
         <!-- 개인정보 수정 폼 -->
-        <div class="login-form flex-box gap-24 flex-wrap">
+        <div id="userModifyForm" class="login-form flex-box gap-24 flex-wrap" style="display:none">
 
           <div class="flex-box gap-8 flex-wrap w-full">
             <div class="textfield flex-1"  data-type="id"  data-status="readonly" data-size="LG" data-icon="true">
@@ -165,5 +167,5 @@
   </div>
     
 </section>
-
+<script type="module" src="/assets/js/home/mypage/modify.js"></script>
 {[>layout/footer]}
