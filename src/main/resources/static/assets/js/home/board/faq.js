@@ -14,7 +14,7 @@ async function getFaqApi(pageNumber){
         console.log('res',res.data)
         if(res.data.paging.totalElements > 0){
             res.data.contents.map((data)=>{
-                data.createdDateText = useFilters().YYYYMMDD(data.createdDate)
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
             })
             handleSetList(pageNumber, res.data)
         }else {

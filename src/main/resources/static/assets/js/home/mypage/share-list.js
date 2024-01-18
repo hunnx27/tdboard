@@ -5,22 +5,21 @@ import useFilters from '/assets/js/useFilters.js'
 const paginationModule = createPaginationModule();
 $(function(){
 
-    getDataApi(1)
+    getBoardApi(1)
  
     paginationModule.setClickPageNumberHandler((pageNumber)=> {
         console.log(`Page number clicked: ${pageNumber}`);
-        getDataApi(pageNumber)
+        getBoardApi(pageNumber)
      })
 })
-async function getDataApi(pageNumber){
-    await useAxios.get('/api/v1/boards/type/datas',
+async function getBoardApi(pageNumber){
+    await useAxios.get('/api/v1/boards/type/notices',
         {page: pageNumber}
         ,(res)=> {
-        console.log('res',res.data)
         if(res.data.paging.totalElements > 0){
             let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
             res.data.contents.map((data)=>{
-                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdDate)
                 data.no = firstPostNumber
                 firstPostNumber--;
             })
@@ -38,9 +37,10 @@ async function getDataApi(pageNumber){
 }
 
 function handleSetList(pageNumber, data){
-    var template = document.getElementById("data-table-template").innerHTML;
+    var template = document.getElementById("table-template").innerHTML;
     var result = Mustache.render(template, data);
-    document.getElementById("data-body").innerHTML = result;
+    document.getElementById("list-body").innerHTML = result;
     
     paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
+
