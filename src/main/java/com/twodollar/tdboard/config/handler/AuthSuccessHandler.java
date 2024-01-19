@@ -50,12 +50,12 @@ public class AuthSuccessHandler extends
         Cookie cookie1 = new Cookie("accessToken", accessToken);
         cookie1.setPath("/");
         cookie1.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
-        cookie1.setHttpOnly(true);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+        // cookie1.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
 
         Cookie cookie2 = new Cookie("refreshToken", refreshToken);
         cookie2.setPath("/");
         cookie2.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
-        cookie2.setHttpOnly(true);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+        // cookie2.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
 
         response.addCookie(cookie1);
         response.addCookie(cookie2);

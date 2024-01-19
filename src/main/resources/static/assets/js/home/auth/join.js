@@ -12,11 +12,7 @@ $(function(){
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {
         button.addEventListener('click', function() {
-          // 클릭한 버튼의 data-status 값을 업데이트
-          buttons.forEach(btn => {
-            btn.dataset.status = (btn === button && btn.dataset.status !== 'active') ? 'active' : '';
-          });
-    
+
           // 모든 버튼에서 'active' 클래스를 제거
           buttons.forEach(btn => btn.classList.remove('active'));
     
