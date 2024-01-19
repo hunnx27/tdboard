@@ -19,4 +19,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Optional<Board> findByBoardTypeAndId(BoardTypeEnum boardTypeEnum, Long id);
     Optional<List<Board>> findByBoardTypeAndTitleContains(BoardTypeEnum boardTypeEnum, String title, Pageable pageable);
     Optional<List<Board>> findByBoardTypeAndContextContains(BoardTypeEnum boardTypeEnum, String context, Pageable pageable);
+
+    int countByUpId(Long upId);
+    Optional<List<Board>> findByUpId(Long upId, Pageable pageable);
+
 }

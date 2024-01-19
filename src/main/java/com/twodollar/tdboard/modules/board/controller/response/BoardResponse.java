@@ -31,14 +31,18 @@ public class BoardResponse {
     // 조회 수
     private long hit;
 
+    private String delYn;
+
     // 게시글 생성일
     private LocalDateTime createdAt;
 
     // 게시글 수정일
     private LocalDateTime updatedAt;
 
+    private BoardResponse upBoard;
+
     @Builder
-    public BoardResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public BoardResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, String delYn, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.boardType = boardType;
         this.title = title;
@@ -46,6 +50,7 @@ public class BoardResponse {
         this.userId = userId;
         this.upId = upId;
         this.hit = hit;
+        this.delYn = delYn;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

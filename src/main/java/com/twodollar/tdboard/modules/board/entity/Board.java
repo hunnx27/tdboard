@@ -33,6 +33,8 @@ public class Board {
     private long upId;
     // 조회 수
     private long hit;
+
+    private String delYn;
     // 생성일
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -49,6 +51,7 @@ public class Board {
             .userId(this.userId)
             .upId(this.upId)
             .hit(this.hit)
+            .delYn(this.delYn)
             .createdAt(this.createdAt)
             .updatedAt(this.updateAt)
             .build();
