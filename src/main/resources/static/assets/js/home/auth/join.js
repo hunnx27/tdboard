@@ -1,10 +1,14 @@
+import useAxios from '/assets/js/api/useAxios.js'
+
 const userIdRegex = /^[a-z]+[a-z0-9]{5,20}$/g;
+const nameRegex = /^[a-zA-Z가-힣\s]+$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.[a-z])(?=.*\d)(?=.*[-`~!@#$%^&*()_+=?/\[\]])[A-Za-z\d\[\]-`~!@#$%^&*()_+=?/]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^01[0-9]*\d{3,4}\d{4}$/; 
 
-$(function(){
+window.onload = function() {
     validateUserId() // 아이디 실시간 체크
+    validateName() // 이름 실시간 체크
     validatePassword() // 비밀번호 실시간 체크
     validateEmail() // 이메일 실시간 체크
     validatePhone() // 휴대전화 실시간 체크
@@ -12,16 +16,12 @@ $(function(){
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {
         button.addEventListener('click', function() {
-
           // 모든 버튼에서 'active' 클래스를 제거
           buttons.forEach(btn => btn.classList.remove('active'));
-    
-          // 현재 활성화된 버튼에 'active' 클래스 추가
-          if (button.dataset.status === 'active') {
-            button.classList.add('active');
-          }
+          button.classList.add('active');
         });
       });
+
 
     // 중복확인 클릭시
     const userIdCheckBtn = document.getElementById('userIdCheckBtn');
@@ -31,21 +31,31 @@ $(function(){
         // 성공하면 아래 로직(정책필요)
         userIdCheckBtn.disabled = true
         userIdElement.readOnly = true
-        
+        validationButtonVisible()
 
     })
 
+    // 가입경로
+    const selectJoinPathField = document.getElementById('selectJoinPathField');
 
-    const selectJoinPathField = document.getElementById('selectJoinPathField')
-    const selectJoinPathBtn = selectJoinPathField.querySelector('button')
-    selectJoinPathBtn.addEventListener('click', function(){
-        if(selectJoinPathField.dataset.status === 'active'){
-            selectJoinPathField.dataset.status = ''
-        }else{
-            selectJoinPathField.dataset.status = 'active'
-        }
+    // "option" 클래스를 가진 버튼 요소들을 선택
+    const optionButtons = document.querySelectorAll('.option');
+
+    // 각 버튼에 클릭 이벤트 리스너 추가
+    optionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 클릭된 버튼의 data-option 값을 가져와서 selectJoinPathField의 data-value에 설정
+            const dataOptionValue = button.dataset.option;
+            selectJoinPathField.dataset.value = dataOptionValue;
+        });
+    });
+
+    //회원가입 버튼
+    const joinBtn = document.getElementById('joinBtn')
+    joinBtn.addEventListener('click', () =>{
+        handleJoin()
     })
-});
+}
 
 
 // 아이디 실시간 체크
@@ -58,11 +68,30 @@ function validateUserId(){
 
         if (!userIdRegex.test(userId)) {
             userIdField.setAttribute('data-status', 'error');
-            userIdFieldChild.innerText = '영문 대소문자, 숫자, 특수문자 조합하여 8~16자 입력가능합니다'
+            userIdFieldChild.innerText = '영문자 또는 영문,숫자만(5~20자) 입력 가능합니다'
          
         } else {
             userIdField.setAttribute('data-status', 'active');
             userIdFieldChild.innerText = '';
+        }
+        validationButtonVisible()
+    });
+}
+// 이름 실시간 체크
+function validateName() {
+    const userName = document.getElementById('userName');
+    const userNameField = document.getElementById('userNameField');
+    const userNameFieldChild = userNameField.querySelector('.error-text'); 
+    userName.addEventListener('input', function() {
+        const name = userName.value;
+
+        if (!nameRegex.test(name)) {
+            userNameField.setAttribute('data-status', 'error');
+            userNameFieldChild.innerText = '영문, 한글만 입력 가능합니다'
+         
+        } else {
+            userNameField.setAttribute('data-status', 'active');
+            userNameFieldChild.innerText = '';
         }
         validationButtonVisible()
     });
@@ -107,7 +136,7 @@ function validatePassword(){
 function validateEmail(){
     const emailElement = document.getElementById('email');
     const emailField = document.getElementById('emailField');
-    const emailFieldChild = userIdField.querySelector('.error-text'); 
+    const emailFieldChild = emailField.querySelector('.error-text'); 
     emailElement.addEventListener('keyup', function() {
         const email = emailElement.value;
 
@@ -145,47 +174,63 @@ function validatePhone(){
 function validationButtonVisible() {
     const joinBtn = document.getElementById('joinBtn')
     const textfield = document.querySelectorAll('.textfield');
+    const userIdCheckBtn = document.getElementById('userIdCheckBtn')
+    let count = 0;
+    console.log(userIdCheckBtn.disabled)
+ 
     textfield.forEach(textfield => {
         const input = textfield.querySelector('input').value
         if(input && textfield.dataset.status === 'active') {
-            joinBtn.disabled = false
+            if(!userIdCheckBtn.disabled){
+                count ++;
+            }
         }else {
-            joinBtn.disabled = true
+            count ++;
         }
+        if(count > 0){
+            joinBtn.disabled = true
+        }else {
+            joinBtn.disabled = false
+        }
+        
     })
+   
+    
 }
 
-function validateForm() {
+async function handleJoin() {
     const userId = document.getElementById('userId').value;
+    const username = document.getElementById('userName').value;
     const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    const selectJoinPathField = document.getElementById('selectJoinPathField');
+    let sex = null
+    const buttons = document.querySelectorAll('.genderBtn');
+    buttons.forEach(button => {
+        if (button.dataset.status === 'active') {
+            sex = button.dataset.value;
+        }
+      });
+    
 
-    if (!userIdRegex.test(userId)) {
-      alert('아이디는 영문자와 숫자만 입력 가능합니다.');
-      return;
+    await useAxios.post('/api/v1/auth/join',
+    {
+        "username": username,
+        "userId": userId,
+        "sex": sex,
+        "email": email,
+        "phone": phone,
+        "birthday": "1986-01-20",
+        "channel": selectJoinPathField.dataset.value,
+        "password": password,
+        "role": "ROLE_USER"
     }
-
-    if (!passwordRegex.test(password)) {
-      alert('비밀번호는 최소 6자 이상 입력하세요.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      alert('올바른 이메일 주소를 입력하세요.');
-      return;
-    }
-
-    if (!phoneRegex.test(phone)) {
-      alert('올바른 휴대전화번호 형식을 입력하세요. (예: 010-1234-5678)');
-      return;
-    }
-
-    alert('회원가입이 완료되었습니다!');
+    ,(res)=> {
+        alert('회원가입이 완료되었습니다!')
+        location.href='/auth/login'
+      
+    },(err)=> {
+        console.log('err',err)
+    })
   }
