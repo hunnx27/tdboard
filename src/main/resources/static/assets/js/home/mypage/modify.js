@@ -60,6 +60,20 @@ const initUserForm = () => {
         });
       });
 
+    const selectJoinPathField = document.getElementById('selectJoinPathField');
+
+    // "option" 클래스를 가진 버튼 요소들을 선택
+    const optionButtons = document.querySelectorAll('.option');
+
+    // 각 버튼에 클릭 이벤트 리스너 추가
+    optionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 클릭된 버튼의 data-option 값을 가져와서 selectJoinPathField의 data-value에 설정
+            const dataOptionValue = button.dataset.option;
+            selectJoinPathField.dataset.value = dataOptionValue;
+        });
+    });
+
 
     const modifyConfirmBtn = document.getElementById('modifyConfirmBtn');
     modifyConfirmBtn.addEventListener('click', () =>{
@@ -85,7 +99,9 @@ async function getUserApi(){
 async function updateUserApi() {
     const username = document.getElementById('userName').value
     const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
     const phone = document.getElementById('phone').value
+    const selectJoinPathField = document.getElementById('selectJoinPathField');
     let sex = null
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {
@@ -101,7 +117,8 @@ async function updateUserApi() {
         "email": email,
         "phone": addHyphens(phone),
         "birthday": "1986-01-20",
-        "channel": null,
+        "channel": selectJoinPathField.dataset.value,
+        "password": password,
         "role": "ROLE_USER"
     }
     ,(res)=> {
@@ -126,6 +143,16 @@ function handleSetUserInfo(data){
             button.dataset.status = 'default'
         }
       });
+    
+    document.getElementById('selectJoinPathField').dataset.value = data.channel
+    document.querySelectorAll('.joinPathOption').forEach((element)=>{
+        if (element.dataset.option === data.channel) {
+            const childelementText = element.innerText;
+            document.getElementById('selectJoinPathText').innerText = childelementText;
+        }
+    })
+
+    
 }
 function addHyphens(phoneNumber) {
     // 정규식을 사용하여 숫자만 남기고, 새로운 형식에 맞게 하이픈을 추가합니다.
