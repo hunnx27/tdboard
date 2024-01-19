@@ -20,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.http.Cookie;
+
 
 @RequiredArgsConstructor
 @Configuration
@@ -96,6 +98,17 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout_proc")
+                        .addLogoutHandler((request, response, auth) -> {
+                            for(Cookie cookie : request.getCookies()){
+                                String cookieName = cookie.getName();
+                                if(cookieName.indexOf("Token")!=-1){
+                                    Cookie cookieToDelette = new Cookie(cookieName, null);
+                                    cookieToDelette.setMaxAge(0);
+                                    cookieToDelette.setPath("/");
+                                    response.addCookie(cookieToDelette);
+                                }
+                            }
+                        })
                         .logoutSuccessUrl("/"));
         return http.build();
     }

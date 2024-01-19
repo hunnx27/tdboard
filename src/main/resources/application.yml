@@ -18,8 +18,11 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+# 쿠키 허용
+    session:
+      cookie:
+        secure: true
 
-#swagger
 spring:
   mvc:
     pathmatch:

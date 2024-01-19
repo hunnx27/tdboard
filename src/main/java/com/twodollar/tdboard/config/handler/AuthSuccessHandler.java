@@ -30,7 +30,7 @@ public class AuthSuccessHandler extends
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws ServletException, IOException {
-        super.onAuthenticationSuccess(request, response, authentication);
+
         HttpSession session = request.getSession(true);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String role = "USER";
@@ -59,6 +59,7 @@ public class AuthSuccessHandler extends
 
         response.addCookie(cookie1);
         response.addCookie(cookie2);
+        super.onAuthenticationSuccess(request, response, authentication);
         // Refresh Token DB에 저장
         User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
         user.setRefreshToken(refreshToken);
