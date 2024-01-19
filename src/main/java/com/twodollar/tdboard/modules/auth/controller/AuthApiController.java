@@ -1,17 +1,20 @@
 package com.twodollar.tdboard.modules.auth.controller;
 
+import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
 import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.auth.service.AuthService;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
+import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
+import com.twodollar.tdboard.modules.user.controller.response.UserResponse;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.repository.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,30 +29,49 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/")
 public class AuthApiController {
     private final AuthJwtTokenProvider authJwtTokenProvider;
     private final UserRepository userRepository;
     private final AuthService authService;
-    // 로그인
-    @PostMapping("/api/v1/login")
-    public ResponseEntity<ApiCmnResponse<?>> login(@RequestBody Map<String, String> userMap) {
-        String username = userMap.get("username");
-        log.info("user email = {}", username);
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
-        String accessToken = authJwtTokenProvider.createToken(username, Collections.singletonList(user.getRole()));
-        String refreshToken = authJwtTokenProvider.createRefreshToken(username);
-        // Refresh Token DB에 저장
-        user.setRefreshToken(refreshToken);
-        userRepository.save(user);
 
-        Map<String, String> newTokens = new HashMap<>();
-        newTokens.put("accessToken", accessToken);
-        newTokens.put("refreshToken", refreshToken);
-        return ResponseEntity.ok(ApiCmnResponse.success(newTokens));
+    /**
+     * 로그인 API(테스트 용, 실제로는 시큐리티 폼로그인 방식으로 사용함)
+     * @param userMap
+     * @return
+     */
+    // 로그인
+    @PostMapping("/auth/login")
+    public ResponseEntity<ApiCmnResponse<?>> login(@RequestBody Map<String, String> userMap) {
+        String userId = userMap.get("userId");
+        log.info("user id = {}", userId);
+        try {
+            User user = userRepository.findByUserId(userId)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다."));
+            String accessToken = authJwtTokenProvider.createToken(userId, Collections.singletonList(user.getRole().name()));
+            String refreshToken = authJwtTokenProvider.createRefreshToken(userId);
+            // Refresh Token DB에 저장
+            user.setRefreshToken(refreshToken);
+            userRepository.save(user);
+
+            Map<String, String> newTokens = new HashMap<>();
+            newTokens.put("accessToken", accessToken);
+            newTokens.put("refreshToken", refreshToken);
+            return ResponseEntity.ok(ApiCmnResponse.success(newTokens));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 
-    @GetMapping("/api/v1/refresh")
+    /**
+     * 리프레시 토큰 발급 API
+     * @param request
+     * @param response
+     * @return
+     */
+    @GetMapping("/auth/refresh")
     public ResponseEntity<ApiCmnResponse<?>> refresh(HttpServletRequest request, HttpServletResponse response) {
         // 헤더에서 JWT 를 받아옵니다.
         String authorizationHeader = authJwtTokenProvider.resolveToken((HttpServletRequest) request);
@@ -71,7 +93,32 @@ public class AuthApiController {
             }
             return ResponseEntity.ok(ApiCmnResponse.success(newTokens));
         } catch (ResponseStatusException e) {
-            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getMessage()));
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }
+    }
+
+    /**
+     * 회원 가입 API
+     * @param userAuthRequest
+     * @return
+     */
+    @Operation(summary = "회원 가입", description = "사용자 등록")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/join")
+    public ResponseEntity<ApiCmnResponse<?>> join(
+            @RequestBody UserAuthRequest userAuthRequest
+    ){
+        try{
+            User user = authService.join(userAuthRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+
     }
 }

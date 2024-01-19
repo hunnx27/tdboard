@@ -61,7 +61,7 @@ public class AuthSuccessHandler extends
         response.addCookie(cookie2);
         super.onAuthenticationSuccess(request, response, authentication);
         // Refresh Token DB에 저장
-        User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
+        User user = userRepository.findByUserId(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 userId 입니다."));
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
     }

@@ -21,10 +21,6 @@ public class UserWebController {
     @GetMapping("user/mypage")
     public String mypage(Model model, HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        // 사용자 정보를 세션에 저장
-        // session.setAttribute("username", authentication.getName());
-        model.addAttribute("username", authentication.getName());
         return "pages/user/mypage";
     }
     /**

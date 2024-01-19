@@ -83,6 +83,11 @@ public class SecurityConfig {
                             authorize.antMatchers("/auth/login", "/auth/join", "/auth/join_proc", "/auth/login_proc"
                                                 , "/auth/join2", "/auth/join2_proc"
                                                 , "/auth/join3", "/auth/join3_proc"
+
+                                    // TODO 인증타는지 확인해야함..
+                                    //, "/api/v1/auth/join"
+
+
                             ).permitAll()
                             .antMatchers("/org/**").hasAnyAuthority("ROLE_ORG", "ROLE_ADMIN")
                             .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ORG", "ROLE_ADMIN")
@@ -92,6 +97,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/auth/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
                         .loginProcessingUrl("/auth/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
+                        .usernameParameter("userId")
                         .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
                         .successHandler(authSuccessHandler) // 성공 후 처리
                         .failureHandler(authFailurHandler)  // 실패 시 처리

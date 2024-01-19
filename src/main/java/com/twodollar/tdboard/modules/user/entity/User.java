@@ -1,12 +1,14 @@
 package com.twodollar.tdboard.modules.user.entity;
 
+import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
+import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
+import com.twodollar.tdboard.modules.user.controller.response.UserResponse;
+import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
+import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,22 +23,43 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    // 사용자명
+    private String userId;
     private String username;
-
-    // 비밀번호
     private String password;
-
-    // 이메일
+    @Enumerated(EnumType.STRING)
+    private SexEnum sex;
     private String email;
-
-    // 권한
-    private String role;
-
-    // 계정 생성일
+    private String phone;
+    private String birthday;
+    private String channel; //유입채널
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role; // 권한
     @CreationTimestamp
     private LocalDateTime createdDate;
-
     private String refreshToken;
+
+    public UserResponse toResponse() {
+        return UserResponse.builder()
+                .id(this.id)
+                .userId(this.userId)
+                .username(this.username)
+                .sex(this.sex.name())
+                .email(this.email)
+                .phone(this.phone)
+                .birthday(this.birthday)
+                .channel(this.channel)
+                .role(this.role.name())
+                .createdDate(this.createdDate)
+                .build();
+    }
+
+    public void update(UserRequest userRequest) {
+        this.username = userRequest.getUsername();
+        this.sex = SexEnum.valueOf(userRequest.getSex());
+        this.email = userRequest.getEmail();
+        this.phone = userRequest.getPhone();
+        this.birthday = userRequest.getBirthday();
+        this.channel = userRequest.getChannel();
+        this.role = RoleEnum.valueOf(userRequest.getRole());
+    }
 }

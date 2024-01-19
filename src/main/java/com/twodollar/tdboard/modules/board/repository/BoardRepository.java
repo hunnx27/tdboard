@@ -14,7 +14,6 @@ import java.util.Optional;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    // username을 가지고 User 정보를 가져올 수 있게 메소드 생성
     int countByBoardType(BoardTypeEnum boardTypeEnum);
     Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
     Optional<Board> findByBoardTypeAndId(BoardTypeEnum boardTypeEnum, Long id);

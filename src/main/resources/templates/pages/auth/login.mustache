@@ -11,7 +11,7 @@
         <form id="loginForm" action="/auth/login_proc" method="POST">
             <div class="login-form flex-box gap-20 flex-wrap">
                 <div class="textfield w-full"  data-type="id"  data-status="active" data-size="LG" data-icon="true">
-                    <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요">
+                    <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
                     <p class="error-text">아이디 오류 메시지</p>
                 </div>
                 <div class="textfield w-full"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
@@ -42,10 +42,10 @@
 </section>
 <script>
 async function handleLogin(){
-    const username = document.getElementById("username").value
+    const userId = document.getElementById("userId").value
     const password = document.getElementById("password").value
     
-    if(!username){
+    if(!userId){
         textFieldError('id', "아이디를 입력해주세요.")
     }
 
@@ -53,7 +53,7 @@ async function handleLogin(){
         textFieldError('password', "비밀번호를 입력해주세요.")
     }
     
-     if(username && password) {
+     if(userId && password) {
         const form = document.getElementById("loginForm")
         form.submit()
         
