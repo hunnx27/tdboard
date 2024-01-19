@@ -3,6 +3,7 @@ package com.twodollar.tdboard.modules.user.entity;
 import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
 import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
 import com.twodollar.tdboard.modules.user.controller.response.UserResponse;
+import com.twodollar.tdboard.modules.user.entity.enums.ChannelEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.*;
@@ -31,7 +32,8 @@ public class User {
     private String email;
     private String phone;
     private String birthday;
-    private String channel; //유입채널
+    @Enumerated(EnumType.STRING)
+    private ChannelEnum channel; //유입채널
     @Enumerated(EnumType.STRING)
     private RoleEnum role; // 권한
     @CreationTimestamp
@@ -47,7 +49,7 @@ public class User {
                 .email(this.email)
                 .phone(this.phone)
                 .birthday(this.birthday)
-                .channel(this.channel)
+                .channel(this.channel.name())
                 .role(this.role.name())
                 .createdDate(this.createdDate)
                 .build();
@@ -59,7 +61,7 @@ public class User {
         this.email = userRequest.getEmail();
         this.phone = userRequest.getPhone();
         this.birthday = userRequest.getBirthday();
-        this.channel = userRequest.getChannel();
+        this.channel = ChannelEnum.valueOf(userRequest.getChannel());
         this.role = RoleEnum.valueOf(userRequest.getRole());
     }
 }

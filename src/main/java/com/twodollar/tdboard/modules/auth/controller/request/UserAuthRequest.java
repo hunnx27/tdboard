@@ -1,6 +1,7 @@
 package com.twodollar.tdboard.modules.auth.controller.request;
 
 import com.twodollar.tdboard.modules.user.entity.User;
+import com.twodollar.tdboard.modules.user.entity.enums.ChannelEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.Builder;
@@ -25,7 +26,7 @@ public class UserAuthRequest {
             .email(this.email)
             .phone(this.phone)
             .birthday(this.birthday)
-            .channel(this.channel)
+            .channel(ChannelEnum.valueOf(this.channel))
             // .password(this.password) // 플레인이라 회원가입로직시 암호화 후 set함
             // .role(this.role) // 롤도 로직에 따라 set함
             .build();
