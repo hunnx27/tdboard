@@ -51,6 +51,7 @@ const initUserForm = () => {
     validatePassword() // 비밀번호 실시간 체크
     validateEmail() // 이메일 실시간 체크
     validatePhone() // 휴대전화 실시간 체크
+    validationButtonVisible()
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {
         button.addEventListener('click', function() {
