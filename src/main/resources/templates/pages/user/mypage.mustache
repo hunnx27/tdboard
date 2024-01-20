@@ -111,29 +111,11 @@
                 </div>
               </div>
               <div class="flex-box gap-8 flex-wrap w-full">
-                <div class="select flex-1" aria-label="select" data-size="MD" data-status="" data-icon="true">
-                  <button class="select-btn" aria-label="selectValue">
-                      <span class="icon-box icon-size-sm icon-birth"></span>
-                      <span class="select-value" data-default-text="생년월일">
-                        생년월일
-                      </span>
-                  </button>
-                  <div class="option-box" aria-label="option-box">
-                    <div>
-                      <button class="option" aria-label="option" disabled>
-                          <span>
-                              ValueValueValueValueValue
-                          </span>
-                      </button>
-                      <button class="option" aria-label="option" disabled>
-                          <span>
-                              Value
-                          </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+            <div id="birthdayField" class="textfield flex-1 "  data-type="birth"  data-status="default" data-size="LG" data-icon="true">
+                <input id="birthday" type="text" class="datepicker" placeholder="생년월일" onchange='textfieldChange(this,event)'>
+                <p class="error-text">오류 메시지</p>
               </div>
+            </div>
               <div class="flex-box gap-8 flex-wrap w-full">
                 <div id="selectJoinPathField" class="select flex-1" aria-label="select" data-size="MD" data-status="active" data-icon="true">
                   <button class="select-btn" aria-label="selectValue">
@@ -176,7 +158,7 @@
                       </button>
                       <button class="joinPathOption option" aria-label="option" data-option="C07">
                           <span>
-                              현수맏
+                              현수막
                           </span>
                       </button>
                       <button class="joinPathOption option" aria-label="option" data-option="C08">

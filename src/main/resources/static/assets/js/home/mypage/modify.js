@@ -80,15 +80,18 @@ const initUserForm = () => {
     modifyConfirmBtn.addEventListener('click', () =>{
         updateUserApi()
     })
+
+    $(".datepicker").datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
 }
 
 async function getUserApi(){
     await useAxios.get('/api/v1/users/me',
     {}
     ,(res)=> {
-    console.log('res',res.originalBody.data)
     initUserForm()
-    handleSetUserInfo(res.originalBody.data)
+    handleSetUserInfo(res.data)
 
       
     },(err)=> {
@@ -102,6 +105,7 @@ async function updateUserApi() {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
     const phone = document.getElementById('phone').value
+    const birthday = document.getElementById('birthday').value;
     const selectJoinPathField = document.getElementById('selectJoinPathField');
     let sex = null
     const buttons = document.querySelectorAll('.genderBtn');
@@ -117,7 +121,7 @@ async function updateUserApi() {
         "sex": sex,
         "email": email,
         "phone": addHyphens(phone),
-        "birthday": "1986-01-20",
+        "birthday": birthday,
         "channel": selectJoinPathField.dataset.value,
         "password": password,
         "role": "ROLE_USER"
@@ -135,6 +139,7 @@ function handleSetUserInfo(data){
     document.getElementById('userId').value = data.userId
     document.getElementById('userName').value = data.username
     document.getElementById('email').value = data.email
+    document.getElementById('birthday').value = data.birthday
     document.getElementById('phone').value = data.phone.replace(/-/g, '');
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {

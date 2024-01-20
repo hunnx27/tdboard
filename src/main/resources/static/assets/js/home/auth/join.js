@@ -13,6 +13,15 @@ window.onload = function() {
     validateEmail() // 이메일 실시간 체크
     validatePhone() // 휴대전화 실시간 체크
 
+    $(".datepicker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText, inst) {
+            const birthdayField = document.getElementById('birthdayField')
+            birthdayField.setAttribute('data-status', 'active');
+            validationButtonVisible();
+        }
+    });
+
     const buttons = document.querySelectorAll('.genderBtn');
     buttons.forEach(button => {
         button.addEventListener('click', function() {
@@ -176,8 +185,6 @@ function validationButtonVisible() {
     const textfield = document.querySelectorAll('.textfield');
     const userIdCheckBtn = document.getElementById('userIdCheckBtn')
     let count = 0;
-    console.log(userIdCheckBtn.disabled)
- 
     textfield.forEach(textfield => {
         const input = textfield.querySelector('input').value
         if(input && textfield.dataset.status === 'active') {
@@ -204,6 +211,7 @@ async function handleJoin() {
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
+    const birthday = document.getElementById('birthday').value;
     const selectJoinPathField = document.getElementById('selectJoinPathField');
     let sex = null
     const buttons = document.querySelectorAll('.genderBtn');
@@ -221,7 +229,7 @@ async function handleJoin() {
         "sex": sex,
         "email": email,
         "phone": phone,
-        "birthday": "1986-01-20",
+        "birthday": birthday,
         "channel": selectJoinPathField.dataset.value,
         "password": password,
         "role": "ROLE_USER"
@@ -231,6 +239,7 @@ async function handleJoin() {
         location.href='/auth/login'
       
     },(err)=> {
-        console.log('err',err)
+        // console.log('err',err)
+        alert(err.response.data.message)
     })
   }
