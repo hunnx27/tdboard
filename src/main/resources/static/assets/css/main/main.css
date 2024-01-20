@@ -87214,6 +87214,12 @@ icon
   background-size: 2rem;
   background-position: center 0;
 }
+.textfield[data-type=birth]::before {
+  background-image: url(../../images/icon/calendar_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+}
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* checkbox

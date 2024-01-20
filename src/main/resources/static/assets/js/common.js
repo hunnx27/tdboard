@@ -152,6 +152,11 @@ function includeHTML() {
 includeHTML();
 
 
+$( function() {
+  $( ".datepicker" ).datepicker();
+} );
+
+
 
 /* tab function 
 function tab(usetab) {
