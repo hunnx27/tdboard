@@ -2,7 +2,7 @@
 <section class="sub-top ">
     <div class="inner">
         <h2>
-            시설신청
+            장비신청
         </h2>
     </div>
 </section>
@@ -10,71 +10,105 @@
     <div class="inner">
         <div class="gallery">
             
-                <div class="gallery-detail">
+                <div class="gallery-detail" id="equipments-detail-body">
                     <div class="gallery-detail-head">
                         <div class="img-box">
-                            <img src="../../../../assets/images/sub/gallery_test_img.png" alt="testImg">
+                            <img src="{{imageUrl}}" alt="testImg">
                         </div>
                         <div class="text-box">
                             <div class="gallery-detail-info">
                                 <div class="title">
-                                    <h6>근학관 VR실습실 105</h6>
+                                    <h6>{{name}}</h6>
                                 </div>
-                                <div class="input-wrap tit-type01">
-                                    <p>일자 선택</p>
+                                <div class="time-form">
+                                    <p class="input-tit">일자 선택</p>
                                     <div class="flex-box gap-10">
-                                        <div class="input-wrap">
-                                            <div class="dropdown" rel="dropdown">
-                                                <a href="javascript:void(0)" class="dropdown-toggle"data-value="value" data-placehorder="년"></a>
+                                        <div class="input-wrap flex-1">
+                                            <select id="yearSelect" class="w-full"></select>
+                                        </div>
+                                        <div class="input-wrap flex-1">
+                                            <select id="monthSelect" class="w-full"></select>
+                                        </div>
+                                        <div class="input-wrap flex-1">
+                                            <select id="daySelect" class="w-full"></select>
+                                        </div>
+                                        {{! <div class="input-wrap flex-1">
+                                            <div class="dropdown w-full" rel="dropdown">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">년</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:void(0)">value</a></li>
+                                                </ul>
+                                            </div>
+                                        </div> }}
+                                        {{! <div class="input-wrap flex-1">
+                                            <div class="dropdown w-full" rel="dropdown">
+                                                <a href="javascript:void(0)" class="dropdown-toggle" >월</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="javascript:void(0)">value</a></li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="input-wrap flex-1">
+                                            <div class="dropdown w-full" rel="dropdown">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">일</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:void(0)">value</a></li>
+                                                </ul>
+                                            </div>
+                                        </div> }}
+                                    </div>
+                                </div>
+                                <div class="time-form">
+                                    <p class="input-tit">시간 선택</p>
+                                    <div class="flex-box gap-10 align-center">
                                         <div class="input-wrap">
-                                            <div class="dropdown" rel="dropdown">
-                                                <a href="javascript:void(0)" class="dropdown-toggle" data-placehorder="월"></a>
+                                            <div class="dropdown w-120" rel="dropdown">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">14</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="javascript:void(0)">value</a></li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        <span>시</span>
+                                        <span>~</span>
                                         <div class="input-wrap">
-                                            <div class="dropdown" rel="dropdown">
-                                                <a href="javascript:void(0)" class="dropdown-toggle"></a>
+                                            <div class="dropdown w-120" rel="dropdown">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">시간</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="javascript:void(0)">value</a></li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        <span>시</span>
+                                    </div>
+                                </div>
+                                <div class="time-form">
+                                    <p class="input-tit">연락처</p>
+                                    <div class="flex-box gap-10 align-center">
+                                        <input type="text" placeholder="010-0000-0000">
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <button class="btn btn-type03 w-full">신청하기</button>
+                                <button id="applicationBtn" class="btn btn-type03 w-full">신청하기</button>
                             </div>
                         </div>
                     </div>
                     <div class="gallery-detail-body">
-
-                        <div class="block-text-wrap">
-                            <span class="block-text">교육 내용</span>
-                        </div>
-                        <div class="textarea-wrap">
+                        
+                        <div class="default-detail">
+                            <div class="block-text-wrap">
+                                <span class="block-text">유의 사항</span>
+                            </div>
+                            <div class="textarea-wrap">
+                                <p>
+                                    시험기간, 주말은 대여할 수 없습니다. (단기/정기 대여 모두 포함)
+    강의실 사용 중 소음으로 인하여 수업 또는 교수 연구실이나 다른 학생들의 강의실 사용에 방해가 되는 행위를 절대 삼가야 합니다.
+    강의실 예약 승인 후 부득이한 경우로 사용하지 않게 될 경우 다른 학생을 위해 반드시 학생지원팀으로 강의실 예약 취소를 요청해주시기 바랍니다.
+                                </p>
+                            </div>
                             <p>
-                                사용 중 소음으로 인하여 수업 또는 교수 연구실이나 다른 학생들의 강의실 사용에 방해가 되는 행위를 절대 삼가야 합니다.
-교육 예약 승인 후 부득이한 경우로 사용하지 않게 될 경우 다른 학생을 위해 반드시 학생지원팀으로 교육 예약 취소를 요청해주시기 바랍니다.
-
-                            </p>
-                        </div>
-                        <div class="block-text-wrap">
-                            <span class="block-text">교육 내용</span>
-                        </div>
-                        <div class="textarea-wrap">
-                            <p>
-                                사용 중 소음으로 인하여 수업 또는 교수 연구실이나 다른 학생들의 강의실 사용에 방해가 되는 행위를 절대 삼가야 합니다.
-교육 예약 승인 후 부득이한 경우로 사용하지 않게 될 경우 다른 학생을 위해 반드시 학생지원팀으로 교육 예약 취소를 요청해주시기 바랍니다.
-
+                                <b class="text-600">문의 : 1688-4292</b>
                             </p>
                         </div>
                     </div>
@@ -82,5 +116,7 @@
 
         </div>
     </div>
+    <input type="hidden" id="equipmentsId" name="id" value="{[id]}"/>
 </section>
+<script type="module" src="/assets/js/home/contents/equipments-detail.js"></script>
 {[>layout/footer]}

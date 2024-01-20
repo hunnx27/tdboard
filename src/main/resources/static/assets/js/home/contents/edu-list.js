@@ -16,7 +16,6 @@ async function getEducationsApi(pageNumber){
     await useAxios.get('/api/v1/educations',
         {}
         ,(res)=> {
-        console.log('res',res.data)
         if(res.data.paging.totalElements > 0){
            
             let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
@@ -48,5 +47,5 @@ function handleSetList(pageNumber, data){
     var result = Mustache.render(template, data);
     document.getElementById("gallery").innerHTML = result;
     
-    paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
+    // paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }

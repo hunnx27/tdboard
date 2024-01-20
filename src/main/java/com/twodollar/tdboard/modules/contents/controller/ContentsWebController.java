@@ -52,16 +52,18 @@ public class ContentsWebController {
     public String shareList() {
         return "pages/contents/share/list";
     }
-    @GetMapping("contents/share-detail")
-    public String shareDetail() {
+    @GetMapping("contents/share-detail/{id}")
+    public String shareDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id); 
         return "pages/contents/share/detail";
     }
     @GetMapping("contents/equipments-list")
     public String equipmentsList() {
         return "pages/contents/equipments/list";
     }
-    @GetMapping("contents/equipments-detail")
-    public String equipmentsDetail() {
+    @GetMapping("contents/equipments-detail/{id}")
+    public String equipmentsDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/equipments/detail";
     }
 
