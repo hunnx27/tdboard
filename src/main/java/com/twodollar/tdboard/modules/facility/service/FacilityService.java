@@ -35,7 +35,6 @@ public class FacilityService {
 
     public Facility updateFacility(final long id, final FacilityRequest updateFacility) {
         Facility facility = getFacilityById(id);
-        facility.setFacilityId(updateFacility.getFacilityId());
         facility.setLocation(updateFacility.getLocation());
         facility.setName(updateFacility.getName());
         facility.setDescription(updateFacility.getDescription());
