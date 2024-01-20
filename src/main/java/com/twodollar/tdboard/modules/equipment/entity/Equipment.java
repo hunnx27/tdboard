@@ -21,8 +21,10 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // 시설ID TODO Entity로 변경해야함 ManyToOne
+    // 시설ID
     private Long facilityId;
+    // 대여 장소
+    private String location;
     // 장비명
     private String name;
     // 장비설명
@@ -45,6 +47,7 @@ public class Equipment {
         return EquipmentResponse.builder()
                 .id(this.id)
                 .facilityId(this.facilityId)
+                .location(this.location)
                 .name(this.name)
                 .description(this.description)
                 .imageUrl(this.imageUrl)

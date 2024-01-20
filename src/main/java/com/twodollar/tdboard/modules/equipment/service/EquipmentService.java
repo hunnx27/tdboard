@@ -36,6 +36,7 @@ public class EquipmentService {
     public Equipment updateEquipment(final long id, final EquipmentRequest updateEquipment) {
         Equipment equipment = getEquipmentById(id);
         equipment.setFacilityId(updateEquipment.getFacilityId());
+        equipment.setLocation(updateEquipment.getLocation());
         equipment.setName(updateEquipment.getName());
         equipment.setDescription(updateEquipment.getDescription());
         equipment.setImageUrl(updateEquipment.getImageUrl());

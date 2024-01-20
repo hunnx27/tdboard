@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @Setter
 public class EquipmentRequest {
     private Long id;
-    // 시설ID TODO Entity로 변경해야함 ManyToOne
     private Long facilityId;
+    private String location;
     // 장비명
     private String name;
     // 장비설명
@@ -34,6 +34,7 @@ public class EquipmentRequest {
         return Equipment.builder().
                 id(this.id).
                 facilityId(this.facilityId).
+                location(this.location).
                 name(this.name).
                 description(this.description).
                 imageUrl(this.imageUrl).

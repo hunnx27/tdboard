@@ -11,6 +11,7 @@ public class EquipmentResponse {
     private Long id;
     // 시설ID TODO Entity로 변경해야함 ManyToOne
     private Long facilityId;
+    private String location;
     // 장비명
     private String name;
     // 장비설명
@@ -24,9 +25,10 @@ public class EquipmentResponse {
     private LocalDateTime updatedAt;
 
     @Builder
-    public EquipmentResponse(Long id, Long facilityId, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public EquipmentResponse(Long id, Long facilityId, String location, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.facilityId = facilityId;
+        this.location = location;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
