@@ -32,7 +32,7 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @PostMapping("/facilitys")
+    @PostMapping("/facilities")
     public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityDetail(
             @RequestBody(required = true) FacilityRequest facilityRequest
     ){
@@ -45,7 +45,7 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @PutMapping("/facilitys/{id}")
+    @PutMapping("/facilities/{id}")
     public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityUpdate(
             @PathVariable("id") Long id,
             @RequestBody(required = true) FacilityRequest facilityRequest
@@ -59,7 +59,7 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @GetMapping("/facilitys")
+    @GetMapping("/facilities")
     public ResponseEntity<ApiCmnResponse<CustomPageImpl<FacilityResponse>>> noticeAll(
             Pageable pageable
     ){
@@ -74,7 +74,7 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @GetMapping("/facilitys/{id}")
+    @GetMapping("/facilities/{id}")
     public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityDetail(
             @PathVariable("id") Long id
     ) throws Exception {
