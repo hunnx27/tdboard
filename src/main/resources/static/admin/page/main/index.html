@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>스타일 가이드</title>
     <!-- 로컬소스 -->
-    <link rel="stylesheet" href="./assets/css/common/reset.css" />
-    <link rel="stylesheet" href="./assets/css/common/font.css" />
-    <link rel="stylesheet" href="./assets/css/guide/styleguide.css" />
+    <link rel="stylesheet" href="../../../assets/css/common/reset.css" />
+    <link rel="stylesheet" href="../../../assets/css/common/font.css" />
+    <link rel="stylesheet" href="../../../assets/css/admin/admin.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <!--
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    -->
   </head>
   <style>
     .material-symbols-outlined {
@@ -100,56 +97,3 @@
 </html>
 
 <!---->
-
-<script>
-  function includeHTML() {
-    let z, elmnt, file, xhttp;
-
-    z = document.getElementsByTagName('*');
-
-    for (let i = 0; i < z.length; i++) {
-      elmnt = z[i];
-      file = elmnt.getAttribute('data-include');
-
-      if (file) {
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-          if (this.readyState == 4) {
-            if (this.status == 200) {
-              elmnt.innerHTML = this.responseText;
-            }
-            if (this.status == 404) {
-              elmnt.innerHTML = 'Page not found.';
-            }
-            /* Remove the attribute, and call this function once more: */
-            elmnt.removeAttribute('data-include');
-            includeHTML();
-          } //if
-        }; //onreadystatechange
-
-        xhttp.open('GET', file, true);
-        xhttp.send();
-        return;
-      } //if - file
-    } //for
-  } //includeHTML
-  includeHTML();
-
-  window.onload = function () {
-    setTimeout(function () {
-      var colorFilterTab = document.querySelectorAll('.colorfiltertab');
-      colorFilterTab.forEach(function (btns, idx) {
-        let colorbox = btns.parentElement.getElementsByClassName('colorbox')[0];
-        let filterbox = btns.parentElement.getElementsByClassName('filter')[0];
-        btns.querySelector('.stylebtn').addEventListener('click', function () {
-          colorbox.style.display = 'block';
-          filterbox.style.display = 'none';
-        });
-        btns.querySelector('.stylefilter').addEventListener('click', function () {
-          colorbox.style.display = 'none';
-          filterbox.style.display = 'block';
-        });
-      });
-    }, 500);
-  };
-</script>

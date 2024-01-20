@@ -2,24 +2,24 @@
 * {
   font-family: 'Noto Sans', sans-serif; /*'AppleSDGothicNeo', 'Noto Sans',*/
 }
-.style-guide .style-guide-container {
+.style-admin .style-admin-container {
   width: 80vw;
 }
 @media (max-width: 1540px) {
-  .style-guide .style-guide-container {
+  .style-admin .style-admin-container {
     width: 120rem;
   }
 }
 @media (max-width: 1200px) {
-  .style-guide .style-guide-container {
+  .style-admin .style-admin-container {
     width: 90vw;
   }
 }
 
-$guideHeadH: 5.8rem;
-$guideSideW: 24rem;
-.guide-head {
-  height: $guideHeadH;
+$adminHeadH: 5.8rem;
+$adminSideW: 24rem;
+.admin-head {
+  height: $adminHeadH;
   background-color: #fff;
   position: fixed;
   left: 0;
@@ -30,7 +30,7 @@ $guideSideW: 24rem;
   .logo-wrap {
     width: 20rem;
   }
-  .guide-logo {
+  .admin-logo {
     width: 100%;
     min-height: 5rem;
     background-image: url(../images/common/koreanairopc.svg);
@@ -40,24 +40,24 @@ $guideSideW: 24rem;
     cursor: pointer;
   }
 }
-.guide-contents {
+.admin-contents {
   display: flex;
   position: relative;
-  top: $guideHeadH;
-  height: calc(100vh - $guideHeadH);
+  top: $adminHeadH;
+  height: calc(100vh - $adminHeadH);
   overflow: hidden;
-  padding-left: $guideSideW;
+  padding-left: $adminSideW;
   padding-right: 0.5rem;
 }
-.guide-side {
+.admin-side {
   position: fixed;
   left: 0;
   top: 0;
-  padding-top: $guideHeadH;
+  padding-top: $adminHeadH;
   height: 100vh;
-  width: $guideSideW;
+  width: $adminSideW;
   box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
-  .guide-side-con {
+  .admin-side-con {
     height: 100%;
     .sidenav-menu-heading {
       padding: 2.4rem 0 0.8rem 1.2rem;
@@ -67,7 +67,7 @@ $guideSideW: 24rem;
         color: #999;
       }
     }
-    .guide-side-list {
+    .admin-side-list {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -82,14 +82,14 @@ $guideSideW: 24rem;
     }
   }
 }
-.guide-container {
+.admin-container {
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  .guide-con {
+  .admin-con {
   }
-  .guide-con-body {
-    .guide-inner {
+  .admin-con-body {
+    .admin-inner {
       width: 100%;
       padding: 10rem;
       background-color: #f3f4f8;
@@ -105,7 +105,7 @@ $guideSideW: 24rem;
 .style-inner {
   margin-right: -1.6rem;
 }
-.style-guide-box {
+.style-admin-box {
   
 }
 .style-box:last-child {
@@ -114,12 +114,12 @@ $guideSideW: 24rem;
 .style-table-list {
   //padding-right: 0.5rem;
 }
-.style-guide-table {
+.style-admin-table {
   width: 100%;
 }
-.style-guide-table thead {
+.style-admin-table thead {
 }
-.style-guide-table th {
+.style-admin-table th {
   position: relative;
   text-align: center;
   font-size: 1.4rem;
@@ -130,7 +130,7 @@ $guideSideW: 24rem;
   font-weight: 600;
   background-color: #f8f8f8;
 }
-.style-guide-table th::before {
+.style-admin-table th::before {
   content: '';
   display: block;
   position: absolute;
@@ -140,13 +140,13 @@ $guideSideW: 24rem;
   height: 2px;
   background-color: #000;
 }
-.style-guide-table th.text-center {
+.style-admin-table th.text-center {
   text-align: center;
 }
-.style-guide-table th.text-left {
+.style-admin-table th.text-left {
   text-align: left;
 }
-.style-guide-table td {
+.style-admin-table td {
   text-align: left;
   font-size: 1.4rem;
   background-color: #fff;
@@ -157,13 +157,13 @@ $guideSideW: 24rem;
   border: 1px solid #ddd;
   vertical-align: middle;
 }
-.style-guide-table td.text-left {
+.style-admin-table td.text-left {
   padding: 0.8rem 0.8rem 0.8rem 1.6rem;
 }
-.style-guide-title {
+.style-admin-title {
   margin-bottom: 1rem;
 }
-.style-guide-title h3 {
+.style-admin-title h3 {
   font-size: 2rem;
 }
 .style-color-cube {
@@ -262,7 +262,7 @@ $guideSideW: 24rem;
 .style-color-cube .sub-color-02 {
 }
 
-.style-guide-popup {
+.style-admin-popup {
   position: fixed;
   left: 0;
   top: 0;
