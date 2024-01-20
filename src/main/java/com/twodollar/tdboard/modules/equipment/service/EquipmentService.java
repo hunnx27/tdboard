@@ -2,6 +2,9 @@ package com.twodollar.tdboard.modules.equipment.service;
 import com.twodollar.tdboard.modules.equipment.controller.request.EquipmentRequest;
 import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import com.twodollar.tdboard.modules.equipment.repository.EquipmentRepository;
+import com.twodollar.tdboard.modules.facility.entity.Facility;
+import com.twodollar.tdboard.modules.facility.repository.FacilityRepository;
+import com.twodollar.tdboard.modules.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
+    private final FacilityService facilityService;
 
     public long getTotalEquipmentSize(){
         return equipmentRepository.count();
@@ -30,18 +34,31 @@ public class EquipmentService {
 
     public Equipment createEquipment(final EquipmentRequest createEquipment) {
         if(createEquipment == null) throw new IllegalArgumentException("item cannot be null");
-        return equipmentRepository.save(createEquipment.toEntity());
+
+        Equipment equipment = createEquipment.toEntity();
+        Long facilityId = createEquipment.getFacilityId();
+        if(facilityId!=null){
+            Facility facility = facilityService.getFacilityById(facilityId);
+            equipment.setFacility(facility);
+        }
+        return equipmentRepository.save(equipment);
     }
 
     public Equipment updateEquipment(final long id, final EquipmentRequest updateEquipment) {
         Equipment equipment = getEquipmentById(id);
-        equipment.setFacilityId(updateEquipment.getFacilityId());
+        equipment.setLocation(updateEquipment.getLocation());
         equipment.setName(updateEquipment.getName());
         equipment.setDescription(updateEquipment.getDescription());
         equipment.setImageUrl(updateEquipment.getImageUrl());
         equipment.setUseYn(updateEquipment.getUseYn());
         equipment.setDelYn(updateEquipment.getDelYn());
         equipment.setUpdatedAt(null);
+
+        Long facilityId = updateEquipment.getFacilityId();
+        if(facilityId != null){
+            Facility facility =facilityService.getFacilityById(facilityId);
+            equipment.setFacility(facility);
+        }
         return equipmentRepository.save(equipment);
     }
 

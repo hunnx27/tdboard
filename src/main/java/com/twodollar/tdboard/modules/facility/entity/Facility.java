@@ -1,11 +1,9 @@
-package com.twodollar.tdboard.modules.equipment.entity;
+package com.twodollar.tdboard.modules.facility.entity;
 
-import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
-import com.twodollar.tdboard.modules.facility.entity.Facility;
+import com.twodollar.tdboard.modules.facility.controller.response.FacilityResponse;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,20 +15,14 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipment {
+public class Facility {
     // PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // 시설ID
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="facility_id", referencedColumnName = "id")
-    private Facility facility;
-    // 대여 장소
-    private String location;
-    // 장비명
+    // 시설명
     private String name;
-    // 장비설명
+    // 시설설명
     private String description;
     // imageUrl
     private String imageUrl;
@@ -46,22 +38,14 @@ public class Equipment {
     @Column(name = "updated_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '최종 변경 일자' ")
     private LocalDateTime updatedAt;
 
-    public EquipmentResponse toResponse() {
-        EquipmentResponse equipmentResponse = EquipmentResponse.builder()
+    public FacilityResponse toResponse() {
+        return FacilityResponse.builder()
                 .id(this.id)
-                .location(this.location)
                 .name(this.name)
                 .description(this.description)
                 .imageUrl(this.imageUrl)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();
-
-        if(this.facility!=null){
-            equipmentResponse.setFacilityId(this.facility.getId());
-            equipmentResponse.setFacilityName(this.facility.getName());
-        }
-
-        return equipmentResponse;
     }
 }

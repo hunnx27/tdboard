@@ -397,6 +397,11 @@ input{}
       @include background(icon, smartphone_icon, svg, no-repeat, 2rem,center);
     }
   }
+  &[data-type='birth'] {
+    &::before{
+      @include background(icon, calendar_icon, svg, no-repeat, 2rem,center);
+    }
+  }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* checkbox

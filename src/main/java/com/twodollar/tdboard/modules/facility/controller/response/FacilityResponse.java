@@ -1,23 +1,17 @@
-package com.twodollar.tdboard.modules.equipment.controller.response;
+package com.twodollar.tdboard.modules.facility.controller.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class EquipmentResponse {
+public class FacilityResponse {
     private Long id;
-    @Setter
-    private Long facilityId;
-    @Setter
-    private String facilityName;
-    private String location;
-    // 장비명
+    // 시설명
     private String name;
-    // 장비설명
+    // 시설설명
     private String description;
     // imageUrl
     private String imageUrl;
@@ -28,11 +22,8 @@ public class EquipmentResponse {
     private LocalDateTime updatedAt;
 
     @Builder
-    public EquipmentResponse(Long id, Long facilityId, String facilityName, String location, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public FacilityResponse(Long id, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.facilityId = facilityId;
-        this.facilityName = facilityName;
-        this.location = location;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;

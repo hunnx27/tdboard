@@ -1,11 +1,11 @@
-package com.twodollar.tdboard.modules.equipment.entity;
+package com.twodollar.tdboard.modules.education.entity;
 
-import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.twodollar.tdboard.modules.education.controller.response.EducationResponse;
 import com.twodollar.tdboard.modules.facility.entity.Facility;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,23 +17,30 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipment {
+public class Education {
     // PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // 시설ID
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="facility_id", referencedColumnName = "id")
     private Facility facility;
-    // 대여 장소
-    private String location;
-    // 장비명
+
+    // 시설명
     private String name;
-    // 장비설명
+    // 시설설명
     private String description;
     // imageUrl
     private String imageUrl;
+
+    private String location;
+    private String startDate; //강의시작일
+    private String endDate; //강의종료일
+    private String applicationStartDate;//접수시작일
+    private String applicationEndDate; //접수종료일
+    private String manager; // 교수명
+    private int capacity; //정원
+
     // 사용여부
     private String useYn;
     // 삭제여부
@@ -46,22 +53,28 @@ public class Equipment {
     @Column(name = "updated_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '최종 변경 일자' ")
     private LocalDateTime updatedAt;
 
-    public EquipmentResponse toResponse() {
-        EquipmentResponse equipmentResponse = EquipmentResponse.builder()
+    public EducationResponse toResponse() {
+        EducationResponse educationResponse = EducationResponse.builder()
                 .id(this.id)
-                .location(this.location)
                 .name(this.name)
                 .description(this.description)
                 .imageUrl(this.imageUrl)
+                .location(this.location)
+                .startDate(this.startDate)
+                .endDate(this.endDate)
+                .applicationStartDate(this.applicationStartDate)
+                .applicationEndDate(this.applicationEndDate)
+                .manager(this.manager)
+                .capacity(this.capacity)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();
 
         if(this.facility!=null){
-            equipmentResponse.setFacilityId(this.facility.getId());
-            equipmentResponse.setFacilityName(this.facility.getName());
+            educationResponse.setFacilityId(this.facility.getId());
+            educationResponse.setFacilityName(this.facility.getName());
         }
 
-        return equipmentResponse;
+        return educationResponse;
     }
 }
