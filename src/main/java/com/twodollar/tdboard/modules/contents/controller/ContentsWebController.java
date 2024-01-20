@@ -30,9 +30,10 @@ public class ContentsWebController {
     public String eduList() {
         return "pages/contents/edu/list";
     }
-
-    @GetMapping("contents/edu-detail")
-    public String eduDetail() {
+    
+    @GetMapping("contents/edu-detail/{id}")
+    public String eduDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/edu/detail";
     }
 
