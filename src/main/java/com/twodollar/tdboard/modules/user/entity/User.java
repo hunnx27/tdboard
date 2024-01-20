@@ -8,6 +8,7 @@ import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -37,7 +39,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleEnum role; // 권한
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updateAt;// 수정일
     private String refreshToken;
 
     public UserResponse toResponse() {
@@ -51,7 +55,7 @@ public class User {
                 .birthday(this.birthday)
                 .channel(this.channel.name())
                 .role(this.role.name())
-                .createdDate(this.createdDate)
+                .createdAt(this.createdAt)
                 .build();
     }
 
