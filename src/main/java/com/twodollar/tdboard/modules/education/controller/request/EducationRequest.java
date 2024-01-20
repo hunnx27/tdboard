@@ -25,7 +25,7 @@ public class EducationRequest {
     private String applicationStartDate;//접수시작일
     private String applicationEndDate; //접수종료일
     private String manager; // 교수명
-    private int capicity; //정원
+    private int capacity; //정원
     // 사용여부
     private String useYn;
     // 삭제여부
@@ -43,7 +43,7 @@ public class EducationRequest {
                 applicationStartDate(this.applicationStartDate).
                 applicationEndDate(this.applicationEndDate).
                 manager(this.manager).
-                capicity(this.capicity).
+                capacity(this.capacity).
                 useYn(this.useYn).
                 delYn(this.delYn).
                 build();

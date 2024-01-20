@@ -50,6 +50,13 @@ public class EducationService {
         education.setDescription(updateEducation.getDescription());
         education.setImageUrl(updateEducation.getImageUrl());
         education.setUseYn(updateEducation.getUseYn());
+        education.setLocation(updateEducation.getLocation());
+        education.setStartDate(updateEducation.getStartDate());
+        education.setEndDate(updateEducation.getEndDate());
+        education.setApplicationStartDate(updateEducation.getApplicationStartDate());
+        education.setApplicationEndDate(updateEducation.getApplicationEndDate());
+        education.setManager(updateEducation.getManager());
+        education.setCapacity(updateEducation.getCapacity());
         education.setDelYn(updateEducation.getDelYn());
         education.setUpdatedAt(null);
 

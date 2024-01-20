@@ -39,7 +39,7 @@ public class Education {
     private String applicationStartDate;//접수시작일
     private String applicationEndDate; //접수종료일
     private String manager; // 교수명
-    private int capicity; //정원
+    private int capacity; //정원
 
     // 사용여부
     private String useYn;
@@ -65,7 +65,7 @@ public class Education {
                 .applicationStartDate(this.applicationStartDate)
                 .applicationEndDate(this.applicationEndDate)
                 .manager(this.manager)
-                .capicity(this.capicity)
+                .capacity(this.capacity)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();
