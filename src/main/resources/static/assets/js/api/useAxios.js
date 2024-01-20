@@ -5,11 +5,12 @@ const URI_PREPENDER = ''
 const wrap = (url) => `${URI_PREPENDER}${url}`
 const appendAuth = (config) => {
   const token = getCookieValue('accessToken');
+  const authorization = token ? `Bearer ${getCookieValue('accessToken')}` : null;
   // console.log('token',token)
   if (token) {
     if (!config) config = { headers: {} }
     if (!config.headers) config.headers = {}
-    config.headers.Authorization = 'Bearer '+token // 추후 토큰 세팅 필요
+    config.headers.Authorization = authorization // 추후 토큰 세팅 필요
   }
   return config
 }
@@ -22,9 +23,11 @@ const appendMultipart = (config) => {
 
 export default {
   async get (url, params, success, fail = err => err.response?.data.message, config) {
+    const token = getCookieValue('accessToken');
+    const authorization = token ? `Bearer ${getCookieValue('accessToken')}` : null;
     await axios.get(wrap(url),{
       headers: {
-        Authorization: `Bearer ${getCookieValue('accessToken')}`,
+        Authorization: authorization,
         responseType: 'json'
       },
       params
