@@ -89,14 +89,22 @@ $admincolor:#1A4079;
   height: 100%;
   overflow-y: auto;
   background-color: #f9fafb;
-  .admin-con-body {
-    
+  .admin-con-head {
+    background-color: #f9fafb;
+    width: 100%;
+      padding: 4rem;
+      max-width:1180px;
+      margin: 0 auto;
+      .admin-title-wrap{
+        @include flexbox('row','space-between','center');
+      }
   }
   .admin-con-body {
     .admin-inner {
       width: 100%;
-      padding: 10rem;
-      background-color: #f3f4f8;
+      padding: 4rem;
+      background-color: #fff;
+      max-width:1180px;
       margin: 0 auto;
     }
   }

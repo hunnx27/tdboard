@@ -89401,10 +89401,27 @@ sub page
   overflow-y: auto;
   background-color: #f9fafb;
 }
+.admin-container .admin-con-head {
+  background-color: #f9fafb;
+  width: 100%;
+  padding: 4rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.admin-container .admin-con-head .admin-title-wrap {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+}
 .admin-container .admin-con-body .admin-inner {
   width: 100%;
-  padding: 10rem;
-  background-color: #f3f4f8;
+  padding: 4rem;
+  background-color: #fff;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
