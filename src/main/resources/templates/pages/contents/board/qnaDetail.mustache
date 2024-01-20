@@ -42,6 +42,7 @@
             </ul>
         </div>
         <div class="table-wrap board-detail">
+        <!--
             <div class="table-head">
                 <div class="flex-box justify-end align-center">
                     <div class="btn-wrap">
@@ -54,6 +55,7 @@
                     </div>
                 </div>
             </div>
+            -->
             <div class="table-body" id="qna-detail-body">
                 <div class="detail-head">
                     <h5>{{title}}</h5>
@@ -64,37 +66,25 @@
                         {{context}}
                     </div>
                 </div>
-                <div class="detail-foot">
-                    <div class="detail-re">
+                <div id="replyContainer" class="detail-foot" style="display:none">
+                    <div id="replyForm" class="detail-re" style="display:none">
                         <div class="detail-re-head">
                             <h5>답변 내용</h5>
                         </div>
                         <div class="detail-re-body">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="답변 내용을 입력해주세요.">
-
-                            </textarea>
+                            <textarea name="replyTextarea" id="replyTextarea" cols="30" rows="10" placeholder="답변 내용을 입력해주세요."></textarea>
                         </div>
                     </div>
-                    <div class="detail-re">
-                        <div class="detail-re-head">
-                            <h6>답변제목</h6>
-                            <p>
-                                <span>2023.11.11</span>
-                                <span>작성자</span>
-                            </p>
-                        </div>
+                    <button id="replySaveBtn" class="btn btn-type-02" style="display:none" disabled>
+                        등록하기
+                    </button>
+                    <div id="replyDetailBody" class="detail-re" style="display:none">
                         
-                        <div class="detail-re-body">
-                            <p>
-                                내용내용내용내용내용내용내용내용<br/>
-                                내용<br/>
-                                내용
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div class="flex-box justify-end align-center">
-                    <button class="btn">목록</button>
+                    <button id="replyBtn" class="btn" style="display:none">답변하기</button>
+                    <button class="btn" onClick="/contents/qna">목록</button>
                 </div>
             </div>
             <div class="table-foot">
@@ -105,6 +95,22 @@
 
     </div>
     <input type="hidden" id="qnaId" name="id" value="{[id]}"/>
+    <input type="hidden" id="role" name="role" value="{[adminRole]}"/>
 </section>
+<script id="reply-template" type="text/template">
+    <div class="detail-re-head">
+        <h6>답변내용</h6>
+        <p>
+            <span>{{replyCreatedDateText}}</span>
+            <span>작성자</span>
+        </p>
+    </div>
+    
+    <div class="detail-re-body">
+        <p>
+            {{replyText}}
+        </p>
+    </div>
+</script>
 <script type="module" src="/assets/js/home/board/qna-detail.js"></script>
 {[>layout/footer]}
