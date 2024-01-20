@@ -20,8 +20,6 @@ public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // 대여 장소
-    private String location;
     // 시설명
     private String name;
     // 시설설명
@@ -43,7 +41,6 @@ public class Facility {
     public FacilityResponse toResponse() {
         return FacilityResponse.builder()
                 .id(this.id)
-                .location(this.location)
                 .name(this.name)
                 .description(this.description)
                 .imageUrl(this.imageUrl)

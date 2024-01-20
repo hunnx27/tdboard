@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Getter
 public class FacilityResponse {
     private Long id;
-    private String location;
     // 시설명
     private String name;
     // 시설설명
@@ -23,9 +22,8 @@ public class FacilityResponse {
     private LocalDateTime updatedAt;
 
     @Builder
-    public FacilityResponse(Long id, String location, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public FacilityResponse(Long id, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.location = location;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;

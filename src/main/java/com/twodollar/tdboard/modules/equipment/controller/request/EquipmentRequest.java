@@ -33,7 +33,6 @@ public class EquipmentRequest {
     public Equipment toEntity(){
         return Equipment.builder().
                 id(this.id).
-                facilityId(this.facilityId).
                 location(this.location).
                 name(this.name).
                 description(this.description).

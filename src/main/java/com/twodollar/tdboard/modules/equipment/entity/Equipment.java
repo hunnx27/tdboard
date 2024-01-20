@@ -1,6 +1,7 @@
 package com.twodollar.tdboard.modules.equipment.entity;
 
 import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
+import com.twodollar.tdboard.modules.facility.entity.Facility;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,7 +23,9 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // 시설ID
-    private Long facilityId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="facility_id", referencedColumnName = "id")
+    private Facility facility;
     // 대여 장소
     private String location;
     // 장비명
@@ -44,9 +47,8 @@ public class Equipment {
     private LocalDateTime updatedAt;
 
     public EquipmentResponse toResponse() {
-        return EquipmentResponse.builder()
+        EquipmentResponse equipmentResponse = EquipmentResponse.builder()
                 .id(this.id)
-                .facilityId(this.facilityId)
                 .location(this.location)
                 .name(this.name)
                 .description(this.description)
@@ -54,5 +56,12 @@ public class Equipment {
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();
+
+        if(this.facility!=null){
+            equipmentResponse.setFacilityId(this.facility.getId());
+            equipmentResponse.setFacilityName(this.facility.getName());
+        }
+
+        return equipmentResponse;
     }
 }
