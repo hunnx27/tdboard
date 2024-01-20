@@ -44,7 +44,7 @@ public class SecurityConfig {
 
     private final AuthFailurHandler authFailurHandler;
     private final AuthSuccessHandler authSuccessHandler;
-    private final AuthPrincipalDetailsService userPrincipalDetailsService;
+
     @Bean
     public UserDetailsService UserDetailService(){
         return new AuthPrincipalDetailsService();
@@ -107,11 +107,11 @@ public class SecurityConfig {
                         .addLogoutHandler((request, response, auth) -> {
                             for(Cookie cookie : request.getCookies()){
                                 String cookieName = cookie.getName();
-                                if(cookieName.indexOf("Token")!=-1){
-                                    Cookie cookieToDelette = new Cookie(cookieName, null);
-                                    cookieToDelette.setMaxAge(0);
-                                    cookieToDelette.setPath("/");
-                                    response.addCookie(cookieToDelette);
+                                if(cookieName.contains("Token")){
+                                    Cookie cookieToDelete = new Cookie(cookieName, null);
+                                    cookieToDelete.setMaxAge(0);
+                                    cookieToDelete.setPath("/");
+                                    response.addCookie(cookieToDelete);
                                 }
                             }
                         })
@@ -128,9 +128,7 @@ public class SecurityConfig {
         http
                 .csrf()
                 .disable()
-                .requestMatchers(machers -> {
-                    machers.antMatchers("/api/**");
-                })
+                .requestMatchers(matchers -> matchers.antMatchers("/api/**"))
                 .addFilterBefore(new JwtAuthenticationFilter(userJwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -138,7 +136,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+    public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers(
                 "/api/v1/refresh",
                 "/v2/api-docs",
