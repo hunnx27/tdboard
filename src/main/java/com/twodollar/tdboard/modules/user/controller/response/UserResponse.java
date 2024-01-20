@@ -20,10 +20,11 @@ public class UserResponse {
     private String birthday;
     private String channel; //유입채널
     private String role;// 권한
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @Builder
-    public UserResponse(long id, String userId, String username, String sex, String email, String phone, String birthday, String channel, String role, LocalDateTime createdDate) {
+    public UserResponse(long id, String userId, String username, String sex, String email, String phone, String birthday, String channel, String role, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.userId = userId;
         this.username = username;
@@ -33,6 +34,7 @@ public class UserResponse {
         this.birthday = birthday;
         this.channel = channel;
         this.role = role;
-        this.createdDate = createdDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }
