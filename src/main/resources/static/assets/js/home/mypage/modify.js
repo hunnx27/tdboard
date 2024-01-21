@@ -28,22 +28,7 @@ const initPasswordCheck = () => {
     const passwordCheckField = document.getElementById('passwordCheckField')
     const passwordChekForm = document.getElementById('passwordChekForm')
     pwdConfirmBtn.addEventListener('click', function(){
-        const password = passwordElement.value;
-        // api call
-        if(password === 'user1'){
-
-            //success
-            getUserApi()
-
-            userModifyForm.style.display = 'block';
-            passwordChekForm.style.display = 'none';
-
-            
-        }else {
-            userModifyForm.style.display = 'none';
-            passwordCheckField.setAttribute('data-status', 'error');
-         
-        }
+       getAuthMeApi()
     })
 }
 
@@ -84,6 +69,29 @@ const initUserForm = () => {
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd'
     });
+}
+
+async function getAuthMeApi() {
+    const passwordCheckInput = document.getElementById('passwordCheckInput');
+ 
+     //auth/validate/me
+    await useAxios.post('/api/v1/auth/validate/me',
+    {
+        'password': passwordCheckInput.value
+    }
+    ,(res)=> {
+
+     getUserApi()
+
+     userModifyForm.style.display = 'block';
+     passwordChekForm.style.display = 'none';
+       
+      
+    },(err)=> {
+        userModifyForm.style.display = 'none';
+        passwordCheckField.setAttribute('data-status', 'error');
+        console.log('err',err)
+    })
 }
 
 async function getUserApi(){
