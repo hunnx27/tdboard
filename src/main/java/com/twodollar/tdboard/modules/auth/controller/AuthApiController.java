@@ -1,6 +1,8 @@
 package com.twodollar.tdboard.modules.auth.controller;
 
 import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
+import com.twodollar.tdboard.modules.auth.controller.request.UserFindRequest;
+import com.twodollar.tdboard.modules.auth.controller.request.UserPasswordRequest;
 import com.twodollar.tdboard.modules.auth.service.AuthJwtTokenProvider;
 import com.twodollar.tdboard.modules.auth.service.AuthService;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
@@ -14,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -120,5 +123,137 @@ public class AuthApiController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
         }
 
+    }
+
+    /**
+     * ID 중복확인 API
+     * @param userId
+     * @return
+     */
+    @Operation(summary = "ID 중복확인", description = "ID 중복확인")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/user-ids/{userId}/exists")
+    public ResponseEntity<ApiCmnResponse<?>> existsUserId(
+            @PathVariable("userId") String userId
+    ){
+        try{
+            User user = userRepository.findByUserId(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 ID입니다."));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    /**
+     * email 중복확인 API
+     * @param email
+     * @return
+     */
+    @Operation(summary = "email 중복확인", description = "email 중복확인")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/user-emails/{email}/exists")
+    public ResponseEntity<ApiCmnResponse<?>> existsEmail(
+            @PathVariable("email") String email
+    ){
+        try{
+            User user = userRepository.findByEmail(email).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 email입니다."));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    /**
+     * email ID찾기 API
+     * @param userFindRequest
+     * @return
+     */
+    @Operation(summary = "ID 찾기", description = "ID 찾기")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/find/id")
+    public ResponseEntity<ApiCmnResponse<?>> findId(
+            @RequestBody UserFindRequest userFindRequest
+    ){
+        try{
+            String username = userFindRequest.getUsername();
+            String userEmail = userFindRequest.getEmail();
+            User user = userRepository.findByUsernameAndEmail(username, userEmail).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 사용자가 없습니다."));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.getUserId()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    /**
+     * email 패스워드 찾기 API
+     * @param userFindRequest
+     * @return
+     */
+    @Operation(summary = "패스워드 찾기", description = "패스워드 찾기")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/find/password")
+    public ResponseEntity<ApiCmnResponse<?>> findPassword(
+            @RequestBody UserFindRequest userFindRequest
+    ){
+        try{
+            String username = userFindRequest.getUsername();
+            String userId = userFindRequest.getUserId();
+            String userEmail = userFindRequest.getEmail();
+            User user = userRepository.findByUsernameAndUserIdAndEmaiil(username, userId, userEmail).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 사용자가 없습니다."));
+
+            user = authService.resetPassword(user);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.getPhone()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    /**
+     * email 본인 인증(개인정보 수정 시)
+     * @param userPasswordRequest
+     * @return
+     */
+    @Operation(summary = "본인 인증", description = "본인 인증(개인정보 수정 시, 탈퇴 시)")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/auth/validate/me")
+    public ResponseEntity<ApiCmnResponse<?>> validMe(
+            Authentication authentication,
+            @RequestBody UserPasswordRequest userPasswordRequest
+
+            ){
+        try{
+            String userId = authentication.getName();
+            String password = userPasswordRequest.getPassword();
+
+            User user = authService.validUser(userId, password);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 }

@@ -56,6 +56,17 @@ public class AuthService {
         return user;
     }
 
+    public User resetPassword(User user) throws IllegalArgumentException{
+        user.setPassword(passwordEncoder.encode(user.getPhone()));
+        return userRepository.save(user);
+    }
+
+    public User validUser(String userId, String passwordPlain) throws ResponseStatusException{
+        String password = passwordEncoder.encode(passwordPlain);
+        User user = userRepository.findByUserIdAndPassword(userId, password).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "입력하신 정보가 일치하지 않습니다."));
+        return user;
+    }
+
     // TEST
     public void join_orgtest(User user){
         user.setRole(RoleEnum.ROLE_ORG);
