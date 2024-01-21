@@ -402,6 +402,11 @@ input{}
       @include background(icon, calendar_icon, svg, no-repeat, 2rem,center);
     }
   }
+  &[data-type='date'] {
+    &::before{
+      @include background(icon, calendar_icon, svg, no-repeat, 2rem,center);
+    }
+  }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* checkbox

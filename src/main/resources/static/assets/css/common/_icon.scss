@@ -31,6 +31,10 @@ icon
       width: 1.6rem;
       height: 1.6rem;
     }
+    &-20{
+      width: 2rem;
+      height: 2rem;
+    }
     &-24{
       width: 2.4rem;
       height: 2.4rem;
@@ -107,6 +111,35 @@ icon
   &.gallery-next-icon {
     &::after {
       background-image: url(../../images/icon/gallery_next_icon.png);
+      filter:none !important;
+    }
+  }
+
+
+
+
+  /*admin*/
+  &.icon-admin-user{
+    &::after {
+      background-image: url(../../images/icon/admin_user_icon.svg);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-book{
+    &::after {
+      background-image: url(../../images/icon/admin_book_icon.svg);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-server{
+    &::after {
+      background-image: url(../../images/icon/admin_suerver_icon.svg);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-moniter{
+    &::after {
+      background-image: url(../../images/icon/admin_moniter_icon.svg);
       filter:none !important;
     }
   }

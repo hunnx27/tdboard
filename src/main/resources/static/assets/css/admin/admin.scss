@@ -50,6 +50,7 @@ $admincolor:#1A4079;
   padding-left: $adminSideW;
   padding-right: 0.5rem;
 }
+/*admin side*/
 .admin-side {
   position: fixed;
   left: 0;
@@ -115,7 +116,7 @@ $admincolor:#1A4079;
     }
   }
 }
-
+/*admin container*/
 .admin-container {
   width: 100%;
   height: 100%;
@@ -135,7 +136,10 @@ $admincolor:#1A4079;
       width:100%;
       position:relative;
       h3{
-        font-size:24px;
+        @include flexbox('row','flex-start','center');
+        gap:0.7rem;
+        font-size:2.4rem;
+        font-weight: 500;
       }
       > button.btn{
         position:absolute;
@@ -158,13 +162,20 @@ $admincolor:#1A4079;
   }
 }
 .admin-con{
-  height:calc(100vh - 14.4rem - 6.4rem)
+  height:calc(100vh - 14.4rem - 6.4rem);
+
 }
+
+
+
+
+
+
 .admin-footer{
   padding:0;
   .admin-foot{
     height: 64px;
-    border-top:#D0D5DD;
+    border-top:1px solid #D0D5DD;
   background-color: #fff;
     @include flexbox('row','center','center');
     p{
@@ -174,11 +185,18 @@ $admincolor:#1A4079;
     }
   }
 }
-.style-layout-line {
-  margin: 1.6rem 0;
-  border: 0px solid #ddd;
-  border-top: 1px solid #ddd;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 @media (pointer: fine) and (hover: hover) {
   .nav-fixed #layoutSidenav #layoutSidenav_nav .sidenav .sidenav-menu {
     overflow-y: auto;

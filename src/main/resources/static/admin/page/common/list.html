@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>스타일 가이드</title>
+    <title>K-하이테크</title>
     <!-- 로컬소스 -->
     <link rel="stylesheet" href="../../../assets/css/common/reset.css" />
     <link rel="stylesheet" href="../../../assets/css/common/font.css" />
@@ -28,41 +28,12 @@
           <div class="admin-con-head">
             <div class="admin-title-wrap">
               <h3>
-                <span class="icon-box icon-size-24 icon-"></span>
-                회원관리
+                <span class="icon-box icon-size-24 icon-admin-book"></span>
+                교육관리
               </h3>
-              <!-- 주석 풀면 자리 잡혀있음.
               <button class="btn"> 
                 추가
               </button>
-              -->
-              <div class="select" aria-label="select" data-size="MD" data-status="" data-icon="">
-                <button class="select-btn" aria-label="selectValue">
-                    <span class="icon-box icon-size-sm icon-smile"></span>
-                    <span class="select-value" data-default-text="전체">
-                      전체
-                    </span>
-                </button>
-                <div class="option-box" aria-label="option-box">
-                  <div>
-                    <button class="option" aria-label="option" title="관리자" disabled>
-                        <span>
-                            관리자
-                        </span>
-                    </button>
-                    <button class="option" aria-label="option" title="교수" disabled>
-                        <span>
-                          교수
-                        </span>
-                    </button>
-                    <button class="option" aria-label="option" title="회원" disabled>
-                      <span>
-                        회원
-                      </span>
-                    </button>
-                  </div>
-                </div>
-            </div>
             </div>
           </div>
           <div class="admin-con-body">
@@ -80,16 +51,25 @@
                     <table class="table table-fixed ">
                         <thead>
                             <tr>
-                                <th class="number">
+                                <th class="td-num">
                                     번호
                                 </th>
-                                <th class="title">
-                                    제목
+                                <th class="td-title">
+                                  강의명
                                 </th>
-                                <th class="date">
-                                    날짜
+                                <th class="td-id">
+                                  정원
                                 </th>
-                                <th style="width:165px">
+                                <th class="td-room">
+                                  강의실
+                                </th>
+                                <th class="td-date">
+                                  시간  
+                                </th>
+                                <th class="td-name">
+                                  당당교수
+                                </th>
+                                <th class="td-btn">
                                     관리
                                 </th>
                             </tr>
@@ -101,16 +81,32 @@
                                         5
                                     </span>
                                 </td>
-                                <td class="title">
+                                <td>
                                     <a href="#">
-                                        공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지공지
+                                      강의명입니다.
                                     </a>
+                                </td>
+                                <td>
+                                  <span>
+                                    <b>3</b>/500
+                                  </span>
+                                </td>
+                                <td>
+                                  <span>
+                                    본부동 101호
+                                  </span>
+                                </td>
+                                <td>
+                                  <span>
+                                    홍길동
+                                  </span>
                                 </td>
                                 <td>
                                     <span>
                                         2323.11.14
                                     </span>
                                 </td>
+                                
                                 <td>
                                   <div class="flex-box gap-10 align-center">
                                     <button class="btn admin-btn-type-01">
@@ -179,6 +175,9 @@
 </html>
 <script src="../../../assets/js/plugin/swiper/swiper-bundle.min.js"></script>
 <script src="../../../assets/js/jquery-3.7.0.min.js"></script>
+<script src="../../../assets/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="../../../assets/js/jquery-ui.min.css"></link>
 <script src="../../../assets/js/common.js"></script>
+<script src="../../../assets/js/admin.js"></script>
 <script src="../../../assets/js/header.js"></script>
 <!---->
