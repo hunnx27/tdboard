@@ -29,11 +29,40 @@
             <div class="admin-title-wrap">
               <h3>
                 <span class="icon-box icon-size-24 icon-"></span>
-                장비관리
+                회원관리
               </h3>
-              <button class="btn">
+              <!-- 주석 풀면 자리 잡혀있음.
+              <button class="btn"> 
                 추가
               </button>
+              -->
+              <div class="select" aria-label="select" data-size="MD" data-status="" data-icon="">
+                <button class="select-btn" aria-label="selectValue">
+                    <span class="icon-box icon-size-sm icon-smile"></span>
+                    <span class="select-value" data-default-text="전체">
+                      전체
+                    </span>
+                </button>
+                <div class="option-box" aria-label="option-box">
+                  <div>
+                    <button class="option" aria-label="option" title="관리자" disabled>
+                        <span>
+                            관리자
+                        </span>
+                    </button>
+                    <button class="option" aria-label="option" title="교수" disabled>
+                        <span>
+                          교수
+                        </span>
+                    </button>
+                    <button class="option" aria-label="option" title="회원" disabled>
+                      <span>
+                        회원
+                      </span>
+                    </button>
+                  </div>
+                </div>
+            </div>
             </div>
           </div>
           <div class="admin-con-body">
@@ -60,6 +89,9 @@
                                 <th class="date">
                                     날짜
                                 </th>
+                                <th style="width:165px">
+                                    관리
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +111,16 @@
                                         2323.11.14
                                     </span>
                                 </td>
+                                <td>
+                                  <div class="flex-box gap-10 align-center">
+                                    <button class="btn admin-btn-type-01">
+                                      승인
+                                    </button>
+                                    <button class="btn admin-btn-type-02">
+                                      취소
+                                    </button>
+                                  </div>
+                              </td>
                             </tr>
                         </tbody>
                     </table>
@@ -128,8 +170,9 @@
             </div>
           </div>
         </main>
+        <footer class="admin-footer" data-include="../../include/footer.html"></footer>
       </div>
-      <footer data-include="../../include/footer.html"></footer>
+      
     </section>
     
   </body>
