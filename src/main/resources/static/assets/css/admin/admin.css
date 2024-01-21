@@ -89315,23 +89315,23 @@ sub page
   font-family: "Noto Sans", sans-serif; /*'AppleSDGothicNeo', 'Noto Sans',*/
 }
 
-.style-guide .style-guide-container {
+.style-admin .style-admin-container {
   width: 80vw;
 }
 
 @media (max-width: 1540px) {
-  .style-guide .style-guide-container {
+  .style-admin .style-admin-container {
     width: 120rem;
   }
 }
 @media (max-width: 1200px) {
-  .style-guide .style-guide-container {
+  .style-admin .style-admin-container {
     width: 90vw;
   }
 }
-.guide-head {
-  height: 5.8rem;
-  background-color: #fff;
+.admin-head {
+  height: 6.4rem;
+  background-color: #1A4079;
   position: fixed;
   left: 0;
   top: 0;
@@ -89339,10 +89339,10 @@ sub page
   box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
   z-index: 1040;
 }
-.guide-head .logo-wrap {
+.admin-head .logo-wrap {
   width: 20rem;
 }
-.guide-head .guide-logo {
+.admin-head .admin-logo {
   width: 100%;
   min-height: 5rem;
   background-image: url(../images/common/koreanairopc.svg);
@@ -89352,37 +89352,38 @@ sub page
   cursor: pointer;
 }
 
-.guide-contents {
+.admin-contents {
   display: flex;
   position: relative;
-  top: 5.8rem;
-  height: calc(100vh - 5.8rem);
+  top: 6.4rem;
+  height: calc(100vh - 6.4rem);
   overflow: hidden;
-  padding-left: 24rem;
+  padding-left: 28rem;
   padding-right: 0.5rem;
 }
 
-.guide-side {
+.admin-side {
   position: fixed;
   left: 0;
   top: 0;
-  padding-top: 5.8rem;
+  padding-top: 6.4rem;
   height: 100vh;
-  width: 24rem;
+  width: 28rem;
   box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
+  background-color: #1A4079;
 }
-.guide-side .guide-side-con {
+.admin-side .admin-side-con {
   height: 100%;
 }
-.guide-side .guide-side-con .sidenav-menu-heading {
+.admin-side .admin-side-con .sidenav-menu-heading {
   padding: 2.4rem 0 0.8rem 1.2rem;
 }
-.guide-side .guide-side-con .sidenav-menu-heading span {
+.admin-side .admin-side-con .sidenav-menu-heading span {
   color: 1.2rem;
   font-weight: 700;
   color: #999;
 }
-.guide-side .guide-side-con .guide-side-list {
+.admin-side .admin-side-con .admin-side-list {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -89390,19 +89391,37 @@ sub page
   transition: all 0.25s ease-in-out;
   cursor: pointer;
 }
-.guide-side .guide-side-con .guide-side-list:hover {
+.admin-side .admin-side-con .admin-side-list:hover {
   background-color: rgba(68, 68, 68, 0.5);
 }
 
-.guide-container {
+.admin-container {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  background-color: #f9fafb;
 }
-.guide-container .guide-con-body .guide-inner {
+.admin-container .admin-con-head {
+  background-color: #f9fafb;
   width: 100%;
-  padding: 10rem;
-  background-color: #f3f4f8;
+  padding: 4rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.admin-container .admin-con-head .admin-title-wrap {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+}
+.admin-container .admin-con-body .admin-inner {
+  width: 100%;
+  padding: 4rem;
+  background-color: #fff;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -89420,11 +89439,11 @@ sub page
   margin-bottom: 0;
 }
 
-.style-guide-table {
+.style-admin-table {
   width: 100%;
 }
 
-.style-guide-table th {
+.style-admin-table th {
   position: relative;
   text-align: center;
   font-size: 1.4rem;
@@ -89436,7 +89455,7 @@ sub page
   background-color: #f8f8f8;
 }
 
-.style-guide-table th::before {
+.style-admin-table th::before {
   content: "";
   display: block;
   position: absolute;
@@ -89447,15 +89466,15 @@ sub page
   background-color: #000;
 }
 
-.style-guide-table th.text-center {
+.style-admin-table th.text-center {
   text-align: center;
 }
 
-.style-guide-table th.text-left {
+.style-admin-table th.text-left {
   text-align: left;
 }
 
-.style-guide-table td {
+.style-admin-table td {
   text-align: left;
   font-size: 1.4rem;
   background-color: #fff;
@@ -89467,15 +89486,15 @@ sub page
   vertical-align: middle;
 }
 
-.style-guide-table td.text-left {
+.style-admin-table td.text-left {
   padding: 0.8rem 0.8rem 0.8rem 1.6rem;
 }
 
-.style-guide-title {
+.style-admin-title {
   margin-bottom: 1rem;
 }
 
-.style-guide-title h3 {
+.style-admin-title h3 {
   font-size: 2rem;
 }
 
@@ -89549,7 +89568,7 @@ sub page
   vertical-align: middle;
 }
 
-.style-guide-popup {
+.style-admin-popup {
   position: fixed;
   left: 0;
   top: 0;
@@ -89608,4 +89627,4 @@ sub page
 
 .material-symbols-outlined:hover {
   color: #666;
-}/*# sourceMappingURL=styleguide.css.map */
+}/*# sourceMappingURL=admin.css.map */
