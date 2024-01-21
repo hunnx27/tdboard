@@ -35,13 +35,10 @@ window.onload = function() {
     // 중복확인 클릭시
     const userIdCheckBtn = document.getElementById('userIdCheckBtn');
     const userIdElement = document.getElementById('userId');
+    const userIdField = document.getElementById('userIdField');
+    const userIdFieldChild = userIdField.querySelector('.error-text'); 
     userIdCheckBtn.addEventListener('click', function(){
-        // 아이디 중복 체크 api호출
-        // 성공하면 아래 로직(정책필요)
-        userIdCheckBtn.disabled = true
-        userIdElement.readOnly = true
-        validationButtonVisible()
-
+        userIdCheckApi()
     })
 
     // 가입경로
@@ -66,22 +63,49 @@ window.onload = function() {
     })
 }
 
+// 아이디 중복 확인
+function userIdCheckApi() {
+    const userIdElement = document.getElementById('userId');
+    const userIdField = document.getElementById('userIdField');
+    const userIdFieldChild = userIdField.querySelector('.error-text'); 
+    // 아이디 중복 체크 api호출
+    useAxios.post(`/api/v1/auth/user-ids/${userIdElement.value}/exists`,
+    {}
+    ,(res)=> {
+        if(res.data === 'unique'){
+            alert('사용가능한 아이디 입니다.')
+            userIdCheckBtn.disabled = true
+            userIdElement.readOnly = true
+            validationButtonVisible()
+        }else {
+            userIdField.setAttribute('data-status', 'error');
+            userIdFieldChild.innerText = '이미 존재하는 아이디 입니다.'
+        }
+        
+    },(err)=> {
+        userIdField.setAttribute('data-status', 'error');
+        userIdFieldChild.innerText = '이미 존재하는 아이디 입니다.'
+    
+    })
+}
 
 // 아이디 실시간 체크
 function validateUserId(){
     const userIdElement = document.getElementById('userId');
     const userIdField = document.getElementById('userIdField');
     const userIdFieldChild = userIdField.querySelector('.error-text'); 
+    const userIdCheckBtn = document.getElementById('userIdCheckBtn');
     userIdElement.addEventListener('input', function() {
         const userId = userIdElement.value;
 
         if (!userIdRegex.test(userId)) {
             userIdField.setAttribute('data-status', 'error');
             userIdFieldChild.innerText = '영문자 또는 영문,숫자만(5~20자) 입력 가능합니다'
-         
+            userIdCheckBtn.disabled = true
         } else {
             userIdField.setAttribute('data-status', 'active');
             userIdFieldChild.innerText = '';
+            userIdCheckBtn.disabled = false
         }
         validationButtonVisible()
     });
