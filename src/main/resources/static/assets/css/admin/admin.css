@@ -87299,6 +87299,8 @@ icon
 /* ------------------------------------------------------------------------------------------------------------------ */
 .select {
   position: relative;
+  z-index: 100;
+  min-width: 100px;
   /* status */
   /* size */
 }
@@ -87356,6 +87358,7 @@ icon
 }
 .select .option-box > div {
   max-height: 172px;
+  height: 100%;
   overflow-y: auto;
   padding-right: 1.4rem;
 }
@@ -89423,14 +89426,15 @@ sub page
 .admin-container {
   width: 100%;
   height: 100%;
-  padding: 72px 0;
+  padding: 72px 0 0 0;
   overflow-y: auto;
   background-color: #f9fafb;
 }
 .admin-container .admin-con-head {
   background-color: #f9fafb;
   width: 100%;
-  padding: 4rem;
+  height: 60px;
+  padding-bottom: 36px;
   max-width: 1180px;
   margin: 0 auto;
 }
@@ -89442,11 +89446,26 @@ sub page
   align-items: center;
   -moz-justify-content: space-between;
   justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.admin-container .admin-con-head .admin-title-wrap h3 {
+  font-size: 24px;
+}
+.admin-container .admin-con-head .admin-title-wrap > button.btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.admin-container .admin-con-body {
+  height: calc(100% - 128px);
 }
 .admin-container .admin-con-body .admin-inner {
   width: 100%;
+  height: 100%;
   padding: 4rem;
   background-color: #fff;
+  overflow-y: scroll;
   max-width: 1180px;
   margin: 0 auto;
 }
@@ -89456,7 +89475,24 @@ sub page
 }
 
 .admin-footer {
+  padding: 0;
+}
+.admin-footer .admin-foot {
+  height: 64px;
+  border-top: #D0D5DD;
   background-color: #fff;
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-justify-content: center;
+  justify-content: center;
+}
+.admin-footer .admin-foot p {
+  text-align: center;
+  font-size: 11px;
 }
 
 .style-layout-line {

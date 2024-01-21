@@ -470,6 +470,8 @@ input{}
 
 .select{
   position:relative;
+  z-index: 100;
+  min-width:100px;
   .select-btn{
     position:relative;
     @include flexbox(row, flex-start, center);
@@ -518,6 +520,7 @@ input{}
     padding-right:1.4rem;
     > div{
       max-height:172px;
+      height:100%;
       overflow-y:auto;
       padding-right:1.4rem;
     }

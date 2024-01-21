@@ -87299,6 +87299,8 @@ icon
 /* ------------------------------------------------------------------------------------------------------------------ */
 .select {
   position: relative;
+  z-index: 100;
+  min-width: 100px;
   /* status */
   /* size */
 }
@@ -87356,6 +87358,7 @@ icon
 }
 .select .option-box > div {
   max-height: 172px;
+  height: 100%;
   overflow-y: auto;
   padding-right: 1.4rem;
 }
