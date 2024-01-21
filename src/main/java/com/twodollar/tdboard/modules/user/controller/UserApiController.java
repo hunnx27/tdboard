@@ -24,7 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@PreAuthorize("hasAnyRole('USER','PROFESSION','ADMIN')")
+@PreAuthorize("hasAnyRole('USER','PROFESSOR','ADMIN')")
 @Slf4j
 @RestController
 @RequestMapping("/api/v1")

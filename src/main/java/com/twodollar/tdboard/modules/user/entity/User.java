@@ -49,11 +49,11 @@ public class User {
                 .id(this.id)
                 .userId(this.userId)
                 .username(this.username)
-                .sex(this.sex.name())
+                .sex(this.sex!=null?this.sex.name():null)
                 .email(this.email)
                 .phone(this.phone)
                 .birthday(this.birthday)
-                .channel(this.channel.name())
+                .channel(this.channel!=null?this.channel.name():null)
                 .role(this.role.name())
                 .createdAt(this.createdAt)
                 .build();

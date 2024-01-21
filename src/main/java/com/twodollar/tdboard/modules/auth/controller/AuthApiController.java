@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -140,8 +141,11 @@ public class AuthApiController {
             @PathVariable("userId") String userId
     ){
         try{
-            User user = userRepository.findByUserId(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 ID입니다."));
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+            int cnt = userRepository.countByUserId(userId);
+            if(cnt!=0){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 id입니다.");
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("unique"));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -164,8 +168,11 @@ public class AuthApiController {
             @PathVariable("email") String email
     ){
         try{
-            User user = userRepository.findByEmail(email).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 email입니다."));
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+            int cnt = userRepository.countByEmail(email);
+            if(cnt!=0){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "중복된 email입니다.");
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("unique"));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -217,7 +224,7 @@ public class AuthApiController {
             String username = userFindRequest.getUsername();
             String userId = userFindRequest.getUserId();
             String userEmail = userFindRequest.getEmail();
-            User user = userRepository.findByUsernameAndUserIdAndEmaiil(username, userId, userEmail).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 사용자가 없습니다."));
+            User user = userRepository.findByUsernameAndUserIdAndEmail(username, userId, userEmail).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 사용자가 없습니다."));
 
             user = authService.resetPassword(user);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.getPhone()));
@@ -228,6 +235,8 @@ public class AuthApiController {
         }
     }
 
+
+    @PreAuthorize("hasAnyRole('USER','PROFESSOR','ADMIN')")
     /**
      * email 본인 인증(개인정보 수정 시)
      * @param userPasswordRequest
