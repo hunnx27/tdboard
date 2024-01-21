@@ -1,3 +1,5 @@
+import useAxios from '/assets/js/api/useAxios.js'
+
 window.onload = function() {
     initPasswordCheck()
 
@@ -20,16 +22,27 @@ const initPasswordCheck = () => {
     })
     
     pwdConfirmBtn.addEventListener('click', function(){
-        const password = passwordElement.value;
-        // api call
-        if(password === 'user1'){
-            if(confirm('탈퇴하시겠습니까?')){
-                //api call 탈퇴, 로그아웃
-                //success
-                location.replace('/')
-            }
-        }else {
-            passwordCheckField.setAttribute('data-status', 'error');
+        getAuthMeApi(passwordElement.value)
+    })
+}
+
+async function getAuthMeApi(password) {
+ 
+    await useAxios.post('/api/v1/auth/validate/me',
+    {
+        'password': password
+    }
+    ,(res)=> {
+        
+        if(confirm('탈퇴하시겠습니까?')){
+            //api call 탈퇴, 로그아웃
+            alert('탈퇴성공')
+            //success
+            // location.replace('/')
         }
+      
+    },(err)=> {
+        passwordCheckField.setAttribute('data-status', 'error');
+        // alert(err.response.data.message)
     })
 }
