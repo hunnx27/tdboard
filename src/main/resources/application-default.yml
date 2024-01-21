@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # JDBC 드라이버 정보 설정
+    #url: jdbc:mysql://sehankdp.cafe24.com:3306/sehankdp?serverTimezone=Asia/Seoul  # DB 연결 정보 설정
+    url: jdbc:mysql://localhost:3306/sehankdp?serverTimezone=Asia/Seoul  # DB 연결 정보 설정
+    username: sehankdp  # DB 계정 설정
+    password: tpgkseo2!  # DB 비밀번호 설정
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # hibernate를 사용해서 DDL을 생성하기 위함.
+    show-sql: true  # hibernate가 실행한 SQL 쿼리문을 보기 위함
+  output:
+    ansi:
+      enabled: always
+
+tokenValidTimeout: 600 # 60초(1분)
+server:
+  servlet:
+    session:
+      timeout: 120      # 120s(2분)
+      cookie:
+        max-age: 120    # 120s(2분)
+        name: SID
+        http-only: true
+        secure: true

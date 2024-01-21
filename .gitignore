@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 #인증파일 커밋 하지 않음
-src/main/resources/application.yml
+#src/main/resources/application.yml
 
 ### STS ###
 .apt_generated
@@ -35,5 +35,5 @@ build/
 ### VS Code ###
 .vscode/
 
-src/main/resources/application-default.yml
-src/main/resources/application-dev.yml
+#src/main/resources/application-default.yml
+#src/main/resources/application-dev.yml

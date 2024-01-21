@@ -47,4 +47,3 @@ spring:
   mustache:
     servlet:
       expose-session-attributes: true
-    expose-session-attributes: true
