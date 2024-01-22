@@ -4,9 +4,6 @@ import com.twodollar.tdboard.modules.application.controller.request.ApplicationR
 import com.twodollar.tdboard.modules.application.controller.response.ApplicationResponse;
 import com.twodollar.tdboard.modules.application.entity.Application;
 import com.twodollar.tdboard.modules.application.service.ApplicationService;
-import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
-import com.twodollar.tdboard.modules.board.entity.Board;
-import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.controller.response.BookingResponse;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
@@ -15,7 +12,6 @@ import com.twodollar.tdboard.modules.booking.service.BookingService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
-import com.twodollar.tdboard.modules.user.controller.response.UserResponse;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,7 +34,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class UserApiController {
+public class UserMeApiController {
 
     private final UserService userService;
     private final BookingService bookingService;
@@ -121,7 +117,7 @@ public class UserApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @DeleteMapping("/bookings/{id}")
+    @DeleteMapping("/users/me/bookings/{id}")
     public ResponseEntity<ApiCmnResponse<?>> bookingDelete(
             Authentication authentication,
             @PathVariable("id") Long id
