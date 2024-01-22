@@ -30,6 +30,7 @@ $admincolor:#1A4079;
   z-index: 1040;
   .logo-wrap {
     width: 20rem;
+    background-color: transparent;
   }
   .admin-logo {
     width: 100%;
@@ -93,6 +94,7 @@ $admincolor:#1A4079;
     text-align: left;
     position:relative;
     color:#fff;
+    font-weight: 700;
     &::after{
       content:'';
       position:absolute;
@@ -166,8 +168,52 @@ $admincolor:#1A4079;
 
 }
 
+/* admin table*/
+.admin-table{
 
+}
+.admin-detail{
+  border-top:1px solid $black;
+  tbody{
+    tr{
+      th,td{
+        border-bottom:1px solid #B3B3B3;
+        padding-top:1.2rem;
+        padding-bottom:1.2rem;
+      }
+      th{
+        height:6rem;
+        background-color: #F4F4F4;
+        span{
+          color:$black;
+          font-size:1.6rem ;
+          font-weight: 500;
+        }
+        > div{
 
+        }
+        &.vertical-t{
+          vertical-align: top;
+        }
+      }
+      td{
+        height:6rem;
+        padding-left:3.6rem;
+        padding-right: 3.6rem;
+        &.vertical-t{
+          vertical-align: top;
+        }
+        span{
+          color:#666666;
+        }
+       
+        > div{
+
+        }
+      }
+    }
+  }  
+}
 
 
 
@@ -176,7 +222,7 @@ $admincolor:#1A4079;
   .admin-foot{
     height: 64px;
     border-top:1px solid #D0D5DD;
-  background-color: #fff;
+    background-color: #fff;
     @include flexbox('row','center','center');
     p{
       text-align: center;

@@ -809,3 +809,22 @@ sub page
         width:100%;
     }
 }
+.status-text{
+    padding:0.7rem 1rem;
+    border:1px solid #1E4079;
+    background-color: #1E4079;
+    color:#fff;
+    .status-confirm{
+        
+    }
+    .status-confirm-fi{
+        border:1px solid #00AAF6;
+    background-color: #00AAF6;
+    }
+    .status-cancel-fi{
+
+    }
+    .status-cancel{
+
+    }
+}

@@ -89371,6 +89371,7 @@ sub page
 }
 .admin-head .logo-wrap {
   width: 20rem;
+  background-color: transparent;
 }
 .admin-head .admin-logo {
   width: 100%;
@@ -89433,6 +89434,7 @@ sub page
   text-align: left;
   position: relative;
   color: #fff;
+  font-weight: 700;
 }
 .admin-nav-list > button::after {
   content: "";
@@ -89513,6 +89515,38 @@ sub page
   height: calc(100vh - 14.4rem - 6.4rem);
 }
 
+/* admin table*/
+.admin-detail {
+  border-top: 1px solid #333;
+}
+.admin-detail tbody tr th, .admin-detail tbody tr td {
+  border-bottom: 1px solid #B3B3B3;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+.admin-detail tbody tr th {
+  height: 6rem;
+  background-color: #F4F4F4;
+}
+.admin-detail tbody tr th span {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.admin-detail tbody tr th.vertical-t {
+  vertical-align: top;
+}
+.admin-detail tbody tr td {
+  height: 6rem;
+  padding-left: 3.6rem;
+  padding-right: 3.6rem;
+}
+.admin-detail tbody tr td.vertical-t {
+  vertical-align: top;
+}
+.admin-detail tbody tr td span {
+  color: #666666;
+}
 .admin-footer {
   padding: 0;
 }
