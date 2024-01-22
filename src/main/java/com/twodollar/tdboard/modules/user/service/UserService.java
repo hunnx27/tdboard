@@ -13,6 +13,10 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserService {
     private final UserRepository userRepository;
 
+    public User getUserById(final Long userId) throws ResponseStatusException {
+        return userRepository.findById(userId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다."));
+    }
+
     public User getUserByUserId(final String userId) throws ResponseStatusException {
         return userRepository.findByUserId(userId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다."));
     }
