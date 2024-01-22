@@ -3,6 +3,10 @@ package com.twodollar.tdboard.modules.user.controller;
 import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
+import com.twodollar.tdboard.modules.booking.controller.response.BookingResponse;
+import com.twodollar.tdboard.modules.booking.entity.Booking;
+import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
+import com.twodollar.tdboard.modules.booking.service.BookingService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
@@ -32,6 +36,8 @@ import java.util.stream.Collectors;
 public class UserApiController {
 
     private final UserService userService;
+    private final BookingService bookingService;
+
     @Operation(summary = "사용자 상세 조회", description = "사용자 상세 조회")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
@@ -73,6 +79,33 @@ public class UserApiController {
             }
             User user = userService.update(userId, userRequest);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "사용자 예약 목록 조회", description = "사용자 예약 목록 조회(장비/시설)")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/users/me/bookings")
+    public ResponseEntity<ApiCmnResponse<?>> bookingAll(
+            Authentication authentication,
+            Pageable pageable,
+            @RequestParam(value = "bookingType") BookingType bookingType
+    ){
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            long totalSize = bookingService.getTotalBookingSize();
+            List<Booking> bookingList = bookingService.getBookings(userId, bookingType, pageable);
+            List<BookingResponse> bookingResponseList = bookingList.stream().map(booking -> booking.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(bookingResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){

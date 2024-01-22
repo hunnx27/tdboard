@@ -1,6 +1,7 @@
 package com.twodollar.tdboard.modules.booking.service;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
+import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
 import com.twodollar.tdboard.modules.booking.repository.BookingRepository;
 import com.twodollar.tdboard.modules.education.entity.Education;
 import com.twodollar.tdboard.modules.education.service.EducationService;
@@ -32,11 +33,14 @@ public class BookingService {
     public long getTotalBookingSize(){
         return bookingRepository.count();
     }
-    public List<Booking> getBookings(Pageable pageable) {
-        List<Booking> list = bookingRepository.findAll(pageable).getContent();
-        if(list.size() == 0){
-            new IllegalArgumentException("no such data");
-        }
+    public List<Booking> getBookings(BookingType bookingType, Pageable pageable) {
+        List<Booking> list = bookingRepository.getBookingsByBookingType(bookingType, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        return list;
+    }
+
+    public List<Booking> getBookings(String userId, BookingType bookingType, Pageable pageable) {
+        User user = userService.getUserByUserId(userId);
+        List<Booking> list = bookingRepository.getBookingsByUserAndBookingType(user, bookingType, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
         return list;
     }
 

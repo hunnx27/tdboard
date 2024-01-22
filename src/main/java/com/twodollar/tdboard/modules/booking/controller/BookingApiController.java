@@ -3,6 +3,7 @@ package com.twodollar.tdboard.modules.booking.controller;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.controller.response.BookingResponse;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
+import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
 import com.twodollar.tdboard.modules.booking.service.BookingService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
@@ -34,7 +35,7 @@ public class BookingApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/bookings")
-    public ResponseEntity<ApiCmnResponse<?>> bookingDetail(
+    public ResponseEntity<ApiCmnResponse<?>> bookingInsert(
             @RequestBody(required = true) BookingRequest bookingRequest
     ){
         try {
@@ -53,12 +54,13 @@ public class BookingApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/bookings")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
-            Pageable pageable
+    public ResponseEntity<ApiCmnResponse<?>> bookingAll(
+            Pageable pageable,
+            @RequestParam(value = "bookingType") BookingType bookingType
     ){
         try {
             long totalSize = bookingService.getTotalBookingSize();
-            List<Booking> bookingList = bookingService.getBookings(pageable);
+            List<Booking> bookingList = bookingService.getBookings(bookingType, pageable);
             List<BookingResponse> bookingResponseList = bookingList.stream().map(booking -> booking.toResponse()).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(bookingResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
