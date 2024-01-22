@@ -244,5 +244,28 @@ $button-disabled-border : #D0D5DD;
       }
     }
   }
-
+  &.admin-btn-type-01{
+    background-color: #fff;
+    border: 1px solid #00AAF6;
+    color:#00AAF6;
+    *{
+      color: #00AAF6;
+    }
+  }
+  &.admin-btn-type-02{
+    background-color: #fff;
+    border: 1px solid #F04438;
+    color:#F04438;
+    *{
+      color: #fff;
+    }
+  }
+  &.admin-btn-type-03{
+    background-color: #797F8B;
+    border: 1px solid #797F8B;
+    color:#fff;
+    *{
+      color: #fff;
+    }
+  }
 }

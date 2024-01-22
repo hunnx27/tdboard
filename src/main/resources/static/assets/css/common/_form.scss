@@ -278,6 +278,24 @@ input{}
       outline:0px solid  $primary ;
     }
   }
+  textarea{
+    width: 100%;
+    max-width: 100%;
+    min-height:15rem;
+    resize: none;
+    border:1px solid #ddd;
+    padding: 0.8rem;
+    &:hover{
+      border-color: $hover;
+      outline-offset: 0;
+      outline: 0px solid $hover;
+    }
+    &:focus{
+      border-color: $focus;
+      outline-offset: 0;
+      outline:0px solid  $primary ;
+    }
+  }
   .error-text {
     height: 0;
     padding-top: 0px;
