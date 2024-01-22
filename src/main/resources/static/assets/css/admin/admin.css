@@ -87143,6 +87143,24 @@ icon
   outline-offset: 0;
   outline: 0px solid #01A0E8;
 }
+.textfield textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 15rem;
+  resize: none;
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+}
+.textfield textarea:hover {
+  border-color: #A2D2EB;
+  outline-offset: 0;
+  outline: 0px solid #A2D2EB;
+}
+.textfield textarea:focus {
+  border-color: #5F9DCF;
+  outline-offset: 0;
+  outline: 0px solid #01A0E8;
+}
 .textfield .error-text {
   height: 0;
   padding-top: 0px;
@@ -88085,6 +88103,30 @@ table
 }
 .btn.btn.btn-icon-only .icon-box {
   margin-left: 0;
+}
+.btn.admin-btn-type-01 {
+  background-color: #fff;
+  border: 1px solid #00AAF6;
+  color: #00AAF6;
+}
+.btn.admin-btn-type-01 * {
+  color: #00AAF6;
+}
+.btn.admin-btn-type-02 {
+  background-color: #fff;
+  border: 1px solid #F04438;
+  color: #F04438;
+}
+.btn.admin-btn-type-02 * {
+  color: #fff;
+}
+.btn.admin-btn-type-03 {
+  background-color: #797F8B;
+  border: 1px solid #797F8B;
+  color: #fff;
+}
+.btn.admin-btn-type-03 * {
+  color: #fff;
 }
 
 header {
@@ -89341,6 +89383,16 @@ sub page
   }
 }
 
+.status-text {
+  padding: 0.7rem 1rem;
+  border: 1px solid #1E4079;
+  background-color: #1E4079;
+  color: #fff;
+}
+.status-text .status-confirm-fi {
+  border: 1px solid #00AAF6;
+  background-color: #00AAF6;
+}
 * {
   font-family: "Noto Sans", sans-serif; /*'AppleSDGothicNeo', 'Noto Sans',*/
 }
@@ -89371,6 +89423,7 @@ sub page
 }
 .admin-head .logo-wrap {
   width: 20rem;
+  background-color: transparent;
 }
 .admin-head .admin-logo {
   width: 100%;
@@ -89433,6 +89486,7 @@ sub page
   text-align: left;
   position: relative;
   color: #fff;
+  font-weight: 700;
 }
 .admin-nav-list > button::after {
   content: "";
@@ -89513,6 +89567,38 @@ sub page
   height: calc(100vh - 14.4rem - 6.4rem);
 }
 
+/* admin table*/
+.admin-detail {
+  border-top: 1px solid #333;
+}
+.admin-detail tbody tr th, .admin-detail tbody tr td {
+  border-bottom: 1px solid #B3B3B3;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+.admin-detail tbody tr th {
+  height: 6rem;
+  background-color: #F4F4F4;
+}
+.admin-detail tbody tr th span {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.admin-detail tbody tr th.vertical-t {
+  vertical-align: top;
+}
+.admin-detail tbody tr td {
+  height: 6rem;
+  padding-left: 3.6rem;
+  padding-right: 3.6rem;
+}
+.admin-detail tbody tr td.vertical-t {
+  vertical-align: top;
+}
+.admin-detail tbody tr td span {
+  color: #666666;
+}
 .admin-footer {
   padding: 0;
 }

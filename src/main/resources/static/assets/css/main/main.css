@@ -87143,6 +87143,24 @@ icon
   outline-offset: 0;
   outline: 0px solid #01A0E8;
 }
+.textfield textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 15rem;
+  resize: none;
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+}
+.textfield textarea:hover {
+  border-color: #A2D2EB;
+  outline-offset: 0;
+  outline: 0px solid #A2D2EB;
+}
+.textfield textarea:focus {
+  border-color: #5F9DCF;
+  outline-offset: 0;
+  outline: 0px solid #01A0E8;
+}
 .textfield .error-text {
   height: 0;
   padding-top: 0px;
@@ -88085,6 +88103,30 @@ table
 }
 .btn.btn.btn-icon-only .icon-box {
   margin-left: 0;
+}
+.btn.admin-btn-type-01 {
+  background-color: #fff;
+  border: 1px solid #00AAF6;
+  color: #00AAF6;
+}
+.btn.admin-btn-type-01 * {
+  color: #00AAF6;
+}
+.btn.admin-btn-type-02 {
+  background-color: #fff;
+  border: 1px solid #F04438;
+  color: #F04438;
+}
+.btn.admin-btn-type-02 * {
+  color: #fff;
+}
+.btn.admin-btn-type-03 {
+  background-color: #797F8B;
+  border: 1px solid #797F8B;
+  color: #fff;
+}
+.btn.admin-btn-type-03 * {
+  color: #fff;
 }
 
 header {
@@ -89339,4 +89381,15 @@ sub page
   .user-wrap {
     width: 100%;
   }
+}
+
+.status-text {
+  padding: 0.7rem 1rem;
+  border: 1px solid #1E4079;
+  background-color: #1E4079;
+  color: #fff;
+}
+.status-text .status-confirm-fi {
+  border: 1px solid #00AAF6;
+  background-color: #00AAF6;
 }/*# sourceMappingURL=main.css.map */
