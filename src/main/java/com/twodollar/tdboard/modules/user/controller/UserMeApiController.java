@@ -145,15 +145,23 @@ public class UserMeApiController {
     public ResponseEntity<ApiCmnResponse<?>> bookingAll(
             Authentication authentication,
             Pageable pageable,
-            @RequestParam(value = "bookingType") BookingType bookingType
+            @RequestParam(value = "bookingType", required = false) BookingType bookingType
     ){
         try {
             String userId = authentication.getName();
             if (userId == null || "".equals(userId)) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
             }
-            long totalSize = bookingService.getTotalBookingSize();
-            List<Booking> bookingList = bookingService.getBookings(userId, bookingType, pageable);
+            User user = userService.getUserByUserId(userId);
+            long totalSize = 0;
+            List<Booking> bookingList = null;
+            if(bookingType==null){
+                totalSize = bookingService.getTotalBookingSize(user);
+                bookingList = bookingService.getBookings(user, pageable);
+            }else{
+                totalSize = bookingService.getTotalBookingSize(user, bookingType);
+                bookingList = bookingService.getBookings(user, bookingType, pageable);
+            }
             List<BookingResponse> bookingResponseList = bookingList.stream().map(booking -> booking.toResponse()).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(bookingResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){

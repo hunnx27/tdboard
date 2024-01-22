@@ -12,9 +12,14 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
+    Optional<List<Booking>> getBookingsByUser(User user, Pageable pageable);
     Optional<List<Booking>> getBookingsByBookingType(BookingType bookingType, Pageable pageable);
     Optional<List<Booking>> getBookingsByUserAndBookingType(User user, BookingType bookingType, Pageable pageable);
 
+    int countByBookingType(BookingType bookingType);
+
+    int countByUser(User user);
+    int countByUserAndBookingType(User user, BookingType bookingType);
     int countBookingByIdAndUser(Long id, User user);
 
 }
