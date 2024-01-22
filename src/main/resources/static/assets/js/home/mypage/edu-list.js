@@ -22,7 +22,7 @@ async function getBoardApi(pageNumber){
                 data.notApproval = data.approvalYn === 'N' && !data.approvalAt ? true : false // 승인대기
                 data.approval = data.approvalYn === 'Y' && data.approvalAt ? true : false //승인완료
                 data.cancelApplication = data.approvalYn === 'N' && data.approvalAt ? true : false //취소완료
-                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdDate, 'YYYY-MM-DD HH:mm:ss')
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt, 'YYYY-MM-DD HH:mm:ss')
                 data.no = firstPostNumber
                 firstPostNumber--;
             })
