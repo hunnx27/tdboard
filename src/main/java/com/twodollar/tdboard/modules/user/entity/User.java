@@ -73,4 +73,9 @@ public class User {
         this.channel = ChannelEnum.valueOf(userRequest.getChannel());
         this.role = RoleEnum.valueOf(userRequest.getRole());
     }
+
+    // 회원 탈퇴
+    public void sucession(){
+        this.delYn = "Y";
+    }
 }

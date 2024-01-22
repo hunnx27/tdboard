@@ -33,12 +33,18 @@ async function getAuthMeApi(password) {
         'password': password
     }
     ,(res)=> {
-        
-        if(confirm('탈퇴하시겠습니까?')){
+
+        if(confirm('탈퇴하시겠습니까?')) {
             //api call 탈퇴, 로그아웃
-            alert('탈퇴성공')
+            useAxios.post('/api/v1/auth/sucession/me',
+            {
+                'password': password
+            }
             //success
-            // location.replace('/')
+            , (res) => {
+                alert('탈퇴 성공');
+                location.replace('/auth/logout_proc')
+            });
         }
       
     },(err)=> {
