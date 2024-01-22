@@ -1,5 +1,9 @@
 package com.twodollar.tdboard.modules.user.controller;
 
+import com.twodollar.tdboard.modules.application.controller.request.ApplicationRequest;
+import com.twodollar.tdboard.modules.application.controller.response.ApplicationResponse;
+import com.twodollar.tdboard.modules.application.entity.Application;
+import com.twodollar.tdboard.modules.application.service.ApplicationService;
 import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
@@ -37,6 +41,7 @@ public class UserApiController {
 
     private final UserService userService;
     private final BookingService bookingService;
+    private final ApplicationService applicationService;
 
     @Operation(summary = "사용자 상세 조회", description = "사용자 상세 조회")
     @ApiResponses(value = {
@@ -106,6 +111,82 @@ public class UserApiController {
             List<Booking> bookingList = bookingService.getBookings(userId, bookingType, pageable);
             List<BookingResponse> bookingResponseList = bookingList.stream().map(booking -> booking.toResponse()).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(bookingResponseList, pageable, totalSize)));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'PROFESSOR')")
+    @Operation(summary = "교육신청", description = "교육신청")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/users/me/applications")
+    public ResponseEntity<ApiCmnResponse<?>> application(
+            Authentication authentication,
+            @RequestBody(required = true) ApplicationRequest applicationRequest
+    ){
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            Application applicationEntity = applicationService.createApplication(userId, applicationRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(applicationEntity.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'PROFESSOR')")
+    @Operation(summary = "교육취소(삭제)", description = "교육취소(삭제)")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @DeleteMapping("/users/me/applications/{id}")
+    public ResponseEntity<ApiCmnResponse<?>> application(
+            Authentication authentication,
+            @PathVariable("id") Long id
+    ){
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            applicationService.deleteApplicationByIdAndUserId(id, userId);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("deleted"));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "사용자 교육 신청 목록 조회", description = "사용자 교육 신청 목록 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/users/me/applications")
+    public ResponseEntity<ApiCmnResponse<?>> applicationAll(
+            Authentication authentication,
+            Pageable pageable
+    ){
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            long totalSize = applicationService.getTotalApplicationSize();
+            List<Application> applicationList = applicationService.getApplications(userId, pageable);
+            List<ApplicationResponse> applicationResponseList = applicationList.stream().map(application -> application.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(applicationResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
