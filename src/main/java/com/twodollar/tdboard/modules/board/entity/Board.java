@@ -3,7 +3,9 @@ package com.twodollar.tdboard.modules.board.entity;
 import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@DynamicInsert
 @NoArgsConstructor
 @AllArgsConstructor
 public class Board {
@@ -32,8 +35,9 @@ public class Board {
     // 답글시
     private long upId;
     // 조회 수
+    @ColumnDefault("0")
     private long hit;
-
+    @ColumnDefault("'N'")
     private String delYn;
     // 생성일
     @CreationTimestamp

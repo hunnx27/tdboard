@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.twodollar.tdboard.modules.education.controller.response.EducationResponse;
 import com.twodollar.tdboard.modules.facility.entity.Facility;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 public class Education {
     // PK
     @Id
@@ -42,8 +45,10 @@ public class Education {
     private int capacity; //정원
 
     // 사용여부
+    @ColumnDefault("'Y'")
     private String useYn;
     // 삭제여부
+    @ColumnDefault("'N'")
     private String delYn;
     // 생성일
     @CreationTimestamp

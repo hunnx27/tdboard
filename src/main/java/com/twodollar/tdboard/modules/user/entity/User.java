@@ -7,7 +7,9 @@ import com.twodollar.tdboard.modules.user.entity.enums.ChannelEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -18,9 +20,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 public class User {
     // PK
     @Id
@@ -36,8 +38,11 @@ public class User {
     private String birthday;
     @Enumerated(EnumType.STRING)
     private ChannelEnum channel; //유입채널
+    @ColumnDefault("'ROLE_USER'")
     @Enumerated(EnumType.STRING)
     private RoleEnum role; // 권한
+    @ColumnDefault("'N'")
+    private String delYn;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
