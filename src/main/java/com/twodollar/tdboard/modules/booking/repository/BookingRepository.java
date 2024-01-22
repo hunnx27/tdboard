@@ -15,4 +15,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     Optional<List<Booking>> getBookingsByBookingType(BookingType bookingType, Pageable pageable);
     Optional<List<Booking>> getBookingsByUserAndBookingType(User user, BookingType bookingType, Pageable pageable);
 
+    int countBookingByIdAndUser(Long id, User user);
+
 }

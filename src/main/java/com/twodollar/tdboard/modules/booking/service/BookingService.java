@@ -1,4 +1,5 @@
 package com.twodollar.tdboard.modules.booking.service;
+import com.twodollar.tdboard.modules.application.entity.Application;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
 import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
@@ -48,20 +49,14 @@ public class BookingService {
         return bookingRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
     }
 
-    public Booking createBooking(final BookingRequest createBooking) {
+    public Booking createBooking(String userId, final BookingRequest createBooking) {
         if(createBooking == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 요청입니다.");
 
         Booking booking = createBooking.toEntity();
 
-        Long userId = createBooking.getUserId();
         if(userId!=null){
-            User user = userService.getUserById(userId);
+            User user = userService.getUserByUserId(userId);
             booking.setUser(user);
-        }
-        Long approvalUserId = createBooking.getApprovalUserId();
-        if(approvalUserId!=null){
-            User approvalUser = userService.getUserById(approvalUserId);
-            booking.setApprovalUser(approvalUser);
         }
         Long educationId = createBooking.getEducationId();
         if(educationId!=null){
@@ -95,9 +90,27 @@ public class BookingService {
     }
 
 
-    public void deleteBookingById(final Long id) {
+    public Booking approvalBooking(final long id, String approvalUserId) {
+        User approvalUser = userService.getUserByUserId(approvalUserId);
+        Booking booking = getBookingById(id);
+        booking.approval(approvalUser);
+        return bookingRepository.save(booking);
+    }
+
+    public Booking cancelBooking(final long id) {
+        Booking booking = getBookingById(id);
+        booking.cancel();
+        return bookingRepository.save(booking);
+    }
+
+    public void deleteBookingById(final Long id, String userId) {
+        User user = userService.getUserByUserId(userId);
+        int cnt = bookingRepository.countBookingByIdAndUser(id, user);
+        if(cnt==0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다.");
+        }
         Booking booking = bookingRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
-        bookingRepository.delete(booking);
+        bookingRepository.deleteById(id);
         this.relatedBookingDelete(booking);
     }
 

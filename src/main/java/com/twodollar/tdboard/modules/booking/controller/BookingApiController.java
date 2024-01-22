@@ -1,5 +1,6 @@
 package com.twodollar.tdboard.modules.booking.controller;
 
+import com.twodollar.tdboard.modules.application.entity.Application;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.controller.response.BookingResponse;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,18 +32,43 @@ public class BookingApiController {
 
     private final BookingService bookingService;
 
-    @Operation(summary = "예약 등록", description = "예약 등록")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "예약 승인", description = "예약 승인")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @PostMapping("/bookings")
-    public ResponseEntity<ApiCmnResponse<?>> bookingInsert(
-            @RequestBody(required = true) BookingRequest bookingRequest
+    @PostMapping("/bookings/{id}/approval")
+    public ResponseEntity<ApiCmnResponse<?>> applicationApproval(
+            Authentication authentication,
+            @PathVariable("id") Long id
     ){
         try {
-            Booking bookingEntity = bookingService.createBooking(bookingRequest);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(bookingEntity.toResponse()));
+            String userId = authentication.getName();
+            Booking booking = bookingService.approvalBooking(id, userId);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(booking.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "예약 승인취소", description = "예약 승인취소")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/bookings/{id}/cancel")
+    public ResponseEntity<ApiCmnResponse<?>> applicationCancel(
+            Authentication authentication,
+            @PathVariable("id") Long id
+    ){
+        try {
+            String userId = authentication.getName();
+            Booking booking = bookingService.cancelBooking(id);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(booking.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -82,25 +110,6 @@ public class BookingApiController {
         try {
             Booking booking = bookingService.getBookingById(id);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(booking.toResponse()));
-        }catch(ResponseStatusException e){
-            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
-        }
-    }
-
-    @Operation(summary = "예약 삭제", description = "예약 삭제")
-    @ApiResponses(value = {
-            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
-            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
-    })
-    @DeleteMapping("/bookings/{id}")
-    public ResponseEntity<ApiCmnResponse<?>> bookingDelete(
-            @PathVariable("id") Long id
-    ) throws Exception {
-        try {
-            bookingService.deleteBookingById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("success"));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){

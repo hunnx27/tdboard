@@ -107,4 +107,21 @@ public class Booking {
 
         return bookingResponse;
     }
+
+    /**
+     * 승인 처리
+     * @param approvalUser
+     */
+    public void approval(User approvalUser){
+        this.approvalUser = approvalUser;
+        this.approvalYn = "Y";
+        this.approvalAt = LocalDateTime.now();
+    }
+
+    /**
+     * 승인 취소
+     */
+    public void cancel(){
+        this.approvalYn = "N";
+    }
 }

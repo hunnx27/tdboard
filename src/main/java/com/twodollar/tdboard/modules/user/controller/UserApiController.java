@@ -7,6 +7,7 @@ import com.twodollar.tdboard.modules.application.service.ApplicationService;
 import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
+import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.controller.response.BookingResponse;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
 import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
@@ -91,6 +92,54 @@ public class UserApiController {
         }
     }
 
+    @Operation(summary = "사용자 예약 등록", description = "사용자 예약 등록")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/users/me/bookings")
+    public ResponseEntity<ApiCmnResponse<?>> bookingInsert(
+            Authentication authentication,
+            @RequestBody(required = true) BookingRequest bookingRequest
+    ){
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            Booking bookingEntity = bookingService.createBooking(userId, bookingRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(bookingEntity.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "예약취소(시설/장비)(삭제)", description = "예약취소(시설/장비)(삭제)")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @DeleteMapping("/bookings/{id}")
+    public ResponseEntity<ApiCmnResponse<?>> bookingDelete(
+            Authentication authentication,
+            @PathVariable("id") Long id
+    ) throws Exception {
+        try {
+            String userId = authentication.getName();
+            if (userId == null || "".equals(userId)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
+            }
+            bookingService.deleteBookingById(id, userId);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("deleted"));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
     @Operation(summary = "사용자 예약 목록 조회", description = "사용자 예약 목록 조회(장비/시설)")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
@@ -118,14 +167,14 @@ public class UserApiController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'PROFESSOR')")
+
     @Operation(summary = "교육신청", description = "교육신청")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/users/me/applications")
-    public ResponseEntity<ApiCmnResponse<?>> application(
+    public ResponseEntity<ApiCmnResponse<?>> applicationInsert(
             Authentication authentication,
             @RequestBody(required = true) ApplicationRequest applicationRequest
     ){
@@ -143,14 +192,13 @@ public class UserApiController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'PROFESSOR')")
     @Operation(summary = "교육취소(삭제)", description = "교육취소(삭제)")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @DeleteMapping("/users/me/applications/{id}")
-    public ResponseEntity<ApiCmnResponse<?>> application(
+    public ResponseEntity<ApiCmnResponse<?>> applicationDelete(
             Authentication authentication,
             @PathVariable("id") Long id
     ){
