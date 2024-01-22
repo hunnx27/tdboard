@@ -101,7 +101,7 @@
                     <h3>
                         <span style="font-weight: bold">공지 사항</span>
 <!--                        <button class="btn" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-prev"></span></button>-->
-                        <button class="btn" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-prev"></span></button>
+                        <button class="btn" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-next"></span></button>
                     </h3>
                 </div>
             </div>
@@ -117,39 +117,14 @@
                                 <span>제목</span>
                             </th>
                             <th>
-                                <span>작성자</span>
-                            </th>
-                            <th>
                                 <span>작성일</span>
                             </th>
                         </tr>   
                     </thead>
-                    <tbody>
-                        <tr style="cursor:pointer" onClick="location.href='/contents/notice/0'">
-                            <td>
-                                <span>
-                                    1
-                                </span>
-                            </td>
-                            <td class="board-title text-left">
-                                <span>
-                                    K-디지털 플랫폼 홈페이지 개설
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    관리자
-                                </span>
-                            </td>
-                            <td>
-                                <span>
-                                    2023-12-21
-                                </span>
-                            </td>
-
+                    <tbody id="notice-body">
+                        <tr>
+                            <td colspan="4">등록된 글이 없습니다.</td>
                         </tr>
-                        
-
                     </tbody>
 
                 </table>
@@ -171,17 +146,40 @@
         <div class="main-body">
             <ul>
                 <li>
-                    <a href="https://www.hrdkorea.or.kr"><img src="/assets/images/main/foot_logo_2.png" alt="한국산업인력공단 로고" target="_blank"></a>
+                    <a href="https://www.hrdkorea.or.kr" target="_blank"><img src="/assets/images/main/foot_logo_2.png" alt="한국산업인력공단 로고"></a>
                 </li>
                 <li>
-                    <a href="https://www.moel.go.kr" ><img src="/assets/images/main/foot_logo_1.png" alt="고용노동부 로고" target="_blank"></a>
+                    <a href="https://www.moel.go.kr" target="_blank"><img src="/assets/images/main/foot_logo_1.png" alt="고용노동부 로고"></a>
                 </li>
                 <li>
-                    <a href="https://www.kdp.or.kr"><img src="/assets/images/main/foot_logo_3.png" alt="KDP 로고" target="_blank"></a>
+                    <a href="https://www.kdp.or.kr" target="_blank"><img src="/assets/images/main/foot_logo_3.png" alt="KDP 로고"></a>
                 </li>
             </ul>
         </div>
     </div>
 </section>
 
+<script id="notice-table-template" type="text/template">
+{{#contents}}
+    <tr>
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="title">
+            <a href="/contents/notice/{{id}}">
+                {{title}}
+            </a>
+        </td>
+        <td>
+            <span>
+                {{createdDateText}}
+            </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>
+
+<script type="module" src="/assets/js/home/main.js"></script>
 {[>layout/footer]}

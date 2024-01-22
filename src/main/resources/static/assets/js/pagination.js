@@ -1,6 +1,6 @@
 
 export default function () {
-    const postsPerPage = 10;
+    let postsPerPage = 10;
     let totalPages = 0;
     let currentPage = 1;
     // 훅 함수
@@ -42,8 +42,9 @@ export default function () {
             const rendered = Mustache.render(template, data);
             paginationElement.innerHTML = rendered;
         },
-        setPage(page, totalPosts) {
+        setPage(page, pageSize, totalPosts) {
             // 전체 페이지 수 계산
+            postsPerPage = pageSize
             totalPages = Math.ceil(totalPosts / postsPerPage);
             currentPage = page;
             

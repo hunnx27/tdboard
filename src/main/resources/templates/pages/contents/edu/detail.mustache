@@ -10,64 +10,52 @@
 <section class="sub-con content gallery-content">
     <div class="inner">
         <div class="gallery">
-            
-                <div class="gallery-detail">
-                    <div class="gallery-detail-head">
-                        <div class="img-box">
-                            <img src="../../../../assets/images/sub/gallery_test_img.png" alt="testImg">
-                        </div>
-                        <div class="text-box">
-                            <div class="gallery-detail-info">
-                                <div class="block-text-wrap">
-                                    <span class="block-text">교육 내용</span>
-                                </div>
-                                <div class="title">
-                                    <h6>협업 필터링 및 자연어 처리 기반 A.I. 추천 분석 시스템 제작 과정</h6>
-                                </div>
-                                <ul>
-                                    <li>
-                                        교육일정 <span>｜</span> 2023-12-01 ~ 2023-12-10
-                                    </li>
-                                    <li>
-                                        교육기간 <span>｜</span> 10일 240시간
-                                    </li>
-                                    <li>
-                                        교육시간 <span>｜</span> 매주 월~금(공휴일제외), 09:00~18:00
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="btn-wrap">
-                                <button class="btn btn-type03 w-full" onClick="alert('준비 중입니다.')">신청하기</button>
-                            </div>
-                        </div>
+            <div id="galleryDetail" class="gallery-detail">
+                <div class="gallery-detail-head">
+                    <div class="img-box">
+                        <img src="{{imageUrl}}" alt="{{name}}">
                     </div>
-                    <div class="gallery-detail-body">
-
-                        <div class="block-text-wrap">
-                            <span class="block-text">교육 내용</span>
+                    <div class="text-box">
+                        <div class="gallery-detail-info">
+                            <div class="block-text-wrap">
+                                <span class="block-text">교육 내용</span>
+                            </div>
+                            <div class="title">
+                                <h6>{{name}}</h6>
+                            </div>
+                            <ul>
+                                <li>
+                                    교육일정 <span>｜</span> {{startDate}} ~ {{endDate}}
+                                </li>
+                                <li>
+                                    교육기간 <span>｜</span> {{timeDifferenceInDays}}일 {{timeDifferenceInHours}}시간
+                                </li>
+                                <li>
+                                    교육시간 <span>｜</span> 매주 월~금(공휴일제외), 09:00~18:00
+                                </li>
+                            </ul>
                         </div>
-                        <div class="textarea-wrap">
-                            <p>
-                                사용 중 소음으로 인하여 수업 또는 교수 연구실이나 다른 학생들의 강의실 사용에 방해가 되는 행위를 절대 삼가야 합니다.
-교육 예약 승인 후 부득이한 경우로 사용하지 않게 될 경우 다른 학생을 위해 반드시 학생지원팀으로 교육 예약 취소를 요청해주시기 바랍니다.
-
-                            </p>
+                        <div class="btn-wrap">
+                            <button id="applicationBtn" class="btn btn-type03 w-full">신청하기</button>
                         </div>
-                        {[! <div class="block-text-wrap">
-                            <span class="block-text">교육 내용</span>
-                        </div>
-                        <div class="textarea-wrap">
-                            <p>
-                                사용 중 소음으로 인하여 수업 또는 교수 연구실이나 다른 학생들의 강의실 사용에 방해가 되는 행위를 절대 삼가야 합니다.
-교육 예약 승인 후 부득이한 경우로 사용하지 않게 될 경우 다른 학생을 위해 반드시 학생지원팀으로 교육 예약 취소를 요청해주시기 바랍니다.
-
-                            </p>
-                        </div> ]}
                     </div>
                 </div>
+                <div class="gallery-detail-body">
 
+                    <div class="block-text-wrap">
+                        <span class="block-text">교육 내용</span>
+                    </div>
+                    <div class="textarea-wrap">
+                        <p>
+                            {{description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <input type="hidden" id="eduId" name="id" value="{[id]}"/>
 </section>
 
+<script type="module" src="/assets/js/home/contents/edu-detail.js"></script>
 {[>layout/footer]}

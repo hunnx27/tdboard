@@ -10,13 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -46,7 +43,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Authentication authentication = authJwtTokenProvider.getAuthentication(token);
                 // SecurityContext 에 Authentication 객체를 저장합니다.
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                filterChain.doFilter(request, response);
             } catch (MalformedJwtException e) {
                 String errorMsg = String.format("잘못된 JWT 서명입니다. message : %s", e.getMessage());
                 log.info(errorMsg);
@@ -84,8 +80,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 ApiCmnResponse errorResponse = ApiCmnResponse.error("400", errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
             }
-        }else{
-            filterChain.doFilter(request, response);
         }
+
+        filterChain.doFilter(request, response);
     }
 }

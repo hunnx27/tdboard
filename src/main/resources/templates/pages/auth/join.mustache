@@ -1,20 +1,138 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8"/>
-    <title>KDP 회원가입(일반)</title>
-</head>
-<body>
-<h1>KDP 회원가입(일반)</h1>
-<form action="/auth/join_proc" method="POST"> <!-- Controller에서 회원가입 로직을 처리할 예정 -->
-    <input type="text" name="username" placeholder="username" autofocus/>
-    <br/>
-    <input type="password" name="password" placeholder="password"/>
-    <br/>
-    <input type="text" name="email" placeholder="email"/>
-    <br/>
-    <button type="submit">가입하기</button>
-</form>
-<a href="/auth/login">로그인</a>
-</body>
-</html>
+{[>layout/header]}
+<section class="sub-con content user-content">
+  <div class="inner">
+    <div class="h-120"></div>
+    <div class="flex-box align-center justify-center">
+      <div class="p-t-96 user-wrap">
+        <p class="text-500 text-size-32 text-center m-b-12">
+          회원가입
+        </p>  
+        <p class="text-400 text-size-16 text-center m-b-32">가입 정보를 입력해주세요.</p>
+        <div class="login-form flex-box gap-24 flex-wrap">
+
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div id="userIdField" class="textfield flex-1"  data-type="id"  data-status="default" data-size="LG" data-icon="true">
+                <input type="text" id="userId" placeholder="아이디를 입력해주세요">
+                <p class="error-text">영문자 또는 영문,숫자만(5~20자) 입력 가능합니다.</p>
+            </div>
+            <button class="btn btn-type-01 flex-shink w-96 i-h-48" id="userIdCheckBtn" data-status="active" disabled>
+              <span class="text-500">중복확인</span>
+            </button>
+          </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+              <div id="userNameField" class="textfield flex-1"  data-type="name"  data-status="readonly" data-size="LG" data-icon="true">
+                  <input id="userName" type="text" placeholder="이름을 입력해주세요" >
+                  <p class="error-text">이름 오류 메시지</p>
+              </div>
+            </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div id="passwordField" class="textfield flex-1"  data-type="password"  data-status="default" data-size="LG" data-icon="true">
+                <input type="password" id="password" placeholder="비밀번호">
+                <p class="error-text">영문 대소문자, 숫자, 특수문자 조합하여 8~16자 입력가능합니다</p>
+            </div>
+          </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div id="confirmPasswordField" class="textfield flex-1"  data-type="passwordCheck"  data-status="default" data-size="LG" data-icon="true">
+                <input type="password"  id="confirmPassword"  placeholder="비밀번호 확인">
+                <p class="error-text">입력한 비밀번호와 일치하지 않습니다.</p>
+            </div>
+          </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+              <button class="genderBtn btn btn-type-05 flex-shink flex-1 w-96 i-h-48 btn-gender" data-value="M" data-status="active" onClick="genderActive(this)">
+                <span class="text-500">남자</span>
+              </button>
+              <button class="genderBtn btn btn-type-05 flex-shink flex-1 w-96 i-h-48 btn-gender" data-value="F" data-status="default" onClick="genderActive(this)">
+                <span class="text-500">여자</span>
+              </button>
+            </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div class="textfield flex-1" id="emailField" data-type="email"  data-status="default" data-size="LG" data-icon="true">
+                <input type="text" id="email"  placeholder="이메일 주소">
+                <p class="error-text">이메일 형식으로 입력해주세요.</p>
+            </div>
+          </div>
+          
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div class="textfield flex-1" id="phoneField"  data-type="phone"  data-status="default" data-size="LG" data-icon="true">
+                <input type="tel" placeholder="핸드폰 번호(번호만 입력)" id="phone">
+                <p class="error-text">휴대전화번호에 맞게 숫자로만 입력해주세요.</p>
+            </div>
+          </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div id="birthdayField" class="textfield flex-1 "  data-type="birth"  data-status="default" data-size="LG" data-icon="true">
+              <input id="birthday" type="text" class="datepicker" placeholder="생년월일" onchange='textfieldChange(this,event)'>
+              <p class="error-text">오류 메시지</p>
+            </div>
+          </div>
+          <div class="flex-box gap-8 flex-wrap w-full">
+            <div id="selectJoinPathField" class="select flex-1" aria-label="select" data-size="MD" data-status="" data-icon="true">
+              <button class="select-btn" aria-label="selectValue">
+                  <span class="icon-box icon-size-sm icon-smile"></span>
+                  <span id="selectJoinPathText" class="select-value" data-default-text="유입경로">
+                    유입경로
+                  </span>
+              </button>
+              <div class="option-box" aria-label="option-box">
+                <div>
+                      <button class="joinPathOption option" aria-label="option" data-option="C01" >
+                          <span>
+                              팜플렛(카탈로그)
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C02">
+                          <span>
+                              tv광고
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C03">
+                          <span>
+                              인터넷광고
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C04">
+                          <span>
+                              엘리베이터 광고
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C05">
+                          <span>
+                              인터넷검색
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C06">
+                          <span>
+                              신문
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C07">
+                          <span>
+                              현수막
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C08">
+                          <span>
+                              지인소개
+                          </span>
+                      </button>
+                      <button class="joinPathOption option" aria-label="option" data-option="C09">
+                          <span>
+                              기타
+                          </span>
+                      </button>
+                    </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-type-01 w-full btn-size-xxl" id="joinBtn" disabled>
+            <span class="text-700 text-size-16">회원가입</span>
+          </button>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+<script type="module" src="/assets/js/home/auth/join.js"></script>
+{[>layout/footer]}

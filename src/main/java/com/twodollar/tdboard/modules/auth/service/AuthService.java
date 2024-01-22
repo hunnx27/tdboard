@@ -1,8 +1,10 @@
 package com.twodollar.tdboard.modules.auth.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import com.twodollar.tdboard.modules.user.entity.User;
+import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.repository.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -33,20 +35,50 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder; // 시큐리티에서 빈(Bean) 생성할 예정
     private final AuthJwtTokenProvider authJwtTokenProvider;
 
-    public void join(User user){
-        user.setRole("ROLE_USER");
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User join(UserAuthRequest userAuthRequest) throws IllegalArgumentException{
+        User user = userAuthRequest.toEntity();
+
+        // Validation
+        // 1. userID Unique
+        int userIdCnt = userRepository.countUserByUserId(user.getUserId());
+        if(userIdCnt > 0){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "이미 등록된 회원이 있습니다.");
+        }
+        // 2. email Unique
+        int emailCnt = userRepository.countUserByEmail(user.getEmail());
+        if(emailCnt > 0){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "이미 등록된 이메일이 있습니다.");
+        }
+
+        user.setRole(RoleEnum.ROLE_USER); // 기본 USER 권한이고, 관리자에서 다른 권한 변경함
+        user.setPassword(passwordEncoder.encode(userAuthRequest.getPassword()));
         userRepository.save(user);
+        return user;
     }
 
+    public User resetPassword(User user) throws IllegalArgumentException{
+        user.setPassword(passwordEncoder.encode(user.getPhone()));
+        return userRepository.save(user);
+    }
+
+    public User validUser(String userId, String passwordPlain) throws ResponseStatusException{
+        String password = passwordEncoder.encode(passwordPlain);
+        User user = userRepository.findByUserId(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 정보가 일치하지 않습니다."));
+        if(!passwordEncoder.matches(passwordPlain, user.getPassword())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 정보가 일치하지 않습니다.");
+        }
+        return user;
+    }
+
+    // TEST
     public void join_orgtest(User user){
-        user.setRole("ROLE_ORG");
+        user.setRole(RoleEnum.ROLE_ORG);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     public void join_admintest(User user){
-        user.setRole("ROLE_ADMIN");
+        user.setRole(RoleEnum.ROLE_ADMIN);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -55,8 +87,8 @@ public class AuthService {
         Map<String, String> accessTokenResponseMap = new HashMap<>();
         try {
             authJwtTokenProvider.validateToken(refreshToken, true);
-            String userName = authJwtTokenProvider.getUserPk(refreshToken);
-            User user = userRepository.findByUsername(userName).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
+            String userId = authJwtTokenProvider.getUserPk(refreshToken);
+            User user = userRepository.findByUserId(userId).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 userId 입니다."));
             // === Access Token 재발급 === //
             long now = System.currentTimeMillis();
             if (!user.getRefreshToken().equals(refreshToken)) {
@@ -64,7 +96,7 @@ public class AuthService {
                 throw new Exception("유효하지 않은 Refresh Token 입니다.");
             }
 
-            String accessToken = authJwtTokenProvider.createToken(userName, Collections.singletonList(user.getRole()));
+            String accessToken = authJwtTokenProvider.createToken(userId, Collections.singletonList(user.getRole().name()));
             accessTokenResponseMap.put("accessToken", accessToken);
             // === 현재시간과 Refresh Token 만료날짜를 통해 남은 만료기간 계산 === //
             // === Refresh Token 만료시간 계산해 1개월 미만일 시 refresh token도 발급 === //
@@ -74,7 +106,7 @@ public class AuthService {
             long diffMin = (refreshExpireTime - now) / 1000 / 60;
             String newRefreshToken = null;
             if (diffMin < 5) {
-                newRefreshToken = authJwtTokenProvider.createRefreshToken(userName);
+                newRefreshToken = authJwtTokenProvider.createRefreshToken(userId);
                 accessTokenResponseMap.put("refreshToken", newRefreshToken);
                 user.setRefreshToken(refreshToken);
                 userRepository.save(user);

@@ -14,18 +14,21 @@ $(function(){
 })
 async function getNoticeApi(pageNumber){
     await useAxios.get('/api/v1/boards/type/notices',
-        {page: 1}
+        {page: pageNumber}
         ,(res)=> {
-        // console.log('res',res.data)
-        if(res.data.totalElements > 0){
-            res.data.content.map((data)=>{
-                data.createdDateText = useFilters().YYYYMMDD(data.createdDate)
+        console.log('res',res.data)
+        if(res.data.paging.totalElements > 0){
+            let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
+            res.data.contents.map((data)=>{
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
+                data.no = firstPostNumber
+                firstPostNumber--;
             })
             handleSetList(pageNumber, res.data)
         }else {
-            paginationModule.setPage(1,[])
+            paginationModule.setPage(1,1,0)
         }
-        const tableHeadText = `Total ${res.data.totalElements}건 ${res.data.totalPages} 페이지`
+        const tableHeadText = `Total ${res.data.paging.totalElements}건 ${res.data.paging.totalPages} 페이지`
         document.getElementById("tableHeadText").innerHTML = tableHeadText
 
     },(err)=> {
@@ -39,5 +42,6 @@ function handleSetList(pageNumber, data){
     var result = Mustache.render(template, data);
     document.getElementById("notice-body").innerHTML = result;
     
-    paginationModule.setPage(pageNumber,data.totalElements)
+    paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
+

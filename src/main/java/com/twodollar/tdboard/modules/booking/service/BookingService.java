@@ -1,0 +1,100 @@
+package com.twodollar.tdboard.modules.booking.service;
+import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
+import com.twodollar.tdboard.modules.booking.entity.Booking;
+import com.twodollar.tdboard.modules.booking.repository.BookingRepository;
+import com.twodollar.tdboard.modules.education.entity.Education;
+import com.twodollar.tdboard.modules.education.service.EducationService;
+import com.twodollar.tdboard.modules.equipment.entity.Equipment;
+import com.twodollar.tdboard.modules.equipment.service.EquipmentService;
+import com.twodollar.tdboard.modules.facility.entity.Facility;
+import com.twodollar.tdboard.modules.facility.service.FacilityService;
+import com.twodollar.tdboard.modules.user.entity.User;
+import com.twodollar.tdboard.modules.user.service.UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class BookingService {
+    private final BookingRepository bookingRepository;
+    private final UserService userService;
+    private final EducationService educationService;
+    private final FacilityService facilityService;
+    private final EquipmentService equipmentService;
+
+    public long getTotalBookingSize(){
+        return bookingRepository.count();
+    }
+    public List<Booking> getBookings(Pageable pageable) {
+        List<Booking> list = bookingRepository.findAll(pageable).getContent();
+        if(list.size() == 0){
+            new IllegalArgumentException("no such data");
+        }
+        return list;
+    }
+
+    public Booking getBookingById(final Long id) {
+        return bookingRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+    }
+
+    public Booking createBooking(final BookingRequest createBooking) {
+        if(createBooking == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 요청입니다.");
+
+        Booking booking = createBooking.toEntity();
+
+        Long userId = createBooking.getUserId();
+        if(userId!=null){
+            User user = userService.getUserById(userId);
+            booking.setUser(user);
+        }
+        Long approvalUserId = createBooking.getApprovalUserId();
+        if(approvalUserId!=null){
+            User approvalUser = userService.getUserById(approvalUserId);
+            booking.setApprovalUser(approvalUser);
+        }
+        Long educationId = createBooking.getEducationId();
+        if(educationId!=null){
+            Education education = educationService.getEducationById(educationId);
+            booking.setEducation(education);
+        }
+        Long facilityId = createBooking.getFacilityId();
+        if(facilityId!=null){
+            Facility facility = facilityService.getFacilityById(facilityId);
+            booking.setFacility(facility);
+        }
+        Long equipmentId = createBooking.getEquipmentId();
+        if(equipmentId!=null){
+            Equipment equipment = equipmentService.getEquipmentById(equipmentId);
+            booking.setEquipment(equipment);
+        }
+
+        // 연결된 예약 생성
+        this.relatedBookingCreated(booking);
+
+        return bookingRepository.save(booking);
+    }
+
+    private void relatedBookingCreated(Booking booking){
+        // TODO 관련 예약 생성..
+        log.error("[TODO]관련 예약 생성 미구현");
+    }
+    private void relatedBookingDelete(Booking booking){
+        // TODO 관련 예약 삭제..
+        log.error("[TODO]관련 예약 삭제 미구현");
+    }
+
+
+    public void deleteBookingById(final Long id) {
+        Booking booking = bookingRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        bookingRepository.delete(booking);
+        this.relatedBookingDelete(booking);
+    }
+
+}

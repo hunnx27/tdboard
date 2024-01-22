@@ -1,5 +1,6 @@
 package com.twodollar.tdboard.modules.auth.controller;
 
+import com.twodollar.tdboard.modules.auth.controller.request.UserAuthRequest;
 import com.twodollar.tdboard.modules.auth.service.AuthService;
 import com.twodollar.tdboard.modules.user.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +44,15 @@ public class AuthWebController {
         return "pages/auth/join";
     }
     /**
+     * 회원 가입 이용약관 페이지(일반회원)
+     *
+     * @return
+     */
+    @GetMapping("auth/join/terms")
+    public String joinTerms() {
+        return "pages/auth/join-terms";
+    }
+    /**
      * 회원 가입 페이지(기관회원)
      *
      * @return
@@ -63,6 +73,23 @@ public class AuthWebController {
     }
 
     /**
+     * 아이디 찾기
+     * @return
+     */
+    @GetMapping("auth/find/id")
+    public String findId() {
+        return "pages/auth/id-find";
+    }
+    /**
+     * 비밀번호 찾기
+     * @return
+     */
+    @GetMapping("auth/find/password")
+    public String findPassword() {
+        return "pages/auth/password-find";
+    }
+
+    /**
      *
      *
      * ## 서비스 기능  ##
@@ -71,22 +98,29 @@ public class AuthWebController {
      */
 
     /**
+     * Deprecated : api방식으로 변경됨
      * 회원 가입이 실행되는 부분
      *
-     * @param user
+     * @param userAuthRequest
      * @return
      */
+    // Depreacted 미사용!
+    @Deprecated
     @PostMapping("auth/join_proc")
-    public String join(User user) {
-        authService.join(user);
+    public String join(UserAuthRequest userAuthRequest) {
+        authService.join(userAuthRequest);
         return "redirect:/auth/login";
     }
+    // Depreacted 미사용!
+    @Deprecated
     @PostMapping("auth/join2_proc")
     public String join2(User user) {
         authService.join_orgtest(user);
         return "redirect:/auth/login";
     }
 
+    // Depreacted 미사용!
+    @Deprecated
     @PostMapping("auth/join3_proc")
     public String join3(User user) {
         authService.join_admintest(user);

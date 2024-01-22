@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,7 @@ public class AuthSuccessHandler extends
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws ServletException, IOException {
-        super.onAuthenticationSuccess(request, response, authentication);
+
         HttpSession session = request.getSession(true);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String role = "USER";
@@ -44,8 +45,27 @@ public class AuthSuccessHandler extends
         log.info("refreshToken : {}", refreshToken);
         session.setAttribute("accessToken", accessToken);
         session.setAttribute("refreshToken", refreshToken);
+        if(role.equals("ADMIN")){
+            session.setAttribute("adminRole", role);
+        }
+       
+
+        // JWT 쿠키 저장(쿠키 명 : token)
+        Cookie cookie1 = new Cookie("accessToken", accessToken);
+        cookie1.setPath("/");
+        cookie1.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
+        // cookie1.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+
+        Cookie cookie2 = new Cookie("refreshToken", refreshToken);
+        cookie2.setPath("/");
+        cookie2.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
+        // cookie2.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+
+        response.addCookie(cookie1);
+        response.addCookie(cookie2);
+        super.onAuthenticationSuccess(request, response, authentication);
         // Refresh Token DB에 저장
-        User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 usernmae 입니다."));
+        User user = userRepository.findByUserId(userDetails.getUsername()).orElseThrow(() -> new IllegalArgumentException("가입되지 않은 userId 입니다."));
         user.setRefreshToken(refreshToken);
         userRepository.save(user);
     }

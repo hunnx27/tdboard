@@ -1,4 +1,5 @@
 package com.twodollar.tdboard.modules.board.service;
+import com.twodollar.tdboard.modules.board.controller.request.BoardRequest;
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import com.twodollar.tdboard.modules.board.repository.BoardRepository;
@@ -6,7 +7,9 @@ import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,32 +19,55 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     /*
-        게시판 공통
+        공통
      */
-    public List<Board> getBoards() {
-        List<Board> todos = boardRepository.findAll();
-
-        if(!todos.isEmpty()) return boardRepository.findAll();
-        else throw new IllegalArgumentException("no such data");
+    public Board getBoardById(final Long id, BoardTypeEnum boardTypeEnum) throws ResponseStatusException{
+        return boardRepository.findByBoardTypeAndId(boardTypeEnum, id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
     }
-    public Board getBoardById(final Long id) {
-        return boardRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("no such data"));
+    public int getTotalBoardSize(BoardTypeEnum boardTypeEnum){
+        return boardRepository.countByBoardType(boardTypeEnum);
     }
-
-    public Board createBoard(final Board createBoard) {
-        if(createBoard == null) throw new IllegalArgumentException("todo item cannot be null");
-        return boardRepository.save(createBoard);
+    public Board createBoard(final BoardRequest createBoard) throws ResponseStatusException{
+        if(createBoard == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "글을 등록할 수 없습니다. 요청 내용을 확인하세요.");
+        return boardRepository.save(createBoard.toEntity());
     }
 
-    public Board updateBoard(final long id, final Board updateBoard) {
-        Board Board = getBoardById(id);
-        Board.setTitle(updateBoard.getTitle());
-        Board.setContext(updateBoard.getContext());
-        return boardRepository.save(Board);
+    /**
+     * 특정 게시글의 답글 갯수
+     * @param upId
+     * @return
+     */
+    public int getTotalReplyBoardSize(Long upId){
+        return boardRepository.countByUpId(upId);
     }
 
-    public void deleteBoardById(final Long id) {
-        boardRepository.deleteById(id);
+    /**
+     * 답글 목록 조회
+     * @param upId
+     * @param pageable
+     * @return
+     */
+    public List<Board> getBoardsByUpId(final Long upId, Pageable pageable){
+        return boardRepository.findByUpId(upId, pageable).orElse(null);
+    }
+
+    public Board updateBoard(final long id, final BoardRequest updateBoard) throws ResponseStatusException{
+        Board board = this.getBoardById(id, BoardTypeEnum.valueOf(updateBoard.getBoardType()));
+        board.setTitle(updateBoard.getTitle());
+        board.setContext(updateBoard.getContext());
+        return boardRepository.save(board);
+    }
+
+    public Board deleteBoard(final Long id) throws ResponseStatusException{
+        Board board = boardRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
+        board.setDelYn("Y");
+        return boardRepository.save(board);
+    }
+
+    public Board upHitBoard(final Long id) throws ResponseStatusException{
+        Board board = boardRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
+        board.setHit(board.getHit()+1);
+        return boardRepository.save(board);
     }
 
     /*

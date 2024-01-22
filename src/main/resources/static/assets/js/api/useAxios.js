@@ -4,11 +4,13 @@
 const URI_PREPENDER = ''
 const wrap = (url) => `${URI_PREPENDER}${url}`
 const appendAuth = (config) => {
-  const token = 'test'//store.getters.token
+  const token = getCookieValue('accessToken');
+  const authorization = token ? `Bearer ${getCookieValue('accessToken')}` : null;
+  // console.log('token',token)
   if (token) {
     if (!config) config = { headers: {} }
     if (!config.headers) config.headers = {}
-    // config.headers.Authorization = token // 추후 토큰 세팅 필요
+    config.headers.Authorization = authorization // 추후 토큰 세팅 필요
   }
   return config
 }
@@ -21,7 +23,15 @@ const appendMultipart = (config) => {
 
 export default {
   async get (url, params, success, fail = err => err.response?.data.message, config) {
-    await axios.get(wrap(url),{params}, appendAuth(config))
+    const token = getCookieValue('accessToken');
+    const authorization = token ? `Bearer ${getCookieValue('accessToken')}` : null;
+    await axios.get(wrap(url),{
+      headers: {
+        Authorization: authorization,
+        responseType: 'json'
+      },
+      params
+      }, appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
@@ -73,4 +83,21 @@ export default {
       .then((res)=>success(res.data))
       .catch(fail)
   },
+}
+
+// 쿠키에서 값을 가져오는 함수
+function getCookieValue(cookieName) {
+  const cookies = document.cookie.split(';');
+  
+  for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+
+      if (cookie.startsWith(cookieName + '=')) {
+          // 쿠키 값을 디코딩하여 반환합니다.
+          const cookieValue = decodeURIComponent(cookie.substring(cookieName.length + 1));
+          return cookieValue;
+      }
+  }
+
+  return null;
 }
