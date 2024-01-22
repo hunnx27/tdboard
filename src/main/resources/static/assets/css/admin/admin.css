@@ -87146,7 +87146,9 @@ icon
 .textfield textarea {
   width: 100%;
   max-width: 100%;
-  min-height: 15rem;
+  min-height: 7.5rem;
+  max-height: 7.5rem;
+  line-height: 1.5;
   resize: none;
   border: 1px solid #ddd;
   padding: 0.8rem;
@@ -89602,11 +89604,23 @@ sub page
 .admin-detail tbody tr td span {
   color: #666666;
 }
-.board-list th.td-num, .board-list td.td-num {
-  max-width: 12rem;
+.admin-container .board-list {
+  margin-bottom: 4rem;
 }
-.board-list td img {
+.admin-container .board-list th.td-num, .admin-container .board-list td.td-num {
+  width: 12rem;
+}
+.admin-container .board-list td img {
   max-width: 6.4rem;
+}
+
+.admin-btn-wrap {
+  margin-bottom: 4rem;
+  gap: 3.4rem;
+}
+.admin-btn-wrap .btn {
+  height: 4.8rem;
+  min-width: 32rem;
 }
 
 .admin-footer {

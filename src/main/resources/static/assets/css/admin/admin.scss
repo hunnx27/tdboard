@@ -218,10 +218,11 @@ $admincolor:#1A4079;
   }  
 }
 
-.board-list{
+.admin-container .board-list{
+  margin-bottom:4rem;
   th,td{
     &.td-num{
-      max-width:12rem;
+      width:12rem;
     }
   }
   td{
@@ -230,7 +231,14 @@ $admincolor:#1A4079;
     }
   }
 }
-
+.admin-btn-wrap{
+  margin-bottom:4rem;
+  gap: 3.4rem;
+  .btn{
+    height:4.8rem;
+    min-width:32rem;
+  }
+}
 .admin-footer{
   padding:0;
   .admin-foot{
