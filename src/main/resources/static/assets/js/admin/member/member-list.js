@@ -29,7 +29,7 @@ async function getBoardApi(pageNumber, role){
     await useAxios.get('/api/v1/members',
         {
             page: pageNumber,
-            role: role
+            role: role || undefined,
         }
         ,(res)=> {
         if(res.data.paging.totalElements > 0){
