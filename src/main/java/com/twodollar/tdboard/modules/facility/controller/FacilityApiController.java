@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,11 +34,17 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/facilities")
-    public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityDetail(
+    public ResponseEntity<ApiCmnResponse<?>> facilityDetail(
             @RequestBody(required = true) FacilityRequest facilityRequest
     ){
-        Facility facilityEntity = facilityService.createFacility(facilityRequest);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facilityEntity.toResponse()));
+        try {
+            Facility facilityEntity = facilityService.createFacility(facilityRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facilityEntity.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 
     @Operation(summary = "시설 수정", description = "시설 수정")
@@ -46,12 +53,18 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PutMapping("/facilities/{id}")
-    public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityUpdate(
+    public ResponseEntity<ApiCmnResponse<?>> facilityUpdate(
             @PathVariable("id") Long id,
             @RequestBody(required = true) FacilityRequest facilityRequest
     ){
-        Facility facility = facilityService.updateFacility(id, facilityRequest);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facility.toResponse()));
+        try {
+            Facility facility = facilityService.updateFacility(id, facilityRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facility.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 
     @Operation(summary = "시설 목록 조회", description = "시설 목록 조회")
@@ -60,13 +73,19 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/facilities")
-    public ResponseEntity<ApiCmnResponse<CustomPageImpl<FacilityResponse>>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
             Pageable pageable
     ){
-        long totalSize = facilityService.getTotalFacilitySize();
-        List<Facility> facilityList = facilityService.getFacilitys(pageable);
-        List<FacilityResponse> facilityResponseList = facilityList.stream().map(facility -> facility.toResponse()).collect(Collectors.toList());
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(facilityResponseList, pageable, totalSize)));
+        try {
+            long totalSize = facilityService.getTotalFacilitySize();
+            List<Facility> facilityList = facilityService.getFacilitys(pageable);
+            List<FacilityResponse> facilityResponseList = facilityList.stream().map(facility -> facility.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(facilityResponseList, pageable, totalSize)));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 
     @Operation(summary = "시설 상세 조회", description = "시설 상세 조회")
@@ -75,11 +94,17 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/facilities/{id}")
-    public ResponseEntity<ApiCmnResponse<FacilityResponse>> facilityDetail(
+    public ResponseEntity<ApiCmnResponse<?>> facilityDetail(
             @PathVariable("id") Long id
     ) throws Exception {
-        Facility facility = facilityService.getFacilityById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facility.toResponse()));
+        try {
+            Facility facility = facilityService.getFacilityById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(facility.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
     }
 
 }
