@@ -7,12 +7,10 @@ import com.twodollar.tdboard.modules.user.entity.enums.ChannelEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
 import com.twodollar.tdboard.modules.user.entity.enums.SexEnum;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicInsert
+@DynamicUpdate
 public class User {
     // PK
     @Id
@@ -66,11 +65,16 @@ public class User {
 
     public void update(UserRequest userRequest) {
         this.username = userRequest.getUsername();
-        this.sex = SexEnum.valueOf(userRequest.getSex());
+        this.sex = userRequest.getSex()!=null ? SexEnum.valueOf(userRequest.getSex()) : this.sex;
         this.email = userRequest.getEmail();
         this.phone = userRequest.getPhone();
         this.birthday = userRequest.getBirthday();
-        this.channel = ChannelEnum.valueOf(userRequest.getChannel());
+        this.channel = userRequest.getChannel()!=null ? ChannelEnum.valueOf(userRequest.getChannel()) : this.channel;
+        this.role = RoleEnum.valueOf(userRequest.getRole());
+    }
+
+    public void memberUpdate(UserRequest userRequest){
+        this.email = userRequest.getEmail();
         this.role = RoleEnum.valueOf(userRequest.getRole());
     }
 

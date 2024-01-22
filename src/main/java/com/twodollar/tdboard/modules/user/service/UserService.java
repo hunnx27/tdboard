@@ -48,9 +48,9 @@ public class UserService {
         userRepository.save(user);
         return user;
     }
-    public User update(Long userId, UserRequest userRequest) throws ResponseStatusException{
+    public User memberUpdate(Long userId, UserRequest userRequest) throws ResponseStatusException{
         User user = this.getUserById(userId);
-        user.update(userRequest);
+        user.memberUpdate(userRequest);
         return userRepository.save(user);
     }
 

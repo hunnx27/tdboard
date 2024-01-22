@@ -1,5 +1,6 @@
 package com.twodollar.tdboard.modules.user.controller;
 
+import com.twodollar.tdboard.modules.auth.service.AuthService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
@@ -33,6 +34,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberController {
     private final UserService userService;
+    private final AuthService authService;
     @Operation(summary = "회원 목록 조회(전체/권한별)", description = "회원 목록 조회(전체/권한별)")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
@@ -94,8 +96,28 @@ public class MemberController {
             @RequestBody UserRequest userRequest
     ){
         try {
-            User user = userService.update(userId, userRequest);
+            User user = userService.memberUpdate(userId, userRequest);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "회원 비밀번호 초기화", description = "회원 비밀번호 초기화")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PostMapping("/members/{id}/reset-password")
+    public ResponseEntity<ApiCmnResponse<?>> memberResetPassword(
+            @PathVariable("id") Long userId
+    ){
+        try {
+            User user = userService.getUserById(userId);
+            user = authService.resetPassword(user);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(user.getPhone()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
