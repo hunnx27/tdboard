@@ -39,7 +39,7 @@ async function getBoardApi(pageNumber, role){
                     data.roleText = '회원'
                 }else if(data.role === 'ROLE_ADMIN') {
                     data.roleText = '관리자'
-                }else if(data.role === 'ROLE_ORG'){
+                }else if(data.role === 'ROLE_PROFESSOR'){
                     data.roleText = '교수'
                 }else {
                     data.roleText = data.role
