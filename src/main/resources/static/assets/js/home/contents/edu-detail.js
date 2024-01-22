@@ -38,13 +38,30 @@ async function getEducationsApi(id){
             //신청 기간동안만 버튼 활성화
             applicationBtn.disabled = false
 
-            applicationBtn.addEventListener("click", () =>{
-                //api
-                alert('신청완료')
+            applicationBtn.addEventListener("click", async () =>{
+               
+                handleApplication(id)
+                
             })
         }
     },(err)=> {
         console.log('err',err)
     })
 
+}
+
+// 교육 신청
+async function handleApplication(id){
+    await useAxios.post('/api/v1/users/me/applications',
+    {educationId: id}
+        ,(res)=> {
+        if(res.data){
+            alert('신청되었습니다.')
+        }else {
+            alert('신청이 실패되었습니다.')
+        }
+    
+    },(err)=> {
+        alert(err.response.data.message)
+    })
 }
