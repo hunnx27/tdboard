@@ -3,24 +3,118 @@
 <div class="admin-con-head">
     <div class="admin-title-wrap">
         <h3>
-            <span class="icon-box icon-size-24 icon-"></span>
+            <span class="icon-box icon-size-24 icon-admin-user"></span>
             회원관리
-        </h3>
-        <!-- 주석 풀면 자리 잡혀있음.
-        <button class="btn">
-          추가
-        </button>
-        -->
+            </h3>
     </div>
 </div>
 <div class="admin-con-body">
     <div class="admin-inner">
-        <!--
 
-            # 콘텐츠 영역 #
-
-        -->
+        <div class="table-wrap m-b-40">
+        <div class="table-body">
+            <table class="admin-table admin-detail">
+                <tbody>
+                <tr>
+                    <th> 
+                    <span>아이디</span>
+                    </th>
+                    <td>
+                    <span id="userId"></span> 
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>이름</span>
+                    </th>
+                    <td>
+                    <span id="userName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>권한</span>
+                    </th>
+                    <td>
+                    <div>
+                        <div  class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
+                        <button class="select-btn" aria-label="selectValue">
+                            <span class="icon-box icon-size-sm icon-smile"></span>
+                            <span id="selectRoleField" class="select-value" data-value="ROLE_USER"  data-default-text="회원">
+                                회원
+                            </span>
+                        </button>
+                        <div class="option-box" aria-label="option-box">
+                            <div>
+                            <button class="option" aria-label="option" title="관리자" data-option="ROLE_ADMIN" disabled>
+                            <span>
+                                관리자
+                            </span>
+                            </button>
+                            <button class="option" aria-label="option" title="교수" data-option="ROLE_PROFESSOR" disabled>
+                            <span>
+                                교수
+                            </span>
+                            </button>
+                            <button class="option" aria-label="option" title="회원" data-option="ROLE_USER" disabled>
+                            <span>
+                                회원
+                            </span>
+                            </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>이메일</span>
+                    </th>
+                    <td>
+                    <span id="email"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>휴대전화번호</span>
+                    </th>
+                    <td>
+                    <span id="phone"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>비밀번호</span>
+                    </th>
+                    <td>
+                    <div>
+                        <button id="resetPwdBtn" class="btn admin-btn-type-03">
+                        비밀번호 초기화
+                        </button>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>가입일</span>
+                    </th>
+                    <td>
+                    <span id="createdAtText"></span>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="flex-box justify-center align-center admin-btn-wrap">
+        <button id="modifyConfirmBtn" class="btn btn-type-03">
+            수정하기
+        </button>
+        </div>
     </div>
-</div>
-
+    </div>
+    <input type="hidden" id="memberId" name="memberId" value="{[id]}" />"
+<script type="module" src="/assets/js/admin/member/member-detail.js"></script>
 {[>layout/admin-footer]}

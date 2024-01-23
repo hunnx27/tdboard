@@ -56,16 +56,30 @@ async function getBoardApi(pageNumber, role){
         const tableHeadText = `Total ${res.data.paging.totalElements}건 ${res.data.paging.totalPages} 페이지`
         document.getElementById("tableHeadText").innerHTML = tableHeadText
 
-        const applicationCancelBtn = document.querySelector('.applicationCancelBtn')
-        if(applicationCancelBtn){
-            applicationCancelBtn.addEventListener('click', function() {
-                // 클릭한 버튼의 data-value 속성 값 가져오기
-                const dataValue = this.getAttribute('data-value');
+        const memberDeleteBtn = document.querySelectorAll('.memberDeleteBtn')
+        memberDeleteBtn.forEach(function (btns, idx) {
+            if(btns){
+                btns.addEventListener('click', function(e) {
+                    // 클릭한 버튼의 data-value 속성 값 가져오기
+                    const dataValue = this.getAttribute('data-value');
+                    // 회원 탈퇴 호출
+                    handleMemberDelete(dataValue);
+                });
+            }
+        })
+
+        const memberModifyBtn = document.querySelectorAll('.memberModifyBtn')
+        memberModifyBtn.forEach(function (btns, idx) {
+            if(btns){
+                btns.addEventListener('click', function(e) {
+                    // 클릭한 버튼의 data-value 속성 값 가져오기
+                    const dataValue = this.getAttribute('data-value');
+                    // 회원 탈퇴 호출
+                    location.href= `/admin/member-detail/${dataValue}`
+                });
+            }
+        })
         
-                // 취소 함수 호출
-                handleApplicationCancel(dataValue);
-            });
-        }
         
     },(err)=> {
         console.log('err',err)
@@ -81,15 +95,18 @@ function handleSetList(pageNumber, data){
     paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
 
-// 신청 취소
-async function handleApplicationCancel(id){
-    await useAxios.delete(`/api/v1/users/me/bookings/${id}`,
-    {}
-        ,(res)=> {
-            // console.log(res.data)
-            alert('취소 되었습니다.')
-            location.reload()
-    },(err)=> {
-        alert(err.response.data.message)
-    })
+// 회원 탈퇴
+async function handleMemberDelete(id){
+    if(confirm('탈퇴처리 하시겠습니까?')){
+        await useAxios.delete(`/api/v1/members/${id}`,
+        {}
+            ,(res)=> {
+                console.log(res.data)
+                alert('탈퇴 처리 되었습니다.')
+                location.reload()
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }
+    
 }
