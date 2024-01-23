@@ -189,8 +189,11 @@
                             <span>대표 이미지</span>
                           </th>
                           <td colspan="3">
-                            <div class="textfield w-full max-w-380"  data-type="file"  data-status="default" data-size="MD" data-icon="">
-                              <input type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                            <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
+                              <input id="file-01" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                              <label for="file-01">
+                                Select Files
+                              </label>
                               <p class="error-text"></p>
                             </div>
                           </td>
