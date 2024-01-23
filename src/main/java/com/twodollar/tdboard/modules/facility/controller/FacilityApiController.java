@@ -107,4 +107,23 @@ public class FacilityApiController {
         }
     }
 
+    @Operation(summary = "시설 삭제", description = "시설 삭제")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @DeleteMapping("/facilities/{id}")
+    public ResponseEntity<ApiCmnResponse<?>> facilityDelete(
+            @PathVariable("id") Long id
+    ) throws Exception {
+        try {
+            facilityService.deleteFacilityById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("deleted"));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
 }
