@@ -48,6 +48,7 @@ public class ApplicationService {
         if(userId!=null){
             User user = userService.getUserByUserId(userId);
             application.setUser(user);
+            application.setReqPhone(user.getPhone());
         }
         Long educationId = createApplication.getEducationId();
         if(educationId!=null){
