@@ -87146,7 +87146,9 @@ icon
 .textfield textarea {
   width: 100%;
   max-width: 100%;
-  min-height: 15rem;
+  min-height: 7.5rem;
+  max-height: 7.5rem;
+  line-height: 1.5;
   resize: none;
   border: 1px solid #ddd;
   padding: 0.8rem;
@@ -89552,15 +89554,17 @@ sub page
 }
 .admin-container .admin-con-body {
   height: calc(100% - 128px);
+  padding: 4rem;
+  padding-right: 2rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  background-color: #fff;
 }
 .admin-container .admin-con-body .admin-inner {
   width: 100%;
   height: 100%;
-  padding: 4rem;
-  background-color: #fff;
+  padding-right: 2rem;
   overflow-y: scroll;
-  max-width: 1180px;
-  margin: 0 auto;
 }
 
 .admin-con {
@@ -89570,6 +89574,7 @@ sub page
 /* admin table*/
 .admin-detail {
   border-top: 1px solid #333;
+  margin-bottom: 4rem;
 }
 .admin-detail tbody tr th, .admin-detail tbody tr td {
   border-bottom: 1px solid #B3B3B3;
@@ -89599,6 +89604,25 @@ sub page
 .admin-detail tbody tr td span {
   color: #666666;
 }
+.admin-container .board-list {
+  margin-bottom: 4rem;
+}
+.admin-container .board-list th.td-num, .admin-container .board-list td.td-num {
+  width: 12rem;
+}
+.admin-container .board-list td img {
+  max-width: 6.4rem;
+}
+
+.admin-btn-wrap {
+  margin-bottom: 4rem;
+  gap: 3.4rem;
+}
+.admin-btn-wrap .btn {
+  height: 4.8rem;
+  min-width: 32rem;
+}
+
 .admin-footer {
   padding: 0;
 }
