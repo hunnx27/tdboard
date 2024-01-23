@@ -15,12 +15,129 @@
 </div>
 <div class="admin-con-body">
     <div class="admin-inner">
-        <!--
 
-            # 콘텐츠 영역 #
+        <div class="table-wrap">
+        <div class="table-body">
+            <table id="educations-template" class="admin-table admin-detail">
+                <tbody>
+                <tr>
+                    <th> 
+                    <span>강의명</span>
+                    </th>
+                    <td colspan="3">
+                    <span>{{name}}</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                    <span>정원</span>
+                    </th>
+                    <td colspan="3">
+                    <span>{{capacity}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>강의실</span>
+                    </th>
+                    <td>
+                    <span>
+                        {{facilityName}}
+                    </span>
+                    </td>
+                    <th> 
+                    <span>담당교수</span>
+                    </th>
+                    <td>
+                    <span>
+                        {{manager}}
+                    </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>강의기간</span>
+                    </th>
+                    <td colspan="3">
+                    <div class="flex-box gap-16 align-center">
+                        <div class="flex-box gap-4 align-center">
+                        <span class="text-box">
+                            시작일
+                        </span>
+                        <span>{{startDateText}}</span>
+                        </div>
+                        
+                        <span>
+                        ~
+                        </span>
+                        <div class="flex-box gap-4 align-center">
+                        <span class="text-box">
+                            종료일
+                        </span>
+                        <span>{{endDateText}}</span>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>접수기간</span>
+                    </th>
+                    <td colspan="3">
+                    <div class="flex-box gap-16 align-center">
+                        <div class="flex-box gap-4 align-center">
+                        <span class="text-box">
+                            시작일
+                        </span>
+                        <span>{{applicationStartDateText}}</span>
+                        </div>
+                        
+                        <span>
+                        ~
+                        </span>
+                        <div class="flex-box gap-4 align-center">
+                        <span class="text-box">
+                            종료일
+                        </span>
+                        <span>{{applicationEndDateText}}</span>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>강의내용</span>
+                    </th>
+                    <td colspan="3">
+                    <span>{{description}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="vertical-t"> 
+                    <span>대표 이미지</span>
+                    </th>
+                    <td colspan="3">
+                    <div class="img-box">
+                        <img src="{{imageUrl}}" alt="강의실">
+                    </div>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+        </div>
 
-        -->
+        <div class="flex-box justify-center align-center  admin-btn-wrap">
+        <button class="btn btn-type-04" onClick="history.back()">
+            취소하기
+        </button>
+        <button class="btn btn-type-03" onClick="location.href='/admin/edu-modify/{[id]}'">
+            수정하기
+        </button>
+        </div>
     </div>
-</div>
-
+    </div>
+     <input type="hidden" id="educationId" name="educationId" value="{[id]}" />
+<script type="module" src="/assets/js/admin/edu/edu-detail.js"></script>
 {[>layout/admin-footer]}
