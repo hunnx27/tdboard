@@ -1,0 +1,152 @@
+{[>layout/admin-header]}
+
+<div class="admin-con-head">
+    <div class="admin-title-wrap">
+        <h3>
+            <span class="icon-box icon-size-24 icon-"></span>
+            장비관리
+        </h3>
+    </div>
+</div>
+<div class="admin-con-body">
+    <div class="admin-inner">
+        <div class="table-wrap">
+        <div class="table-body">
+            <table class="admin-table admin-detail">
+                <tbody>
+                <tr>
+                    <th> 
+                    <span>장비명</span>
+                    </th>
+                    <td colspan="3">
+                    <div>
+                        <div class="textfield w-full "  data-type="text"  data-status="default" data-size="MD" data-icon="">
+                        <input id="name" type="text" placeholder="장비명" onchange='textfieldChange(this,event)'>
+                        <p class="error-text"></p>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>장비내용</span>
+                    </th>
+                    <td colspan="3">
+                    <div>
+                        <div id="descriptionField" class=" textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
+                        <div id="description"></div>
+                        <p class="error-text"></p>
+<!--                        <textarea id="description" placeholder="강의내용"></textarea>-->
+                        <!--
+                        <input type="text" placeholder="강의내용" onchange='textfieldChange(this,event)'>
+                        <p class="error-text"></p>
+                        -->
+                    </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 
+                    <span>대여장소</span>
+                    </th>
+                    <td colspan="3">
+                    <div class="flex-box align-center gap-18">
+                        <button id="facilityListBtn" class="btn btn-size-xl admin-btn-type-03">장소 연결</button>
+                        <div id="locationField" class="textfield max-w-380 "  data-type="text"  data-status="default" data-size="MD" data-icon="">
+                        <input id="location" type="text" placeholder="대여장소" data-status="default" onchange='textfieldChange(this,event)' data-value="">
+                        <p class="error-text"></p>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="vertical-t"> 
+                    <span>대표 이미지</span>
+                    </th>
+                    <td colspan="3">
+                    <!--
+                    <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
+                        <input id="file-01" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                        <label for="file-01">
+                        Select Files
+                        </label>
+                        <p class="error-text"></p>
+                    </div>
+                    -->
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="flex-box justify-center align-center admin-btn-wrap">
+        <button class="btn btn-type-04" onClick="history.back()">
+            취소하기
+        </button>
+        <button id="saveBtn" class="btn btn-type-03" >
+            추가하기
+        </button>
+        </div>
+    </div>
+    </div>
+ <!-- 팝업 -->
+<div id="noti-top-hjcho" data-size="MD" style="display:none">
+  <div class="noti-con">
+    <div class="noti-head">
+      <h1>시설 목록</h1>
+      <button id="popupCloseBtn" class="btn btn-icon-only">
+        <span class="icon-box icon-size-24 icon-close"></span>
+      </button>
+    </div>
+    <div class="noti-body">
+      <div class="noti-body-con">
+        <div class="table-wrap board-list">
+          <div class="table-body">
+              <table class="table table-fixed">
+                  <thead>
+                      <tr>
+                          <th class="td-num">
+                              번호
+                          </th>
+                          <th class="td-title">
+                              시설명
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody id="list-body">
+                    <tr>
+                        <td colspan="2">등록된 내용이 없습니다.</td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="table-foot">
+             {[>layout/pagination]}
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="noti-foot">
+    </div>
+  </div>
+</div>
+
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr class="popup-item" data-value="{{id}}" data-title="{{name}}">
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+        <span>
+            {{name}}
+        </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>    
+<script type="module" src="/assets/js/admin/equipment/equipment-create.js"></script>
+{[>layout/admin-footer]}

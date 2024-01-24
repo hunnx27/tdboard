@@ -66,6 +66,10 @@ public class AdminWebController {
         model.addAttribute("id", id);
         return "pages/admin/equipment/modify";
     }
+    @GetMapping("admin/equipment-create")
+    public String equipmentCreate() {
+        return "pages/admin/equipment/create";
+    }
 
     // 시설
     @GetMapping("admin/facility-list")
@@ -81,6 +85,10 @@ public class AdminWebController {
     public String facilityModify(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
         return "pages/admin/facility/modify";
+    }
+    @GetMapping("admin/facility-create")
+    public String facilityCreate() {
+        return "pages/admin/facility/create";
     }
 
     // 설문지

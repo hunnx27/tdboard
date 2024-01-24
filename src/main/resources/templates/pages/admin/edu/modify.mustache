@@ -6,18 +6,14 @@
             <span class="icon-box icon-size-24 icon-"></span>
             교육관리
         </h3>
-        <!-- 주석 풀면 자리 잡혀있음.
-        <button class="btn">
-          추가
-        </button>
-        -->
     </div>
 </div>
 <div class="admin-con-body">
     <div class="admin-inner">
         <div class="table-wrap">
         <div class="table-body">
-            <table class="admin-table admin-detail">
+            
+                <table class="admin-table admin-detail">
                 <tbody>
                 <tr>
                     <th> 
@@ -26,7 +22,7 @@
                     <td colspan="3">
                     <div>
                         <div class="textfield w-full max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
-                        <input type="text" placeholder="강의명" onchange='textfieldChange(this,event)'>
+                        <input id="name" type="text" placeholder="강의명" onchange='textfieldChange(this,event)'>
                         <p class="error-text">강의명</p>
                         </div>
                     </div>
@@ -41,20 +37,20 @@
                         <div class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
                         <button class="select-btn" aria-label="selectValue">
                             <span class="icon-box icon-size-sm icon-smile"></span>
-                            <span class="select-value" data-default-text="정원">
-                                정원
+                            <span id="capacityField" class="select-value" data-value="10" data-default-text="10">
+                                10
                             </span>
                         </button>
                         <div class="option-box" aria-label="option-box">
                             <div>
-                            <button class="option" aria-label="option" disabled>
+                            <button class="option" aria-label="option" data-option="10" disabled>
                                 <span>
-                                    Value
+                                    10
                                 </span>
                             </button>
-                            <button class="option" aria-label="option" disabled>
+                            <button class="option" aria-label="option" data-option="20" disabled>
                                 <span>
-                                    Value
+                                    20
                                 </span>
                             </button>
                             </div>
@@ -69,9 +65,9 @@
                     </th>
                     <td>
                     <div class="flex-box gap-18">
-                        <button class="btn btn-size-xl admin-btn-type-03">장소 연결</button>
-                        <div class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
-                        <input type="text" placeholder="강의실" onchange='textfieldChange(this,event)'>
+                        <button id="facilityListBtn" class="btn btn-size-xl admin-btn-type-03">장소 연결</button>
+                        <div id="locationField" class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
+                        <input id="location" type="text" placeholder="강의실" onchange='textfieldChange(this,event)' data-value="">
                         <p class="error-text"></p>
                         </div>
                     </div>
@@ -82,7 +78,7 @@
                     <td>
                     <div>
                         <div class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
-                        <input type="text" placeholder="교수 이름" onchange='textfieldChange(this,event)'>
+                        <input id="manager" type="text" placeholder="교수 이름" onchange='textfieldChange(this,event)'>
                         <p class="error-text"></p>
                         </div>
                     </div>
@@ -98,8 +94,8 @@
                         <span class="text-box">
                             시작일
                         </span>
-                        <div class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
-                            <input type="text" class="datepicker" placeholder="시작일" onchange='textfieldChange(this,event)'>
+                        <div id="startDateField" class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
+                            <input id="startDate" type="text" class="datepicker" placeholder="시작일" onchange='textfieldChange(this,event)'>
                             <p class="error-text"></p>
                         </div>
                         </div>
@@ -111,8 +107,8 @@
                         <span class="text-box">
                             종료일
                         </span>
-                        <div class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
-                            <input type="text" class="datepicker" placeholder="종료일" onchange='textfieldChange(this,event)'>
+                        <div id="endDateField" class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
+                            <input id="endDate" type="text" class="datepicker" placeholder="종료일" onchange='textfieldChange(this,event)'>
                             <p class="error-text"></p>
                         </div>
                         </div>
@@ -129,8 +125,8 @@
                         <span class="text-box">
                             시작일
                         </span>
-                        <div class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
-                            <input type="text" class="datepicker" placeholder="시작일" onchange='textfieldChange(this,event)'>
+                        <div id="applicationStartDateField" class="textfield  max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
+                            <input id="applicationStartDate" type="text" class="datepicker" placeholder="시작일" onchange='textfieldChange(this,event)'>
                             <p class="error-text"></p>
                         </div>
                         </div>
@@ -142,8 +138,8 @@
                         <span class="text-box">
                             종료일
                         </span>
-                        <div class="textfield max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
-                            <input type="text" class="datepicker" placeholder="종료일" onchange='textfieldChange(this,event)'>
+                        <div id="applicationEndDateField" class="textfield max-w-380"  data-type="date"  data-status="default" data-size="MD" data-icon="true">
+                            <input id="applicationEndDate" type="text" class="datepicker" placeholder="종료일" onchange='textfieldChange(this,event)'>
                             <p class="error-text"></p>
                         </div>
                         </div>
@@ -155,8 +151,10 @@
                     <span>강의내용</span>
                     </th>
                     <td colspan="3">
-                    <div class="textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
-                        <textarea placeholder="강의내용"></textarea>
+                    <div id="descriptionField" class=" textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
+                        <div id="description"></div>
+                        <p class="error-text"></p>
+<!--                        <textarea id="description" placeholder="강의내용"></textarea>-->
                         <!--
                         <input type="text" placeholder="강의내용" onchange='textfieldChange(this,event)'>
                         <p class="error-text"></p>
@@ -169,26 +167,87 @@
                     <span>대표 이미지</span>
                     </th>
                     <td colspan="3">
+                    <!--
                     <div class="textfield w-full max-w-380"  data-type="file"  data-status="default" data-size="MD" data-icon="">
-                        <input type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                        <input id="mainImg" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
                         <p class="error-text"></p>
                     </div>
+                    -->
                     </td>
                 </tr>
                 </tbody>
             </table>
+          
         </div>
         </div>
         <div class="flex-box justify-center align-center admin-btn-wrap">
-        <button class="btn btn-type-04">
+        <button class="btn btn-type-04" onClick="history.back()">
             취소하기
         </button>
-        <button class="btn btn-type-03">
-            추가하기
+        <button id="saveBtn" class="btn btn-type-03" >
+            수정하기
         </button>
         </div>
     </div>
     </div>
-     <input type="hidden" id="educationId" name="educationId" value="{[id]}" />
-<script type="module" src="/assets/js/admin/edu/edu-modfiy.js"></script>
+<!-- 팝업 -->
+<div id="noti-top-hjcho" data-size="MD" style="display:none">
+  <div class="noti-con">
+    <div class="noti-head">
+      <h1>강의실 목록</h1>
+      <button id="popupCloseBtn" class="btn btn-icon-only">
+        <span class="icon-box icon-size-24 icon-close"></span>
+      </button>
+    </div>
+    <div class="noti-body">
+      <div class="noti-body-con">
+        <div class="table-wrap board-list">
+          <div class="table-body">
+              <table class="table table-fixed">
+                  <thead>
+                      <tr>
+                          <th class="td-num">
+                              번호
+                          </th>
+                          <th class="td-title">
+                              강의실
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody id="list-body">
+                    <tr>
+                        <td colspan="2">등록된 내용이 없습니다.</td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="table-foot">
+             {[>layout/pagination]}
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="noti-foot">
+    </div>
+  </div>
+</div>
+<input type="hidden" id="educationId" name="educationId" value="{[id]}" />
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr class="popup-item" data-value="{{id}}" data-title="{{name}}">
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+        <span>
+            {{name}}
+        </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>
+     
+<script type="module" src="/assets/js/admin/edu/edu-modify.js"></script>
 {[>layout/admin-footer]}

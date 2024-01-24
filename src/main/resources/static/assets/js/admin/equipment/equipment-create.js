@@ -5,7 +5,7 @@ import createPaginationModule from "/assets/js/pagination.js";
 const paginationModule = createPaginationModule();
 
 window.onload = function() {
-
+    
     initElementEvent()
 
      //popup list
@@ -19,7 +19,7 @@ window.onload = function() {
 
 function initElementEvent(){
     $('#description').summernote({
-        placeholder: '강의내용',
+        placeholder: '장비내용',
         tabsize: 2,
         height: 120,
         toolbar: [
@@ -49,58 +49,12 @@ function initElementEvent(){
     });
 
 
-    $("#startDate").datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText, inst) {
-            const startDateField = document.getElementById('startDateField')
-            startDateField.setAttribute('data-status', 'active');
-            // validationButtonVisible();
-        }
-    });
-    $("#endDate").datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText, inst) {
-            const endDateField = document.getElementById('endDateField')
-            endDateField.setAttribute('data-status', 'active');
-            // validationButtonVisible();
-        }
-    });
-    $("#applicationStartDate").datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText, inst) {
-            const applicationStartDateField = document.getElementById('applicationStartDateField')
-            applicationStartDateField.setAttribute('data-status', 'active');
-            // validationButtonVisible();
-        }
-    });
-    $("#applicationEndDate").datepicker({
-        dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText, inst) {
-            const applicationEndDateField = document.getElementById('applicationEndDateField')
-            applicationEndDateField.setAttribute('data-status', 'active');
-            // validationButtonVisible();
-        }
-    });
-
-    const capacityField = document.getElementById('capacityField');
-
-    // "option" 클래스를 가진 버튼 요소들을 선택
-    const optionButtons = document.querySelectorAll('.option');
-
-    // 각 버튼에 클릭 이벤트 리스너 추가
-    optionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 클릭된 버튼의 data-option 값을 가져와서 selectJoinPathField의 data-value에 설정
-            const dataOptionValue = button.dataset.option;
-            capacityField.dataset.value = dataOptionValue;
-        });
-    });
-
+   
     const saveBtn = document.getElementById('saveBtn');
     saveBtn.addEventListener('click', async () =>{
         const result = await checkVaildation()
         if(result === 0){
-            saveEduApi()
+            saveApi()
         }
         
     })
@@ -207,36 +161,24 @@ async function checkVaildation() {
     return count
 }
 
-async function saveEduApi() {
+async function saveApi() {
     const name = document.getElementById('name').value
     const locationValue = document.getElementById('location').value
     const facilityId = document.getElementById('location').dataset.value
     const description = $('#description').summernote('code');
-    const startDate = document.getElementById('startDate').value
-    const endDate = document.getElementById('endDate').value
-    const applicationStartDate = document.getElementById('applicationStartDate').value
-    const applicationEndDate = document.getElementById('applicationEndDate').value
-    const manager = document.getElementById('manager').value
-    const capacity = document.getElementById('capacityField').dataset.value
-
-    await useAxios.postMultipart(`/api/v1/educations`,
+   
+    await useAxios.postMultipart(`/api/v1/equipments`,
     {
         name,
         facilityId,
         location:locationValue,
         description,
-        startDate,
-        endDate,
-        applicationStartDate,
-        applicationEndDate,
-        manager,
-        capacity,
         imageUrl:""
     }
     ,(res)=> {
 
-        alert('교육 생성이 되었습니다')
-        location.href= "/admin/edu-list"
+        alert('장비가 생성 되었습니다')
+        location.href= "/admin/equipment-list"
     },(err)=> {
         alert(err.response.data.message)
     })

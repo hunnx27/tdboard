@@ -6,11 +6,6 @@
             <span class="icon-box icon-size-24 icon-"></span>
             교육관리
         </h3>
-        <!-- 주석 풀면 자리 잡혀있음.
-        <button class="btn">
-          추가
-        </button>
-        -->
     </div>
 </div>
 <div class="admin-con-body">
@@ -42,7 +37,7 @@
                         <div class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
                         <button class="select-btn" aria-label="selectValue">
                             <span class="icon-box icon-size-sm icon-smile"></span>
-                            <span id="capacityField" class="select-value" data-value data-default-text="10">
+                            <span id="capacityField" class="select-value" data-value="10" data-default-text="10">
                                 10
                             </span>
                         </button>
@@ -70,9 +65,9 @@
                     </th>
                     <td>
                     <div class="flex-box gap-18">
-                        <button class="btn btn-size-xl admin-btn-type-03">장소 연결</button>
-                        <div class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
-                        <input id="location" type="text" placeholder="강의실" onchange='textfieldChange(this,event)'>
+                        <button id="facilityListBtn" class="btn btn-size-xl admin-btn-type-03">장소 연결</button>
+                        <div id="locationField" class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
+                        <input id="location" type="text" placeholder="강의실" onchange='textfieldChange(this,event)' data-value="">
                         <p class="error-text"></p>
                         </div>
                     </div>
@@ -195,7 +190,63 @@
         </div>
     </div>
     </div>
-     <input type="hidden" id="educationId" name="educationId" value="{[id]}" />
+<!-- 팝업 -->
+<div id="noti-top-hjcho" data-size="MD" style="display:none">
+  <div class="noti-con">
+    <div class="noti-head">
+      <h1>강의실 목록</h1>
+      <button id="popupCloseBtn" class="btn btn-icon-only">
+        <span class="icon-box icon-size-24 icon-close"></span>
+      </button>
+    </div>
+    <div class="noti-body">
+      <div class="noti-body-con">
+        <div class="table-wrap board-list">
+          <div class="table-body">
+              <table class="table table-fixed">
+                  <thead>
+                      <tr>
+                          <th class="td-num">
+                              번호
+                          </th>
+                          <th class="td-title">
+                              강의실
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody id="list-body">
+                    <tr>
+                        <td colspan="2">등록된 내용이 없습니다.</td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="table-foot">
+             {[>layout/pagination]}
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="noti-foot">
+    </div>
+  </div>
+</div>
 
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr class="popup-item" data-value="{{id}}" data-title="{{name}}">
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+        <span>
+            {{name}}
+        </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>
 <script type="module" src="/assets/js/admin/edu/edu-create.js"></script>
 {[>layout/admin-footer]}
