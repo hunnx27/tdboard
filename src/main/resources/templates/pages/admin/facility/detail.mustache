@@ -11,8 +11,8 @@
 <div class="admin-con-body">
             <div class="admin-inner">
 
-              <div class="table-wrap">
-                <div class="table-body">
+              <div id="body-template" class="table-wrap">
+                <div  class="table-body">
                     <table class="admin-table admin-detail">
                       <tbody>
                         <tr>
@@ -20,7 +20,7 @@
                             <span>장비명</span>
                           </th>
                           <td colspan="3">
-                            <span>장비명입니다</span> 
+                            <span>{{name}}</span> 
                           </td>
                         </tr>
                         <tr>
@@ -28,20 +28,7 @@
                             <span>장비내용</span>
                           </th>
                           <td colspan="3">
-                            <span>장비내용장비내용장비내용장비내용장비내용장비내용장비내용장비내용장비내용장비내용장비내용장비내용</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th> 
-                            <span>강의실</span>
-                          </th>
-                          <td colspan="3">
-                            <div class="flex-box gap-4 align-center">
-                              <span class="text-box text-box-primary text-primary">
-                                시작일
-                              </span>
-                              <span>대강의실</span>
-                            </div>
+                            <span>{{description}}</span>
                           </td>
                         </tr>
                         <tr>
@@ -50,7 +37,7 @@
                           </th>
                           <td colspan="3">
                             <div class="img-box">
-                              <img src="../../../assets/images/sub/gallery_test_img.png" alt="강의실">
+                              <img src="{{imageUrl}}" alt="강의실">
                             </div>
                           </td>
                         </tr>
@@ -103,14 +90,15 @@
                 </div>
               </div>
               <div class="flex-box justify-center align-center admin-btn-wrap">
-                <button class="btn btn-type-04">
-                  취소하기
+                <button class="btn btn-type-04" onClick="history.back()">
+                    취소하기
                 </button>
-                <button class="btn btn-type-03">
-                  수정하기
+                <button class="btn btn-type-03" onClick="location.href='/admin/facility-modify/{[id]}'">
+                    수정하기
                 </button>
               </div>
             </div>
           </div>
-
+     <input type="hidden" id="facilityId" name="facilityId" value="{[id]}" />
+<script type="module" src="/assets/js/admin/facility/facility-detail.js"></script>
 {[>layout/admin-footer]}

@@ -15,12 +15,68 @@
 </div>
 <div class="admin-con-body">
     <div class="admin-inner">
-        <!--
 
-            # 콘텐츠 영역 #
+        <div id="body-template" class="table-wrap">
+            <div class="table-body">
+                <table class="admin-table admin-detail">
+                    <tbody>
+                    <tr>
+                        <th> 
+                        <span>장비명</span>
+                        </th>
+                        <td colspan="3">
+                        <span>{{name}}</span> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                        <span>장비내용</span>
+                        </th>
+                        <td colspan="3">
+                        <span>{{description}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th> 
+                        <span>강의실</span>
+                        </th>
+                        <td colspan="3">
+                        <div class="flex-box gap-4 align-center">
+                            {{#facilityId}}
+                            <span class="text-box text-box-primary text-primary">
+                            (연동중)
+                            </span>
+                            {{/facilityId}}
+                            <span>{{location}}</span>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="vertical-t"> 
+                        <span>대표 이미지</span>
+                        </th>
+                        <td colspan="3">
+                        <div class="img-box">
+                            <img src="{{imageUrl}}" alt="강의실">
+                        </div>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        -->
+        <div class="flex-box justify-center align-center admin-btn-wrap">
+        <button class="btn btn-type-04" onClick="history.back()">
+            취소하기
+        </button>
+        <button class="btn btn-type-03" onClick="location.href='/admin/equipment-modify/{[id]}'">
+            수정하기
+        </button>
+        </div>
     </div>
-</div>
-
+    </div>
+     <input type="hidden" id="equipmentId" name="equipmentId" value="{[id]}" />
+<script type="module" src="/assets/js/admin/equipment/equipment-detail.js"></script>
 {[>layout/admin-footer]}

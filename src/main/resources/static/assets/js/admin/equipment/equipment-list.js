@@ -87,7 +87,7 @@ function handleSetList(pageNumber, data){
 
 
 async function handleEquipmentDelete(id){
-    if(confirm('장빌 ㄹ 삭제 하시겠습니까?')){
+    if(confirm('장비를 삭제 하시겠습니까?')){
         await useAxios.delete(`/api/v1/equipments/${id}`,
         {}
             ,(res)=> {
