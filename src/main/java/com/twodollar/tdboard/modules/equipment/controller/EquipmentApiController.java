@@ -126,4 +126,25 @@ public class EquipmentApiController {
         }
     }
 
+    @Operation(summary = "시설에 포함된 장비 목록 조회", description = "시설에 포함된 장비 목록 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/equipments/in-facility/{facilityId}")
+    public ResponseEntity<ApiCmnResponse<?>> equipmentsInFacility(
+            @PathVariable("facilityId") Long facilityId,
+            Pageable pageable
+    ){
+        try {
+            long totalSize = equipmentService.getTotalEquipmentSize(facilityId);
+            List<Equipment> equipmentList = equipmentService.getEquipments(facilityId, pageable);
+            List<EquipmentResponse> equipmentResponseList = equipmentList.stream().map(equipment -> equipment.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(equipmentResponseList, pageable, totalSize)));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
 }

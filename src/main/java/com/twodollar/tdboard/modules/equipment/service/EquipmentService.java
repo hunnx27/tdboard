@@ -6,8 +6,11 @@ import com.twodollar.tdboard.modules.facility.entity.Facility;
 import com.twodollar.tdboard.modules.facility.repository.FacilityRepository;
 import com.twodollar.tdboard.modules.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,6 +22,14 @@ public class EquipmentService {
 
     public long getTotalEquipmentSize(){
         return equipmentRepository.count();
+    }
+    public long getTotalEquipmentSize(Long facilityId){
+        return equipmentRepository.countByFacilityId(facilityId);
+    }
+
+    public List<Equipment> getEquipments(Long facilityId, Pageable pageable) {
+        List<Equipment> list = equipmentRepository.getEquipmentsByFacilityId(facilityId, pageable).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "시설에 포함된 장비가 없습니다."));
+        return list;
     }
     public List<Equipment> getEquipments(Pageable pageable) {
         List<Equipment> list = equipmentRepository.findAll(pageable).getContent();
