@@ -157,7 +157,24 @@
                     </th>
                     <td colspan="3">
                     <div class="textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
-                        <textarea id="description" placeholder="강의내용"></textarea>
+                        <div id="description"></div>
+                        <script>
+                            $('#description').summernote({
+                                placeholder: '강의내용',
+                                tabsize: 2,
+                                height: 120,
+                                toolbar: [
+                                    ['style', ['style']],
+                                    ['font', ['bold', 'underline', 'clear']],
+                                    ['color', ['color']],
+                                    ['para', ['ul', 'ol', 'paragraph']],
+                                    ['table', ['table']],
+                                    ['insert', ['link', 'picture', 'video']],
+                                    ['view', ['fullscreen', 'codeview', 'help']]
+                                ]
+                            });
+                        </script>
+<!--                        <textarea id="description" placeholder="강의내용"></textarea>-->
                         <!--
                         <input type="text" placeholder="강의내용" onchange='textfieldChange(this,event)'>
                         <p class="error-text"></p>
