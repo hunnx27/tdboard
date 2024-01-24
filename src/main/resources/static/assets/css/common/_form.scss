@@ -387,10 +387,47 @@ input{}
 
   }
 }
+/*Select Files*/
 .textfield {
   &[data-type='text'] {
   }
   &[data-type='search'] {
+  }
+  &[data-type='file'] {
+    position:relative;
+    input[type=file]{
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      &::file-selector-button{
+        display:none;
+      }
+    }
+    input[type=file] + label{
+      display:inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: #797F8B;
+      border:1px solid #797F8B;
+      color:#fff;
+      cursor: pointer;
+      padding:0 1.2rem;
+      height:3.6rem;
+      border-radius: 0.4rem;
+      -webkit-transition:all 0.25s ease-in-out;
+      transition:all 0.25s ease-in-out;
+      &:hover {
+        outline-offset: 2px;
+        outline:1px solid $hover;
+      }
+      &:focus {
+        outline-offset: 2px;
+        outline:1px solid $focus;
+      }
+    }
   }
   &[data-type='id'] {
     &::before{

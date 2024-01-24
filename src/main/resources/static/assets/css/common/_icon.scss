@@ -115,8 +115,13 @@ icon
     }
   }
 
-
-
+  /*popup*/
+  &.icon-close{
+    &::after {
+      background-image: url(../../images/icon/close_icon.svg);
+      filter:none !important;
+    }
+  }
 
   /*admin*/
   &.icon-admin-user{
@@ -140,6 +145,12 @@ icon
   &.icon-admin-moniter{
     &::after {
       background-image: url(../../images/icon/admin_moniter_icon.svg);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-servay{
+    &::after {
+      background-image: url(../../images/icon/admin_file_icon.svg);
       filter:none !important;
     }
   }
