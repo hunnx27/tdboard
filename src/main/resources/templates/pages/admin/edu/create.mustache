@@ -42,8 +42,8 @@
                         <div class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
                         <button class="select-btn" aria-label="selectValue">
                             <span class="icon-box icon-size-sm icon-smile"></span>
-                            <span id="capacityField" class="select-value" data-value data-default-text="정원">
-                                정원
+                            <span id="capacityField" class="select-value" data-value data-default-text="10">
+                                10
                             </span>
                         </button>
                         <div class="option-box" aria-label="option-box">
@@ -156,24 +156,9 @@
                     <span>강의내용</span>
                     </th>
                     <td colspan="3">
-                    <div class="textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
+                    <div id="descriptionField" class=" textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
                         <div id="description"></div>
-                        <script>
-                            $('#description').summernote({
-                                placeholder: '강의내용',
-                                tabsize: 2,
-                                height: 120,
-                                toolbar: [
-                                    ['style', ['style']],
-                                    ['font', ['bold', 'underline', 'clear']],
-                                    ['color', ['color']],
-                                    ['para', ['ul', 'ol', 'paragraph']],
-                                    ['table', ['table']],
-                                    ['insert', ['link', 'picture', 'video']],
-                                    ['view', ['fullscreen', 'codeview', 'help']]
-                                ]
-                            });
-                        </script>
+                        <p class="error-text"></p>
 <!--                        <textarea id="description" placeholder="강의내용"></textarea>-->
                         <!--
                         <input type="text" placeholder="강의내용" onchange='textfieldChange(this,event)'>
@@ -187,10 +172,12 @@
                     <span>대표 이미지</span>
                     </th>
                     <td colspan="3">
+                    <!--
                     <div class="textfield w-full max-w-380"  data-type="file"  data-status="default" data-size="MD" data-icon="">
                         <input id="mainImg" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
                         <p class="error-text"></p>
                     </div>
+                    -->
                     </td>
                 </tr>
                 </tbody>

@@ -3,9 +3,35 @@ import useFilters from '/assets/js/useFilters.js'
 
 window.onload = function() {
 
-initElementEvent()
+    initElementEvent()
 
-
+    $('#description').summernote({
+        placeholder: '강의내용',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+    $('#summernote').on('summernote.change', function() {
+        // 변경된 내용 가져오기
+        const content = $(this).summernote('code');
+        const descriptionField = document.getElementById('descriptionField')
+        const descriptionFieldError = descriptionField.querySelector('.error-text');
+        if(content !== '<p><br></p>'){
+            descriptionField.setAttribute('data-status', 'active');
+            descriptionFieldError.innerText = ''
+        }else {
+            descriptionField.setAttribute('data-status', 'error');
+            descriptionFieldError.innerText = '값을 입력해주세요.'
+        }
+    });
 }
 
 function initElementEvent(){
@@ -14,7 +40,7 @@ function initElementEvent(){
         onSelect: function(dateText, inst) {
             const startDateField = document.getElementById('startDateField')
             startDateField.setAttribute('data-status', 'active');
-            validationButtonVisible();
+            // validationButtonVisible();
         }
     });
     $("#endDate").datepicker({
@@ -22,7 +48,7 @@ function initElementEvent(){
         onSelect: function(dateText, inst) {
             const endDateField = document.getElementById('endDateField')
             endDateField.setAttribute('data-status', 'active');
-            validationButtonVisible();
+            // validationButtonVisible();
         }
     });
     $("#applicationStartDate").datepicker({
@@ -30,7 +56,7 @@ function initElementEvent(){
         onSelect: function(dateText, inst) {
             const applicationStartDateField = document.getElementById('applicationStartDateField')
             applicationStartDateField.setAttribute('data-status', 'active');
-            validationButtonVisible();
+            // validationButtonVisible();
         }
     });
     $("#applicationEndDate").datepicker({
@@ -38,7 +64,7 @@ function initElementEvent(){
         onSelect: function(dateText, inst) {
             const applicationEndDateField = document.getElementById('applicationEndDateField')
             applicationEndDateField.setAttribute('data-status', 'active');
-            validationButtonVisible();
+            // validationButtonVisible();
         }
     });
 
@@ -57,8 +83,12 @@ function initElementEvent(){
     });
 
     const saveBtn = document.getElementById('saveBtn');
-    saveBtn.addEventListener('click', () =>{
-        saveEduApi()
+    saveBtn.addEventListener('click', async () =>{
+        const result = await checkVaildation()
+        if(result === 0){
+            saveEduApi()
+        }
+        
     })
     
     const textfield = document.querySelectorAll('.textfield');
@@ -70,83 +100,49 @@ function initElementEvent(){
     })
 }
 
-async function validationButtonVisible() {
+async function checkVaildation() {
     const saveBtn = document.getElementById('saveBtn')
     const textfield = document.querySelectorAll('.textfield');
     // const userIdCheckBtn = document.getElementById('userIdCheckBtn')
     let count = 0;
     textfield.forEach(textfield => {
+        const errorField = textfield.querySelector('.error-text'); 
         const input = textfield.querySelector('input')
         if(input){
-            if(input.value && textfield.dataset.status !== 'active') {
-                count ++;
-            }
-        } 
-        const description = textfield.querySelector('textarea')
-        if(description){
-            if(description.value && textfield.dataset.status !== 'active') {
-                count ++;
-            }
-        } 
-        
-        
-    })
-    
-    console.log(count)
-        if(count > 0){
-            saveBtn.disabled = true
-        }else {
-            saveBtn.disabled = false
-        }
-}
-
-
-function checkVaildation() {
-   
-    const textfield = document.querySelectorAll('.textfield');
-    // const userIdCheckBtn = document.getElementById('userIdCheckBtn')
-    let count = 0;
-    textfield.forEach(textfield => {
-        const input = textfield.querySelector('input')
-        const errorText = textfield.querySelector('.error-text')
-        if(input){
-            if(input.value && textfield.dataset.status !== 'active') {
-                textfield.dataset.status = 'error'
-                errorText.innerText = "값을 입력해주세요."
+            if(input.value && textfield.dataset.status === 'active') {
+                textfield.setAttribute('data-status', 'active');
+                if(errorField){
+                    errorField.innerText = ''
+                }
+                
             }else {
-                textfield.dataset.status = 'default'
-                errorText.innerText = ""
-            }
-        } 
-        const description = textfield.querySelector('textarea')
-        if(description){
-            if(description.value && textfield.dataset.status !== 'active') {
+                textfield.setAttribute('data-status', 'error');
+                if(errorField){
+                    errorField.innerText = '값을 입력해주세요.'
+                }
                 count ++;
             }
         } 
-        
-        
+
+        const description = $('#description').summernote('code');
+        const descriptionField = document.getElementById('descriptionField')
+        const descriptionFieldError = descriptionField.querySelector('.error-text');
+        if(description !== '<p><br></p>'){
+            descriptionField.setAttribute('data-status', 'active');
+            descriptionFieldError.innerText = ''
+        }else {
+            descriptionField.setAttribute('data-status', 'error');
+            descriptionFieldError.innerText = '값을 입력해주세요.'
+        }
+
     })
-    
+    return count
 }
-//"facilityId":2,
-// "name":"교육2",
-// "location":"시설2 1층",
-// "description":"교육을 등록해 봤습니다.2",
-// "imageUrl":"/data/hiroo/img.jpg",
-// "startDate":"2024-01-01",
-// "endDate":"2024-01-03",
-// "applicationStartDate":"2023-12-25",
-// "applicationEndDate":"2023-12-31",
-// "manager":"유관순교수",
-// "capacity":31,
-// "useYn":"Y",
-// "delYn":"N"
-// }
+
 async function saveEduApi() {
     const name = document.getElementById('name').value
     const location = document.getElementById('location').value
-    const description = document.getElementById('description').value
+    const description = $('#description').summernote('code');
     const startDate = document.getElementById('startDate').value
     const endDate = document.getElementById('endDate').value
     const applicationStartDate = document.getElementById('applicationStartDate').value
@@ -164,12 +160,6 @@ async function saveEduApi() {
     formData.append('manager',manager)
     formData.append('capacity',capacity)
     formData.append('imageUrl',"")
-
-    // console.log(formData)
-    for (let [key, value] of formData.entries()) {
-        
-        console.log(`${key}: ${value}`);
-    }
 
     await useAxios.postMultipart(`/api/v1/educations`,
     {
