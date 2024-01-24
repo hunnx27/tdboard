@@ -6,6 +6,8 @@ import com.twodollar.tdboard.modules.education.controller.request.EducationReque
 import com.twodollar.tdboard.modules.education.controller.response.EducationResponse;
 import com.twodollar.tdboard.modules.education.entity.Education;
 import com.twodollar.tdboard.modules.education.service.EducationService;
+import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
+import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;

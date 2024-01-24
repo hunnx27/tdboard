@@ -10,5 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
+    int countByFacilityId(Long facilityId);
+    Optional<List<Equipment>> getEquipmentsByFacilityId(Long facilityId, Pageable pageable);
 
 }

@@ -19,7 +19,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -56,6 +62,44 @@ public class BookingService {
     public List<Booking> getBookings(BookingType bookingType, Pageable pageable) {
         List<Booking> list = bookingRepository.getBookingsByBookingType(bookingType, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
         return list;
+    }
+
+    public List<Integer> getAvailableBookingTimes(BookingType bookingType, String targetDate, Pageable pageable) {
+        LocalDateTime starttime = LocalDate.parse(targetDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
+        LocalDateTime endtime = LocalDate.parse(targetDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
+        List<Booking> bookings = bookingRepository.getBookingsAvailableNative(bookingType, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        return extractTimeByBookings(bookings, targetDate);
+    }
+
+    private List<Integer> extractTimeByBookings(List<Booking> bookings, String targetDate){
+        List<String> list = new ArrayList<>();
+        List<Integer> extractedtimes = bookings.stream()
+                .map((booking)->{
+                    List<LocalDateTime> times = this.extractTimeRange(booking.getStartAt(), booking.getEndAt());
+                    return times;
+                })
+                .flatMap(localDateTimes -> localDateTimes.stream())//여러 리스트 합치기
+                .sorted()
+                .filter(localDateTime -> targetDate.equals(localDateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))  //타겟 일자만 추출
+                .distinct()
+                .peek(localDateTime -> log.info("{}:{}", localDateTime.getHour(), localDateTime.getMinute()))
+                .map(localDateTime -> localDateTime.getHour())
+                .collect(Collectors.toList());
+        return extractedtimes;
+    }
+
+    // 사이의 시간 목록 추출
+    private List<LocalDateTime> extractTimeRange(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        List<LocalDateTime> timeRangeList = new ArrayList<>();
+
+        LocalDateTime currentDateTime = startDateTime;
+
+        while (!currentDateTime.isAfter(endDateTime)) {
+            timeRangeList.add(currentDateTime);
+            currentDateTime = currentDateTime.plusHours(1); // 시간 간격을 조절할 수 있습니다. 여기서는 1시간 간격으로 설정했습니다.
+        }
+
+        return timeRangeList;
     }
 
     public long getTotalBookingSize(String userId, BookingType bookingType, Pageable pageable){

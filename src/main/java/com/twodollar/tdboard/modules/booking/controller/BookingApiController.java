@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -110,6 +111,27 @@ public class BookingApiController {
         try {
             Booking booking = bookingService.getBookingById(id);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(booking.toResponse()));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "예약 가능 시간 조회(일자별)", description = "예약 가능 시간 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @GetMapping("/bookings/available-times")
+    public ResponseEntity<ApiCmnResponse<?>> bookingDate(
+            Pageable pageable,
+            @RequestParam(value = "bookingType") BookingType bookingType,
+            @RequestParam(value = "targetDate", required = false) String targetDate
+    ){
+        try {
+            List<Integer> availableTimes = bookingService.getAvailableBookingTimes(bookingType, targetDate, pageable);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(availableTimes));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
