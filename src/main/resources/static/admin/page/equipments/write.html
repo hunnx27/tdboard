@@ -70,6 +70,7 @@
                           </th>
                           <td colspan="3">
                             <div class="flex-box align-center gap-18">
+
                               <div class="textfield w-full "  data-type="text"  data-status="default" data-size="MD" data-icon="">
                                 <input type="text" placeholder="대여장소" onchange='textfieldChange(this,event)'>
                                 <p class="error-text"></p>
@@ -82,8 +83,11 @@
                             <span>대표 이미지</span>
                           </th>
                           <td colspan="3">
-                            <div class="textfield w-full max-w-380"  data-type="file"  data-status="default" data-size="MD" data-icon="">
-                              <input type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                            <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
+                              <input id="file-01" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
+                              <label for="file-01">
+                                Select Files
+                              </label>
                               <p class="error-text"></p>
                             </div>
                           </td>

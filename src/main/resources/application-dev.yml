@@ -4,7 +4,6 @@ spring:
     url: jdbc:mysql://sehankdp.cafe24.com:3306/sehankdp?serverTimezone=Asia/Seoul  # DB 연결 정보 설정
     username: sehankdp  # DB 계정 설정
     password: tpgkseo2!  # DB 비밀번호 설정
-
   jpa:
     hibernate:
       ddl-auto: update  # hibernate를 사용해서 DDL을 생성하기 위함.
@@ -12,6 +11,11 @@ spring:
   output:
     ansi:
       enabled: always
+  devtools:
+    livereload.enabled: true
+    restart.enabled: false
+
+
 
 tokenValidTimeout: 60000 # 60초(1분)
 server:
