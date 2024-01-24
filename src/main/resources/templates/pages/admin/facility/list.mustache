@@ -6,21 +6,91 @@
             <span class="icon-box icon-size-24 icon-"></span>
             시설관리
         </h3>
-        <!-- 주석 풀면 자리 잡혀있음.
-        <button class="btn">
-          추가
+       <button class="btn" onClick="location.href='#'"> 
+        추가
         </button>
-        -->
     </div>
 </div>
 <div class="admin-con-body">
-    <div class="admin-inner">
-        <!--
+            <div class="admin-inner">
+              <div class="table-wrap board-list">
+                <div class="table-head">
+                    <div class="flex-box  align-center">
+                         <span id="tableHeadText">
+                            Total 0건 1 페이지
+                        </span>
+               
+                    </div>
+                </div>
+                <div class="table-body">
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="td-num">
+                                    번호
+                                </th>
+                                <th class="td-title">
+                                  시설명
+                                </th>
+                                <th class="td-date">
+                                  등록일
+                                </th>
+                                <th class="td-btn">
+                                  관리
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-body">
+                            <tr>
+                                <td colspan="4">등록된 글이 없습니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-foot">
+                    {[>layout/pagination]}
+                </div>
+              </div>
+            </div>
+          </div>
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr>
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+           <div class="flex-box gap-24 align-center">
+                <img src="{{imageUrl}}" alt="시설 이미지">
+                <span>{{name}}</span>
+            </div>
+        </td>
+        <td>
+            <span>
+            {{location}}
+            </span>
+        </td>
+        <td>
+            <span>
+            {{createdDateText}}
+            </span>
+        </td>
+       <td>
+            <div class="flex-box gap-10 align-center">
+            <button class="modifyBtn btn admin-btn-type-01" data-value="{{id}}">
+                수정
+            </button>
+            <button class="deleteBtn btn admin-btn-type-02" data-value="{{id}}">
+                삭제
+            </button>
+            </div>
+        </td>
+    </tr>
+{{/contents}}
+</script>
 
-            # 콘텐츠 영역 #
-
-        -->
-    </div>
-</div>
+<script type="module" src="/assets/js/admin/facility/facility-list.js"></script>
 
 {[>layout/admin-footer]}

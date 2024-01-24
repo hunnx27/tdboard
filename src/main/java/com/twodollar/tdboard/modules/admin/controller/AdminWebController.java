@@ -36,6 +36,10 @@ public class AdminWebController {
     public String eduList() {
         return "pages/admin/edu/list";
     }
+    @GetMapping("admin/edu-create")
+    public String eduCreate() {
+        return "pages/admin/edu/create";
+    }
     @GetMapping("admin/edu-detail/{id}")
     public String eduDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
@@ -73,7 +77,7 @@ public class AdminWebController {
         model.addAttribute("id", id);
         return "pages/admin/facility/detail";
     }
-    @GetMapping("admin/equipment-modify/{id}")
+    @GetMapping("admin/facility-modify/{id}")
     public String facilityModify(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
         return "pages/admin/facility/modify";
