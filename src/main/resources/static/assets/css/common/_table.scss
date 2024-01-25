@@ -62,6 +62,9 @@
     ul{
       li{
         margin-bottom: 1.6rem;
+        a{
+          @include flexbox('row','flex-start','center');
+        }
         span:last-child{
           font-size:16px;
           color:#333;
@@ -93,6 +96,59 @@
     
   }
 }
+.board-write{
+  .board-write-title{
+    margin-bottom:2.8rem;
+    font-size:3.2rem;
+    font-weight: 600;
+    span{
+      font-size:1.6rem;
+      font-weight: 400;
+    }
+  }
+  &-head{
+    border-top:2px solid #000;
+    padding-top:2rem;
+    margin-bottom:2rem;
+  }
+  &-body{
+    margin-bottom:2rem;
+  }
+  &-foot{
+    margin-bottom:2rem;
+  }
+  .input-title{
+    font-size:1.6rem;
+    font-weight: 400;
+    margin-bottom:6px;
+  }
+  .board-file-wrap{
+    border:1px solid #D0D5DD;
+    border-radius:4px;
+    padding:1.2rem 1.6rem;
+  }
+  .board-file-box{
+    margin:12px 0 0 0;
+    background-color: #F4F4F4;
+    padding:24px 40px;
+    ul{
+      li{
+        margin-bottom: 1.6rem;
+        a{
+          @include flexbox('row','flex-start','center');
+        }
+        span:last-child{
+          font-size:16px;
+          color:#333;
+        }
+        &:last-child{
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+}
+
 /**************************
 table
 ***************************/

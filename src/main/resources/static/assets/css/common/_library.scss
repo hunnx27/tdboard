@@ -570,6 +570,18 @@ $colmobileYGutter: 3rem;
   .i-h-#{$i * 1} {
     height: $i * 0.1rem !important;
   }
+  .i-min-w-#{$i * 1} {
+    min-width: $i * 0.1rem !important;
+  }
+  .i-max-w-#{$i * 1} {
+    max-width: $i * 0.1rem !important;
+  }
+  .i-min-h-#{$i * 1} {
+    min-height: $i * 0.1rem !important;
+  }
+  .i-max-h-#{$i * 1} {
+    max-height: $i * 0.1rem !important;
+  }
   @include tablet {
     .md{
       &-w-#{$i} {
@@ -595,6 +607,18 @@ $colmobileYGutter: 3rem;
       }
       &-i-h-#{$i * 1} {
         height: $i * 0.1rem !important;
+      }
+      &-i-min-w-#{$i * 1} {
+        min-width: $i * 0.1rem !important;
+      }
+      &-i-max-w-#{$i * 1} {
+        max-width: $i * 0.1rem !important;
+      }
+      &-i-min-h-#{$i * 1} {
+        min-height: $i * 0.1rem !important;
+      }
+      &-i-max-h-#{$i * 1} {
+        max-height: $i * 0.1rem !important;
       }
     }
     
@@ -624,6 +648,18 @@ $colmobileYGutter: 3rem;
       }
       &-i-h-#{$i * 1} {
         height: $i * 0.1rem !important;
+      }
+      &-i-min-w-#{$i * 1} {
+        min-width: $i * 0.1rem !important;
+      }
+      &-i-max-w-#{$i * 1} {
+        max-width: $i * 0.1rem !important;
+      }
+      &-i-min-h-#{$i * 1} {
+        min-height: $i * 0.1rem !important;
+      }
+      &-i-max-h-#{$i * 1} {
+        max-height: $i * 0.1rem !important;
       }
     }
     
