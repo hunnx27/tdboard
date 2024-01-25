@@ -45,7 +45,7 @@ public class BookingService {
     }
 
     public long getTotalBookingSize(User user){
-        return bookingRepository.countByUser(user);
+        return bookingRepository.countByUserAndBookingTypeNot(user, BookingType.EDUCATION);
     }
     public long getTotalBookingSize(User user, BookingType bookingType){
         return bookingRepository.countByUserAndBookingType(user, bookingType);
@@ -56,7 +56,7 @@ public class BookingService {
         return list;
     }
     public List<Booking> getBookings(User user, Pageable pageable) {
-        List<Booking> list = bookingRepository.getBookingsByUser(user, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        List<Booking> list = bookingRepository.getBookingsByUserAndBookingTypeNot(user, BookingType.EDUCATION, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
         return list;
     }
     public List<Booking> getBookings(BookingType bookingType, Pageable pageable) {

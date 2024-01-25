@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
-    Optional<List<Booking>> getBookingsByUser(User user, Pageable pageable);
+    Optional<List<Booking>> getBookingsByUserAndBookingTypeNot(User user, BookingType bookingType, Pageable pageable);
     Optional<List<Booking>> getBookingsByBookingType(BookingType bookingType, Pageable pageable);
 
     @Query(value = "select b from Booking b where b.bookingType = 'FACILITY' and b.facility.id = :targetId and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
@@ -31,7 +31,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     int countByBookingType(BookingType bookingType);
 
-    int countByUser(User user);
+    int countByUserAndBookingTypeNot(User user, BookingType bookingType);
     int countByUserAndBookingType(User user, BookingType bookingType);
     int countBookingByIdAndUser(Long id, User user);
 
