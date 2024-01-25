@@ -103756,6 +103756,15 @@ icon
   margin-bottom: 0;
 }
 
+.board-write-btn-wrap {
+  margin-bottom: 4rem;
+  gap: 3.4rem;
+}
+.board-write-btn-wrap .btn {
+  height: 4.8rem;
+  min-width: 32rem;
+}
+
 /**************************
 table
 ***************************/

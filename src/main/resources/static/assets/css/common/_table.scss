@@ -148,7 +148,14 @@
     }
   }
 }
-
+.board-write-btn-wrap{
+  margin-bottom:4rem;
+  gap: 3.4rem;
+  .btn{
+    height:4.8rem;
+    min-width:32rem;
+  }
+}
 /**************************
 table
 ***************************/
