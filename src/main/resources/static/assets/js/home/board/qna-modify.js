@@ -2,7 +2,8 @@ import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 
 window.onload = function () {
-  
+    getBoardApi()
+    
     $('#description').summernote({
         placeholder: '내용',
         tabsize: 2,
@@ -66,11 +67,31 @@ function validationButtonVisible(){
     }
 }
 
+async function getBoardApi(){
+    const qnaId = document.getElementById("qnaId")
+    if(qnaId?.value){
+        await useAxios.get(`/api/v1/boards/type/qnas/${qnaId.value}`,
+            {}
+            ,(res)=> {
+                document.getElementById("title").value = res.data.title
+                $('#description').summernote('code',res.data.context)
+                
+            
+        },(err)=> {
+            console.log('err',err)
+            document.getElementById("notice-detail-body").innerHTML = '<div class="detail-head">내용이 없습니다.</div>'
+        })
+    }else {
+        alert(err.response.data.message)
+    }
+}
+
 async function saveApi() {
+    const qnaId = document.getElementById("qnaId").value
     const title = document.getElementById("title").value
     const description = $('#description').summernote('code');
 
-    await useAxios.post(`/api/v1/boards`,
+    await useAxios.put(`/api/v1/boards/${qnaId}`,
             {
                 boardType: 'QNA',
                 title,

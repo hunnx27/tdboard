@@ -24,4 +24,24 @@ $(async function(){
         location.href="/contents/notice"
     }
     
+    const deleteBtn = document.getElementById('deleteBtn')
+    if(deleteBtn){
+        deleteBtn.addEventListener('click',()=>{
+            deleteApi(noticeId.value)
+        })
+    }
+    
 })
+
+async function deleteApi(noticeId){
+    if(confirm('글을 삭제하시겠습니까?')){
+        await useAxios.delete(`/api/v1/boards/${noticeId}`,
+        {}
+        ,(res)=> {
+            alert('글이 삭제 되었습니다')
+            // location.href= "/contents/notice"
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }
+}

@@ -43,6 +43,7 @@
         </div>
         <div class="table-wrap board-detail">
             <div class="table-head">
+            <!--
                 <div class="flex-box justify-end align-center">
                     <div class="btn-wrap">
                         <button class="btn btn-type-02" onclick="javascript:alert('이전 글이 없습니다.')">
@@ -53,6 +54,7 @@
                         </button>
                     </div>
                 </div>
+                -->
             </div>
             <div class="table-body" id="data-detail-body">
                 <div class="detail-head">
@@ -81,7 +83,14 @@
 
             </div>
             <div class="table-foot">
-
+                <div class="flex-box  align-center justify-end">
+                    <div class="btn-wrap">
+                        {[#ADMIN]}
+                        <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/data-modify/{[id]}'">수정</button>
+                        <button id="deleteBtn" class="btn btn-type05 btn-size-s">삭제</button>
+                        {[/ADMIN]}
+                    </div>
+                </div>
             </div>
         </div>
 

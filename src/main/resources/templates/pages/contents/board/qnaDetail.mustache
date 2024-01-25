@@ -83,7 +83,13 @@
                     </div>
                 </div>
                 <div class="flex-box justify-end align-center">
-                    <button id="replyBtn" class="btn" style="display:none">답변하기</button>
+                    {[#accessToken]}
+                    <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/qna-modify/{[id]}'">수정</button>
+                    <button id="deleteBtn" class="btn btn-type05 btn-size-s">삭제</button>
+                    {[/accessToken]}
+                    {[#ADMIN]}
+                    <button id="replyBtn" class="btn">답변하기</button>
+                    {[/ADMIN]}
                     <button class="btn" onClick="/contents/qna">목록</button>
                 </div>
             </div>

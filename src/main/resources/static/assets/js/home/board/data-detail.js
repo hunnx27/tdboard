@@ -12,7 +12,7 @@ $(async function(){
                 createdDateText: useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt),
                 ...res.data
             }
-            var template = document.getElementById("dataㄴ-detail-body").innerHTML;
+            var template = document.getElementById("data-detail-body").innerHTML;
             var result = Mustache.render(template, data);
             document.getElementById("data-detail-body").innerHTML = result;
             
@@ -24,4 +24,24 @@ $(async function(){
         location.href="/contents/data"
     }
     
+    const deleteBtn = document.getElementById('deleteBtn')
+    if(deleteBtn){
+        deleteBtn.addEventListener('click',()=>{
+            deleteApi(dataId.value)
+        })
+    }
+    
 })
+
+async function deleteApi(dataId){
+    if(confirm('글을 삭제하시겠습니까?')){
+        await useAxios.delete(`/api/v1/boards/${dataId}`,
+        {}
+        ,(res)=> {
+            alert('글이 삭제 되었습니다')
+            // location.href= "/contents/data"
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }
+}

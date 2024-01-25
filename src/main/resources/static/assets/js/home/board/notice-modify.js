@@ -2,6 +2,8 @@ import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 
 window.onload = function () {
+
+    getBoardApi()
   
     $('#description').summernote({
         placeholder: '내용',
@@ -66,19 +68,39 @@ function validationButtonVisible(){
     }
 }
 
+async function getBoardApi(){
+    const noticeId = document.getElementById("noticeId")
+    if(noticeId?.value){
+        await useAxios.get(`/api/v1/boards/type/notices/${noticeId.value}`,
+            {}
+            ,(res)=> {
+                document.getElementById("title").value = res.data.title
+                $('#description').summernote('code',res.data.context)
+                
+            
+        },(err)=> {
+            console.log('err',err)
+            document.getElementById("notice-detail-body").innerHTML = '<div class="detail-head">공지사항 내용이 없습니다.</div>'
+        })
+    }else {
+        alert(err.response.data.message)
+    }
+}
+
 async function saveApi() {
+    const noticeId = document.getElementById("noticeId").value
     const title = document.getElementById("title").value
     const description = $('#description').summernote('code');
 
-    await useAxios.post(`/api/v1/boards`,
+    await useAxios.put(`/api/v1/boards/${noticeId}`,
             {
-                boardType: 'QNA',
+                boardType: 'NOTICE',
                 title,
                 context: description
             }
             ,(res)=> {
                 alert('글이 저장 되었습니다')
-                location.href= "/contents/qna"
+                location.href= "/contents/notice"
             },(err)=> {
                 alert(err.response.data.message)
             })

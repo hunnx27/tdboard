@@ -10,6 +10,9 @@ window.onload = function () {
     }else {
         location.href="/contents/data"
     }
+
+    
+    
     
 }
 // qna 조회
@@ -26,6 +29,12 @@ async function getBoard(qnaId) {
             var result = Mustache.render(template, data);
             document.getElementById("qna-detail-body").innerHTML = result;
             
+            const deleteBtn = document.getElementById('deleteBtn')
+            if(deleteBtn){
+                deleteBtn.addEventListener('click',()=>{
+                    deleteBoardApi(qnaId)
+                })
+            }
         },(err)=> {
             console.log('err',err)
             document.getElementById("qna-detail-body").innerHTML = '<div class="detail-head">QnA 내용이 없습니다.</div>'
@@ -108,29 +117,19 @@ async function createBoardReply(qnaId) {
 }
     
 
-// 게시글 수정
-async function updateBoard(qnaId) {
-    await useAxios.put(`/api/v1/boards/${qnaId}/board`,
-            {}
-            ,(res)=> {
-            // console.log('getBoardReply',res.data)
-        },(err)=> {
-            console.log('err',err)
-            // document.getElementById("qna-detail-body").innerHTML = '<div class="detail-head">QnA 내용이 없습니다.</div>'
-        })
-}
-// 게시글 삭제
-async function deleteBoard(qnaId) {
-    await useAxios.delete(`/api/v1/boards/${qnaId}/board`,
-            {}
-            ,(res)=> {
-            // console.log('getBoardReply',res.data)
-        },(err)=> {
-            console.log('err',err)
-            // document.getElementById("qna-detail-body").innerHTML = '<div class="detail-head">QnA 내용이 없습니다.</div>'
-        })
-}
 
+async function deleteBoardApi(qnaId){
+    if(confirm('글을 삭제하시겠습니까?')){
+        await useAxios.delete(`/api/v1/boards/${qnaId}`,
+        {}
+        ,(res)=> {
+            alert('글이 삭제 되었습니다')
+            // location.href= "/contents/qna"
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }
+}
 
 // 댓글 조회수 업데이트
 async function upteBoardHit(qnaId) {

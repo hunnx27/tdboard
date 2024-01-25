@@ -2,6 +2,8 @@ import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 
 window.onload = function () {
+
+    getBoardApi()
   
     $('#description').summernote({
         placeholder: '내용',
@@ -55,6 +57,24 @@ window.onload = function () {
 
     
 }
+
+async function getBoardApi() {
+    const dataId = document.getElementById("dataId")
+    if(dataId?.value){
+        await useAxios.get(`/api/v1/boards/type/datas/${dataId.value}`,
+        {}
+        ,(res)=> {
+            document.getElementById("title").value = res.data.title
+            $('#description').summernote('code',res.data.context)
+            
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }else {
+        location.href="/contents/data"
+    }
+}
+
 function validationButtonVisible(){
     const title = document.getElementById('title')
     const description = $('#description').summernote('code');
@@ -67,18 +87,19 @@ function validationButtonVisible(){
 }
 
 async function saveApi() {
+    const dataId = document.getElementById("dataId").value
     const title = document.getElementById("title").value
     const description = $('#description').summernote('code');
 
-    await useAxios.post(`/api/v1/boards`,
+    await useAxios.put(`/api/v1/boards/${dataId}`,
             {
-                boardType: 'QNA',
+                boardType: 'DATA',
                 title,
                 context: description
             }
             ,(res)=> {
                 alert('글이 저장 되었습니다')
-                location.href= "/contents/qna"
+                location.href= "/contents/data"
             },(err)=> {
                 alert(err.response.data.message)
             })

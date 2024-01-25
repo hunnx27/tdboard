@@ -142,22 +142,26 @@ public class ContentsWebController {
     }
 
     @GetMapping("contents/notice-modify/{id}")
-    public String noticeModify() {
+    public String noticeModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/noticeModify";
     }
 
     @GetMapping("contents/data-modify/{id}")
-    public String dataModify() {
+    public String dataModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/dataModify";
     }
 
     @GetMapping("contents/faq-modify/{id}")
-    public String faqModify() {
+    public String faqModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/faqModify";
     }
 
-    @GetMapping("contentsWrite/qna-modify/{id}")
-    public String qnaModify() {
+    @GetMapping("contents/qna-modify/{id}")
+    public String qnaModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "pages/contents/board/qnaModify";
     }
 
