@@ -104,6 +104,26 @@ public class ContentsWebController {
         return "pages/contents/board/qna";
     }
 
+    @GetMapping("contents/notice-write")
+    public String noticeWrite() {
+        return "pages/contents/board/noticeWrite";
+    }
+
+    @GetMapping("contents/data-write")
+    public String dataWrite() {
+        return "pages/contents/board/dataWrite";
+    }
+
+    @GetMapping("contents/faq-write")
+    public String faqWrite() {
+        return "pages/contents/board/faqWrite";
+    }
+
+    @GetMapping("contents/qna-write")
+    public String qnaWrite() {
+        return "pages/contents/board/qnaWrite";
+    }
+
     @GetMapping("contents/notice/{id}")
     public String noticeDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
@@ -119,6 +139,26 @@ public class ContentsWebController {
     public String qnaDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
         return "pages/contents/board/qnaDetail";
+    }
+
+    @GetMapping("contents/notice-modify/{id}")
+    public String noticeModify() {
+        return "pages/contents/board/noticeModify";
+    }
+
+    @GetMapping("contents/data-modify/{id}")
+    public String dataModify() {
+        return "pages/contents/board/dataModify";
+    }
+
+    @GetMapping("contents/faq-modify/{id}")
+    public String faqModify() {
+        return "pages/contents/board/faqModify";
+    }
+
+    @GetMapping("contentsWrite/qna-modify/{id}")
+    public String qnaModify() {
+        return "pages/contents/board/qnaModify";
     }
 
     @GetMapping("contents/group-qna")

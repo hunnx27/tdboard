@@ -35,13 +35,20 @@
                 <li>
                     <a href="/contents/qna">
                         <span>
-                            QnA
+                            Q&A
                         </span>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="table-wrap faq-list">
+            <div class="table-head">
+                {[#ADMIN]}
+                <div class="flex-box  align-center justify-end">
+                    <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/faq-write'">글쓰기</button>
+                </div>
+                {[/ADMIN]}
+            </div>
             <div class="table-body">
                 <table class="table table-fixed">
                     <tbody id="faq-body">

@@ -1,0 +1,76 @@
+{[>layout/header]}
+
+<section class="sub-top ">
+    <div class="inner">
+        <h2>
+            자료실
+        </h2>
+    </div>
+</section>
+<section class="sub-con content board-content">
+    <div class="inner">
+        <div class="board-tab">
+            <ul>
+                <li>
+                    <a href="/contents/notice">
+                        <span>
+                            공지사항
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/data">
+                        <span>
+                            자료실
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/faq" class="on">
+                        <span>
+                            FAQ
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contents/qna">
+                        <span>
+                            Q&A
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="board-write">
+            <h4 class="board-write-title">
+                FAQ 작성 <span>FAQ에 등록할 내용을 작성해주세요.</span>
+            </h4>
+            <div class="board-write-head">
+                <p class="input-title">제목</p>
+                <div id="titleField" class="textfield w-full"  data-type="text"  data-status="default" data-size="LG" data-icon="">
+                    <input id="title" type="text" placeholder="제목" onchange='textfieldChange(this,event)'>
+                    <p class="error-text">오류 메시지</p>
+                </div>
+            </div>
+            <div class="board-write-body">
+                <p class="input-title">내용</p>
+                <div id="descriptionField" class="textfield w-full"  data-type="textarea"  data-status="default" data-size="MD" data-icon="">
+                    <div id="description"></div>
+                    <p class="error-text">오류 메시지</p>
+                    <!--<textarea placeholder="내용" class="i-min-h-350 i-max-h-350"></textarea>-->
+                  </div>
+            </div>
+        </div>
+        <div class="flex-box justify-center align-center board-write-btn-wrap">
+            <button  class="btn btn-type-06" onClick="location.href='/contents/data'">
+              취소하기
+            </button>
+            <button id="saveBtn" class="btn btn-type-03" disabled>
+              추가하기
+            </button>
+          </div>
+        </div>
+</section>
+
+<script type="module" src="/assets/js/home/board/faq-write.js"></script>
+{[>layout/footer]}

@@ -35,7 +35,7 @@
                 <li>
                     <a href="/contents/qna">
                         <span>
-                            QnA
+                            Q&A
                         </span>
                     </a>
                 </li>
@@ -43,11 +43,13 @@
         </div>
         <div class="table-wrap board-list">
             <div class="table-head">
-                <div class="flex-box  align-center">
+                <div class="flex-box  align-center justify-between">
                     <span id="tableHeadText">
                         Total 0건 1 페이지
                     </span>
-
+                    {[#ADMIN]}
+                    <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/data-write'">글쓰기</button>
+                    {[/ADMIN]}
                 </div>
             </div>
             <div class="table-body">
