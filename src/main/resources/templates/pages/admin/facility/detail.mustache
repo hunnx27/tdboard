@@ -57,36 +57,22 @@
                                     번호
                                 </th>
                                 <th class="td-title">
-                                  시설명
+                                  장비명
                                 </th>
                                 <th class="td-id">
-                                  위치
+                                  장비내용
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="list-body">
                             <tr>
-                                <td>
-                                    <span>
-                                        5
-                                    </span>
-                                </td>
-                                <td class="td-title">
-                                  <a href="" >
-                                    <div class="flex-box gap-24 align-center">
-                                        <img src="../../../assets/images/sub/gallery_test_img.png" alt="장비 이미지">
-                                        <span>전자교탁</span>
-                                    </div>
-                                  </a>
-                                </td>
-                                <td>
-                                  <span>
-                                    장비 내용장비 내용장비 내용장비 내용
-                                  </span>
-                                </td>
+                                <td colspan="3">등록된 글이 없습니다.</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="table-foot">
+                    {[>layout/pagination]}
                 </div>
               </div>
               <div class="flex-box justify-center align-center admin-btn-wrap">
@@ -100,5 +86,30 @@
             </div>
           </div>
      <input type="hidden" id="facilityId" name="facilityId" value="{[id]}" />
+
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr>
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+          <a href="" >
+            <div class="flex-box gap-24 align-center">
+                <img src="{{imageUrl}}" alt="장비 이미지">
+                <span>{{name}}</span>
+            </div>
+          </a>
+        </td>
+        <td>
+          <span>
+            {{description}}
+          </span>
+        </td>
+    </tr>
+{{/contents}}
+</script>
 <script type="module" src="/assets/js/admin/facility/facility-detail.js"></script>
 {[>layout/admin-footer]}

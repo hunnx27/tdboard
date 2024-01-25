@@ -65,7 +65,7 @@ async function getBoardApi(pageNumber){
                 btns.addEventListener('click', function(e) {
                     // 클릭한 버튼의 data-value 속성 값 가져오기
                     const dataValue = this.getAttribute('data-value');
-                    location.href= `/admin/facility-detail/${dataValue}`
+                    location.href= `/admin/facility-modify/${dataValue}`
                 });
             }
         })
