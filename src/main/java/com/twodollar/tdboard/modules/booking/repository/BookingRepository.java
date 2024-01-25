@@ -18,11 +18,11 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     Optional<List<Booking>> getBookingsByUserAndBookingTypeNot(User user, BookingType bookingType, Pageable pageable);
     Optional<List<Booking>> getBookingsByBookingType(BookingType bookingType, Pageable pageable);
 
-    @Query(value = "select b from Booking b where b.bookingType = 'FACILITY' and b.facility.id = :targetId and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
+    @Query(value = "select b from Booking b where b.bookingType = 'FACILITY' and b.facility.id = :targetId and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
     Optional<List<Booking>> getBookingsAvailableNativeFacility(@Param(value = "targetId")Long targetId,
                                                        @Param(value = "starttime")LocalDateTime starttime,
                                                        @Param(value = "endtime")LocalDateTime endtime);
-    @Query(value = "select b from Booking b where b.bookingType = 'EQUIPMENT' and b.equipment.id = :targetId and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
+    @Query(value = "select b from Booking b where b.bookingType = 'EQUIPMENT' and b.equipment.id = :targetId and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
     Optional<List<Booking>> getBookingsAvailableNativeEquipment(@Param(value = "targetId")Long targetId,
                                                        @Param(value = "starttime")LocalDateTime starttime,
                                                        @Param(value = "endtime")LocalDateTime endtime);
