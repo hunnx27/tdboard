@@ -18,12 +18,15 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     Optional<List<Booking>> getBookingsByUser(User user, Pageable pageable);
     Optional<List<Booking>> getBookingsByBookingType(BookingType bookingType, Pageable pageable);
 
-    @Query(value = "select b from Booking b where b.bookingType = :bookingType and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
-    Optional<List<Booking>> getBookingsAvailableNative(@Param(value = "bookingType")BookingType bookingType, @Param(value = "starttime")LocalDateTime starttime, @Param(value = "endtime")LocalDateTime endtime);
-//    Optional<List<Booking>> getBookingsByBookingTypeAndStartAtBetweenOrEndAtBetweenAndApprovalYn(BookingType bookingType,
-//                                                                                                 String targetDate1, String targetDate2,
-//                                                                                                 String targetDate3, String targetDate4,
-//                                                                                                 String approvalYn, Pageable pageable);
+    @Query(value = "select b from Booking b where b.bookingType = 'FACILITY' and b.facility.id = :targetId and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
+    Optional<List<Booking>> getBookingsAvailableNativeFacility(@Param(value = "targetId")Long targetId,
+                                                       @Param(value = "starttime")LocalDateTime starttime,
+                                                       @Param(value = "endtime")LocalDateTime endtime);
+    @Query(value = "select b from Booking b where b.bookingType = 'EQUIPMENT' and b.equipment.id = :targetId and b.approvalYn ='Y' and (b.startAt between :starttime and :endtime or b.endAt between :starttime and :endtime)")
+    Optional<List<Booking>> getBookingsAvailableNativeEquipment(@Param(value = "targetId")Long targetId,
+                                                       @Param(value = "starttime")LocalDateTime starttime,
+                                                       @Param(value = "endtime")LocalDateTime endtime);
+
     Optional<List<Booking>> getBookingsByUserAndBookingType(User user, BookingType bookingType, Pageable pageable);
 
     int countByBookingType(BookingType bookingType);

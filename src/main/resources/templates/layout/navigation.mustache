@@ -9,6 +9,7 @@
 <div class="head-top">  
     <div class="inner">
         <div class="flex-box justify-end sm-justify-center">
+
       
             {[#accessToken]}
             <a href="/auth/logout_proc">
@@ -18,6 +19,12 @@
                 마이페이지
             </a>
              {[/accessToken]}
+             {[#ADMIN]}
+            <a href="/admin">공유장비시스템</a>
+             {[/ADMIN]}
+            {[#PROFESSOR]}
+            <a href="/admin">공유장비시스템</a>
+            {[/PROFESSOR]}
              {[^accessToken]}
              <a href="/auth/login" >
                 로그인

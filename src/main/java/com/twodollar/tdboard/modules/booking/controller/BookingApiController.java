@@ -123,14 +123,15 @@ public class BookingApiController {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-    @GetMapping("/bookings/available-times")
+
+    @GetMapping("/bookings/bookingType/{bookingType}/target/{targetId}/available-times")
     public ResponseEntity<ApiCmnResponse<?>> bookingDate(
-            Pageable pageable,
-            @RequestParam(value = "bookingType") BookingType bookingType,
+            @PathVariable(value = "bookingType") BookingType bookingType,
+            @PathVariable("targetId") Long targetId,
             @RequestParam(value = "targetDate", required = false) String targetDate
     ){
         try {
-            List<Integer> availableTimes = bookingService.getAvailableBookingTimes(bookingType, targetDate, pageable);
+            List<Integer> availableTimes = bookingService.getAvailableBookingTimes(bookingType, targetId, targetDate);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(availableTimes));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

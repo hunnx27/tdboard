@@ -64,10 +64,21 @@ public class BookingService {
         return list;
     }
 
-    public List<Integer> getAvailableBookingTimes(BookingType bookingType, String targetDate, Pageable pageable) {
+    public List<Integer> getAvailableBookingTimes(BookingType bookingType, Long targetId, String targetDate) {
         LocalDateTime starttime = LocalDate.parse(targetDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(0, 0, 0);
         LocalDateTime endtime = LocalDate.parse(targetDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atTime(23, 59, 59);
-        List<Booking> bookings = bookingRepository.getBookingsAvailableNative(bookingType, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        List<Booking> bookings;
+        switch (bookingType.name()){
+            case "FACILITY":
+                bookings = bookingRepository.getBookingsAvailableNativeFacility(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+                break;
+            case "EQUIPMENT":
+                bookings = bookingRepository.getBookingsAvailableNativeEquipment(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+                break;
+            default:
+                bookings = new ArrayList<>();
+        }
+
         return extractTimeByBookings(bookings, targetDate);
     }
 
