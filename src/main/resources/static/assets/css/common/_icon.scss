@@ -114,7 +114,13 @@ icon
       filter:none !important;
     }
   }
-
+  /*baord*/
+  &.icon-file{
+    &::after {
+      background-image: url(../../images/icon/board_write_file_icon.svg);
+      filter:none !important;
+    }
+  }
   /*popup*/
   &.icon-close{
     &::after {
