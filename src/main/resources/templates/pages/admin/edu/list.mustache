@@ -2,25 +2,112 @@
 
 <div class="admin-con-head">
     <div class="admin-title-wrap">
-        <h3>
-            <span class="icon-box icon-size-24 icon-"></span>
+         <h3>
+            <span class="icon-box icon-size-24 icon-admin-book"></span>
             교육관리
         </h3>
-        <!-- 주석 풀면 자리 잡혀있음.
-        <button class="btn">
-          추가
+        <button class="btn" onClick="location.href='#'"> 
+        추가
         </button>
-        -->
     </div>
 </div>
 <div class="admin-con-body">
     <div class="admin-inner">
-        <!--
-
-            # 콘텐츠 영역 #
-
-        -->
+        <div class="table-wrap board-list">
+        <div class="table-head">
+            <div class="flex-box  align-center">
+                 <span id="tableHeadText">
+                        Total 0건 1 페이지
+                    </span>
+            </div>
+        </div>
+        <div class="table-body">
+            <table class="table table-fixed ">
+                <thead>
+                    <tr>
+                        <th class="td-num">
+                            번호
+                        </th>
+                        <th class="td-title">
+                            강의명
+                        </th>
+                        <th class="td-id">
+                            정원
+                        </th>
+                        <th class="td-room">
+                            강의실
+                        </th>
+                        <th class="td-date">
+                            강의기간  
+                        </th>
+                        <th class="td-name">
+                            당당교수
+                        </th>
+                        <th class="td-btn">
+                            관리
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="list-body">
+                    <tr>
+                        <td colspan="7">등록된 글이 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-foot">
+             {[>layout/pagination]}
+        </div>
+        </div>
     </div>
-</div>
+    </div>
+
+<script id="table-template" type="text/template">
+{{#contents}}
+    <tr>
+        <td>
+            <span>
+                {{no}}
+            </span>
+        </td>
+        <td class="td-title">
+             {{name}}
+        </td>
+        <td>
+            <span>
+            {{capacity}}
+            </span>
+        </td>
+        <td>
+            <span>
+            {{facilityName}}
+            </span>
+        </td>
+        <td>
+            <span>
+            {{startDate}} ~ {{endDate}}
+            </span>
+        </td>
+        <td>
+            <span>
+                {{manager}}
+            </span>
+        </td>
+        
+        <td>
+            <div class="flex-box gap-10 align-center">
+            <button class="modifyBtn btn admin-btn-type-01" data-value="{{id}}">
+                수정
+            </button>
+            <button class="deleteBtn btn admin-btn-type-02" data-value="{{id}}">
+                삭제
+            </button>
+            </div>
+        </td>
+    </tr>
+{{/contents}}
+</script>
+
+<script type="module" src="/assets/js/admin/edu/edu-list.js"></script>
 
 {[>layout/admin-footer]}

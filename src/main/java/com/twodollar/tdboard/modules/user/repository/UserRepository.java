@@ -1,9 +1,12 @@
 package com.twodollar.tdboard.modules.user.repository;
 
 import com.twodollar.tdboard.modules.user.entity.User;
+import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,4 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     int countUserByUserId(String userId);
     int countUserByEmail(String email);
+    Optional<List<User>> getUsersBy(Pageable pageable);
+
+    int countUsersByRole(RoleEnum role);
+    Optional<List<User>> getUsersByRole(RoleEnum role, Pageable pageable);
 }

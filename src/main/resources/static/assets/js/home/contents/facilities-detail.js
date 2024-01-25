@@ -8,7 +8,15 @@ window.onload = function () {
 
     getFacilitiesApi(facilitiesId)
 
-    initElementSetting()
+    //initElementSetting()
+
+    debugger;
+    $(".datepicker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText, inst) {
+
+        }
+    });
 };
 
 async function getFacilitiesApi(id){

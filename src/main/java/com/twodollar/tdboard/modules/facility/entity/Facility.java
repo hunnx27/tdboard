@@ -2,7 +2,9 @@ package com.twodollar.tdboard.modules.facility.entity;
 
 import com.twodollar.tdboard.modules.facility.controller.response.FacilityResponse;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 public class Facility {
     // PK
     @Id
@@ -27,8 +30,10 @@ public class Facility {
     // imageUrl
     private String imageUrl;
     // 사용여부
+    @ColumnDefault("'Y'")
     private String useYn;
     // 삭제여부
+    @ColumnDefault("'N'")
     private String delYn;
     // 생성일
     @CreationTimestamp

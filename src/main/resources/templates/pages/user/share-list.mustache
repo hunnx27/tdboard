@@ -62,17 +62,23 @@
                       <th class="number">
                           번호
                       </th>
+                      <th class="status">
+                          구분
+                      </th>
                       <th class="title">
-                          제목
+                          신청현황
                       </th>
                       <th class="date">
-                          날짜
+                          신청일
+                      </th>
+                       <th class="status">
+                          예약 상태
                       </th>
                   </tr>
               </thead>
               <tbody id="list-body">
                     <tr>
-                        <td colspan="3">등록된 글이 없습니다.</td>
+                        <td colspan="5">등록된 글이 없습니다.</td>
                     </tr>
               </tbody>
           </table>
@@ -93,14 +99,43 @@
                 {{no}}
             </span>
         </td>
+        <td>
+            <span>
+                {{bookingTypeText}}
+            </span>
+        </td>
         <td class="title">
             <a href="#">
-                {{title}}
+            {{#educationId}}
+                {{educationName}}
+            {{/educationId}}
+            {{#equipmentId}}
+                {{equipmentName}}
+            {{/equipmentId}}
+            {{#facilityId}}
+                {{facilityName}}
+            {{/facilityId}}
             </a>
         </td>
         <td>
             <span>
                 {{createdDateText}}
+            </span>
+        </td>
+         <td>
+            <span>
+                {{#notApproval}}
+                <em class="status-text status-confirm">승인대기</em>
+                <!--<em class="status-text status-cancel">취소</em>-->
+                <button class="applicationCancelBtn" data-value="{{id}}">취소</button>
+                {{/notApproval}}
+                {{#approval}}
+                <em class="status-text status-confirm-fi">승인완료</em>
+                {{/approval}}
+                {{#cancelApplication}}
+                <em class="status-text status-cancel-fi">취소완료</em>
+                {{/cancelApplication}}
+                
             </span>
         </td>
     </tr>

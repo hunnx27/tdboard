@@ -3,7 +3,9 @@ package com.twodollar.tdboard.modules.equipment.entity;
 import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
 import com.twodollar.tdboard.modules.facility.entity.Facility;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 public class Equipment {
     // PK
     @Id
@@ -35,8 +38,10 @@ public class Equipment {
     // imageUrl
     private String imageUrl;
     // 사용여부
+    @ColumnDefault("'Y'")
     private String useYn;
     // 삭제여부
+    @ColumnDefault("'N'")
     private String delYn;
     // 생성일
     @CreationTimestamp

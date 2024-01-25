@@ -152,9 +152,9 @@ function includeHTML() {
 includeHTML();
 
 
-$( function() {
-  $( ".datepicker" ).datepicker();
-} );
+// $( function() {
+//   $( ".datepicker" ).datepicker();
+// } );
 
 
 

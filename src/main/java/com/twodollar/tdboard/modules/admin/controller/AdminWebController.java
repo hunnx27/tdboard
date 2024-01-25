@@ -36,10 +36,19 @@ public class AdminWebController {
     public String eduList() {
         return "pages/admin/edu/list";
     }
+    @GetMapping("admin/edu-create")
+    public String eduCreate() {
+        return "pages/admin/edu/create";
+    }
     @GetMapping("admin/edu-detail/{id}")
     public String eduDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
         return "pages/admin/edu/detail";
+    }
+    @GetMapping("admin/edu-modify/{id}")
+    public String eduModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
+        return "pages/admin/edu/modify";
     }
 
     // 장비
@@ -52,6 +61,11 @@ public class AdminWebController {
         model.addAttribute("id", id);
         return "pages/admin/equipment/detail";
     }
+    @GetMapping("admin/equipment-modify/{id}")
+    public String equipmentModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
+        return "pages/admin/equipment/modify";
+    }
 
     // 시설
     @GetMapping("admin/facility-list")
@@ -62,6 +76,11 @@ public class AdminWebController {
     public String facilityDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
         return "pages/admin/facility/detail";
+    }
+    @GetMapping("admin/facility-modify/{id}")
+    public String facilityModify(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("id", id);
+        return "pages/admin/facility/modify";
     }
 
     // 설문지

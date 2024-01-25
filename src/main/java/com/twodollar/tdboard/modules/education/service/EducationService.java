@@ -6,8 +6,12 @@ import com.twodollar.tdboard.modules.facility.entity.Facility;
 import com.twodollar.tdboard.modules.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -24,6 +28,13 @@ public class EducationService {
         if(list.size() == 0){
             new IllegalArgumentException("no such data");
         }
+        return list;
+    }
+
+    public List<Education> getEducationsYearMonth(int year, int month) {
+        LocalDate localDate = LocalDate.of(year, month, 1);
+        String yearMonth = localDate.format(DateTimeFormatter.ofPattern("YYYY-MM"));
+        List<Education> list = educationRepository.getEducationsByStartDateContainingOrEndDateContaining(yearMonth, yearMonth).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "교육 일정이 없습니다."));
         return list;
     }
 
