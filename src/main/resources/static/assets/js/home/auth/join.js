@@ -4,7 +4,7 @@ const userIdRegex = /^[a-z]+[a-z0-9]{5,20}$/g;
 const nameRegex = /^[a-zA-Z가-힣\s]+$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.[a-z])(?=.*\d)(?=.*[-`~!@#$%^&*()_+=?/\[\]])[A-Za-z\d\[\]-`~!@#$%^&*()_+=?/]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^01[0-9]*\d{3,4}\d{4}$/; 
+const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
 
 window.onload = function() {
     validateUserId() // 아이디 실시간 체크
@@ -194,8 +194,7 @@ function validatePhone(){
 
         if (!phoneRegex.test(phone)) {
             phoneField.setAttribute('data-status', 'error');
-            phoneFieldChild.innerText = '휴대전화번호에 맞게 숫자로만 입력해주세요'
-         
+            phoneFieldChild.innerText = '휴대전화번호 형식에 맞게 입력해주세요(010-0000-0000).'
         } else {
             phoneField.setAttribute('data-status', 'active');
             phoneFieldChild.innerText = '';

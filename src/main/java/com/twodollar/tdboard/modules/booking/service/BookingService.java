@@ -105,7 +105,7 @@ public class BookingService {
 
         LocalDateTime currentDateTime = startDateTime;
 
-        while (!currentDateTime.isAfter(endDateTime)) {
+        while (!currentDateTime.isAfter(endDateTime) && !currentDateTime.equals(endDateTime)) {
             timeRangeList.add(currentDateTime);
             currentDateTime = currentDateTime.plusHours(1); // 시간 간격을 조절할 수 있습니다. 여기서는 1시간 간격으로 설정했습니다.
         }
