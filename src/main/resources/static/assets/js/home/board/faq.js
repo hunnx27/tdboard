@@ -11,7 +11,7 @@ async function getFaqApi(pageNumber){
     await useAxios.get('/api/v1/boards/type/faqs',
         {page: pageNumber}
         ,(res)=> {
-        console.log('res',res.data)
+        // console.log('res',res.data)
         if(res.data.paging.totalElements > 0){
             res.data.contents.map((data)=>{
                 data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
@@ -34,5 +34,26 @@ function handleSetList(pageNumber, data){
     var result = Mustache.render(template, data);
     document.getElementById("faq-body").innerHTML = result;
     
+    const deleteBtn = document.querySelectorAll('.deleteBtn')
+    deleteBtn.forEach(element => {
+        element.addEventListener("click",()=>{
+            deleteApi(element.dataset.value)
+        })
+    });
+
+    
     // paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
+}
+
+async function deleteApi(id){
+    if(confirm('글을 삭제하시겠습니까?')){
+        await useAxios.delete(`/api/v1/boards/${id}`,
+        {}
+        ,(res)=> {
+            alert('글이 삭제 되었습니다')
+            // location.reload()
+        },(err)=> {
+            alert(err.response.data.message)
+        })
+    }
 }

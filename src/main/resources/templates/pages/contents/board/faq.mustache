@@ -91,6 +91,12 @@ function handleTitleClick(obj){
             <div class="faq-title">
                 <span>{{context}}</span>
             </div>
+           <div class="title flex-box">
+            {[#ADMIN]}
+            <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/faq-modify/{{id}}'">수정</button>
+            <button class="deleteBtn btn btn-type05 btn-size-s" data-value={{id}}>삭제</button>
+            {[/ADMIN]}
+           </div>
         </td>
     </tr>
 {{/contents}}

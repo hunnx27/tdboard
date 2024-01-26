@@ -124,7 +124,7 @@ async function deleteBoardApi(qnaId){
         {}
         ,(res)=> {
             alert('글이 삭제 되었습니다')
-            // location.href= "/contents/qna"
+            location.href= "/contents/qna"
         },(err)=> {
             alert(err.response.data.message)
         })

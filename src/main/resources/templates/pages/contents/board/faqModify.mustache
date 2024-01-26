@@ -3,7 +3,7 @@
 <section class="sub-top ">
     <div class="inner">
         <h2>
-            Q&A
+            FAQ
         </h2>
     </div>
 </section>
@@ -26,14 +26,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/contents/faq">
+                    <a href="/contents/faq" class="on">
                         <span>
                             FAQ
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/contents/qna" class="on">
+                    <a href="/contents/qna">
                         <span>
                             Q&A
                         </span>
@@ -43,7 +43,7 @@
         </div>
         <div class="board-write">
             <h4 class="board-write-title">
-                Q&A 작성 <span>Q&A에 등록할 내용을 작성해주세요.</span>
+                FAQ 작성 <span>FAQ에 등록할 내용을 작성해주세요.</span>
             </h4>
             <div class="board-write-head">
                 <p class="input-title">제목</p>
@@ -60,36 +60,9 @@
                     <!--<textarea placeholder="내용" class="i-min-h-350 i-max-h-350"></textarea>-->
                   </div>
             </div>
-            <div class="board-write-foot">
-                <p class="input-title">파일첨부</p>
-                <div class="board-file-wrap">
-                    <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
-                        <input id="file-01" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
-                        <label for="file-01">
-                          Select Files
-                        </label>
-                        <p class="error-text"></p>
-                    </div>
-                    <div class="board-file-box">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </div>
         </div>
         <div class="flex-box justify-center align-center board-write-btn-wrap">
-            <button  class="btn btn-type-06" onClick="location.href='/contents/qna'">
+            <button  class="btn btn-type-06" onClick="location.href='/contents/data'">
               취소하기
             </button>
             <button id="saveBtn" class="btn btn-type-03" disabled>
@@ -98,6 +71,6 @@
           </div>
         </div>
 </section>
-<input type="hidden" id="qnaId" name="id" value="{[id]}"/>
-<script type="module" src="/assets/js/home/board/qna-modify.js"></script>
+<input type="hidden" id="faqId" name="id" value="{[id]}"/>
+<script type="module" src="/assets/js/home/board/faq-modify.js"></script>
 {[>layout/footer]}

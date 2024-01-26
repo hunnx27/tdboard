@@ -39,7 +39,7 @@ async function deleteApi(dataId){
         {}
         ,(res)=> {
             alert('글이 삭제 되었습니다')
-            // location.href= "/contents/data"
+            location.href= "/contents/data"
         },(err)=> {
             alert(err.response.data.message)
         })
