@@ -16,7 +16,6 @@ public class BoardRequest {
     private String boardType;
     private String title;
     private String context;
-    private long userId;
     @Setter
     private long upId;
 
@@ -26,7 +25,6 @@ public class BoardRequest {
                 .boardType(BoardTypeEnum.valueOf(boardType))
                 .title(title)
                 .context(context)
-                .userId(userId)
                 .upId(upId)
                 .build();
     }

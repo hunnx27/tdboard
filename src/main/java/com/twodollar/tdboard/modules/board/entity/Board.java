@@ -2,6 +2,7 @@ package com.twodollar.tdboard.modules.board.entity;
 
 import com.twodollar.tdboard.modules.board.controller.response.BoardResponse;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
+import com.twodollar.tdboard.modules.user.entity.User;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,8 +31,10 @@ public class Board {
     private String title;
     // 내용
     private String context;
-    // 이메일
-    private long userId;
+    // 사용자
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
     // 답글시
     private long upId;
     // 조회 수
@@ -52,7 +55,9 @@ public class Board {
             .boardType(this.boardType.name())
             .title(this.title)
             .context(this.context)
-            .userId(this.userId)
+            .userId(this.user.getId())
+            .userIdName(this.user.getUserId())
+            .userName(this.user.getUsername())
             .upId(this.upId)
             .hit(this.hit)
             .delYn(this.delYn)

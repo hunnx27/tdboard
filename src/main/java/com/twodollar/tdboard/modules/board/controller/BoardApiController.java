@@ -62,7 +62,7 @@ public class BoardApiController {
                     break;
             }
 
-            Board board = boardService.createBoard(boardRequest);
+            Board board = boardService.createBoard(boardRequest, user);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -94,7 +94,7 @@ public class BoardApiController {
                     if(!"QNA".equals(valboard.getBoardType().name())){
                         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "게시글 수정에 대한 권한이 없습니다.");
                     }
-                    if(user.getId() != valboard.getUserId()){
+                    if(valboard.getUser()!=null && user.getId()!=valboard.getUser().getId()){
                         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, " 게시글 수정은 본인만 수정할 수 있습니다.");
                     }
                     break;
@@ -133,7 +133,7 @@ public class BoardApiController {
                     if(!"QNA".equals(valboard.getBoardType().name())){
                         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "게시글 삭제에 대한 권한이 없습니다.");
                     }
-                    if(user.getId() != valboard.getUserId()){
+                    if(valboard.getUser()!=null && user.getId()!=valboard.getUser().getId()){
                         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, " 게시글 삭제는 본인만 수정할 수 있습니다.");
                     }
                     break;
@@ -175,12 +175,14 @@ public class BoardApiController {
     })
     @PostMapping("/boards/{upId}/reply-board")
     public ResponseEntity<ApiCmnResponse<?>> replyRegister(
+            Authentication authentication,
             @PathVariable("upId") Long upId,
             @RequestBody BoardRequest boardRequest
     ){
         try {
+            User user = userService.getUserByUserId(authentication.getName());
             boardRequest.setUpId(upId);
-            Board board = boardService.createBoard(boardRequest);
+            Board board = boardService.createBoard(boardRequest, user);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

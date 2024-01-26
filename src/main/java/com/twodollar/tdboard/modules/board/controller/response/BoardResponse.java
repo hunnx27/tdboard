@@ -22,8 +22,10 @@ public class BoardResponse {
     // 내용
     private String context;
 
-    // 이메일
+    // 사용자
     private long userId;
+    private String userIdName;
+    private String userName;
 
     // 답글시
     private long upId;
@@ -42,12 +44,14 @@ public class BoardResponse {
     private BoardResponse upBoard;
 
     @Builder
-    public BoardResponse(Long id, String boardType, String title, String context, long userId, long upId, long hit, String delYn, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public BoardResponse(Long id, String boardType, String title, String context, long userId, String userIdName, String userName, long upId, long hit, String delYn, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.boardType = boardType;
         this.title = title;
         this.context = context;
         this.userId = userId;
+        this.userIdName = userIdName;
+        this.userName = userName;
         this.upId = upId;
         this.hit = hit;
         this.delYn = delYn;

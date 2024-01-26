@@ -4,6 +4,7 @@ import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
 import com.twodollar.tdboard.modules.board.repository.BoardRepository;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
+import com.twodollar.tdboard.modules.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,9 +28,11 @@ public class BoardService {
     public int getTotalBoardSize(BoardTypeEnum boardTypeEnum){
         return boardRepository.countByBoardType(boardTypeEnum);
     }
-    public Board createBoard(final BoardRequest createBoard) throws ResponseStatusException{
+    public Board createBoard(final BoardRequest createBoard, User user) throws ResponseStatusException{
         if(createBoard == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "글을 등록할 수 없습니다. 요청 내용을 확인하세요.");
-        return boardRepository.save(createBoard.toEntity());
+        Board board = createBoard.toEntity();
+        board.setUser(user);
+        return boardRepository.save(board);
     }
 
     /**
