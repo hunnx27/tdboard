@@ -83,14 +83,14 @@
                     </div>
                 </div>
                 <div class="flex-box justify-end align-center">
-                    {[#accessToken]}
-                    <button class="btn btn-type05 btn-size-s" onClick="location.href='/contents/qna-modify/{[id]}'">수정</button>
-                    <button id="deleteBtn" class="btn btn-type05 btn-size-s">삭제</button>
-                    {[/accessToken]}
+                    {[#userId]}
+                    <button id="modifyBtn" class="btn btn-type05 btn-size-s" onClick="location.href='/contents/qna-modify/{[id]}'" style="display:none">수정</button>
+                    <button id="deleteBtn" class="btn btn-type05 btn-size-s" style="display:none">삭제</button>
+                    {[/userId]}
                     {[#ADMIN]}
-                    <button id="replyBtn" class="btn">답변하기</button>
+                    <button id="replyBtn" class="btn" style="display:none">답변하기</button>
                     {[/ADMIN]}
-                    <button class="btn" onClick="/contents/qna">목록</button>
+                    <button class="btn" onClick="location.href='/contents/qna'">목록</button>
                 </div>
             </div>
             <div class="table-foot">
@@ -100,8 +100,9 @@
         </div>
 
     </div>
+    <input type="hidden" id="userId" value="{[userId]}"/>
     <input type="hidden" id="qnaId" name="id" value="{[id]}"/>
-    <input type="hidden" id="role" name="role" value="{[adminRole]}"/>
+    <input type="hidden" id="role" name="role" value="{[ADMIN]}"/>
 </section>
 <script id="reply-template" type="text/template">
     <div class="detail-re-head">

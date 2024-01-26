@@ -57,6 +57,7 @@ public class AuthSuccessHandler extends
             session.setAttribute("accessToken", accessToken);
             session.setAttribute("refreshToken", refreshToken);
             session.setAttribute(role, true);
+            session.setAttribute("userId", user.getId());
 
 
             // JWT 쿠키 저장(쿠키 명 : token)

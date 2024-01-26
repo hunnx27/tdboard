@@ -35,6 +35,17 @@ async function getBoard(qnaId) {
                     deleteBoardApi(qnaId)
                 })
             }
+            const userId = document.getElementById('userId').value
+            const resultUserId = res.data.userId
+            console.log(userId)
+            console.log(res.data.userId)
+            if(`${userId}` === `${res.data.userId}`){
+                deleteBtn.style.display = 'block'
+                const modifyBtn = document.getElementById('modifyBtn')
+                modifyBtn.style.display = 'block'
+            }
+
+
         },(err)=> {
             console.log('err',err)
             document.getElementById("qna-detail-body").innerHTML = '<div class="detail-head">QnA 내용이 없습니다.</div>'
@@ -62,7 +73,9 @@ async function getBoardReply(qnaId) {
                 const replyContainer = document.getElementById('replyContainer')
                 replyContainer.style.display = 'block'
             }else {
-                if(role === 'ADMIN'){
+                
+                if(role === 'true'){
+                    console.log('role',role)
                     initElementEvent(qnaId)
                 }
             }
@@ -76,12 +89,12 @@ function initElementEvent(qnaId) {
     replyForm.style.display = 'block'
 
     const replyBtn = document.getElementById('replyBtn')
-    replyBtn.style.display = 'block'
+    
     replyBtn.addEventListener('click', function(){
         const replyContainer = document.getElementById('replyContainer')
         replyContainer.style.display = 'block'
     })
-    
+    replyBtn.style.display = 'block'
 
     const replySaveBtn = document.getElementById('replySaveBtn')
     replySaveBtn.style.display = 'block'
