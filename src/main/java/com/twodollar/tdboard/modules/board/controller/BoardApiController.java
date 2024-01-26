@@ -117,7 +117,6 @@ public class BoardApiController {
     @DeleteMapping("/boards/{id}")
     public ResponseEntity<ApiCmnResponse<?>> boardDelete(
             @PathVariable("id") Long id,
-            @RequestBody BoardRequest boardRequest,
             Authentication authentication
     ){
         try {
@@ -125,7 +124,7 @@ public class BoardApiController {
             // 1. 관리자는 모든 글을 삭제 가능하다.
             // 2. QNA는 사용자가 글을 삭제할 수 있지만 본인 글만 삭제할 수 있다.
             User user = userService.getUserByUserId(authentication.getName());
-            Board valboard = boardService.getBoardById(id, BoardTypeEnum.valueOf(boardRequest.getBoardType()));
+            Board valboard = boardService.getBoardById(id);
             switch (user.getRole().name()){
                 case "ROLE_ADMIN":
                     break;

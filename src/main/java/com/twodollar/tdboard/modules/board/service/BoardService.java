@@ -22,6 +22,9 @@ public class BoardService {
     /*
         공통
      */
+    public Board getBoardById(final Long id) throws ResponseStatusException{
+        return boardRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
+    }
     public Board getBoardById(final Long id, BoardTypeEnum boardTypeEnum) throws ResponseStatusException{
         return boardRepository.findByBoardTypeAndId(boardTypeEnum, id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
     }
