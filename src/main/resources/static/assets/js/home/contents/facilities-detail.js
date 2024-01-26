@@ -69,7 +69,6 @@ async function getAvailiableTime(id, targetDate){
     select1Value.innerHTML = DEFAULT_HOUR_SELECT;
     select2Value.innerHTML = DEFAULT_HOUR_SELECT;
     bookedList = [];
-    selectedDate = '';
     selectedStartHour = 0;
     selectedEndHour = 0;
 
@@ -154,7 +153,7 @@ function validationBooking(){
     }
     // 오늘 일자인 경우 현재 시간 이후만 선택됨
     if(todayText == selectedDate){
-        if(todayHour > selectedStartHour || todayHour > selectedEndHour){
+        if(todayHour >= selectedStartHour || todayHour >= selectedEndHour){
             alert("현재 시간 이하는 예약이 불가합니다. 다른 시간을 선택해주세요.");
             return false;
         }
