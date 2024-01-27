@@ -50,6 +50,7 @@ public class FileInfoService {
         List<FileInfo> files = fileInfoDtos.stream().map(fileInfoDto -> {
             FileInfo fileInfo = new FileInfo(fileInfoDto);
             fileInfo.setUserId(userId);
+            fileInfo.setType(dir);
             return fileInfo;
         }).collect(Collectors.toList());
         List<FileInfo> savedfiles = fileInfoRepository.saveAll(files);
