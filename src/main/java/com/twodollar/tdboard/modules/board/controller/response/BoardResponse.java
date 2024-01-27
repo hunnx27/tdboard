@@ -2,13 +2,16 @@ package com.twodollar.tdboard.modules.board.controller.response;
 
 import com.twodollar.tdboard.modules.board.entity.Board;
 import com.twodollar.tdboard.modules.board.entity.enums.BoardTypeEnum;
+import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class BoardResponse {
@@ -42,6 +45,9 @@ public class BoardResponse {
     private LocalDateTime updatedAt;
 
     private BoardResponse upBoard;
+
+    @Setter
+    private List<FileInfoResponse> files;
 
     @Builder
     public BoardResponse(Long id, String boardType, String title, String context, long userId, String userIdName, String userName, long upId, long hit, String delYn, LocalDateTime createdAt, LocalDateTime updatedAt) {
