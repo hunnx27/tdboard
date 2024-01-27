@@ -21,13 +21,16 @@ async function getBoard(qnaId) {
             {}
             ,(res)=> {
             // console.log('res',res.data)
-            const data = {
-                createdDateText: useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt),
-                ...res.data
+            document.getElementById("title").innerText = res.data.title
+            document.getElementById("createdDateText").innerText = useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt)
+            document.getElementById("context").innerHTML = res.data.context
+
+            // 파일첨부 리스트
+            if(res.data?.files?.length > 0){
+                var fileTemplate = document.getElementById("file-template").innerHTML;
+                var fileResult = Mustache.render(fileTemplate, {files: res.data?.files});
+                document.getElementById("file-list-body").innerHTML = fileResult;
             }
-            var template = document.getElementById("qna-detail-body").innerHTML;
-            var result = Mustache.render(template, data);
-            document.getElementById("qna-detail-body").innerHTML = result;
             
             const deleteBtn = document.getElementById('deleteBtn')
             if(deleteBtn){
@@ -36,9 +39,6 @@ async function getBoard(qnaId) {
                 })
             }
             const userId = document.getElementById('userId').value
-            const resultUserId = res.data.userId
-            console.log(userId)
-            console.log(res.data.userId)
             if(`${userId}` === `${res.data.userId}`){
                 deleteBtn.style.display = 'block'
                 const modifyBtn = document.getElementById('modifyBtn')

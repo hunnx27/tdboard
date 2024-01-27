@@ -126,7 +126,7 @@ async function saveApi(files) {
             }
             ,(res)=> {
                 alert('글이 저장 되었습니다')
-                location.href= "/contents/notice"
+                // location.href= "/contents/notice"
             },(err)=> {
                 alert(err.response.data.message)
             })
