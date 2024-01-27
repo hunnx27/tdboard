@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    int countByBoardTypeAndDelYn(BoardTypeEnum boardTypeEnum, long upId, String delYn);
+    int countByBoardTypeAndUpIdAndDelYn(BoardTypeEnum boardTypeEnum, long upId, String delYn);
 
     Optional<List<Board>> findBoardsByBoardTypeAndUpIdAndDelYnOrderByCreatedAtDesc(BoardTypeEnum boardTypeEnum, long upId, String delYn, Pageable pageable);
 //    Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
