@@ -26,6 +26,7 @@ public class Facility {
     // 시설명
     private String name;
     // 시설설명
+    @Column(columnDefinition = "TEXT")
     private String description;
     // imageUrl
     private String imageUrl;

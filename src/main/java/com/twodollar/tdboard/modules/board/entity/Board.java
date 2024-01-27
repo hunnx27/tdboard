@@ -30,6 +30,7 @@ public class Board {
     // 제목
     private String title;
     // 내용
+    @Column(columnDefinition = "TEXT")
     private String context;
     // 사용자
     @ManyToOne(fetch = FetchType.LAZY)
