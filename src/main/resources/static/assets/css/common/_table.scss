@@ -449,7 +449,11 @@ table
         }
       }
     }
-  
+    @include tablet{
+      max-width:100%;
+      overflow: auto;
+      padding:0 0 2rem 0;
+    }
 }
 
 
