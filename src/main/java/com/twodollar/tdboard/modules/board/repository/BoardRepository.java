@@ -14,13 +14,15 @@ import java.util.Optional;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    int countByBoardType(BoardTypeEnum boardTypeEnum);
-    Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
+    int countByBoardTypeAndUpIdAndDelYn(BoardTypeEnum boardTypeEnum, long upId, String delYn);
+
+    Optional<List<Board>> findBoardsByBoardTypeAndUpIdAndDelYnOrderByCreatedAtDesc(BoardTypeEnum boardTypeEnum, long upId, String delYn, Pageable pageable);
+//    Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
     Optional<Board> findByBoardTypeAndId(BoardTypeEnum boardTypeEnum, Long id);
     Optional<List<Board>> findByBoardTypeAndTitleContains(BoardTypeEnum boardTypeEnum, String title, Pageable pageable);
     Optional<List<Board>> findByBoardTypeAndContextContains(BoardTypeEnum boardTypeEnum, String context, Pageable pageable);
 
-    int countByUpId(Long upId);
-    Optional<List<Board>> findByUpId(Long upId, Pageable pageable);
+    int countByUpIdAndDelYn(Long upId, String delYn);
+    Optional<List<Board>> findByUpIdAndDelYn(Long upId, String delYn, Pageable pageable);
 
 }

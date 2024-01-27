@@ -21,20 +21,17 @@ public class EducationService {
     private final FacilityService facilityService;
 
     public long getTotalEducationSize(){
-        return educationRepository.count();
+        return educationRepository.countEducationByDelYn("N");
     }
     public List<Education> getEducations(Pageable pageable) {
-        List<Education> list = educationRepository.findAll(pageable).getContent();
-        if(list.size() == 0){
-            new IllegalArgumentException("no such data");
-        }
+        List<Education> list = educationRepository.getEducationsByDelYnOrderByCreatedAtDesc("N", pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 교육이 없습니다."));
         return list;
     }
 
     public List<Education> getEducationsYearMonth(int year, int month) {
         LocalDate localDate = LocalDate.of(year, month, 1);
         String yearMonth = localDate.format(DateTimeFormatter.ofPattern("YYYY-MM"));
-        List<Education> list = educationRepository.getEducationsByStartDateContainingOrEndDateContaining(yearMonth, yearMonth).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "교육 일정이 없습니다."));
+        List<Education> list = educationRepository.getEducationsByStartDateContainingOrEndDateContainingAndDelYn(yearMonth, yearMonth, "N").orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "교육 일정이 없습니다."));
         return list;
     }
 

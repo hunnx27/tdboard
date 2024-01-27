@@ -3,7 +3,6 @@ import com.twodollar.tdboard.modules.equipment.controller.request.EquipmentReque
 import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import com.twodollar.tdboard.modules.equipment.repository.EquipmentRepository;
 import com.twodollar.tdboard.modules.facility.entity.Facility;
-import com.twodollar.tdboard.modules.facility.repository.FacilityRepository;
 import com.twodollar.tdboard.modules.facility.service.FacilityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +18,7 @@ import java.util.List;
 public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
     private final FacilityService facilityService;
+
 
     public long getTotalEquipmentSize(){
         return equipmentRepository.count();

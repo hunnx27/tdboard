@@ -1,23 +1,26 @@
 package com.twodollar.tdboard.modules.facility.service;
 import com.twodollar.tdboard.modules.facility.controller.request.FacilityRequest;
 import com.twodollar.tdboard.modules.facility.entity.Facility;
-import com.twodollar.tdboard.modules.facility.repository.FacilityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import com.twodollar.tdboard.modules.facility.repository.*;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class FacilityService {
+
     private final FacilityRepository facilityRepository;
 
     public long getTotalFacilitySize(){
-        return facilityRepository.count();
+        return facilityRepository.countFacilityByDelYn("N");
     }
     public List<Facility> getFacilitys(Pageable pageable) {
-        List<Facility> list = facilityRepository.findAll(pageable).getContent();
+        List<Facility> list = facilityRepository.getFacilitiesByDelYnOrderByCreatedAtDesc("N", pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 시설이 없습니다."));
         if(list.size() == 0){
             new IllegalArgumentException("no such data");
         }

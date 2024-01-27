@@ -75,7 +75,7 @@ public class EducationApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/educations")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> educationList(
             Pageable pageable
     ){
         try {

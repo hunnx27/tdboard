@@ -11,5 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface EducationRepository extends JpaRepository<Education, Long> {
-    Optional<List<Education>> getEducationsByStartDateContainingOrEndDateContaining(String yearMonth1, String yearMonth2);
+
+    int countEducationByDelYn(String delYn);
+    Optional<List<Education>> getEducationsByDelYnOrderByCreatedAtDesc(String DelYn, Pageable pageable);
+    Optional<List<Education>> getEducationsByStartDateContainingOrEndDateContainingAndDelYn(String yearMonth1, String yearMonth2, String delYn);
 }
