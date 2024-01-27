@@ -134,7 +134,20 @@ $admincolor:#1A4079;
       position:absolute;
       right:0;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) rotate(180deg);
+      width:2.4rem;
+      height:2.4rem;
+      background-image: url(../../images/icon/admin_side_down_icon.png);
+      background-repeat:no-repeat;
+      background-size: cover;
+    }
+    &.show{      
+      &::after{
+        transform: translateY(-50%) rotate(0);
+      }
+      + .admin-collapse{
+        height:auto !important;
+      }
     }
     &:hover,&:focus{
 
@@ -143,9 +156,6 @@ $admincolor:#1A4079;
   .admin-collapse{
     height:0;
     overflow: hidden;
-    &.show{
-      height:auto;
-    }
     button{
       @include flexbox('row','flex-start','center');
       width:calc(100% - 24px);
