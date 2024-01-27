@@ -523,6 +523,9 @@ sub page
     .card-wrap{
         margin-bottom:4.3rem;
         .card-body{
+            max-width:100%;
+            overflow:auto;
+            padding-bottom:1rem;
             ul{
                 li{
                     font-size:1.6rem;
@@ -859,6 +862,20 @@ sub page
             }
         }
     }
+    @include mobile{
+        flex-wrap:wrap;
+        .img-box{
+            width:100%;
+            height: auto;
+        }
+        .text-box{
+            width:100%;
+            height: auto;
+        }
+        .gallery-detail-info{
+            margin-bottom:2.5rem;
+        }
+    }
 }
 .gallery-detail-body{
     .block-text-wrap{
@@ -941,22 +958,29 @@ sub page
     }
 }
 .status-text{
-    padding:0.7rem 1rem;
-    border:1px solid #1E4079;
-    background-color: #1E4079;
-    color:#fff;
-    .status-confirm{
-        
+    padding:0.2rem 1rem;
+    
+    border-radius: 25px;
+    
+    &.status-confirm{
+        border:1px solid #1E4079;
+        background-color: #1E4079;
+        color:#fff;
     }
-    .status-confirm-fi{
+    &.status-confirm-fi{
         border:1px solid #00AAF6;
-    background-color: #00AAF6;
+        background-color: #00AAF6;
+        color:#fff;
     }
-    .status-cancel-fi{
-
+    &.status-cancel-fi{
+        border:1px solid #F04438;
+        background-color: #fff;
+        color:#F04438;
     }
-    .status-cancel{
-
+    &.status-cancel{
+        border:1px solid #F04438;
+        background-color: #F04438;
+        color:#fff;
     }
 }
 
