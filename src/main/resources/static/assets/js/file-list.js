@@ -37,7 +37,7 @@ export default function () {
             if(initFiles){
                 for(const item of initFiles) {
                     const blob = new Blob([''], { type: 'application/octet-stream' });
-                    const file = new File([blob], item.name, { type: 'application/octet-stream' });
+                    const file = new File([blob], item.originalName, { type: 'application/octet-stream' });
                    // 파일 객체에 커스텀 속성 추가
                     file.id = item.id; 
                     dataTransfer.items.add(file);
