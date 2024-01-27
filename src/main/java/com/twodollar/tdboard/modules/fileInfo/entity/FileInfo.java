@@ -24,6 +24,7 @@ public class FileInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     String storedName;
+    String storedPath;
     String originalName;
     long size;
     String type;
@@ -39,6 +40,7 @@ public class FileInfo {
 
     public FileInfo(FileInfoDto fileInfoDto) {
         this.storedName = fileInfoDto.getStoredName();
+        this.storedPath = fileInfoDto.getStoredPath();
         this.originalName = fileInfoDto.getOriginalName();
         this.size = fileInfoDto.getSize();
         this.type = fileInfoDto.getType();
@@ -48,6 +50,7 @@ public class FileInfo {
         return FileInfoResponse.builder()
                 .id(this.id)
                 .storedName(this.storedName)
+                .storedPath(this.storedPath)
                 .originalName(this.originalName)
                 .size(this.size)
                 .type(this.type)

@@ -11,13 +11,15 @@ import lombok.ToString;
 public class FileInfoDto {
 
     private String storedName;
+    private String storedPath;
     private String originalName;
     private long size;
     private String type;
 
     @Builder
-    public FileInfoDto(String storedName, String originalName, long size, String type) {
+    public FileInfoDto(String storedName, String storedPath, String originalName, long size, String type) {
         this.storedName = storedName;
+        this.storedPath = storedPath;
         this.originalName = originalName;
         this.size = size;
         this.type = type;

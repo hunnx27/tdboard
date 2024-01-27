@@ -52,10 +52,6 @@ public class FileInfoService {
         return savedfiles;
     }
 
-
-
-
-
     public void deleteFileInfoById(final Long id) {
         fileInfoRepository.deleteById(id);
     }

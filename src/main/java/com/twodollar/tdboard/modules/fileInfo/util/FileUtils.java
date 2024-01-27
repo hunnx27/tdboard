@@ -47,20 +47,22 @@ public class FileUtils {
             return null;
         }
 
-        String saveName = generateSaveFilename(multipartFile.getOriginalFilename());
+        String storedName = generateSaveFilename(multipartFile.getOriginalFilename());
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd")).toString();
-        String uploadPath = getUploadPath(dir, today) + File.separator + saveName;
+        String uploadPath = getUploadPath(dir, today) + File.separator + storedName;
         File uploadFile = new File(uploadPath);
-
         try {
             multipartFile.transferTo(uploadFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        String storedPath = String.format("/upload/%s/%s/%s", today, dir, storedName);
+
         return FileInfoDto.builder()
                 .originalName(multipartFile.getOriginalFilename())
-                .storedName(saveName)
+                .storedName(storedName)
+                .storedPath(storedPath)
                 .size(multipartFile.getSize())
                 .build();
     }
