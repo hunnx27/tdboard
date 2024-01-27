@@ -52,6 +52,3 @@ spring:
 # spring:
   servlet.multipart.maxFileSize: 10MB
   servlet.multipart.maxRequestSize: 50MB
-file:
-  upload:
-    path: C:/upload
