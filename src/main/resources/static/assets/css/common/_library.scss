@@ -17,6 +17,7 @@
   margin:0 auto;
   @include tablet {
     max-width:100%;
+    padding:0 3.2rem;
     &.md-inner{
       max-width:100%;
     }
@@ -1182,6 +1183,27 @@ flex-box
       }
     }
   }
+
+  .only-w{}
+
+  .only-m{
+    display:none !important;
+  }
+@include mobile {
+  .only-w{
+    display:none !important;
+  }
+  .only-m{
+    display:block !important;
+  }
+  .only-m-inline{
+    display:inline;
+  }
+  .only-m-inlineblock{
+    display:inline-block;
+  }
+}
+
 .card-wrap{
   position: relative;
 }
