@@ -1,0 +1,31 @@
+
+<p class="input-title">파일첨부</p>
+<div class="board-file-wrap">
+    <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
+        <input id="fileInput" type="file" placeholder="대표 이미지" multiple>
+        <input id="realFileInput" type="file" style="display:none" multiple>
+        <label for="fileInput">
+            Select Files
+        </label>
+        <p class="error-text"></p>
+    </div>
+    <div id="fileList" >
+
+    </div>
+</div>
+    
+
+<script id="file-template" type="text/template">
+<div class="board-file-box">
+    <ul>
+        {{#files}}
+        <li class="file-item" >
+        <span class="icon-box icon-size-sm icon-file"></span><span>{{name}}</span>
+            <button class="file-delete-btn"  data-value="{{index}}" >
+                <span class="icon-box icon-size-16 icon-close"></span>
+            <button>
+        </li>
+        {{/files}}
+    </ul>
+<div>
+</script>
