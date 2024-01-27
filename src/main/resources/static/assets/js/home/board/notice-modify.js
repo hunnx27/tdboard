@@ -1,6 +1,8 @@
 import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
+import createFileListModule from "/assets/js/file-list.js"
 
+const fileListModule = createFileListModule()
 window.onload = function () {
 
     getBoardApi()
@@ -51,8 +53,12 @@ window.onload = function () {
 
     const saveBtn = document.getElementById('saveBtn');
     saveBtn.addEventListener('click', function(){
-        if(title.value )
-        saveApi()
+        const dataTransfer = fileListModule.dataTransfer
+        if(dataTransfer.files.length > 0){
+            fileUpload()
+        }else{
+            saveApi()
+        }
     })
 
     
@@ -68,6 +74,40 @@ function validationButtonVisible(){
     }
 }
 
+// 파일 업로드
+async function fileUpload(){
+    const dataTransfer = fileListModule.dataTransfer
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('uploadType','BOARD')
+
+    for (const file of dataTransfer.files) {
+        if(!file.id){
+            formData.append('files', file);
+        }
+        
+    }
+
+    await useAxios.postMultipart(`/api/v1/files`,
+    formData
+    ,(res)=> {
+        const files = []
+        for (const file of dataTransfer.files) {
+            if(file.id){
+                files.push(file.id)
+            }
+        }
+        res.data?.forEach((file)=>{
+            files.push(file.id)
+        })
+        // console.log(files)
+        saveApi(files)
+    },(err)=> {
+        console.log('error',err)
+        // alert(err.response.data.message)
+    })
+    
+}
 async function getBoardApi(){
     const noticeId = document.getElementById("noticeId")
     if(noticeId?.value){
@@ -77,6 +117,8 @@ async function getBoardApi(){
                 document.getElementById("title").value = res.data.title
                 $('#description').summernote('code',res.data.context)
                 
+                // 파일첨부 세팅
+                fileListModule.initFileSetting(res.data?.files)
             
         },(err)=> {
             console.log('err',err)
@@ -87,7 +129,7 @@ async function getBoardApi(){
     }
 }
 
-async function saveApi() {
+async function saveApi(files) {
     const noticeId = document.getElementById("noticeId").value
     const title = document.getElementById("title").value
     const description = $('#description').summernote('code');
@@ -96,7 +138,8 @@ async function saveApi() {
             {
                 boardType: 'NOTICE',
                 title,
-                context: description
+                context: description,
+                files
             }
             ,(res)=> {
                 alert('글이 저장 되었습니다')
