@@ -29,7 +29,7 @@ public class BoardService {
         return boardRepository.findByBoardTypeAndId(boardTypeEnum, id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
     }
     public int getTotalBoardSize(BoardTypeEnum boardTypeEnum){
-        return boardRepository.countByBoardTypeAndDelYn(boardTypeEnum,"N");
+        return boardRepository.countByBoardTypeAndDelYn(boardTypeEnum,0, "N");
     }
     public Board createBoard(final BoardRequest createBoard, User user) throws ResponseStatusException{
         if(createBoard == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "글을 등록할 수 없습니다. 요청 내용을 확인하세요.");
