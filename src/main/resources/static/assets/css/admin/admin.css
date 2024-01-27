@@ -102922,6 +102922,22 @@ icon
   background-image: url(../../images/icon/admin_file_icon.svg);
   filter: none !important;
 }
+.icon-box.icon-white-home::after {
+  background-image: url(../../images/icon/home_white_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-setting::after {
+  background-image: url(../../images/icon/admin_admin_side_setting_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-servay::after {
+  background-image: url(../../images/icon/admin_admin_side_servay_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-current::after {
+  background-image: url(../../images/icon/admin_admin_side_current_icon.png);
+  filter: none !important;
+}
 
 .input-group {
   display: flex;
@@ -103701,14 +103717,32 @@ icon
   resize: none;
 }
 
-.detail-re .detail-re-head {
-  margin-bottom: 1.6rem;
-}
 .detail-re .detail-re-head h5 {
   font-weight: 500;
   font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.detail-re .detail-re-head h6 {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.detail-re .detail-re-head p {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.detail-re .detail-re-head p span {
+  font-size: 1.4rem;
 }
 .detail-re .detail-re-body p {
+  margin-top: 45px;
   line-height: 1.5;
   font-size: 1.4rem;
   font-weight: 400;
@@ -115383,19 +115417,60 @@ sub page
   width: 100%;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
   z-index: 1040;
+  padding: 0 2rem;
 }
 .admin-head .logo-wrap {
-  width: 20rem;
+  width: 26rem;
+  height: 3.2rem;
   background-color: transparent;
 }
 .admin-head .admin-logo {
   width: 100%;
-  min-height: 5rem;
-  background-image: url(../images/common/koreanairopc.svg);
+  height: 100%;
+  background-image: url(../../images/common/adminlogo.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   cursor: pointer;
+}
+.admin-head .left > div {
+  height: 100%;
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.admin-head .admin-head-right {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+}
+.admin-head .admin-head-right > div {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  gap: 4rem;
+  height: 100%;
+}
+.admin-head .admin-head-right > div .btn {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+}
+.admin-head .admin-head-right > div span {
+  color: #fff;
+  font-size: 1.4rem;
+}
+.admin-head .admin-head-right > div span b {
+  color: #01A0E8;
 }
 
 .admin-contents {
@@ -115444,12 +115519,25 @@ sub page
 }
 
 .admin-nav-list > button {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
   width: 100%;
   background-color: transparent;
   text-align: left;
   position: relative;
   color: #fff;
   font-weight: 700;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+}
+.admin-nav-list > button .icon-box {
+  margin-right: 0.8rem;
 }
 .admin-nav-list > button::after {
   content: "";
@@ -115458,11 +115546,32 @@ sub page
   top: 50%;
   transform: translateY(-50%);
 }
+.admin-nav-list .admin-collapse {
+  height: 0;
+  overflow: hidden;
+}
+.admin-nav-list .admin-collapse.show {
+  height: auto;
+}
 .admin-nav-list .admin-collapse button {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
   width: calc(100% - 24px);
   background-color: transparent;
   border-radius: 8px;
   color: #fff;
+  line-height: 1.5;
+  padding: 0.8rem 3.6rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  height: 4rem;
+  transition: all 0.25s ease-in-out;
 }
 .admin-nav-list .admin-collapse button.on, .admin-nav-list .admin-collapse button:hover, .admin-nav-list .admin-collapse button:focus {
   background-color: #00AAF6;

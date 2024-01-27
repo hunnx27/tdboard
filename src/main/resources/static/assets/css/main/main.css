@@ -102922,6 +102922,22 @@ icon
   background-image: url(../../images/icon/admin_file_icon.svg);
   filter: none !important;
 }
+.icon-box.icon-white-home::after {
+  background-image: url(../../images/icon/home_white_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-setting::after {
+  background-image: url(../../images/icon/admin_admin_side_setting_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-servay::after {
+  background-image: url(../../images/icon/admin_admin_side_servay_icon.png);
+  filter: none !important;
+}
+.icon-box.icon-admin-side-current::after {
+  background-image: url(../../images/icon/admin_admin_side_current_icon.png);
+  filter: none !important;
+}
 
 .input-group {
   display: flex;
@@ -103701,14 +103717,32 @@ icon
   resize: none;
 }
 
-.detail-re .detail-re-head {
-  margin-bottom: 1.6rem;
-}
 .detail-re .detail-re-head h5 {
   font-weight: 500;
   font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.detail-re .detail-re-head h6 {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+.detail-re .detail-re-head p {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.detail-re .detail-re-head p span {
+  font-size: 1.4rem;
 }
 .detail-re .detail-re-body p {
+  margin-top: 45px;
   line-height: 1.5;
   font-size: 1.4rem;
   font-weight: 400;
@@ -114652,10 +114686,20 @@ main
 .main-sect-2 {
   padding: 7.3rem 0 0 0;
 }
+.main-sect-2 .flex-box {
+  display: flex;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -moz-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -moz-box-justify-content: flex-start;
+  justify-content: flex-start;
+  gap: 6.3rem;
+}
 .main-sect-2 .main-card {
   width: 24.8rem;
   height: 24.8rem;
-  margin-right: 6.3rem;
   border-radius: 3rem;
   padding: 4rem;
   border: 1px solid;
@@ -114734,7 +114778,6 @@ main
 .main-sect-2 .main-card-4 {
   border-color: #FDF0DB;
   background-color: #FDF0DB;
-  margin-right: 0;
 }
 .main-sect-2 .main-card-4::after {
   background-color: #FBDFBB;
@@ -114744,6 +114787,19 @@ main
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center 0;
+}
+@media (max-width: 1200px) {
+  .main-sect-2 {
+    padding: 4rem 0 0 0;
+  }
+  .main-sect-2 .flex-box {
+    flex-wrap: wrap;
+  }
+  .main-sect-2 .main-card {
+    width: 50%;
+    height: 24.8rem;
+    flex: 2 2 0;
+  }
 }
 
 .main-sect-3 {

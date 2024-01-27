@@ -98,23 +98,27 @@
 }
 .detail-re{
   .detail-re-head{
-    margin-bottom:1.6rem;
     h5{
       font-weight: 500;
       font-size:1.8rem;
+      margin-bottom:1.6rem;
     }
     h6{
-
+      font-weight: 500;
+      font-size:1.8rem;
+      margin-bottom:1.6rem;
     }
     p{
+      @include flexbox('row','flex-start','center');
+      gap: 1rem;
       span{
-        &:nth-child(2){}
-
+        font-size:1.4rem;
       }
     }
   }
   .detail-re-body{
     p{
+      margin-top:45px;
       line-height:1.5;
       font-size:1.4rem;
       font-weight: 400;
