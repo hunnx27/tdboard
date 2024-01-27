@@ -1,11 +1,11 @@
-package com.twodollar.tdboard.modules.file.controller;
+package com.twodollar.tdboard.modules.fileInfo.controller;
 
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
-import com.twodollar.tdboard.modules.file.controller.request.FileRequest;
-import com.twodollar.tdboard.modules.file.controller.response.FileResponse;
-import com.twodollar.tdboard.modules.file.entity.File;
-import com.twodollar.tdboard.modules.file.service.FileService;
+import com.twodollar.tdboard.modules.fileInfo.controller.request.FileInfoRequest;
+import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
+import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
+import com.twodollar.tdboard.modules.fileInfo.service.FileInfoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,9 +26,9 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAnyRole('USER','ADMIN','PROFESSOR')")
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class FileController {
+public class FileInfoController {
 
-    private final FileService fileService;
+    private final FileInfoService fileInfoService;
 
     @Operation(summary = "파일 등록", description = "파일 등록")
     @ApiResponses(value = {
@@ -35,12 +36,15 @@ public class FileController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/files")
-    public ResponseEntity<ApiCmnResponse<?>> fileDetail(
-            @RequestBody(required = true) FileRequest fileRequest
+    public ResponseEntity<ApiCmnResponse<?>> fileInfoInsert(
+            @ModelAttribute FileInfoRequest fileInfoRequest,
+            Authentication authentication
     ){
         try {
-            File fileEntity = fileService.createFile(fileRequest);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(fileEntity.toResponse()));
+            String userId = authentication.getName();
+            List<FileInfo> saves = fileInfoService.createFileInfo(fileInfoRequest, userId);
+            List<FileInfoResponse> saveResponseList = saves.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(saveResponseList));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -54,14 +58,14 @@ public class FileController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/files")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> fileInfoList(
             Pageable pageable
     ){
         try {
-            long totalSize = fileService.getTotalFileSize();
-            List<File> fileList = fileService.getFiles(pageable);
-            List<FileResponse> fileResponseList = fileList.stream().map(file -> file.toResponse()).collect(Collectors.toList());
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(fileResponseList, pageable, totalSize)));
+            long totalSize = fileInfoService.getTotalFileInfoSize();
+            List<FileInfo> fileInfoList = fileInfoService.getFileInfos(pageable);
+            List<FileInfoResponse> fileInfoResponseList = fileInfoList.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(fileInfoResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -75,12 +79,12 @@ public class FileController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/files/{id}")
-    public ResponseEntity<ApiCmnResponse<?>> fileDetail(
+    public ResponseEntity<ApiCmnResponse<?>> fileInfoDetail(
             @PathVariable("id") Long id
     ) throws Exception {
         try {
-            File file = fileService.getFileById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(file.toResponse()));
+            FileInfo fileInfo = fileInfoService.getFileInfoById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(fileInfo.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -94,11 +98,11 @@ public class FileController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @DeleteMapping("/files/{id}")
-    public ResponseEntity<ApiCmnResponse<?>> fileDelete(
+    public ResponseEntity<ApiCmnResponse<?>> fileInfoDelete(
             @PathVariable("id") Long id
     ) throws Exception {
         try {
-            fileService.deleteFileById(id);
+            fileInfoService.deleteFileInfoById(id);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("deleted"));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

@@ -47,3 +47,11 @@ spring:
   mustache:
     servlet:
       expose-session-attributes: true
+  
+# 파일관련 설정
+# spring:
+  servlet.multipart.maxFileSize: 10MB
+  servlet.multipart.maxRequestSize: 50MB
+file:
+  upload:
+    path: C:/upload

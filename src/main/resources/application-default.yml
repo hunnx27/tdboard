@@ -24,3 +24,7 @@ server:
         name: SID
         http-only: true
         secure: true
+
+file:
+  upload:
+    path: /tomcat/webapps/upload
