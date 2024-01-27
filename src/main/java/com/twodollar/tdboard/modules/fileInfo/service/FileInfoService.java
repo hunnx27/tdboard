@@ -47,7 +47,11 @@ public class FileInfoService {
         if(createFileInfo == null) throw new IllegalArgumentException("item cannot be null");
         String dir = createFileInfo.getUploadType().name();
         List<FileInfoDto> fileInfoDtos = fileUtils.uploadFiles(createFileInfo.getFiles(), dir);
-        List<FileInfo> files = fileInfoDtos.stream().map(fileInfoDto -> new FileInfo(fileInfoDto)).collect(Collectors.toList());
+        List<FileInfo> files = fileInfoDtos.stream().map(fileInfoDto -> {
+            FileInfo fileInfo = new FileInfo(fileInfoDto);
+            fileInfo.setUserId(userId);
+            return fileInfo;
+        }).collect(Collectors.toList());
         List<FileInfo> savedfiles = fileInfoRepository.saveAll(files);
         return savedfiles;
     }
