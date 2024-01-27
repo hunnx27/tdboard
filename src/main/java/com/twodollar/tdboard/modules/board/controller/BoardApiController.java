@@ -211,6 +211,12 @@ public class BoardApiController {
         }
     }
 
+    private List<BoardResponse> commonBoardList(BoardTypeEnum boardTypeEnum, Pageable pageable){
+        List<Board> boardList = boardService.getBoards(boardTypeEnum, pageable);
+        List<BoardResponse> boardResponseList = boardList.stream().map(board -> board.toResponse()).collect(Collectors.toList());
+        return boardResponseList;
+    }
+
     @Operation(summary = "공지사항 전체 조회", description = "공지사항 전체 조회")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
@@ -222,8 +228,7 @@ public class BoardApiController {
     ){
         try{
             int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.NOTICE);
-            List<Board> boardList = boardService.getNoticeBoards(pageable);
-            List<BoardResponse> boardResponseList = boardList.stream().map(board -> board.toResponse()).collect(Collectors.toList());
+            List<BoardResponse> boardResponseList = this.commonBoardList(BoardTypeEnum.NOTICE, pageable);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -251,6 +256,7 @@ public class BoardApiController {
         }
     }
 
+    @Deprecated
     @Operation(summary = "공지사항 검색", description = "공지사항 검색")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
@@ -297,8 +303,7 @@ public class BoardApiController {
     ){
         try {
             int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.DATA);
-            List<Board> boardList = boardService.getDataBoards(pageable);
-            List<BoardResponse> boardResponseList = boardList.stream().map(board -> board.toResponse()).collect(Collectors.toList());
+            List<BoardResponse> boardResponseList = this.commonBoardList(BoardTypeEnum.DATA, pageable);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -336,8 +341,7 @@ public class BoardApiController {
     ){
         try {
             int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.FAQ);
-            List<Board> boardList = boardService.getFAQBoards(pageable);
-            List<BoardResponse> boardResponseList = boardList.stream().map(board -> board.toResponse()).collect(Collectors.toList());
+            List<BoardResponse> boardResponseList = this.commonBoardList(BoardTypeEnum.FAQ, pageable);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -375,8 +379,7 @@ public class BoardApiController {
     ){
         try {
             int totalSize = boardService.getTotalBoardSize(BoardTypeEnum.QNA);
-            List<Board> boardList = boardService.getQNABoards(pageable);
-            List<BoardResponse> boardResponseList = boardList.stream().map(board -> board.toResponse()).collect(Collectors.toList());
+            List<BoardResponse> boardResponseList = this.commonBoardList(BoardTypeEnum.QNA, pageable);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(boardResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

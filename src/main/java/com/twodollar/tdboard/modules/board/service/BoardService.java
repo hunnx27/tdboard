@@ -29,7 +29,7 @@ public class BoardService {
         return boardRepository.findByBoardTypeAndId(boardTypeEnum, id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 글이 없습니다."));
     }
     public int getTotalBoardSize(BoardTypeEnum boardTypeEnum){
-        return boardRepository.countByBoardType(boardTypeEnum);
+        return boardRepository.countByBoardTypeAndDelYn(boardTypeEnum,"N");
     }
     public Board createBoard(final BoardRequest createBoard, User user) throws ResponseStatusException{
         if(createBoard == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "글을 등록할 수 없습니다. 요청 내용을 확인하세요.");
@@ -44,7 +44,7 @@ public class BoardService {
      * @return
      */
     public int getTotalReplyBoardSize(Long upId){
-        return boardRepository.countByUpId(upId);
+        return boardRepository.countByUpIdAndDelYn(upId, "N");
     }
 
     /**
@@ -54,7 +54,7 @@ public class BoardService {
      * @return
      */
     public List<Board> getBoardsByUpId(final Long upId, Pageable pageable){
-        return boardRepository.findByUpId(upId, pageable).orElse(null);
+        return boardRepository.findByUpIdAndDelYn(upId, "N",pageable).orElse(null);
     }
 
     public Board updateBoard(final long id, final BoardRequest updateBoard) throws ResponseStatusException{
@@ -79,17 +79,8 @@ public class BoardService {
     /*
         게시판 유형별 조회
      */
-    public List<Board> getNoticeBoards(Pageable pageable) {
-        return boardRepository.findByBoardType(BoardTypeEnum.NOTICE, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
-    }
-    public List<Board> getDataBoards(Pageable pageable) {
-        return boardRepository.findByBoardType(BoardTypeEnum.DATA, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
-    }
-    public List<Board> getFAQBoards(Pageable pageable) {
-        return boardRepository.findByBoardType(BoardTypeEnum.FAQ, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
-    }
-    public List<Board> getQNABoards(Pageable pageable) {
-        return boardRepository.findByBoardType(BoardTypeEnum.QNA, pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
+    public List<Board> getBoards(BoardTypeEnum boardTypeEnum, Pageable pageable){
+        return boardRepository.findByBoardsByBoardTypeAndDelYn(boardTypeEnum, "N", pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
