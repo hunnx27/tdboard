@@ -28,18 +28,46 @@ $admincolor:#1A4079;
   width: 100%;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
   z-index: 1040;
+  padding:0 2rem;
   .logo-wrap {
-    width: 20rem;
+    width: 26rem;
+    height: 3.2rem;
     background-color: transparent;
   }
   .admin-logo {
     width: 100%;
-    min-height: 5rem;
-    background-image: url(../images/common/koreanairopc.svg);
+    height: 100%;
+    background-image: url(../../images/common/adminlogo.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     cursor: pointer;
+  }
+  .left{
+    > div{
+      height: 100%;
+      @include flexbox('row','flex-start','center');
+    }
+  }
+  .admin-head-right{
+    @include flexbox('row','end','center');
+    > div{
+      @include flexbox('row','end','center');
+      gap: 4rem;
+      height: 100%;
+      .btn{
+        background-color: transparent;
+        border-color:transparent;
+        padding:0;
+      }
+      span{
+        color:#fff;
+        font-size:1.4rem;
+        b{
+          color:$primary;
+        }
+      }
+    }
   }
 }
 .admin-contents {
@@ -89,29 +117,58 @@ $admincolor:#1A4079;
 }
 .admin-nav-list{
   > button{
+    @include flexbox('row','flex-start','center');
     width:100%;
     background-color: transparent;
     text-align: left;
     position:relative;
     color:#fff;
     font-weight: 700;
+    margin-bottom:1.2rem;
+    font-size:1.6rem;
+    .icon-box{
+      margin-right:0.8rem;
+    }
     &::after{
       content:'';
       position:absolute;
       right:0;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) rotate(180deg);
+      width:2.4rem;
+      height:2.4rem;
+      background-image: url(../../images/icon/admin_side_down_icon.png);
+      background-repeat:no-repeat;
+      background-size: cover;
+    }
+    &.show{      
+      &::after{
+        transform: translateY(-50%) rotate(0);
+      }
+      + .admin-collapse{
+        height:auto !important;
+      }
     }
     &:hover,&:focus{
 
     }
   }
   .admin-collapse{
+    height:0;
+    overflow: hidden;
     button{
+      @include flexbox('row','flex-start','center');
       width:calc(100% - 24px);
       background-color: transparent;
       border-radius: 8px;
       color:#fff;
+      line-height: 1.5;
+      padding:0.8rem 3.6rem;
+      margin-bottom:1.2rem;
+      font-weight: 500;
+      height: 4rem;
+      -webkit-transition: all 0.25s ease-in-out;
+      transition: all 0.25s ease-in-out;
       &.on,&:hover,&:focus{
         background-color: #00AAF6;
       }

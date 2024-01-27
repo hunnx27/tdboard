@@ -17,13 +17,13 @@ spring:
 
 
 
-tokenValidTimeout: 60000 # 60초(1분)
+tokenValidTimeout: 6000000 # 60초(1분)
 server:
   servlet:
     session:
-      timeout: 12000      # 120s(2분)
+      timeout: 120000000    # 120s(2분)
       cookie:
-        max-age: 12000    # 120s(2분)
+        max-age: 120000000    # 120s(2분)
         name: SID
         http-only: true
         secure: true

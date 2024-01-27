@@ -160,4 +160,28 @@ icon
       filter:none !important;
     }
   }
+  &.icon-white-home{
+    &::after {
+      background-image: url(../../images/icon/home_white_icon.png);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-side-setting{
+    &::after {
+      background-image: url(../../images/icon/admin_admin_side_setting_icon.png);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-side-servay{
+    &::after {
+      background-image: url(../../images/icon/admin_admin_side_servay_icon.png);
+      filter:none !important;
+    }
+  }
+  &.icon-admin-side-current{
+    &::after {
+      background-image: url(../../images/icon/admin_admin_side_current_icon.png);
+      filter:none !important;
+    }
+  }
 }

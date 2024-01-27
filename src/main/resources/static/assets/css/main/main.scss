@@ -142,11 +142,13 @@ $headH: 12rem;
 
 .main-sect-2 {
     padding: 7.3rem 0 0 0;
-
+    .flex-box{
+        @include flexbox('row','flex-start','flex-start');
+        gap: 6.3rem;
+    }
     .main-card {
         width: 24.8rem;
         height: 24.8rem;
-        margin-right: 6.3rem;
         border-radius: 3rem;
         padding:4rem;
         border: 1px solid;
@@ -220,7 +222,6 @@ $headH: 12rem;
         &-4 {
             border-color: #FDF0DB;
             background-color: #FDF0DB;
-            margin-right: 0;
             &::after{
                 background-color: #FBDFBB;
             }
@@ -231,6 +232,22 @@ $headH: 12rem;
             }
         }
 
+    }
+    @include tablet{
+        padding: 4rem 0 0 0;
+        .flex-box{
+            flex-wrap: wrap;
+        }
+        .main-card{
+            width: 50%;
+            height: 24.8rem;
+            flex: 2 2 0;
+            .main-card-body{
+                div{
+                    @include background(main, main_box_4, png, no-repeat,100%  100%, center);
+                }
+            }
+        }
     }
 }
 

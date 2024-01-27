@@ -685,6 +685,7 @@ input{}
   }
   &[data-status='active']{
     .select-btn{
+      border-radius: 4px 4px 0 0;
       border:1px solid $gray02;
       span{
         color:$gray07;
