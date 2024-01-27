@@ -80,7 +80,7 @@ public class BoardService {
         게시판 유형별 조회
      */
     public List<Board> getBoards(BoardTypeEnum boardTypeEnum, Pageable pageable){
-        return boardRepository.findBoardsByBoardTypeAndDelYnOrderByCreatedAtDesc(boardTypeEnum, "N", pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
+        return boardRepository.findBoardsByBoardTypeAndUpIdAndDelYnOrderByCreatedAtDesc(boardTypeEnum, 0, "N", pageable).orElseThrow(() -> new IllegalArgumentException("no such data"));
     }
 
     /*
