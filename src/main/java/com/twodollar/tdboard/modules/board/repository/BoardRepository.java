@@ -16,7 +16,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     int countByBoardTypeAndDelYn(BoardTypeEnum boardTypeEnum, String delYn);
 
-    Optional<List<Board>> findByBoardsByBoardTypeAndDelYn(BoardTypeEnum boardTypeEnum, String delYn, Pageable pageable);
+    Optional<List<Board>> findBoardsByBoardTypeAndDelYnOrderByCreatedAtDesc(BoardTypeEnum boardTypeEnum, String delYn, Pageable pageable);
 //    Optional<List<Board>> findByBoardType(BoardTypeEnum boardTypeEnum, Pageable pageable);
     Optional<Board> findByBoardTypeAndId(BoardTypeEnum boardTypeEnum, Long id);
     Optional<List<Board>> findByBoardTypeAndTitleContains(BoardTypeEnum boardTypeEnum, String title, Pageable pageable);
