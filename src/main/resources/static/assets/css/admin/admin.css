@@ -103595,6 +103595,7 @@ icon
   filter: invert(51%) sepia(14%) saturate(286%) hue-rotate(182deg) brightness(94%) contrast(91%);
 }
 .select[data-status=active] .select-btn {
+  border-radius: 4px 4px 0 0;
   border: 1px solid #797F8B;
 }
 .select[data-status=active] .select-btn span {
@@ -103698,6 +103699,31 @@ icon
   height: 100px;
   max-height: 100px;
   resize: none;
+}
+
+.detail-re .detail-re-head {
+  margin-bottom: 1.6rem;
+}
+.detail-re .detail-re-head h5 {
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+.detail-re .detail-re-body p {
+  line-height: 1.5;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.detail-re .detail-re-body textarea {
+  border-radius: 4px;
+  border: 1px solid #D0D5DD;
+  padding: 1.6rem;
+  line-height: 1.5;
+}
+.detail-re .detail-re-body textarea::-moz-placeholder {
+  color: #D0D5DD;
+}
+.detail-re .detail-re-body textarea::placeholder {
+  color: #D0D5DD;
 }
 
 .board-write .board-write-title {

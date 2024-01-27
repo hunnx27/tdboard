@@ -96,6 +96,40 @@
     
   }
 }
+.detail-re{
+  .detail-re-head{
+    margin-bottom:1.6rem;
+    h5{
+      font-weight: 500;
+      font-size:1.8rem;
+    }
+    h6{
+
+    }
+    p{
+      span{
+        &:nth-child(2){}
+
+      }
+    }
+  }
+  .detail-re-body{
+    p{
+      line-height:1.5;
+      font-size:1.4rem;
+      font-weight: 400;
+    }
+    textarea{
+      border-radius:4px;
+      border:1px solid #D0D5DD;
+      padding:1.6rem;
+      line-height:1.5;
+      &::placeholder{
+        color:#D0D5DD;
+      }
+    }
+  }
+}
 .board-write{
   .board-write-title{
     margin-bottom:2.8rem;
