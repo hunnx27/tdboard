@@ -242,6 +242,11 @@ $headH: 12rem;
             width: 50%;
             height: 24.8rem;
             flex: 2 2 0;
+            .main-card-body{
+                div{
+                    @include background(main, main_box_4, png, no-repeat,100%  100%, center);
+                }
+            }
         }
     }
 }
