@@ -57,7 +57,7 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
 
-        String storedPath = String.format("/upload/%s/%s/%s", today, dir, storedName);
+        String storedPath = String.format("/upload/%s/%s/%s", dir, today, storedName);
 
         return FileInfoDto.builder()
                 .originalName(multipartFile.getOriginalFilename())
