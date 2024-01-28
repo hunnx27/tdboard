@@ -116070,9 +116070,12 @@ sub page
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 }
+.admin-detail tbody tr th img, .admin-detail tbody tr td img {
+  max-width: 300px;
+}
 .admin-detail tbody tr th {
   height: 6rem;
-  min-width: 200px;
+  width: 300px;
   background-color: #F4F4F4;
 }
 .admin-detail tbody tr th span {
