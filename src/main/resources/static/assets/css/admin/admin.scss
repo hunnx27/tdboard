@@ -327,8 +327,21 @@ $admincolor:#1A4079;
       }
     }
   }  
+  
 }
-
+.admin-con-body{
+  .table-body{
+    max-width:100%;
+    overflow: auto;
+  }
+}
+@include mobile{
+  
+  .admin-detail{
+    min-width:100rem;
+  }
+  
+}
 .admin-container .board-list{
   margin-bottom:4rem;
   th,td{
@@ -348,6 +361,12 @@ $admincolor:#1A4079;
   .btn{
     height:4.8rem;
     min-width:32rem;
+  }
+  @include mobile{
+    gap:1rem;
+    .btn{
+      min-width:auto;
+    }
   }
 }
 .admin-footer{

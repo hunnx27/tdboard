@@ -116082,6 +116082,16 @@ sub page
 .admin-detail tbody tr td span {
   color: #666666;
 }
+.admin-con-body .table-body {
+  max-width: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-detail {
+    min-width: 100rem;
+  }
+}
 .admin-container .board-list {
   margin-bottom: 4rem;
 }
@@ -116099,6 +116109,14 @@ sub page
 .admin-btn-wrap .btn {
   height: 4.8rem;
   min-width: 32rem;
+}
+@media (max-width: 768px) {
+  .admin-btn-wrap {
+    gap: 1rem;
+  }
+  .admin-btn-wrap .btn {
+    min-width: auto;
+  }
 }
 
 .admin-footer {
