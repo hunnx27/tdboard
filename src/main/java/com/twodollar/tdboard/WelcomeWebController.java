@@ -13,4 +13,9 @@ public class WelcomeWebController {
         return "index";
         // return "pages/common/commingsoon";
     }
+    @GetMapping("test")
+    public String welcomePage2(Model model) {
+        return "index2";
+        // return "pages/common/commingsoon";
+    }
 }

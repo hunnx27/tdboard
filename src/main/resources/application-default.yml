@@ -14,17 +14,17 @@ spring:
     ansi:
       enabled: always
 
-tokenValidTimeout: 600 # 60초(1분)
+tokenValidTimeout: 1800 # 60초(1분)
 server:
   servlet:
     session:
-      timeout: 120      # 120s(2분)
+      timeout: 86400      # 86400s(1시간)
       cookie:
-        max-age: 120    # 120s(2분)
+        max-age: 86400    # 86400(1시간
         name: SID
         http-only: true
         secure: true
 
 file:
   upload:
-    path: /tomcat/webapps/upload
+    path: /sehankdp/tomcat/webapps/upload
