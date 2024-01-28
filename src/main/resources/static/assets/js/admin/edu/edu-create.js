@@ -86,20 +86,6 @@ function initElementEvent(){
         }
     });
 
-    const capacityField = document.getElementById('capacityField');
-
-    // "option" 클래스를 가진 버튼 요소들을 선택
-    const optionButtons = document.querySelectorAll('.option');
-
-    // 각 버튼에 클릭 이벤트 리스너 추가
-    optionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 클릭된 버튼의 data-option 값을 가져와서 selectJoinPathField의 data-value에 설정
-            const dataOptionValue = button.dataset.option;
-            capacityField.dataset.value = dataOptionValue;
-        });
-    });
-
     const saveBtn = document.getElementById('saveBtn');
     saveBtn.addEventListener('click', async () =>{
         const result = await checkVaildation()
