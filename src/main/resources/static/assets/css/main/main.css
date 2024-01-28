@@ -104082,10 +104082,33 @@ table
   background-color: #f9fafb;
 }
 @media (max-width: 1200px) {
-  .board-list {
+  .board-list .table-body {
     max-width: 100%;
     overflow: auto;
     padding: 0 0 2rem 0;
+  }
+  .board-list .table-body .table {
+    table-layout: initial;
+  }
+}
+@media (max-width: 768px) {
+  .board-list .table-head > .flex-box {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .board-list .table-head > .flex-box > span {
+    width: 100%;
+  }
+  .board-list .table-head > .flex-box > .btn {
+    width: 100%;
+  }
+  .board-list .table-body {
+    max-width: 100%;
+    overflow: auto;
+    padding: 0 0 2rem 0;
+  }
+  .board-list .table-body .table {
+    table-layout: initial;
   }
 }
 
@@ -115207,6 +115230,11 @@ sub page
 .board-tab ul li a.on span, .board-tab ul li a:hover span {
   color: #fff;
 }
+@media (max-width: 768px) {
+  .board-tab ul li a span {
+    font-size: 14px;
+  }
+}
 
 .faq-list .table {
   border-top: 2px solid #333;
@@ -115250,6 +115278,9 @@ sub page
   right: 4rem;
   top: 50%;
   transform: translateY(-50%);
+}
+.faq-list .faq-q.on .faq-title > .btn {
+  transform: rotate(180deg);
 }
 .faq-list .faq-a {
   background-color: #F4F4F4;

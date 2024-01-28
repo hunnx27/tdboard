@@ -454,9 +454,37 @@ table
       }
     }
     @include tablet{
-      max-width:100%;
-      overflow: auto;
-      padding:0 0 2rem 0;
+      .table-body{
+        max-width:100%;
+        overflow: auto;
+        padding:0 0 2rem 0;
+        .table{
+          table-layout: initial;
+        }
+      } 
+    }
+    @include mobile{
+      .table-head{
+        > .flex-box{
+          flex-wrap:wrap;
+          gap:2rem;
+          > span{
+            width: 100%;
+          }
+          > .btn{
+            width:100%;
+          }
+        }
+      }
+      .table-body{
+        max-width:100%;
+        overflow: auto;
+        padding:0 0 2rem 0;
+        .table{
+          table-layout: initial;
+        }
+      } 
+      
     }
 }
 

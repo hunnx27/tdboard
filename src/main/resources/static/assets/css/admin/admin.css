@@ -104082,10 +104082,33 @@ table
   background-color: #f9fafb;
 }
 @media (max-width: 1200px) {
-  .board-list {
+  .board-list .table-body {
     max-width: 100%;
     overflow: auto;
     padding: 0 0 2rem 0;
+  }
+  .board-list .table-body .table {
+    table-layout: initial;
+  }
+}
+@media (max-width: 768px) {
+  .board-list .table-head > .flex-box {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .board-list .table-head > .flex-box > span {
+    width: 100%;
+  }
+  .board-list .table-head > .flex-box > .btn {
+    width: 100%;
+  }
+  .board-list .table-body {
+    max-width: 100%;
+    overflow: auto;
+    padding: 0 0 2rem 0;
+  }
+  .board-list .table-body .table {
+    table-layout: initial;
   }
 }
 
@@ -115231,6 +115254,7 @@ sub page
   font-weight: 500;
 }
 .faq-list .faq-q .faq-title {
+  position: relative;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -115239,10 +115263,19 @@ sub page
   -moz-justify-content: space-between;
   justify-content: space-between;
 }
-.faq-list .faq-q .faq-title .btn {
+.faq-list .faq-q .faq-title > .btn {
   border: 0;
   width: 30px;
   height: 30px;
+}
+.faq-list .faq-q .faq-title .flex-box {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.faq-list .faq-q.on .faq-title > .btn {
+  transform: rotate(180deg);
 }
 .faq-list .faq-a {
   background-color: #F4F4F4;

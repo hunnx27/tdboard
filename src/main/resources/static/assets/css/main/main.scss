@@ -600,8 +600,18 @@ sub page
             }
         }
     }
+    @include mobile{
+        ul{
+            li{
+                a{
+                    span{
+                        font-size:14px;
+                    }
+                }
+            }
+        }
+    }
 }
-
 
 .faq-list {
     .table{
@@ -645,6 +655,13 @@ sub page
                 
                 .btn{
 
+                }
+            }
+        }
+        &.on{
+            .faq-title{
+                > .btn{
+                    transform: rotate(180deg);
                 }
             }
         }
