@@ -139,7 +139,7 @@ function validatePassword(){
     
         if (!passwordRegex.test(password)) {
             passwordField.setAttribute('data-status', 'error');
-            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서 사용하세요'
+            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서(8자이상) 사용하세요'
          
         } else {
             passwordField.setAttribute('data-status', 'active');
