@@ -38,6 +38,9 @@
                                 <th class="td-date">
                                   신청날짜  
                                 </th>
+                                <th>
+                                    현황
+                                </th>
                                 <th class="td-btn">
                                     관리
                                 </th>
@@ -85,15 +88,28 @@
                 {{createdDateText}}
             </span>
         </td>
-        
         <td>
             <div class="flex-box gap-10 align-center justify-center">
-            <button class="confirmBtn btn admin-btn-type-01" data-value="{{id}}">
-                승인
-            </button>
-            <button class="cancelBtn btn admin-btn-type-02" data-value="{{id}}">
-                취소
-            </button>
+                {{#notApproval}}
+                <em class="status-text status-confirm">승인대기</em>
+                <!--<em class="status-text status-cancel">취소</em>-->
+                {{/notApproval}}
+                {{#approval}}
+                <em class="status-text status-confirm-fi">승인완료</em>
+                {{/approval}}
+                {{#cancelApplication}}
+                <em class="status-text status-cancel-fi">취소완료</em>
+                {{/cancelApplication}}
+            </div>
+        </td>
+        <td>
+            <div class="flex-box gap-10 align-center justify-center">
+                <button class="confirmBtn btn admin-btn-type-01" data-value="{{id}}">
+                    승인
+                </button>
+                <button class="cancelBtn btn admin-btn-type-02" data-value="{{id}}">
+                    취소
+                </button>
             </div>
         </td>
     </tr>

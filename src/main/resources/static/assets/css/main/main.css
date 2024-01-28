@@ -103366,6 +103366,12 @@ icon
   background-size: 2rem;
   background-position: center 0;
 }
+.textfield[data-type=name]::before {
+  background-image: url(../../images/icon/user_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  background-position: center 0;
+}
 .textfield[data-type=password]::before {
   background-image: url(../../images/icon/lock_icon.svg);
   background-repeat: no-repeat;
@@ -104594,12 +104600,12 @@ header {
 .head-con .gnb nav > ul .gnb-depth-02 ul li {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-align: left;
   padding-left: 0;
 }
 .head-con .gnb nav > ul .gnb-depth-02 ul li span {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   transition: all 0.25s ease-in-out;
 }
 .head-con .gnb nav > ul .gnb-depth-02 ul li span:hover {
@@ -115392,6 +115398,7 @@ sub page
   justify-content: flex-start;
 }
 .gallery-list .img-box img {
+  width: 100%;
   max-width: 100%;
   max-height: 100%;
 }
@@ -115543,6 +115550,7 @@ sub page
 .gallery-detail-head .img-box img {
   width: 100%;
   max-width: 100%;
+  max-height: 100%;
 }
 .gallery-detail-head .text-box {
   display: flex;

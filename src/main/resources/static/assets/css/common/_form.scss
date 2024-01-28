@@ -434,6 +434,11 @@ input{}
       @include background(icon, user_icon, svg, no-repeat, 2rem,center);
     }
   }
+  &[data-type='name'] {
+    &::before{
+      @include background(icon, user_icon, svg, no-repeat, 2rem,center);
+    }
+  }
   &[data-type='password'] {
     &::before{
       @include background(icon, lock_icon, svg, no-repeat, 2rem,center);
