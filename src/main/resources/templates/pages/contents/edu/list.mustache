@@ -30,13 +30,16 @@
                 </div>
                 <ul>
                     <li>
-                        교육일정 <span>｜</span> {{startDate}} ~ {{endDate}}
+                        <span style="color:#003399;font-weight:bold;">접수기간</span> <span>｜</span> {{applicationStartDate}} ~ {{applicationEndDate}}
                     </li>
                     <li>
-                        교육기간 <span>｜</span> {{timeDifferenceInDays}}일 {{timeDifferenceInHours}}시간
+                        <span style="color:#003399;font-weight:bold;">교육기간</span> <span>｜</span> {{startDate}} ~ {{endDate}}
                     </li>
                     <li>
-                        교육시간 <span>｜</span> 매주 월~금(공휴일제외), 09:00~18:00
+                        <span style="color:#003399;font-weight:bold;">담당교수</span> <span>｜</span> {{manager}}
+                    </li>
+                    <li>
+                        <span style="color:#003399;font-weight:bold;">정원</span> <span>｜</span> {{capacity}}
                     </li>
                 </ul>
             </div>
