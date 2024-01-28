@@ -1,10 +1,14 @@
 import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 import createPaginationModule from "/assets/js/pagination.js";
+import createFileListModule from "/assets/js/file.js"
 
 const paginationModule = createPaginationModule();
-
+const fileListModule = createFileListModule()
 window.onload = function() {
+
+    // 파일첨부 세팅
+    fileListModule.initFileSetting()
 
     initElementEvent()
 
@@ -100,7 +104,12 @@ function initElementEvent(){
     saveBtn.addEventListener('click', async () =>{
         const result = await checkVaildation()
         if(result === 0){
-            saveEduApi()
+            const dataTransfer = fileListModule.dataTransfer
+            if(dataTransfer.files.length > 0){
+                fileUpload()
+            }else{
+                saveEduApi()
+            }
         }
         
     })
@@ -109,7 +118,7 @@ function initElementEvent(){
     const popupCloseBtn = document.getElementById('popupCloseBtn')
     const facilityListBtn = document.getElementById('facilityListBtn')
     facilityListBtn.addEventListener('click',(e) =>{
-        popup.style.display = 'block'
+        popup.style.display = 'flex'
     })
    
     popupCloseBtn.addEventListener('click',(e) =>{
@@ -118,6 +127,41 @@ function initElementEvent(){
 
     
 
+}
+
+// 파일 업로드
+async function fileUpload(){
+    const dataTransfer = fileListModule.dataTransfer
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('uploadType','EDUCATION')
+
+    for (const file of dataTransfer.files) {
+        if(!file.id){
+            formData.append('files', file);
+        }
+        
+    }
+
+    await useAxios.postMultipart(`/api/v1/files`,
+    formData
+    ,(res)=> {
+        const files = []
+        for (const file of dataTransfer.files) {
+            if(file.id){
+                files.push(file.id)
+            }
+        }
+        res.data?.forEach((file)=>{
+            files.push(file.id)
+        })
+        // console.log(files)
+        saveEduApi(files)
+    },(err)=> {
+        console.log('error',err)
+        // alert(err.response.data.message)
+    })
+    
 }
 
 async function getBoardApi(pageNumber){
@@ -183,6 +227,20 @@ async function checkVaildation() {
                     errorField.innerText = ''
                 }
                 
+            }else if(input.type === 'file'){
+                const dataTransfer = fileListModule.dataTransfer
+                if(dataTransfer.files.length === 0){
+                    count ++;
+                    textfield.setAttribute('data-status', 'error');
+                    if(errorField){
+                        errorField.innerText = '값을 입력해주세요.'
+                    }
+                }else {
+                    textfield.setAttribute('data-status', 'active');
+                    if(errorField){
+                        errorField.innerText = ''
+                    }
+                }
             }else {
                 textfield.setAttribute('data-status', 'error');
                 if(errorField){
@@ -207,7 +265,7 @@ async function checkVaildation() {
     return count
 }
 
-async function saveEduApi() {
+async function saveEduApi(files) {
     const name = document.getElementById('name').value
     const locationValue = document.getElementById('location').value
     const facilityId = document.getElementById('location').dataset.value
@@ -217,9 +275,9 @@ async function saveEduApi() {
     const applicationStartDate = document.getElementById('applicationStartDate').value
     const applicationEndDate = document.getElementById('applicationEndDate').value
     const manager = document.getElementById('manager').value
-    const capacity = document.getElementById('capacityField').dataset.value
+    const capacity = document.getElementById('capacity').value
 
-    await useAxios.postMultipart(`/api/v1/educations`,
+    await useAxios.post(`/api/v1/educations`,
     {
         name,
         facilityId,
@@ -231,7 +289,8 @@ async function saveEduApi() {
         applicationEndDate,
         manager,
         capacity,
-        imageUrl:""
+        // imageUrl:"",
+        files: files || []
     }
     ,(res)=> {
 

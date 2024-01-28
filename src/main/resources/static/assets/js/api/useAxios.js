@@ -17,7 +17,10 @@ const appendAuth = (config) => {
 const appendMultipart = (config) => {
   if (!config) config = { headers: {} }
   if (!config.headers) config.headers = {}
-  config.headers.ContentType = 'multipart/form-data'
+  // config.headers.ContentType = 'multipart/form-data'
+  // config.headers.accept= 'application/json'
+  config.headers['Content-Type'] = 'multipart/form-data';  // 수정된 부분
+  config.headers['Accept'] = 'application/json';  // 추가된 부분
   return config
 }
 

@@ -11,16 +11,16 @@
                     
                     <div class="admin-collapse">
                         <!-- this location btn classList add on -->
-                        <button class="admin-nav-btn" onClick="location.href='/admin/member-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/member-list')" data-path="/admin/member">
                             <span class="text-size-14">회원관리</span>
                         </button>
-                        <button class="admin-nav-btn" onClick="location.href='/admin/edu-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/edu-list')" data-path="/admin/edu">
                             <span class="text-size-14">교육관리</span>
                         </button>
-                        <button class="admin-nav-btn" onClick="location.href='/admin/equipment-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/equipment-list')" data-path="/admin/equipment">
                             <span class="text-size-14">장비관리</span>
                         </button>
-                        <button class="admin-nav-btn" onClick="location.href='/admin/facility-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/facility-list')" data-path="/admin/facility">
                             <span class="text-size-14">시설관리</span>
                         </button>
                     </div>
@@ -31,7 +31,7 @@
                         <span class="text-size-14">설문지</span>
                     </button>
                     <div class="admin-collapse">
-                        <button class="admin-nav-btn" onClick="location.href='/admin/survey-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/survey-list')" data-path="/admin/survey">
                             <span class="text-size-14">설문지</span>
                         </button>
                     </div>
@@ -42,13 +42,13 @@
                         <span class="text-size-14">현황</span>
                     </button>
                     <div class="admin-collapse">
-                        <button class="admin-nav-btn" onClick="location.href='/admin/status/edu-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/status/edu-list')" data-path="/admin/status/edu">
                             <span class="text-size-14">교육신청현황</span>
                         </button>
-                        <button class="admin-nav-btn" onClick="location.href='/admin/status/equipment-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/status/equipment-list')" data-path="/admin/status/equipment">
                             <span class="text-size-14">장비대여현황</span>
                         </button>
-                        <button class="admin-nav-btn" onClick="location.href='/admin/status/facility-list'">
+                        <button class="admin-nav-btn" onClick="navigate('/admin/status/facility-list')" data-path="/admin/status/facility">
                             <span class="text-size-14">시설대여현황</span>
                         </button>
                     </div>
@@ -63,3 +63,28 @@
         <div class="logo-wrap"></div>
     </div>
 </div>
+
+<script>
+// 페이지 로드 시 실행
+    document.addEventListener('DOMContentLoaded', function () {
+        highlightCurrentPage();
+    });
+
+    // 네비게이션 버튼 클릭 시 실행
+    function navigate(targetUrl) {
+        location.href = targetUrl;
+    }
+
+    // 현재 페이지와 일치하는 네비게이션 버튼 강조
+    function highlightCurrentPage() {
+        const currentUrl = window.location.pathname;
+        const buttons = document.querySelectorAll('.admin-nav-btn');
+
+       buttons.forEach(button => {
+            const targetUrl = button.dataset.path
+            if (currentUrl.includes(targetUrl)) {
+                button.classList.add('on');
+            }
+        });
+    }
+</script>

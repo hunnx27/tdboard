@@ -1,0 +1,18 @@
+<div id="file-list-body">
+</div>
+
+<script id="file-template" type="text/template">
+<div class="detail-file">
+    <div class="board-file-box">
+        <ul>
+            {{#files}}
+                <li>
+                    <a href="{{storedPath}}" download>
+                        <span class="icon-box icon-size-sm icon-file"></span><span>{{originalName}}</span>
+                    </a>
+                </li>
+            {{/files}}
+        </ul>
+    </div>
+</div>
+</script>

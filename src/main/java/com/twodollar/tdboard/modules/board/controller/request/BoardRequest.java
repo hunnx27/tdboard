@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class BoardRequest {
@@ -18,6 +19,8 @@ public class BoardRequest {
     private String context;
     @Setter
     private long upId;
+
+    private List<Long> files;
 
     public Board toEntity() {
         return Board.builder()

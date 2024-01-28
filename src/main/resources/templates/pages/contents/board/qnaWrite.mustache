@@ -61,31 +61,7 @@
                   </div>
             </div>
             <div class="board-write-foot">
-                <p class="input-title">파일첨부</p>
-                <div class="board-file-wrap">
-                    <div class="textfield w-full"  data-type="file"  data-status="default" data-size="MD" data-icon="">
-                        <input id="file-01" type="file" placeholder="대표 이미지" onchange='textfieldChange(this,event)'>
-                        <label for="file-01">
-                          Select Files
-                        </label>
-                        <p class="error-text"></p>
-                    </div>
-                    <div class="board-file-box">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
+                {[>layout/file-list]}
             </div>
         </div>
         <div class="flex-box justify-center align-center board-write-btn-wrap">
@@ -98,6 +74,19 @@
           </div>
         </div>
 </section>
-
+<script id="file-template" type="text/template">
+<div class="board-file-box">
+    <ul>
+        {{#files}}
+        <li class="file-item" >
+        <span class="icon-box icon-size-sm icon-file"></span><span>{{name}}</span>
+            <button class="file-delete-btn"  data-value="{{index}}" >
+                <span class="icon-box icon-size-16 icon-close"></span>
+            <button>
+        </li>
+        {{/files}}
+    </ul>
+<div>
+</script>
 <script type="module" src="/assets/js/home/board/qna-write.js"></script>
 {[>layout/footer]}

@@ -1,7 +1,11 @@
 import useAxios from '/assets/js/api/useAxios.js'
+import createFileListModule from "/assets/js/file.js"
 
+const fileListModule = createFileListModule()
 window.onload = function() {
-    
+    // 파일첨부 세팅
+    fileListModule.initFileSetting()
+
     initElementEvent()
 
 }
@@ -44,7 +48,12 @@ function initElementEvent(){
     saveBtn.addEventListener('click', async () =>{
         const result = await checkVaildation()
         if(result === 0){
-            saveApi()
+            const dataTransfer = fileListModule.dataTransfer
+            if(dataTransfer.files.length > 0){
+                fileUpload()
+            }else{
+                saveApi()
+            }
         }
         
     })
@@ -52,6 +61,40 @@ function initElementEvent(){
 
 }
 
+// 파일 업로드
+async function fileUpload(){
+    const dataTransfer = fileListModule.dataTransfer
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('uploadType','FACILITY')
+
+    for (const file of dataTransfer.files) {
+        if(!file.id){
+            formData.append('files', file);
+        }
+        
+    }
+
+    await useAxios.postMultipart(`/api/v1/files`,
+    formData
+    ,(res)=> {
+        const files = []
+        for (const file of dataTransfer.files) {
+            if(file.id){
+                files.push(file.id)
+            }
+        }
+        res.data?.forEach((file)=>{
+            files.push(file.id)
+        })
+        // console.log(files)
+        saveApi(files)
+    },(err)=> {
+        console.log('error',err)
+        // alert(err.response.data.message)
+    })
+    
+}
 
 async function checkVaildation() {
     const saveBtn = document.getElementById('saveBtn')
@@ -68,6 +111,20 @@ async function checkVaildation() {
                     errorField.innerText = ''
                 }
                 
+            }else if(input.type === 'file'){
+                const dataTransfer = fileListModule.dataTransfer
+                if(dataTransfer.files.length === 0){
+                    count ++;
+                    textfield.setAttribute('data-status', 'error');
+                    if(errorField){
+                        errorField.innerText = '값을 입력해주세요.'
+                    }
+                }else {
+                    textfield.setAttribute('data-status', 'active');
+                    if(errorField){
+                        errorField.innerText = ''
+                    }
+                }
             }else {
                 textfield.setAttribute('data-status', 'error');
                 if(errorField){
@@ -92,15 +149,16 @@ async function checkVaildation() {
     return count
 }
 
-async function saveApi() {
+async function saveApi(files) {
     const name = document.getElementById('name').value
     const description = $('#description').summernote('code');
    
-    await useAxios.postMultipart(`/api/v1/facilities`,
+    await useAxios.post(`/api/v1/facilities`,
     {
         name,
         description,
-        imageUrl:""
+        // imageUrl:"",
+        files: files || []
     }
     ,(res)=> {
 
