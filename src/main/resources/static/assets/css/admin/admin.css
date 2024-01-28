@@ -116035,7 +116035,8 @@ sub page
     overflow-y: initial;
   }
   .admin-container .admin-con-body {
-    height: calc(100% - 60px);
+    height: auto;
+    padding: 1.6rem;
   }
 }
 
@@ -116044,7 +116045,7 @@ sub page
 }
 @media (max-width: 768px) {
   .admin-con {
-    height: 100%;
+    height: auto;
   }
 }
 
@@ -116154,4 +116155,10 @@ sub page
 
 .material-symbols-outlined:hover {
   color: #666;
+}
+
+@media (max-width: 768px) {
+  .admin-con .board-list .table-body .table {
+    min-width: 80rem;
+  }
 }/*# sourceMappingURL=admin.css.map */

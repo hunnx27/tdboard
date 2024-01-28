@@ -269,14 +269,15 @@ $admincolor:#1A4079;
     padding:4rem 0;
     overflow-y:initial;
     .admin-con-body{
-      height:calc(100% - 60px);
+      height:auto;
+      padding:1.6rem;
     }
   }
 }
 .admin-con{
   height:calc(100vh - 14.4rem - 6.4rem);
   @include mobile{
-    height:100%;
+    height:auto;
   }
 }
 
@@ -412,4 +413,13 @@ $admincolor:#1A4079;
 }
 .material-symbols-outlined:hover {
   color: #666;
+}
+
+@include mobile{
+  .admin-con{
+    .board-list .table-body .table{
+      min-width:80rem;
+    }
+  }
+  
 }
