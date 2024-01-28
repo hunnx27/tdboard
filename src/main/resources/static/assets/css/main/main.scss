@@ -630,11 +630,22 @@ sub page
             }
         }
         .faq-title{
+            position:relative;
             @include flexbox(row, space-between,center);
-            .btn{
+            > .btn{
                 border:0;
                 width:30px;
                 height:30px;
+            }
+            .flex-box{
+                position:absolute;
+                right:4rem;
+                top:50%;
+                transform:translateY(-50%);
+                
+                .btn{
+
+                }
             }
         }
     }

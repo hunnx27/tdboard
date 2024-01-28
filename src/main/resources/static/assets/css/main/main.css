@@ -102917,6 +102917,16 @@ icon
   background-image: url(../../images/icon/board_write_file_icon.svg);
   filter: none !important;
 }
+.icon-box.icon-faq-down::after {
+  background-image: url(../../images/icon/arrow_down_icon.svg);
+  transform: rotate(180deg);
+  filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+}
+.icon-box.icon-faq-up::after {
+  background-image: url(../../images/icon/arrow_down_icon.svg);
+  transform: rotate(180deg);
+  filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+}
 .icon-box.icon-close::after {
   background-image: url(../../images/icon/close_icon.svg);
   filter: none !important;
@@ -115221,6 +115231,7 @@ sub page
   font-weight: 500;
 }
 .faq-list .faq-q .faq-title {
+  position: relative;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -115229,10 +115240,16 @@ sub page
   -moz-justify-content: space-between;
   justify-content: space-between;
 }
-.faq-list .faq-q .faq-title .btn {
+.faq-list .faq-q .faq-title > .btn {
   border: 0;
   width: 30px;
   height: 30px;
+}
+.faq-list .faq-q .faq-title .flex-box {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .faq-list .faq-a {
   background-color: #F4F4F4;

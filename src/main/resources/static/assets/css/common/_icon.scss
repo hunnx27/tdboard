@@ -59,6 +59,7 @@ icon
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
   }
+  
   &.icon-prev{
     &::after {
       background-image: url(../../images/icon/arrow_r_x0_icon.svg);
@@ -119,6 +120,20 @@ icon
     &::after {
       background-image: url(../../images/icon/board_write_file_icon.svg);
       filter:none !important;
+    }
+  }
+  &.icon-faq-down{
+    &::after {
+      background-image: url(../../images/icon/arrow_down_icon.svg);
+      transform: rotate(180deg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
+    }
+  }
+  &.icon-faq-up{
+    &::after {
+      background-image: url(../../images/icon/arrow_down_icon.svg);
+      transform: rotate(180deg);
+      filter: invert(11%) sepia(19%) saturate(0%) hue-rotate(207deg) brightness(92%) contrast(92%);
     }
   }
   /*popup*/
