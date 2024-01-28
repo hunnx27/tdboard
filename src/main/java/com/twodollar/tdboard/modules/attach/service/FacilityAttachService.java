@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,10 @@ public class FacilityAttachService {
 
     public List<FacilityAttach> createAttach(final Long facilityId, List<Long> files) {
         Facility facility = facilityService.getFacilityById(facilityId);
-        List<FacilityAttach> attachList = files.stream().map(fileInfoId -> this.createAttach(facility, fileInfoId)).collect(Collectors.toList());
+        List<FacilityAttach> attachList = new ArrayList<>();
+        if(files!=null) {
+            attachList = files.stream().map(fileInfoId -> this.createAttach(facility, fileInfoId)).collect(Collectors.toList());
+        }
         return attachList;
     }
 
