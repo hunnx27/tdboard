@@ -81,16 +81,8 @@
                         <div class="block-text-wrap">
                             <span class="block-text">시설 정보</span>
                         </div>
-                        <div class="flex-box gap-20">
-                            <div class="flex-1 img-box">
-                                <img src="../../../../assets/images/sub/gallery_test_img.png" alt="장비사진">
-                            </div>
-                            <div class="flex-1 img-box">
-                                <img src="../../../../assets/images/sub/gallery_test_img.png" alt="장비사진">
-                            </div>
-                            <div class="flex-1 img-box">
-                                <img src="../../../../assets/images/sub/gallery_test_img.png" alt="장비사진">
-                            </div>
+                        <div id="list-body" class="flex-box gap-20">
+                            
                         </div>
                     </div>
                     <div class="default-detail">
@@ -139,6 +131,13 @@
     {{/full}}
 {{/options}}
 </div>
+</script>
+<script id="table-template" type="text/template">
+{{#contents}}
+<div class="flex-1 img-box">
+    <img src="{{imageUrl}}" alt="장비사진">
+</div>
+{{/contents}}
 </script>
 <script type="module" src="/assets/js/home/contents/facilities-detail.js"></script>
 <style>

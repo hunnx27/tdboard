@@ -12,6 +12,7 @@ window.onload = function () {
     // init
     const facilitiesId = document.getElementById('facilitiesId').value
     getFacilitiesApi(facilitiesId)
+    getEquipmentsInRacility(1) // 시설에 포함되어있는 장비
     const today = new Date();
     const todayText = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     selectedDate = todayText
@@ -175,4 +176,42 @@ function validationBooking(){
     }
 
     return true;
+}
+
+
+async function getEquipmentsInRacility(pageNumber){
+    const id = document.getElementById('facilitiesId').value
+    await useAxios.get(`/api/v1/equipments/in-facility/${id}`,
+    {
+        page: pageNumber,
+        size: 100
+    }
+    ,(res)=> {
+
+        if(res.data.paging.totalElements > 0){
+            let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
+            res.data.contents.map((data)=>{
+               
+                data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
+                data.no = firstPostNumber
+                firstPostNumber--;
+            })
+            handleSetList(pageNumber, res.data)
+        }else {
+            handleSetList(pageNumber, res.data)
+            // paginationModule.setPage(1,1,0)
+        }
+
+      
+    },(err)=> {
+        console.log('err',err)
+    })
+}
+
+function handleSetList(pageNumber, data){
+    var template = document.getElementById("table-template").innerHTML;
+    var result = Mustache.render(template, data);
+    document.getElementById("list-body").innerHTML = result;
+    
+    // paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
