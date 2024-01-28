@@ -34,7 +34,7 @@ public class Equipment {
     // 장비명
     private String name;
     // 장비설명
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     // imageUrl
     private String imageUrl;

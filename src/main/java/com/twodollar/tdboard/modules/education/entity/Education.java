@@ -32,7 +32,7 @@ public class Education {
     // 시설명
     private String name;
     // 시설설명
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String location;
     private String startDate; //강의시작일
