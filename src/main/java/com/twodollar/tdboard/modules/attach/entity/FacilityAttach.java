@@ -1,7 +1,8 @@
-package com.twodollar.tdboard.modules.fileInfo.entity;
+package com.twodollar.tdboard.modules.attach.entity;
 
-import com.twodollar.tdboard.modules.board.entity.Board;
-import com.twodollar.tdboard.modules.fileInfo.entity.enums.AttachType;
+import com.twodollar.tdboard.modules.facility.entity.Facility;
+import com.twodollar.tdboard.modules.attach.entity.enums.AttachType;
+import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -18,13 +19,13 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardAttach {
+public class FacilityAttach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="board_id", referencedColumnName = "id")
-    private Board board;
+    @JoinColumn(name="facility_id", referencedColumnName = "id")
+    private Facility facility;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="file_id", referencedColumnName = "id")
     private FileInfo fileInfo;
@@ -39,8 +40,8 @@ public class BoardAttach {
     // 수정일
     private LocalDateTime updateAt;
 
-    public BoardAttach(Board board, FileInfo fileInfo) {
-        this.board = board;
+    public FacilityAttach(Facility facility, FileInfo fileInfo) {
+        this.facility = facility;
         this.fileInfo = fileInfo;
         this.attachType = AttachType.FILE;
         this.attachOrder = 0;

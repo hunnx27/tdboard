@@ -8,9 +8,8 @@ import com.twodollar.tdboard.modules.board.service.BoardService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
 import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
-import com.twodollar.tdboard.modules.fileInfo.entity.BoardAttach;
 import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
-import com.twodollar.tdboard.modules.fileInfo.service.AttachService;
+import com.twodollar.tdboard.modules.attach.service.BoardAttachService;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,7 +35,7 @@ public class BoardApiController {
 
     private final BoardService boardService;
     private final UserService userService;
-    private final AttachService attachService;
+    private final BoardAttachService boardAttachService;
 
     /*
         공통
@@ -68,7 +67,7 @@ public class BoardApiController {
             }
 
             Board board = boardService.createBoard(boardRequest, user);
-            attachService.createAttach(board.getId(), boardRequest.getFiles());
+            boardAttachService.createAttach(board.getId(), boardRequest.getFiles());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -107,7 +106,7 @@ public class BoardApiController {
             }
 
             Board board = boardService.updateBoard(id, boardRequest);
-            attachService.createUpdate(board.getId(), boardRequest.getFiles()); // 파일첨부 처리
+            boardAttachService.createUpdate(board.getId(), boardRequest.getFiles()); // 파일첨부 처리
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -419,7 +418,7 @@ public class BoardApiController {
 
     private BoardResponse getCommonBoardResponse(Board board){
         BoardResponse boardResponse = board.toResponse();
-        List<FileInfo> fileInfoes = attachService.getAttaches(board.getId());
+        List<FileInfo> fileInfoes = boardAttachService.getAttaches(board.getId());
         List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
         boardResponse.setFiles(files);
         return boardResponse;
