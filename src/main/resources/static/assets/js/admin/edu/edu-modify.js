@@ -323,7 +323,7 @@ async function saveEduApi(files) {
     const applicationStartDate = document.getElementById('applicationStartDate').value
     const applicationEndDate = document.getElementById('applicationEndDate').value
     const manager = document.getElementById('manager').value
-    const capacity = document.getElementById('capacityField').dataset.value
+    const capacity = document.getElementById('capacity').value
 
     await useAxios.put(`/api/v1/educations/${educationId}`,
     {
