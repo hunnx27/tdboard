@@ -41,6 +41,7 @@ public class AuthSuccessHandler extends
                     () -> new IllegalArgumentException("가입되지 않은 userId 입니다."));
 
             if ("Y".equals(user.getDelYn())) {
+                session.invalidate();
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "탈퇴한 회원입니다. 관리자에게 문의하세요.");
             }
 
