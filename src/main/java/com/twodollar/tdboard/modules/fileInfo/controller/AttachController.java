@@ -51,6 +51,28 @@ public class AttachController {
         }
     }
 
+    @Operation(summary = "파일첨부 수정(삭제포함)(테스트)", description = "파일첨부 수정(삭제포함)(테스트)")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+    @PutMapping("/attaches")
+    public ResponseEntity<ApiCmnResponse<?>> attachUpdate(
+            Authentication authentication,
+            @RequestParam("boardId")Long boardId,
+            @RequestParam("files")List<Long> files
+    ){
+        try {
+            String userId = authentication.getName();
+            List<BoardAttach> saves = attachService.createUpdate(boardId, files);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success("success"));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
     @Operation(summary = "파일첨부 목록 조회(테스트)", description = "파일첨부 목록 조회")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),

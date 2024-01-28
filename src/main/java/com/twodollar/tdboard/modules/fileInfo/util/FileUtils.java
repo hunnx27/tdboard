@@ -2,6 +2,7 @@ package com.twodollar.tdboard.modules.fileInfo.util;
 
 import com.twodollar.tdboard.modules.fileInfo.util.dto.FileInfoDto;
 import com.twodollar.tdboard.modules.fileInfo.controller.request.FileInfoRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Component
 public class FileUtils {
     @Value("${file.upload.path}")
@@ -57,7 +59,7 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
 
-        String storedPath = String.format("/upload/%s/%s/%s", dir, today, storedName);
+        String storedPath = String.format("/%s/%s/%s", dir, today, storedName);
 
         return FileInfoDto.builder()
                 .originalName(multipartFile.getOriginalFilename())
@@ -65,6 +67,13 @@ public class FileUtils {
                 .storedPath(storedPath)
                 .size(multipartFile.getSize())
                 .build();
+    }
+
+    public boolean deleteFile(final String path){
+        File file = new File(UPLOAD_DIR + path);
+        boolean IsDeleted = file.delete();
+        log.info("Delete File(Physical) : {}{} : {}", UPLOAD_DIR,path, IsDeleted?"deleted file success.":"deleted file faled!");
+        return IsDeleted;
     }
 
     /**
@@ -107,5 +116,6 @@ public class FileUtils {
         }
         return dir.getPath();
     }
+
 
 }
