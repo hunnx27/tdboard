@@ -70,12 +70,11 @@ $admincolor:#1A4079;
     }
   }
   @include mobile{
-    .admin-head{
       .logo-wrap{
         width: 17rem;
         height: 2rem;
       }
-    }
+    
     
     .admin-head-right{
       > div{
@@ -229,10 +228,8 @@ $admincolor:#1A4079;
     background-color: #f9fafb;
     width: 100%;
     height:60px;
-    padding-bottom:36px;
-    max-width:1180px;
-    margin: 0 auto;
-    
+    padding:0 4rem 0 4rem;
+    max-width:1400px;
     .admin-title-wrap{
       @include flexbox('row','space-between','center');
       width:100%;
@@ -253,8 +250,7 @@ $admincolor:#1A4079;
     height: calc(100% - 128px);
     padding: 4rem;
     padding-right:2rem;
-    max-width:1180px;
-      margin: 0 auto;
+    max-width:1400px;
       background-color: #fff;
     .admin-inner {
       width: 100%;
@@ -276,8 +272,10 @@ $admincolor:#1A4079;
 }
 .admin-con{
   height:calc(100vh - 14.4rem - 6.4rem);
+  padding:0 3.2rem;
   @include mobile{
     height:auto;
+    padding:0;
   }
 }
 

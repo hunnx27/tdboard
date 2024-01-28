@@ -115821,7 +115821,7 @@ sub page
   color: #01A0E8;
 }
 @media (max-width: 768px) {
-  .admin-head .admin-head .logo-wrap {
+  .admin-head .logo-wrap {
     width: 17rem;
     height: 2rem;
   }
@@ -115981,9 +115981,8 @@ sub page
   background-color: #f9fafb;
   width: 100%;
   height: 60px;
-  padding-bottom: 36px;
-  max-width: 1180px;
-  margin: 0 auto;
+  padding: 0 4rem 0 4rem;
+  max-width: 1400px;
 }
 .admin-container .admin-con-head .admin-title-wrap {
   display: flex;
@@ -116018,8 +116017,7 @@ sub page
   height: calc(100% - 128px);
   padding: 4rem;
   padding-right: 2rem;
-  max-width: 1180px;
-  margin: 0 auto;
+  max-width: 1400px;
   background-color: #fff;
 }
 .admin-container .admin-con-body .admin-inner {
@@ -116042,10 +116040,12 @@ sub page
 
 .admin-con {
   height: calc(100vh - 14.4rem - 6.4rem);
+  padding: 0 3.2rem;
 }
 @media (max-width: 768px) {
   .admin-con {
     height: auto;
+    padding: 0;
   }
 }
 
