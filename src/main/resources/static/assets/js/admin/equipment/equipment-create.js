@@ -1,11 +1,14 @@
 import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 import createPaginationModule from "/assets/js/pagination.js";
+import createFileListModule from "/assets/js/file.js"
 
 const paginationModule = createPaginationModule();
-
+const fileListModule = createFileListModule()
 window.onload = function() {
-    
+    // 파일첨부 세팅
+    fileListModule.initFileSetting()
+
     initElementEvent()
 
      //popup list
@@ -54,7 +57,12 @@ function initElementEvent(){
     saveBtn.addEventListener('click', async () =>{
         const result = await checkVaildation()
         if(result === 0){
-            saveApi()
+            const dataTransfer = fileListModule.dataTransfer
+            if(dataTransfer.files.length > 0){
+                fileUpload()
+            }else{
+                saveApi()
+            }
         }
         
     })
@@ -72,6 +80,41 @@ function initElementEvent(){
 
     
 
+}
+
+// 파일 업로드
+async function fileUpload(){
+    const dataTransfer = fileListModule.dataTransfer
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('uploadType','EQUIPMENT')
+
+    for (const file of dataTransfer.files) {
+        if(!file.id){
+            formData.append('files', file);
+        }
+        
+    }
+
+    await useAxios.postMultipart(`/api/v1/files`,
+    formData
+    ,(res)=> {
+        const files = []
+        for (const file of dataTransfer.files) {
+            if(file.id){
+                files.push(file.id)
+            }
+        }
+        res.data?.forEach((file)=>{
+            files.push(file.id)
+        })
+        // console.log(files)
+        saveApi(files)
+    },(err)=> {
+        console.log('error',err)
+        // alert(err.response.data.message)
+    })
+    
 }
 
 async function getBoardApi(pageNumber){
@@ -137,6 +180,20 @@ async function checkVaildation() {
                     errorField.innerText = ''
                 }
                 
+            }else if(input.type === 'file'){
+                const dataTransfer = fileListModule.dataTransfer
+                if(dataTransfer.files.length === 0){
+                    count ++;
+                    textfield.setAttribute('data-status', 'error');
+                    if(errorField){
+                        errorField.innerText = '값을 입력해주세요.'
+                    }
+                }else {
+                    textfield.setAttribute('data-status', 'active');
+                    if(errorField){
+                        errorField.innerText = ''
+                    }
+                }
             }else {
                 textfield.setAttribute('data-status', 'error');
                 if(errorField){
@@ -161,7 +218,7 @@ async function checkVaildation() {
     return count
 }
 
-async function saveApi() {
+async function saveApi(files) {
     const name = document.getElementById('name').value
     const locationValue = document.getElementById('location').value
     const facilityId = document.getElementById('location').dataset.value
@@ -173,7 +230,8 @@ async function saveApi() {
         facilityId,
         location:locationValue,
         description,
-        imageUrl:""
+        // imageUrl:"",
+        files
     }
     ,(res)=> {
 

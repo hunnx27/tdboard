@@ -115108,6 +115108,11 @@ sub page
 .group-qna .card-wrap {
   margin-bottom: 4.3rem;
 }
+.group-qna .card-wrap .card-body {
+  max-width: 100%;
+  overflow: auto;
+  padding-bottom: 1rem;
+}
 .group-qna .card-wrap .card-body ul li {
   font-size: 1.6rem;
   font-weight: 400;
@@ -115485,6 +115490,22 @@ sub page
 .gallery-detail-head .text-box .btn-wrap .btn .icon-box {
   margin-left: 0.4rem;
 }
+@media (max-width: 768px) {
+  .gallery-detail-head {
+    flex-wrap: wrap;
+  }
+  .gallery-detail-head .img-box {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-detail-head .text-box {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-detail-head .gallery-detail-info {
+    margin-bottom: 2.5rem;
+  }
+}
 
 .gallery-detail-body .block-text-wrap {
   margin-bottom: 2rem;
@@ -115571,15 +115592,30 @@ sub page
 }
 
 .status-text {
-  padding: 0.7rem 1rem;
+  padding: 0.2rem 1rem;
+  border-radius: 25px;
+}
+.status-text.status-confirm {
   border: 1px solid #1E4079;
   background-color: #1E4079;
   color: #fff;
 }
-.status-text .status-confirm-fi {
+.status-text.status-confirm-fi {
   border: 1px solid #00AAF6;
   background-color: #00AAF6;
+  color: #fff;
 }
+.status-text.status-cancel-fi {
+  border: 1px solid #F04438;
+  background-color: #fff;
+  color: #F04438;
+}
+.status-text.status-cancel {
+  border: 1px solid #F04438;
+  background-color: #F04438;
+  color: #fff;
+}
+
 #calendar {
   max-width: 1100px;
   margin: 4ren auto;

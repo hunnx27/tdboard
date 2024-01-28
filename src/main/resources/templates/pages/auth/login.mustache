@@ -42,24 +42,23 @@
 </section>
 <script>
 async function handleLogin(){
-    const userId = document.getElementById("userId").value
-    const password = document.getElementById("password").value
+    const userId = document.getElementById("userId").value;
+    const password = document.getElementById("password").value;
     
     if(!userId){
-        textFieldError('id', "아이디를 입력해주세요.")
+        textFieldError('id', "아이디를 입력해주세요.");
     }
 
     if(!password){
-        textFieldError('password', "비밀번호를 입력해주세요.")
+        textFieldError('password', "비밀번호를 입력해주세요.");
     }
     
      if(userId && password) {
-        const form = document.getElementById("loginForm")
-        form.submit()
+        const form = document.getElementById("loginForm");
+        form.submit();
         
      }
 }
-
 function textFieldError(dataType, errorMessage ){
     const target = document.querySelectorAll(`[data-type=${dataType}]`);
     target.forEach(element => {
@@ -68,6 +67,14 @@ function textFieldError(dataType, errorMessage ){
         element.setAttribute('data-status', 'error');
     });
 }
+function passwordKeyup(e){
+  if(e.key == 'Enter'){
+    handleLogin();
+  };
+};
+document.querySelector('#password').addEventListener('keyup',function(e){
+  passwordKeyup(e);
+});
 </script>
 <!--
 <a href="/auth/join">회원 가입(일반회원)</a>

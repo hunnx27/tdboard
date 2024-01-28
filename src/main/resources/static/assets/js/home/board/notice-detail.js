@@ -7,15 +7,18 @@ $(async function(){
         await useAxios.get(`/api/v1/boards/type/notices/${noticeId.value}`,
             {}
             ,(res)=> {
-            // console.log('res',res.data)
-            const data = {
-                createdDateText: useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt),
-                ...res.data
+            document.getElementById("title").innerText = res.data.title
+            document.getElementById("createdDateText").innerText = useFilters().YYYYMMDD(res.data.updatedAt || res.data.createdAt)
+            document.getElementById("context").innerHTML = res.data.context
+
+            // 파일첨부 리스트
+            if(res.data?.files?.length > 0){
+                var fileTemplate = document.getElementById("file-template").innerHTML;
+                var fileResult = Mustache.render(fileTemplate, {files: res.data?.files});
+                document.getElementById("file-list-body").innerHTML = fileResult;
             }
-            var template = document.getElementById("notice-detail-body").innerHTML;
-            var result = Mustache.render(template, data);
-            document.getElementById("notice-detail-body").innerHTML = result;
-            
+           
+
         },(err)=> {
             console.log('err',err)
             document.getElementById("notice-detail-body").innerHTML = '<div class="detail-head">공지사항 내용이 없습니다.</div>'

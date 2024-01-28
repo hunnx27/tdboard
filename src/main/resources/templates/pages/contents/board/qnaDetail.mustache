@@ -58,13 +58,12 @@
             -->
             <div class="table-body" id="qna-detail-body">
                 <div class="detail-head">
-                    <h5>{{title}}</h5>
-                    <p>{{createdDateText}}</p>
+                    <h5 id="title"></h5>
+                    <p id="createdDateText"></p>
                 </div>
                 <div class="detail-body">
-                    <div>
-                        {{{context}}}
-                    </div>
+                    <div id="context"></div>
+                    {[>layout/file-download-list]}
                 </div>
                 <div id="replyContainer" class="detail-foot" style="display:none">
                     <div id="replyForm" class="detail-re" style="display:none">

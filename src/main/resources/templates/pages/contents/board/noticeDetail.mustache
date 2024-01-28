@@ -58,27 +58,12 @@
             </div>
             <div class="table-body" id="notice-detail-body">
                 <div class="detail-head">
-                    <h5>{{title}}</h5>
-                    <p>{{createdDateText}}</p>
+                    <h5 id="title"></h5>
+                    <p id="createdDateText"></p>
                 </div>
                 <div class="detail-body">
-                    <div>
-                        {{{context}}}
-                    </div>
-                    <div class="detail-file">
-                        <ul>
-<!--                            <li>-->
-<!--                                <a href="">-->
-<!--                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>-->
-<!--                                </a>-->
-<!--                            </li>-->
-<!--                            <li>-->
-<!--                                <a href="">-->
-<!--                                    <span class="icon-box icon-size-sm icon-file"></span><span>첨부파일입니다.html</span>-->
-<!--                                </a>-->
-<!--                            </li>-->
-                        </ul>
-                    </div>
+                    <div id="context"></div>
+                    {[>layout/file-download-list]}
                 </div>
 
             </div>
