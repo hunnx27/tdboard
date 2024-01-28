@@ -34,9 +34,6 @@ public class Education {
     // 시설설명
     @Column(columnDefinition = "TEXT")
     private String description;
-    // imageUrl
-    private String imageUrl;
-
     private String location;
     private String startDate; //강의시작일
     private String endDate; //강의종료일
@@ -64,7 +61,6 @@ public class Education {
                 .id(this.id)
                 .name(this.name)
                 .description(this.description)
-                .imageUrl(this.imageUrl)
                 .location(this.location)
                 .startDate(this.startDate)
                 .endDate(this.endDate)

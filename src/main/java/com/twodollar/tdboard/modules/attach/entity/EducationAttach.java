@@ -43,7 +43,7 @@ public class EducationAttach {
     public EducationAttach(Education education, FileInfo fileInfo) {
         this.education = education;
         this.fileInfo = fileInfo;
-        this.attachType = AttachType.FILE;
+        this.attachType = AttachType.THUMB;
         this.attachOrder = 0;
     }
 }

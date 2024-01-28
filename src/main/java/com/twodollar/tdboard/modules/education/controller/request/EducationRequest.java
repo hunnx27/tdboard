@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @ToString
 @Getter
@@ -26,6 +27,7 @@ public class EducationRequest {
     private String applicationEndDate; //접수종료일
     private String manager; // 교수명
     private int capacity; //정원
+    private List<Long> files;
     // 사용여부
     private String useYn;
     // 삭제여부
@@ -36,7 +38,6 @@ public class EducationRequest {
                 id(this.id).
                 name(this.name).
                 description(this.description).
-                imageUrl(this.imageUrl).
                 location(this.location).
                 startDate(this.startDate).
                 endDate(this.endDate).

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @ToString
 @Getter
@@ -25,6 +26,7 @@ public class EquipmentRequest {
     private String description;
     // imageUrl
     private String imageUrl;
+    private List<Long> files;
     // 사용여부
     private String useYn;
     // 삭제여부

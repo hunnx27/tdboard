@@ -1,11 +1,13 @@
 package com.twodollar.tdboard.modules.equipment.controller.response;
 
+import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class EquipmentResponse {
@@ -20,9 +22,11 @@ public class EquipmentResponse {
     // 장비설명
     private String description;
     // imageUrl
+    @Setter
     private String imageUrl;
+    @Setter
+    private List<FileInfoResponse> files;
     // 생성일
-    @CreationTimestamp
     private LocalDateTime createdAt;
     // 수정일
     private LocalDateTime updatedAt;
