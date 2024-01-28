@@ -628,6 +628,7 @@ sub page
         cursor:pointer;
          td:first-child{
                 span{
+                    
                     font-size:2.4rem;
                     font-weight: 500;
                     color:$primary;
@@ -641,27 +642,31 @@ sub page
         }
         .faq-title{
             position:relative;
+            width:100%;
+            overflow: hidden;
+            padding-right:5rem;
             @include flexbox(row, space-between,center);
+            > span{
+                max-width:100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
             > .btn{
+                position:absolute;
+                right:1.6rem;
+                top:50%;
+                transform: translateY(-50%) rotate(0);
                 border:0;
                 width:30px;
                 height:30px;
             }
-            .flex-box{
-                position:absolute;
-                right:4rem;
-                top:50%;
-                transform:translateY(-50%);
-                
-                .btn{
-
-                }
-            }
+            
         }
         &.on{
             .faq-title{
                 > .btn{
-                    transform: rotate(180deg);
+                    transform: translateY(-50%) rotate(180deg);
                 }
             }
         }
@@ -670,6 +675,7 @@ sub page
     
     .faq-a{
         background-color: #F4F4F4;
+        position:relative;
         td:first-child{
             width:10rem;
             span{
@@ -688,6 +694,14 @@ sub page
             -webkit-transition: all 0.25s ease-in-out;
                 transition: all 0.25s ease-in-out;
         }
+        .flex-box{
+            position:absolute;
+            right:1rem;
+            bottom:1rem;
+            .btn{
+                display:none;
+            }
+        }
     }
     .faq-q.on + .faq-a{
         td:first-child{
@@ -704,6 +718,32 @@ sub page
             span{
                 font-size:1.6rem;
                 font-weight: 400;
+            }
+        }
+        .faq-title{
+            padding-bottom:5rem;
+        }
+        .flex-box{
+            .btn{
+                display:inline-block;
+            }
+        }
+    }
+    @include mobile{
+        .table-head{
+            > .flex-box{
+                gap:1.2rem;
+                .btn{
+                    width:100%;
+                }
+            }
+        }
+        .table-body{
+             max-width:100%;
+             overflow-x:auto;
+             padding-bottom:1rem;
+            .table{
+                
             }
         }
     }

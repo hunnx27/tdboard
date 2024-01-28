@@ -104087,9 +104087,6 @@ table
     overflow: auto;
     padding: 0 0 2rem 0;
   }
-  .board-list .table-body .table {
-    table-layout: initial;
-  }
 }
 @media (max-width: 768px) {
   .board-list .table-head > .flex-box {
@@ -104108,7 +104105,7 @@ table
     padding: 0 0 2rem 0;
   }
   .board-list .table-body .table {
-    table-layout: initial;
+    min-width: 50rem;
   }
 }
 
@@ -115260,6 +115257,9 @@ sub page
 }
 .faq-list .faq-q .faq-title {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-right: 5rem;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -115268,22 +115268,27 @@ sub page
   -moz-justify-content: space-between;
   justify-content: space-between;
 }
+.faq-list .faq-q .faq-title > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .faq-list .faq-q .faq-title > .btn {
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(0);
   border: 0;
   width: 30px;
   height: 30px;
 }
-.faq-list .faq-q .faq-title .flex-box {
-  position: absolute;
-  right: 4rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
 .faq-list .faq-q.on .faq-title > .btn {
-  transform: rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 }
 .faq-list .faq-a {
   background-color: #F4F4F4;
+  position: relative;
 }
 .faq-list .faq-a td:first-child {
   width: 10rem;
@@ -115301,6 +115306,14 @@ sub page
   overflow: hidden;
   transition: all 0.25s ease-in-out;
 }
+.faq-list .faq-a .flex-box {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+.faq-list .faq-a .flex-box .btn {
+  display: none;
+}
 .faq-list .faq-q.on + .faq-a td:first-child {
   width: 10rem;
 }
@@ -115316,6 +115329,25 @@ sub page
 .faq-list .faq-q.on + .faq-a td span {
   font-size: 1.6rem;
   font-weight: 400;
+}
+.faq-list .faq-q.on + .faq-a .faq-title {
+  padding-bottom: 5rem;
+}
+.faq-list .faq-q.on + .faq-a .flex-box .btn {
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .faq-list .table-head > .flex-box {
+    gap: 1.2rem;
+  }
+  .faq-list .table-head > .flex-box .btn {
+    width: 100%;
+  }
+  .faq-list .table-body {
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
 }
 
 /*gallery-list*/
