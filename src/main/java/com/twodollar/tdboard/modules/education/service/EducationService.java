@@ -56,7 +56,6 @@ public class EducationService {
         Education education = getEducationById(id);
         education.setName(updateEducation.getName());
         education.setDescription(updateEducation.getDescription());
-        education.setUseYn(updateEducation.getUseYn());
         education.setLocation(updateEducation.getLocation());
         education.setStartDate(updateEducation.getStartDate());
         education.setEndDate(updateEducation.getEndDate());
@@ -64,7 +63,6 @@ public class EducationService {
         education.setApplicationEndDate(updateEducation.getApplicationEndDate());
         education.setManager(updateEducation.getManager());
         education.setCapacity(updateEducation.getCapacity());
-        education.setDelYn(updateEducation.getDelYn());
         education.setUpdatedAt(null);
 
         Long facilityId = updateEducation.getFacilityId();
