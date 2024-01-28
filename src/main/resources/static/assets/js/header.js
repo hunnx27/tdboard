@@ -1,9 +1,10 @@
-const headerNode = document.getElementsByClassName('.header')[0];
+const headerNode = document.querySelector('.header');
 const media_web  = window.matchMedia("screen and (min-width: 1201px)");
 const media_tablet  = window.matchMedia("screen and (max-width: 1200px)");
 const media_only_tablet  = window.matchMedia("screen and (max-width: 1200px) and (min-width:769px)");
 const media_mobile  = window.matchMedia("screen and (max-width: 768px)");
 const nav = document.getElementById("navigation");
+const m_nav_btn = document.querySelector('.nav_btn_wrap .btn');
 const web_nav_over = () => {
   let navBody = document.getElementById("navigation");
   let gnb_bg = document.querySelector("#navigation .gnb_bg");
@@ -19,20 +20,47 @@ const web_nav_out = () =>{
 const web_headerEventInit = () =>{
   nav.classList.remove("on");
 }
+const mobile_header_on = () => {
+  if(headerNode.classList.contains('mobile_on')){
+    headerNode.classList.remove('mobile_on');
+  }else{
+    headerNode.classList.add('mobile_on');
+  }
+}
+const mobile_depth_on = (use) =>{
+  if(use.classList.contains('on')){
+    use.classList.remove('on');
+  }else{
+    use.classList.add('on');
+  }
+}
+const mobile_header_off = () => {
+  headerNode.classList.remove('mobile_on');
+  document.querySelectorAll('.gnb-depth-01').forEach((depth01)=>{
+    depth01.classList.remove('on');
+  })
+}
 function headerEvent(){
   var winWidth = window.innerWidth;
-  
   if(winWidth > 1200){
+    m_nav_btn.removeEventListener('click',mobile_header_on);
+    mobile_header_off();
     nav.addEventListener('mouseover',web_nav_over);
     nav.addEventListener('mouseout',web_nav_out);
+    
   }else if(winWidth > 768){
-
   }else if(winWidth <= 768){
     web_headerEventInit();
     nav.removeEventListener('mouseover',web_nav_over);
     nav.removeEventListener('mouseout',web_nav_out);
+    m_nav_btn.addEventListener('click',mobile_header_on);
+    document.querySelectorAll('.gnb-depth-01').forEach((depth01,index)=>{
+      console.log(index)
+      depth01.addEventListener('click',function(){
+        mobile_depth_on(this);
+      });
+    })
   }
-  
 }
 
 
