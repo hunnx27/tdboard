@@ -10,7 +10,7 @@
         <p class="text-400 text-size-16 text-center m-b-32">아이디와 비밀번호를 입력해주세요.</p>
         <form id="loginForm" action="/auth/login_proc" method="POST">
             <div class="login-form flex-box gap-20 flex-wrap">
-                <div class="textfield w-full"  data-type="id"  data-status="active" data-size="LG" data-icon="true">
+                <div class="textfield w-full"  data-type="id"  data-status="default" data-size="LG" data-icon="true">
                     <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
                     <p class="error-text">아이디 오류 메시지</p>
                 </div>
@@ -75,6 +75,12 @@ function passwordKeyup(e){
 document.querySelector('#password').addEventListener('keyup',function(e){
   passwordKeyup(e);
 });
+
+document.querySelectorAll('.textfield input').forEach((inputAll)=>{
+  inputAll.addEventListener('keyup',function(e){
+    textfieldChange(this,e);
+  })
+})
 </script>
 <!--
 <a href="/auth/join">회원 가입(일반회원)</a>

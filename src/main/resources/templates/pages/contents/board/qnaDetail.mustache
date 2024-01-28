@@ -81,19 +81,21 @@
                         
                     </div>
                 </div>
-                <div class="flex-box justify-end align-center">
-                    {[#userId]}
-                    <button id="modifyBtn" class="btn btn-type05 btn-size-s" onClick="location.href='/contents/qna-modify/{[id]}'" style="display:none">수정</button>
-                    <button id="deleteBtn" class="btn btn-type05 btn-size-s" style="display:none">삭제</button>
-                    {[/userId]}
-                    {[#ADMIN]}
-                    <button id="replyBtn" class="btn" style="display:none">답변하기</button>
-                    {[/ADMIN]}
-                    <button class="btn" onClick="location.href='/contents/qna'">목록</button>
-                </div>
+                
             </div>
             <div class="table-foot">
-                
+                <div class="flex-box justify-end align-center">
+                    <div class="btn-wrap">
+                        {[#userId]}
+                        <button id="modifyBtn" class="btn btn-type05 btn-size-s" onClick="location.href='/contents/qna-modify/{[id]}'" style="display:none">수정</button>
+                        <button id="deleteBtn" class="btn btn-type05 btn-size-s" style="display:none">삭제</button>
+                        {[/userId]}
+                        {[#ADMIN]}
+                        <button id="replyBtn" class="btn" style="display:none">답변하기</button>
+                        {[/ADMIN]}
+                        <button class="btn" onClick="location.href='/contents/qna'">목록</button>
+                    </div>
+                </div>
             </div>
             
         </div>
