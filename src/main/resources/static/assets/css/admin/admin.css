@@ -116032,6 +116032,9 @@ sub page
     padding: 4rem 0;
     overflow-y: initial;
   }
+  .admin-container .admin-con-head {
+    padding: 0 1.6rem;
+  }
   .admin-container .admin-con-body {
     height: auto;
     padding: 1.6rem;
