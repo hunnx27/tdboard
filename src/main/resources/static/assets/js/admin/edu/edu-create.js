@@ -118,7 +118,7 @@ function initElementEvent(){
     const popupCloseBtn = document.getElementById('popupCloseBtn')
     const facilityListBtn = document.getElementById('facilityListBtn')
     facilityListBtn.addEventListener('click',(e) =>{
-        popup.style.display = 'block'
+        popup.style.display = 'flex'
     })
    
     popupCloseBtn.addEventListener('click',(e) =>{
@@ -275,7 +275,7 @@ async function saveEduApi(files) {
     const applicationStartDate = document.getElementById('applicationStartDate').value
     const applicationEndDate = document.getElementById('applicationEndDate').value
     const manager = document.getElementById('manager').value
-    const capacity = document.getElementById('capacityField').dataset.value
+    const capacity = document.getElementById('capacity').value
 
     await useAxios.postMultipart(`/api/v1/educations`,
     {
