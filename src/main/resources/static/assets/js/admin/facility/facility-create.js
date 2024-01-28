@@ -13,7 +13,7 @@ window.onload = function() {
 
 function initElementEvent(){
     $('#description').summernote({
-        placeholder: '장비내용',
+        placeholder: '시설내용',
         tabsize: 2,
         height: 120,
         toolbar: [
