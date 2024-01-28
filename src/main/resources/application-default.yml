@@ -8,8 +8,8 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # hibernate를 사용해서 DDL을 생성하기 위함.
-    show-sql: true  # hibernate가 실행한 SQL 쿼리문을 보기 위함
+      ddl-auto: validate  # hibernate를 사용해서 DDL을 생성하기 위함.
+    show-sql: false  # hibernate가 실행한 SQL 쿼리문을 보기 위함
   output:
     ansi:
       enabled: always
@@ -24,6 +24,10 @@ server:
         name: SID
         http-only: true
         secure: true
+
+logging:
+  level:
+    root: error
 
 file:
   upload:
