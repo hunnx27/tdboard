@@ -693,6 +693,12 @@ sub page
             overflow: hidden;
             -webkit-transition: all 0.25s ease-in-out;
                 transition: all 0.25s ease-in-out;
+            .faq-title{
+                height:0;
+                overflow:hidden;
+                -webkit-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+            }
         }
         .flex-box{
             position:absolute;
@@ -722,6 +728,7 @@ sub page
         }
         .faq-title{
             padding-bottom:5rem;
+            height:auto;
         }
         .flex-box{
             .btn{
