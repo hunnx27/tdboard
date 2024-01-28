@@ -1,0 +1,8 @@
+/*
+1. board, education, equipment, facility 인코딩 변경
+- Charset: utf8 > utf8mb4
+- Collation: utf8-general_ci > utf8mb4-general_ci
+
+2. 컬럼 인코딩 변경
+- description, context : utf8 > utf8mb4
+*/
