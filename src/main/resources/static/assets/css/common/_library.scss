@@ -1189,6 +1189,9 @@ flex-box
   .only-m{
     display:none !important;
   }
+  .only-m-inlineblock{
+    display:none !important;
+  }
 @include mobile {
   .only-w{
     display:none !important;
@@ -1200,7 +1203,7 @@ flex-box
     display:inline;
   }
   .only-m-inlineblock{
-    display:inline-block;
+    display:inline-block !important;
   }
 }
 

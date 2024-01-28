@@ -102797,6 +102797,10 @@ flex-box
   display: none !important;
 }
 
+.only-m-inlineblock {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .only-w {
     display: none !important;
@@ -102808,7 +102812,7 @@ flex-box
     display: inline;
   }
   .only-m-inlineblock {
-    display: inline-block;
+    display: inline-block !important;
   }
 }
 .card-wrap {
@@ -102862,6 +102866,10 @@ icon
 .icon-box.icon-size-36 {
   width: 3.6rem;
   height: 3.6rem;
+}
+.icon-box.icon-size-40 {
+  width: 4rem;
+  height: 4rem;
 }
 .icon-box::after {
   content: "";
@@ -102966,6 +102974,10 @@ icon
 .icon-box.icon-admin-side-current::after {
   background-image: url(../../images/icon/admin_admin_side_current_icon.png);
   filter: none !important;
+}
+.icon-box.icon-admin-menu::after {
+  background-image: url(../../images/icon/admin_menu_icon.svg);
+  filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(305deg) brightness(103%) contrast(101%);
 }
 
 .input-group {
@@ -115808,6 +115820,21 @@ sub page
 .admin-head .admin-head-right > div span b {
   color: #01A0E8;
 }
+@media (max-width: 768px) {
+  .admin-head .admin-head .logo-wrap {
+    width: 17rem;
+    height: 2rem;
+  }
+  .admin-head .admin-head-right > div {
+    gap: 1rem;
+  }
+  .admin-head .admin-head-right > div > span {
+    display: none;
+  }
+  .admin-head .admin-head-right > div .btn.menu {
+    height: 4rem;
+  }
+}
 
 .admin-contents {
   display: flex;
@@ -115818,6 +115845,13 @@ sub page
   padding-left: 28rem;
   padding-right: 0.5rem;
 }
+@media (max-width: 768px) {
+  .admin-contents {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    overflow: initial;
+  }
+}
 
 /*admin side*/
 .admin-side {
@@ -115825,10 +115859,12 @@ sub page
   left: 0;
   top: 0;
   height: 100vh;
+  z-index: 100;
   width: 28rem;
   padding: calc(32px + 6.4rem) 20px 20px 20px;
   box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
   background-color: #153366;
+  transition: all 0.25s ease-in-out;
 }
 .admin-side .admin-side-con {
   height: 100%;
@@ -115853,7 +115889,18 @@ sub page
 .admin-side .admin-side-con .admin-side-list:hover {
   background-color: rgba(68, 68, 68, 0.5);
 }
+@media (max-width: 768px) {
+  .admin-side {
+    left: -100%;
+  }
+  .admin-side.on {
+    left: 0;
+  }
+}
 
+.admin-nav-list {
+  transition: all 0.25s ease-in-out;
+}
 .admin-nav-list > button {
   display: flex;
   -moz-flex-direction: row;
@@ -115890,14 +115937,15 @@ sub page
 .admin-nav-list > button.show::after {
   transform: translateY(-50%) rotate(0);
 }
-.admin-nav-list > button.show + .admin-collapse {
-  height: auto !important;
-}
-.admin-nav-list .admin-collapse {
-  height: 0;
-  overflow: hidden;
+.admin-nav-list > button.show + .admin-collapse button {
+  height: 4rem;
+  padding: 0.8rem 3.6rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
 }
 .admin-nav-list .admin-collapse button {
+  height: 0;
+  overflow: hidden;
   display: flex;
   -moz-flex-direction: row;
   flex-direction: row;
@@ -115911,10 +115959,10 @@ sub page
   border-radius: 8px;
   color: #fff;
   line-height: 1.5;
-  padding: 0.8rem 3.6rem;
-  margin-bottom: 1.2rem;
+  padding: 0rem 3.6rem;
+  margin-bottom: 0;
   font-weight: 500;
-  height: 4rem;
+  font-size: 0;
   transition: all 0.25s ease-in-out;
 }
 .admin-nav-list .admin-collapse button.on, .admin-nav-list .admin-collapse button:hover, .admin-nav-list .admin-collapse button:focus {
@@ -115980,9 +116028,24 @@ sub page
   padding-right: 2rem;
   overflow-y: scroll;
 }
+@media (max-width: 768px) {
+  .admin-container {
+    height: 100%;
+    padding: 4rem 0;
+    overflow-y: initial;
+  }
+  .admin-container .admin-con-body {
+    height: calc(100% - 60px);
+  }
+}
 
 .admin-con {
   height: calc(100vh - 14.4rem - 6.4rem);
+}
+@media (max-width: 768px) {
+  .admin-con {
+    height: 100%;
+  }
 }
 
 /* admin table*/

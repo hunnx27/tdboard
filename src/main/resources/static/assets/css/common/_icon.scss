@@ -43,6 +43,10 @@ icon
       width: 3.6rem;
       height: 3.6rem;
     }
+    &-40{
+      width: 4rem;
+      height: 4rem;
+    }
   }
   &::after {
     content: '';
@@ -197,6 +201,12 @@ icon
     &::after {
       background-image: url(../../images/icon/admin_admin_side_current_icon.png);
       filter:none !important;
+    }
+  }
+  &.icon-admin-menu{
+    &::after {
+      background-image: url(../../images/icon/admin_menu_icon.svg);
+      filter:$filter-white;
     }
   }
 }
