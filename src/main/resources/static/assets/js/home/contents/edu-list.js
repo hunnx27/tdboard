@@ -1,20 +1,22 @@
-// import createPaginationModule from "/assets/js/pagination.js";
+import createPaginationModule from "/assets/js/pagination.js";
 import useAxios from '/assets/js/api/useAxios.js'
 import useFilters from '/assets/js/useFilters.js'
 
-// const paginationModule = createPaginationModule();
+const paginationModule = createPaginationModule();
 $(function(){
 
     getEducationsApi(1)
  
-    // paginationModule.setClickPageNumberHandler((pageNumber)=> {
-    //     console.log(`Page number clicked: ${pageNumber}`);
-    //     getEducationsApi(pageNumber)
-    //  })
+    paginationModule.setClickPageNumberHandler((pageNumber)=> {
+        console.log(`Page number clicked: ${pageNumber}`);
+        getEducationsApi(pageNumber)
+     })
 })
 async function getEducationsApi(pageNumber){
     await useAxios.get('/api/v1/educations',
-        {}
+        {
+            page: pageNumber
+        }
         ,(res)=> {
         if(res.data.paging.totalElements > 0){
            
@@ -47,5 +49,5 @@ function handleSetList(pageNumber, data){
     var result = Mustache.render(template, data);
     document.getElementById("gallery").innerHTML = result;
     
-    // paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
+    paginationModule.setPage(pageNumber,data.paging.pageSize,data.paging.totalElements)
 }
