@@ -1,6 +1,6 @@
 import useAxios from '/assets/js/api/useAxios.js'
 
-const userIdRegex = /^[a-z]+[a-z0-9]{4,20}$/g;
+const userIdRegex = /^[a-z0-9]+[a-z0-9_-]{4,20}$/g;
 const nameRegex = /^[a-zA-Z가-힣\s]+$/;
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,7 +15,20 @@ window.onload = function() {
 
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
-        onSelect: function(dateText, inst) {
+        dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        yearSuffix: '년'
+        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        ,changeYear: true //콤보박스에서 년 선택 가능
+        ,changeMonth: true //콤보박스에서 월 선택 가능
+        ,showMonthAfterYear:true
+        ,minDate: "-100y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        ,maxDate: "0M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        ,yearRange: "-100:+0"
+        ,defaultDate: "-25y"
+        ,onSelect: function(dateText, inst) {
             const birthdayField = document.getElementById('birthdayField')
             birthdayField.setAttribute('data-status', 'active');
             validationButtonVisible();
@@ -98,9 +111,10 @@ function validateUserId(){
     userIdElement.addEventListener('input', function() {
         const userId = userIdElement.value;
 
-        if (!userIdRegex.test(userId)) {
+        // if (!userIdRegex.test(userId)) {
+        if (!userId.match(userIdRegex)) {
             userIdField.setAttribute('data-status', 'error');
-            userIdFieldChild.innerText = '영문자 또는 영문,숫자만(5~20자) 입력 가능합니다'
+            userIdFieldChild.innerText = '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 입력 가능합니다.'
             userIdCheckBtn.disabled = true
         } else {
             userIdField.setAttribute('data-status', 'active');
@@ -120,7 +134,7 @@ function validateName() {
 
         if (!nameRegex.test(name)) {
             userNameField.setAttribute('data-status', 'error');
-            userNameFieldChild.innerText = '영문, 한글만 입력 가능합니다'
+            userNameFieldChild.innerText = '영문, 한글만 입력 가능합니다.'
          
         } else {
             userNameField.setAttribute('data-status', 'active');
@@ -139,7 +153,7 @@ function validatePassword(){
     
         if (!passwordRegex.test(password)) {
             passwordField.setAttribute('data-status', 'error');
-            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서(8자이상) 사용하세요'
+            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서(8자이상) 사용하세요.'
          
         } else {
             passwordField.setAttribute('data-status', 'active');
@@ -156,7 +170,7 @@ function validatePassword(){
 
         if (password !== passwordElement.value) {
             confirmPasswordField.setAttribute('data-status', 'error');
-            confirmPasswordFieldChild.innerText = '입력한 비밀번호와 일치하지 않습니다'
+            confirmPasswordFieldChild.innerText = '입력한 비밀번호와 일치하지 않습니다.'
          
         } else {
             confirmPasswordField.setAttribute('data-status', 'active');
@@ -175,7 +189,7 @@ function validateEmail(){
 
         if (!emailRegex.test(email)) {
             emailField.setAttribute('data-status', 'error');
-            emailFieldChild.innerText = '이메일 형식으로 입력해주세요'
+            emailFieldChild.innerText = '이메일 형식으로 입력해주세요.'
          
         } else {
             emailField.setAttribute('data-status', 'active');
@@ -258,7 +272,7 @@ async function handleJoin() {
         "role": "ROLE_USER"
     }
     ,(res)=> {
-        alert('회원가입이 완료되었습니다!')
+        alert('회원가입이 완료되었습니다.')
         location.href='/auth/login'
       
     },(err)=> {

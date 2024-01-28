@@ -22,7 +22,7 @@ public class UserService {
         return userRepository.count();
     }
     public List<User> getUsers(Pageable pageable){
-        List<User> list = userRepository.getUsersBy(pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "조회된 사용자가 없습니다."));
+        List<User> list = userRepository.getUsersByDelYnOrderByCreatedAtDesc("N", pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "조회된 사용자가 없습니다."));
         return list;
     }
 
@@ -30,7 +30,7 @@ public class UserService {
         return userRepository.countUsersByRole(role);
     }
     public List<User> getUsers(RoleEnum role, Pageable pageable){
-        List<User> list = userRepository.getUsersByRole(role, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "조회된 사용자가 없습니다."));
+        List<User> list = userRepository.getUsersByDelYnAndRoleOrderByCreatedAtDesc("N", role, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "조회된 사용자가 없습니다."));
         return list;
     }
 

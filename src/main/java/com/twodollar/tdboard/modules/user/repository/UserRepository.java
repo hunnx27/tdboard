@@ -23,8 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     int countUserByUserId(String userId);
     int countUserByEmail(String email);
-    Optional<List<User>> getUsersBy(Pageable pageable);
+    Optional<List<User>> getUsersByDelYnOrderByCreatedAtDesc(String delYn, Pageable pageable);
 
     int countUsersByRole(RoleEnum role);
-    Optional<List<User>> getUsersByRole(RoleEnum role, Pageable pageable);
+    Optional<List<User>> getUsersByDelYnAndRoleOrderByCreatedAtDesc(String delYn, RoleEnum role, Pageable pageable);
 }
