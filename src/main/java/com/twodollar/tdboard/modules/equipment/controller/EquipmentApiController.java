@@ -98,7 +98,7 @@ public class EquipmentApiController {
                 if(files!=null && files.size()>0){
                     equipmentResponse.setImageUrl(files.get(0).getStoredPath());
                 }
-                return equipment.toResponse();
+                return equipmentResponse;
             }).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(equipmentResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
@@ -126,7 +126,7 @@ public class EquipmentApiController {
             if(files!=null && files.size()>0){
                 equipmentResponse.setImageUrl(files.get(0).getStoredPath());
             }
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipmentResponse));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
