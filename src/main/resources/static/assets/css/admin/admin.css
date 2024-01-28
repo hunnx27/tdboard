@@ -116035,7 +116035,8 @@ sub page
     overflow-y: initial;
   }
   .admin-container .admin-con-body {
-    height: calc(100% - 60px);
+    height: auto;
+    padding: 1.6rem;
   }
 }
 
@@ -116044,7 +116045,7 @@ sub page
 }
 @media (max-width: 768px) {
   .admin-con {
-    height: 100%;
+    height: auto;
   }
 }
 
@@ -116081,6 +116082,16 @@ sub page
 .admin-detail tbody tr td span {
   color: #666666;
 }
+.admin-con-body .table-body {
+  max-width: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-detail {
+    min-width: 100rem;
+  }
+}
 .admin-container .board-list {
   margin-bottom: 4rem;
 }
@@ -116098,6 +116109,14 @@ sub page
 .admin-btn-wrap .btn {
   height: 4.8rem;
   min-width: 32rem;
+}
+@media (max-width: 768px) {
+  .admin-btn-wrap {
+    gap: 1rem;
+  }
+  .admin-btn-wrap .btn {
+    min-width: auto;
+  }
 }
 
 .admin-footer {
@@ -116154,4 +116173,10 @@ sub page
 
 .material-symbols-outlined:hover {
   color: #666;
+}
+
+@media (max-width: 768px) {
+  .admin-con .board-list .table-body .table {
+    min-width: 80rem;
+  }
 }/*# sourceMappingURL=admin.css.map */
