@@ -42,10 +42,7 @@
                         </th>
                         <td colspan="3">
                         <div class="flex-box gap-4 align-center">
-                            <span>{{location}}</span>
-                            {{#facilityId}}
-                                <em class="status-text status-cancel-fi">연동중</em>
-                            {{/facilityId}}
+                            {{location}} <span style="color:red">[연결된 시설 : {{facilityName}}]</span>
                         </div>
                         </td>
                     </tr>
