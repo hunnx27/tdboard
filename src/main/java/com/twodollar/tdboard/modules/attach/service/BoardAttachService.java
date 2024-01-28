@@ -1,15 +1,11 @@
-package com.twodollar.tdboard.modules.fileInfo.service;
+package com.twodollar.tdboard.modules.attach.service;
 
 import com.twodollar.tdboard.modules.board.entity.Board;
-import com.twodollar.tdboard.modules.board.repository.BoardRepository;
 import com.twodollar.tdboard.modules.board.service.BoardService;
-import com.twodollar.tdboard.modules.facility.controller.request.FacilityRequest;
-import com.twodollar.tdboard.modules.facility.entity.Facility;
-import com.twodollar.tdboard.modules.fileInfo.entity.BoardAttach;
+import com.twodollar.tdboard.modules.attach.entity.BoardAttach;
 import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
-import com.twodollar.tdboard.modules.fileInfo.entity.enums.AttachType;
-import com.twodollar.tdboard.modules.fileInfo.repository.BoardAttachRepository;
-import com.twodollar.tdboard.modules.fileInfo.repository.FileInfoRepository;
+import com.twodollar.tdboard.modules.attach.repository.BoardAttachRepository;
+import com.twodollar.tdboard.modules.fileInfo.service.FileInfoService;
 import com.twodollar.tdboard.modules.fileInfo.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class AttachService {
+public class BoardAttachService {
     private final BoardAttachRepository boardAttachRepository;
     private final FileInfoService fileInfoService;
     private final BoardService boardService;

@@ -1,11 +1,15 @@
 package com.twodollar.tdboard.modules.equipment.controller;
 
+import com.twodollar.tdboard.modules.attach.service.EquipmentAttachService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
+import com.twodollar.tdboard.modules.education.controller.response.EducationResponse;
 import com.twodollar.tdboard.modules.equipment.controller.request.EquipmentRequest;
 import com.twodollar.tdboard.modules.equipment.controller.response.EquipmentResponse;
 import com.twodollar.tdboard.modules.equipment.entity.Equipment;
 import com.twodollar.tdboard.modules.equipment.service.EquipmentService;
+import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
+import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +31,7 @@ import java.util.stream.Collectors;
 public class EquipmentApiController {
 
     private final EquipmentService equipmentService;
+    private final EquipmentAttachService equipmentAttachService;
 
     @Operation(summary = "장비 등록", description = "장비 등록")
     @ApiResponses(value = {
@@ -39,6 +44,10 @@ public class EquipmentApiController {
     ){
         try {
             Equipment equipmentEntity = equipmentService.createEquipment(equipmentRequest);
+            if(equipmentRequest.getFiles()!=null && equipmentRequest.getFiles().size()>0){
+                Long thumbFile = equipmentRequest.getFiles().get(0);
+                equipmentAttachService.createAttach(equipmentEntity, thumbFile);
+            }
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipmentEntity.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -59,6 +68,8 @@ public class EquipmentApiController {
     ){
         try {
             Equipment equipment = equipmentService.updateEquipment(id, equipmentRequest);
+            List<Long> thumbFiles = equipmentRequest.getFiles();
+            equipmentAttachService.createUpdate(equipment.getId(), thumbFiles);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -79,7 +90,16 @@ public class EquipmentApiController {
         try {
             long totalSize = equipmentService.getTotalEquipmentSize();
             List<Equipment> equipmentList = equipmentService.getEquipments(pageable);
-            List<EquipmentResponse> equipmentResponseList = equipmentList.stream().map(equipment -> equipment.toResponse()).collect(Collectors.toList());
+            List<EquipmentResponse> equipmentResponseList = equipmentList.stream().map(equipment -> {
+                EquipmentResponse equipmentResponse = equipment.toResponse();
+                List<FileInfo> fileInfoes = equipmentAttachService.getAttaches(equipment.getId());
+                List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+                equipmentResponse.setFiles(files);
+                if(files!=null && files.size()>0){
+                    equipmentResponse.setImageUrl(files.get(0).getStoredPath());
+                }
+                return equipment.toResponse();
+            }).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(equipmentResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -99,6 +119,13 @@ public class EquipmentApiController {
     ) throws Exception {
         try {
             Equipment equipment = equipmentService.getEquipmentById(id);
+            EquipmentResponse equipmentResponse = equipment.toResponse();
+            List<FileInfo> fileInfoes = equipmentAttachService.getAttaches(equipment.getId());
+            List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+            equipmentResponse.setFiles(files);
+            if(files!=null && files.size()>0){
+                equipmentResponse.setImageUrl(files.get(0).getStoredPath());
+            }
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(equipment.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
@@ -139,7 +166,16 @@ public class EquipmentApiController {
         try {
             long totalSize = equipmentService.getTotalEquipmentSize(facilityId);
             List<Equipment> equipmentList = equipmentService.getEquipments(facilityId, pageable);
-            List<EquipmentResponse> equipmentResponseList = equipmentList.stream().map(equipment -> equipment.toResponse()).collect(Collectors.toList());
+            List<EquipmentResponse> equipmentResponseList = equipmentList.stream().map(equipment -> {
+                EquipmentResponse equipmentResponse = equipment.toResponse();
+                List<FileInfo> fileInfoes = equipmentAttachService.getAttaches(equipment.getId());
+                List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+                equipmentResponse.setFiles(files);
+                if(files!=null && files.size()>0){
+                    equipmentResponse.setImageUrl(files.get(0).getStoredPath());
+                }
+                return equipmentResponse;
+            }).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(equipmentResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

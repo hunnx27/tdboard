@@ -56,7 +56,6 @@ public class EducationService {
         Education education = getEducationById(id);
         education.setName(updateEducation.getName());
         education.setDescription(updateEducation.getDescription());
-        education.setImageUrl(updateEducation.getImageUrl());
         education.setUseYn(updateEducation.getUseYn());
         education.setLocation(updateEducation.getLocation());
         education.setStartDate(updateEducation.getStartDate());

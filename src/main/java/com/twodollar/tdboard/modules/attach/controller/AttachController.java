@@ -1,18 +1,16 @@
-package com.twodollar.tdboard.modules.fileInfo.controller;
+package com.twodollar.tdboard.modules.attach.controller;
 
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
-import com.twodollar.tdboard.modules.fileInfo.controller.request.FileInfoRequest;
 import com.twodollar.tdboard.modules.fileInfo.controller.response.FileInfoResponse;
-import com.twodollar.tdboard.modules.fileInfo.entity.BoardAttach;
+import com.twodollar.tdboard.modules.attach.entity.BoardAttach;
 import com.twodollar.tdboard.modules.fileInfo.entity.FileInfo;
-import com.twodollar.tdboard.modules.fileInfo.service.AttachService;
+import com.twodollar.tdboard.modules.attach.service.BoardAttachService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,7 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AttachController {
 
-    private final AttachService attachService;
+    private final BoardAttachService attachService;
 
     @Operation(summary = "파일첨부(테스트)", description = "파일첨부 테스트")
     @ApiResponses(value = {

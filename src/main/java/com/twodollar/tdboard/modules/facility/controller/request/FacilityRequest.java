@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @ToString
 @Getter
 @Setter
@@ -16,6 +18,7 @@ public class FacilityRequest {
     private String description;
     // imageUrl
     private String imageUrl;
+    private List<Long> files;
     // 사용여부
     private String useYn;
     // 삭제여부
