@@ -36,6 +36,7 @@ public class FacilityApiController {
 
     private final FacilityService facilityService;
     private final FacilityAttachService facilityAttachService;
+    private final EquipmentService equipmentService;
 
     @Operation(summary = "시설 등록", description = "시설 등록")
     @ApiResponses(value = {
@@ -88,7 +89,7 @@ public class FacilityApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/facilities")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> equipmentList(
             Pageable pageable
     ){
         try {
@@ -96,14 +97,23 @@ public class FacilityApiController {
             List<Facility> facilityList = facilityService.getFacilitys(pageable);
             List<FacilityResponse> facilityResponseList = facilityList.stream().map(facility -> {
                 FacilityResponse facilityResponse = facility.toResponse();
+                // 썸네일 이미지
                 List<FileInfo> fileInfoes = facilityAttachService.getAttaches(facility.getId());
                 List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
                 facilityResponse.setFiles(files);
                 if(files!=null && files.size()>0){
                     facilityResponse.setImageUrl(files.get(0).getStoredPath());
                 }
+                // 보유 장비
+                List<Equipment> equipmentList = equipmentService.getEquipments(facility.getId(), Pageable.unpaged());
+                String equipmentNames = equipmentList.stream().limit(3)
+                    .map(equipment -> equipment.getName())
+                    .reduce((s, s2) -> s + ", " + s2).orElse("");
+                equipmentNames = equipmentNames!=null&&!"".equals(equipmentNames)?equipmentNames:"장비 없음";
+                facilityResponse.setEquipmentNames(equipmentNames);
                 return facilityResponse;
             }).collect(Collectors.toList());
+
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(facilityResponseList, pageable, totalSize)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));

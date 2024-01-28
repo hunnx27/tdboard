@@ -69,6 +69,28 @@ $admincolor:#1A4079;
       }
     }
   }
+  @include mobile{
+      .logo-wrap{
+        width: 17rem;
+        height: 2rem;
+      }
+    
+    
+    .admin-head-right{
+      > div{
+        gap: 1rem;
+        > span{
+          display:none;
+        }
+        .btn{
+          &.menu{
+            height:4rem;
+          }
+        }
+      }
+      
+    }
+  }
 }
 .admin-contents {
   display: flex;
@@ -78,18 +100,25 @@ $admincolor:#1A4079;
   overflow: hidden;
   padding-left: $adminSideW;
   padding-right: 0.5rem;
+  @include mobile{
+    padding-left:1.6rem;
+    padding-right: 1.6rem;
+    overflow:initial;
+  }
 }
 /*admin side*/
 .admin-side {
   position: fixed;
   left: 0;
   top: 0;
-
   height: 100vh;
+  z-index: 100;
   width: $adminSideW;
   padding:calc(32px + $adminHeadH) 20px 20px 20px;
   box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15) !important;
   background-color: #153366;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   .admin-side-con {
     height: 100%;
     .sidenav-menu-heading {
@@ -114,8 +143,16 @@ $admincolor:#1A4079;
       }
     }
   }
+  @include mobile{
+    left:-100%;
+    &.on{
+      left:0;
+    }
+  }
 }
 .admin-nav-list{
+  -webkit-transition:all 0.25s ease-in-out;
+  transition:all 0.25s ease-in-out;
   > button{
     @include flexbox('row','flex-start','center');
     width:100%;
@@ -146,7 +183,12 @@ $admincolor:#1A4079;
         transform: translateY(-50%) rotate(0);
       }
       + .admin-collapse{
-        height:auto !important;
+        button{
+          height: 4rem;
+          padding:0.8rem 3.6rem;
+          margin-bottom:1.2rem;
+          font-size:1.6rem;
+        }
       }
     }
     &:hover,&:focus{
@@ -154,19 +196,19 @@ $admincolor:#1A4079;
     }
   }
   .admin-collapse{
-    height:0;
-    overflow: hidden;
     button{
+      height:0;
+      overflow: hidden;
       @include flexbox('row','flex-start','center');
       width:calc(100% - 24px);
       background-color: transparent;
       border-radius: 8px;
       color:#fff;
       line-height: 1.5;
-      padding:0.8rem 3.6rem;
-      margin-bottom:1.2rem;
+      padding:0rem 3.6rem;
+      margin-bottom:0;
       font-weight: 500;
-      height: 4rem;
+      font-size:0;
       -webkit-transition: all 0.25s ease-in-out;
       transition: all 0.25s ease-in-out;
       &.on,&:hover,&:focus{
@@ -186,10 +228,8 @@ $admincolor:#1A4079;
     background-color: #f9fafb;
     width: 100%;
     height:60px;
-    padding-bottom:36px;
-    max-width:1180px;
-    margin: 0 auto;
-    
+    padding:0 4rem 0 4rem;
+    max-width:1400px;
     .admin-title-wrap{
       @include flexbox('row','space-between','center');
       width:100%;
@@ -210,8 +250,7 @@ $admincolor:#1A4079;
     height: calc(100% - 128px);
     padding: 4rem;
     padding-right:2rem;
-    max-width:1180px;
-      margin: 0 auto;
+    max-width:1400px;
       background-color: #fff;
     .admin-inner {
       width: 100%;
@@ -221,10 +260,26 @@ $admincolor:#1A4079;
       
     }
   }
+  @include mobile{
+    height:100%;
+    padding:4rem 0;
+    overflow-y:initial;
+    .admin-con-head{
+      padding: 0 1.6rem;
+    }
+    .admin-con-body{
+      height:auto;
+      padding:1.6rem;
+    }
+  }
 }
 .admin-con{
   height:calc(100vh - 14.4rem - 6.4rem);
-
+  padding:0 3.2rem;
+  @include mobile{
+    height:auto;
+    padding:0;
+  }
 }
 
 /* admin table*/
@@ -273,8 +328,21 @@ $admincolor:#1A4079;
       }
     }
   }  
+  
 }
-
+.admin-con-body{
+  .table-body{
+    max-width:100%;
+    overflow: auto;
+  }
+}
+@include mobile{
+  
+  .admin-detail{
+    min-width:100rem;
+  }
+  
+}
 .admin-container .board-list{
   margin-bottom:4rem;
   th,td{
@@ -294,6 +362,12 @@ $admincolor:#1A4079;
   .btn{
     height:4.8rem;
     min-width:32rem;
+  }
+  @include mobile{
+    gap:1rem;
+    .btn{
+      min-width:auto;
+    }
   }
 }
 .admin-footer{
@@ -359,4 +433,13 @@ $admincolor:#1A4079;
 }
 .material-symbols-outlined:hover {
   color: #666;
+}
+
+@include mobile{
+  .admin-con{
+    .board-list .table-body .table{
+      min-width:80rem;
+    }
+  }
+  
 }
