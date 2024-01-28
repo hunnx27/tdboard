@@ -107,6 +107,7 @@ public class BoardApiController {
             }
 
             Board board = boardService.updateBoard(id, boardRequest);
+            attachService.createUpdate(board.getId(), boardRequest.getFiles()); // 파일첨부 처리
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
