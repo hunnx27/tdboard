@@ -32,6 +32,9 @@ async function getDetailId(id) {
         document.getElementById('location').value = data.location
         $('#description').summernote('code', data.description)
 
+        // 파일첨부 세팅
+        fileListModule.initFileSetting(data?.files)
+
       
     },(err)=> {
         console.log('err',err)
