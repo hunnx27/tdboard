@@ -37,7 +37,7 @@ async function getEquipmentsApi(id){
         // console.log('res',res.data)
         if(res.data){
             const equipmentsImg = document.getElementById('equipmentsImg')
-            equipmentsImg.setAttribute('src',res.data.imageUrl)
+            equipmentsImg.setAttribute('src',"/upload"+res.data.imageUrl)
             const equipmentsTitle = document.getElementById('equipmentsTitle')
             equipmentsTitle.innerText = res.data.name
             
