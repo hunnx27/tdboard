@@ -115700,10 +115700,12 @@ sub page
 
 .user-wrap {
   width: 380px;
+  padding-top: 96px;
 }
 @media (max-width: 768px) {
   .user-wrap {
     width: 100%;
+    padding-top: 40px;
   }
 }
 

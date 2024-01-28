@@ -115859,7 +115859,7 @@ sub page
   left: 0;
   top: 0;
   height: 100vh;
-  z-index: 100;
+  z-index: 200;
   width: 28rem;
   padding: calc(32px + 6.4rem) 20px 20px 20px;
   box-shadow: 0.15rem 0 1.75rem 0 rgba(33, 40, 50, 0.15) !important;

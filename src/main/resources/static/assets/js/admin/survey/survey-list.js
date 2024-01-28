@@ -26,7 +26,7 @@ $(function(){
         document.getElementById('name').value = '';
         document.getElementById('surveyUrl').value = ''
         document.getElementById('saveBtn').disabled = true
-        popup.style.display = 'block'
+        popup.style.display = 'flex'
      })
 
      

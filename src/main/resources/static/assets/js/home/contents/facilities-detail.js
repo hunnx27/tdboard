@@ -38,7 +38,7 @@ async function getFacilitiesApi(id){
         console.log('res',res.data)
         if(res.data){
             const facilitiesImg = document.getElementById('facilitiesImg')
-            facilitiesImg.setAttribute('src',res.data.imageUrl)
+            facilitiesImg.setAttribute('src', "/upload"+res.data.imageUrl)
             const facilitiesTitle = document.getElementById('facilitiesTitle')
             facilitiesTitle.innerText = res.data.name
             

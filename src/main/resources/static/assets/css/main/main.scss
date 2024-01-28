@@ -1024,8 +1024,10 @@ sub page
 
 .user-wrap{
     width:380px;
+    padding-top:96px;
     @include mobile{
         width:100%;
+        padding-top:40px;
     }
 }
 .status-text{
@@ -1059,4 +1061,9 @@ sub page
     max-width: 1100px;
     margin: 4ren auto;
     margin-top: 7rem;
+}
+
+
+.user-wrap{
+
 }
