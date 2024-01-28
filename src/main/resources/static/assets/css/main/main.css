@@ -104576,10 +104576,10 @@ header {
 .head-con .gnb nav > ul .gnb-depth-01 > a > span {
   font-size: 1.6rem;
 }
-.head-con .gnb nav > ul .gnb-depth-01:hover > a::after, .head-con .gnb nav > ul .gnb-depth-01.on > a::after {
+.head-con .gnb nav > ul .gnb-depth-01:hover > a::after {
   width: 100%;
 }
-.head-con .gnb nav > ul .gnb-depth-01:hover > a span, .head-con .gnb nav > ul .gnb-depth-01.on > a span {
+.head-con .gnb nav > ul .gnb-depth-01:hover > a span {
   color: #0082C8;
   transition: all 0.25s ease-in-out;
 }
@@ -104623,6 +104623,7 @@ header {
     height: 100vh;
     width: 100%;
     top: 11.2rem;
+    transition: all 0.25s ease-in-out;
   }
   header .head-con .gnb nav {
     background-color: #ffffff;
@@ -104651,6 +104652,13 @@ header {
   }
   header .head-con .gnb nav > ul .gnb-depth-01 > a span {
     font-weight: 600;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on > a::after {
+    width: 100%;
+  }
+  header .head-con .gnb nav > ul .gnb-depth-01.on > a span {
+    color: #0082C8;
+    transition: all 0.25s ease-in-out;
   }
   header .head-con .gnb nav > ul .gnb-depth-01 .gnb-depth-02 {
     position: relative;
@@ -104710,6 +104718,9 @@ header {
   }
   header .nav_btn_wrap.on button {
     background-image: url(../../images/icon/mobile_nav_close_icon.png);
+  }
+  header.mobile_on .gnb {
+    left: 0;
   }
 }
 footer {
@@ -115382,6 +115393,7 @@ sub page
 }
 .gallery-list .img-box img {
   max-width: 100%;
+  max-height: 100%;
 }
 .gallery-list .text-box {
   height: 26rem;
