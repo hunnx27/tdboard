@@ -33,30 +33,15 @@
                     <span>정원</span>
                     </th>
                     <td colspan="3">
-                    <div>
-                        <div class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
-                        <button class="select-btn" aria-label="selectValue">
-                            <span class="icon-box icon-size-sm icon-smile"></span>
-                            <span id="capacityField" class="select-value" data-value="10" data-default-text="10">
-                                10
-                            </span>
-                        </button>
-                        <div class="option-box" aria-label="option-box">
-                            <div>
-                            <button class="option" aria-label="option" data-option="10" disabled>
-                                <span>
-                                    10
-                                </span>
-                            </button>
-                            <button class="option" aria-label="option" data-option="20" disabled>
-                                <span>
-                                    20
-                                </span>
-                            </button>
+                        <div>
+                            <div class="select w-160" aria-label="select" data-size="MD" data-status="" data-icon="">
+                                <div id="capacityField" class="textfield  max-w-380"  data-type="text"  data-status="default" data-size="MD" data-icon="">
+                                    <input id="capacity" type="number" placeholder="정원" onchange='textfieldChange(this,event)' data-value="">
+                                    <p class="error-text"></p>
+                                </div>
+
                             </div>
                         </div>
-                        </div>
-                    </div>
                     </td>
                 </tr>
                 <tr>

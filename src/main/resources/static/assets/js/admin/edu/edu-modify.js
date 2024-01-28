@@ -45,19 +45,8 @@ function handleSetUserInfo(data){
     document.getElementById('endDate').value = data.endDate
     document.getElementById('applicationStartDate').value = data.applicationStartDate
     document.getElementById('applicationEndDate').value = data.applicationEndDate
+    document.getElementById('capacity').value = data. capacity;
     $('#description').summernote('code', data.description)
-
-    document.querySelectorAll('.option').forEach((element)=>{
-        const capacity = parseInt(data.capacity)
-        const option = parseInt(element.dataset.option)
-        if (option === capacity) {
-            const ementText = element.innerText;
-            document.getElementById('capacityField').innerText = ementText;
-            document.getElementById('capacityField').dataset.value = data.capacity;
-        }
-    })
-
-    
 }
 
 
@@ -323,7 +312,7 @@ async function saveEduApi(files) {
     const applicationStartDate = document.getElementById('applicationStartDate').value
     const applicationEndDate = document.getElementById('applicationEndDate').value
     const manager = document.getElementById('manager').value
-    const capacity = document.getElementById('capacityField').dataset.value
+    const capacity = document.getElementById('capacity').value
 
     await useAxios.put(`/api/v1/educations/${educationId}`,
     {

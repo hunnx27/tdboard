@@ -1,8 +1,8 @@
 import useAxios from '/assets/js/api/useAxios.js'
 
-const userIdRegex = /^[a-z]+[a-z0-9]{5,20}$/g;
+const userIdRegex = /^[a-z]+[a-z0-9]{4,20}$/g;
 const nameRegex = /^[a-zA-Z가-힣\s]+$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.[a-z])(?=.*\d)(?=.*[-`~!@#$%^&*()_+=?/\[\]])[A-Za-z\d\[\]-`~!@#$%^&*()_+=?/]{8,}$/;
+const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
 
@@ -139,7 +139,7 @@ function validatePassword(){
     
         if (!passwordRegex.test(password)) {
             passwordField.setAttribute('data-status', 'error');
-            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서 사용하세요'
+            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서(8자이상) 사용하세요'
          
         } else {
             passwordField.setAttribute('data-status', 'active');
