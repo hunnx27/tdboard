@@ -258,11 +258,7 @@ public class BoardApiController {
     ){
         try {
             Board board = boardService.getBoardById(id, BoardTypeEnum.NOTICE);
-            List<FileInfo> fileInfoes = attachService.getAttaches(board.getId());
-            List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
-            BoardResponse res = board.toResponse();
-            res.setFiles(files);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(res));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(this.getCommonBoardResponse(board)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -336,7 +332,7 @@ public class BoardApiController {
     ){
         try {
             Board board = boardService.getBoardById(id, BoardTypeEnum.DATA);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(this.getCommonBoardResponse(board)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -374,7 +370,7 @@ public class BoardApiController {
     ){
         try {
             Board board = boardService.getBoardById(id, BoardTypeEnum.FAQ);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(this.getCommonBoardResponse(board)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -412,7 +408,7 @@ public class BoardApiController {
     ){
         try {
             Board board = boardService.getBoardById(id, BoardTypeEnum.QNA);
-            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(board.toResponse()));
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(this.getCommonBoardResponse(board)));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
@@ -420,8 +416,11 @@ public class BoardApiController {
         }
     }
 
-
-
-
-
+    private BoardResponse getCommonBoardResponse(Board board){
+        BoardResponse boardResponse = board.toResponse();
+        List<FileInfo> fileInfoes = attachService.getAttaches(board.getId());
+        List<FileInfoResponse> files = fileInfoes.stream().map(fileInfo -> fileInfo.toResponse()).collect(Collectors.toList());
+        boardResponse.setFiles(files);
+        return boardResponse;
+    }
 }
