@@ -22,6 +22,8 @@ public class FacilityResponse {
     // 생성일
     @Setter
     private List<FileInfoResponse> files;
+    @Setter
+    private String equipmentNames;
     private LocalDateTime createdAt;
     // 수정일
     private LocalDateTime updatedAt;
