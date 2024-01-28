@@ -35,6 +35,11 @@ async function getBoardApi(pageNumber){
         if(res.data.paging.totalElements > 0){
             let firstPostNumber = res.data.paging.totalElements - (pageNumber - 1) * res.data.paging.pageSize;
             res.data.contents.map((data)=>{
+
+                data.notApproval = data.approvalYn === 'N' && !data.approvalAt ? true : false // 승인대기
+                data.approval = data.approvalYn === 'Y' && data.approvalAt ? true : false //승인완료
+                data.cancelApplication = data.approvalYn === 'N' && data.approvalAt ? true : false //취소완료
+
                 data.startAtText = useFilters().YYYYMMDD(data.startAt)
                 data.endAtText = useFilters().YYYYMMDD(data.endAt)
                 data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)

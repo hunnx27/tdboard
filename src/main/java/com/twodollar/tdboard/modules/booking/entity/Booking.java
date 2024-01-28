@@ -123,5 +123,6 @@ public class Booking {
      */
     public void cancel(){
         this.approvalYn = "N";
+        this.approvalAt = LocalDateTime.now();
     }
 }
