@@ -253,7 +253,7 @@ async function saveApi(files) {
         location:locationValue,
         description,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
 

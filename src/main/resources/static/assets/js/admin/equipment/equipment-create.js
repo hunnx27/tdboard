@@ -224,14 +224,14 @@ async function saveApi(files) {
     const facilityId = document.getElementById('location').dataset.value
     const description = $('#description').summernote('code');
    
-    await useAxios.postMultipart(`/api/v1/equipments`,
+    await useAxios.post(`/api/v1/equipments`,
     {
         name,
         facilityId,
         location:locationValue,
         description,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
 

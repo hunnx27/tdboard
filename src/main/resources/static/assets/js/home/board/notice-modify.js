@@ -139,7 +139,7 @@ async function saveApi(files) {
                 boardType: 'NOTICE',
                 title,
                 context: description,
-                files
+                files: files || []
             }
             ,(res)=> {
                 alert('글이 저장 되었습니다')

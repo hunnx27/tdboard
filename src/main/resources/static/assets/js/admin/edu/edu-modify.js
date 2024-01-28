@@ -330,7 +330,7 @@ async function saveEduApi(files) {
         manager,
         capacity,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
         // console.log(res)

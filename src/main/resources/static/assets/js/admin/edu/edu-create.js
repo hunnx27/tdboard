@@ -277,7 +277,7 @@ async function saveEduApi(files) {
     const manager = document.getElementById('manager').value
     const capacity = document.getElementById('capacityField').dataset.value
 
-    await useAxios.postMultipart(`/api/v1/educations`,
+    await useAxios.post(`/api/v1/educations`,
     {
         name,
         facilityId,
@@ -290,7 +290,7 @@ async function saveEduApi(files) {
         manager,
         capacity,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
 

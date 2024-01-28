@@ -153,12 +153,12 @@ async function saveApi(files) {
     const name = document.getElementById('name').value
     const description = $('#description').summernote('code');
    
-    await useAxios.postMultipart(`/api/v1/facilities`,
+    await useAxios.post(`/api/v1/facilities`,
     {
         name,
         description,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
 

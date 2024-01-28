@@ -177,7 +177,7 @@ async function saveApi(files) {
         name,
         description,
         // imageUrl:"",
-        files
+        files: files || []
     }
     ,(res)=> {
 
