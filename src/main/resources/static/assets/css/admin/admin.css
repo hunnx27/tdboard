@@ -103671,6 +103671,10 @@ icon
   color: #797F8B;
 }
 
+.board-detail .table-foot {
+  padding-top: 2rem;
+}
+
 .detail-head {
   padding: 32px 40px;
   border-top: 2px solid #333;
@@ -114914,7 +114918,7 @@ main
   -webkit-box-pack: center;
   -moz-box-justify-content: center;
   justify-content: center;
-  width: 38rem;
+  flex: 1 1 auto;
   height: 8.4rem;
   border: 1px solid #B3B3B3;
 }
@@ -114942,6 +114946,11 @@ main
   outline-offset: 2px;
 }
 @media (max-width: 1200px) {
+  .main-sect-4 {
+    padding-bottom: 4rem;
+  }
+}
+@media (max-width: 768px) {
   .main-sect-4 {
     padding-bottom: 4rem;
   }
@@ -115014,19 +115023,11 @@ sub page
 }
 .summary .card-wrap .card-body ul {
   display: flex;
-  -moz-flex-direction: row;
-  flex-direction: row;
-  -moz-align-items: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -moz-box-justify-content: flex-start;
-  justify-content: flex-start;
+  gap: 1.6rem;
 }
 .summary .card-wrap .card-body ul li {
   width: 22.4rem;
   padding-right: 2.4rem;
-  height: 14rem;
-  margin-right: 1.6rem;
 }
 .summary .card-wrap .card-body ul li:last-child {
   margin-right: 0rem;
@@ -115048,9 +115049,8 @@ sub page
   font-weight: 700;
 }
 .summary .card-wrap .card-body ul li p {
-  width: 18rem;
-  margin: 0 auto;
-  padding: 2.5rem 0 2.4rem 0;
+  width: 100%;
+  padding: 2.5rem 0 2.2rem 0;
   background-color: #fff;
   font-size: 18px;
   text-align: center;
@@ -115086,21 +115086,36 @@ sub page
 .summary .card-wrap .card-body ul li:nth-child(5) h4 {
   color: #713397;
 }
+@media (max-width: 1200px) {
+  .summary .card-wrap .card-body ul li {
+    width: 50%;
+    flex: 2 2 0;
+    padding-right: 0;
+  }
+  .summary .card-wrap .card-body ul li p {
+    font-size: 1.5vw;
+  }
+}
 @media (max-width: 768px) {
   .summary .card-wrap .card-body ul {
-    display: flex;
-    -moz-flex-direction: column;
-    flex-direction: column;
-    -moz-align-items: flex-start;
-    align-items: flex-start;
-    -webkit-box-pack: start;
-    -moz-box-justify-content: flex-start;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .summary .card-wrap .card-body ul li {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+  .summary .card-wrap .card-body ul li p {
+    font-size: 4.4vw;
   }
 }
 
 .group-qna .card-wrap {
   margin-bottom: 4.3rem;
+}
+.group-qna .card-wrap .card-body {
+  max-width: 100%;
+  overflow: auto;
+  padding-bottom: 1rem;
 }
 .group-qna .card-wrap .card-body ul li {
   font-size: 1.6rem;
@@ -115257,7 +115272,7 @@ sub page
 
 /*gallery-list*/
 .gallery-list {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
   border-radius: 3rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
@@ -115323,6 +115338,74 @@ sub page
 }
 .gallery-list:last-child {
   margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  .gallery-list a {
+    display: flex;
+    -moz-flex-direction: row;
+    flex-direction: row;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -moz-box-justify-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 4rem;
+  }
+  .gallery-list .img-box {
+    width: 100%;
+    height: auto;
+    margin-right: 4.4rem;
+    display: flex;
+    -moz-flex-direction: row;
+    flex-direction: row;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -moz-box-justify-content: flex-start;
+    justify-content: flex-start;
+  }
+  .gallery-list .img-box img {
+    max-width: 100%;
+  }
+  .gallery-list .text-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    padding: 2rem 0 0 0;
+  }
+  .gallery-list .text-box .title {
+    margin-bottom: 2rem;
+  }
+  .gallery-list .text-box .title h6 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .gallery-list .text-box ul {
+    margin-bottom: 4rem;
+  }
+  .gallery-list .text-box ul li {
+    margin-bottom: 0.4rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  .gallery-list .btn-wrap {
+    width: 100%;
+  }
+  .gallery-list .btn-wrap .btn {
+    width: 100%;
+    height: 4.8rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .gallery-list .btn-wrap .btn .icon-box {
+    margin-left: 0.4rem;
+  }
 }
 
 .block-text-wrap .block-text {
@@ -115411,6 +115494,22 @@ sub page
 .gallery-detail-head .text-box .btn-wrap .btn .icon-box {
   margin-left: 0.4rem;
 }
+@media (max-width: 768px) {
+  .gallery-detail-head {
+    flex-wrap: wrap;
+  }
+  .gallery-detail-head .img-box {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-detail-head .text-box {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-detail-head .gallery-detail-info {
+    margin-bottom: 2.5rem;
+  }
+}
 
 .gallery-detail-body .block-text-wrap {
   margin-bottom: 2rem;
@@ -115449,14 +115548,18 @@ sub page
   -moz-box-justify-content: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .equipments-body {
+    gap: 3rem;
+  }
 }
 
 .equipments-list {
   width: calc(33.33333% - 1.333333rem);
   border-radius: 3rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin-right: 2rem;
-  margin-bottom: 3rem;
   padding: 2rem;
 }
 .equipments-list .img-box {
@@ -115477,8 +115580,10 @@ sub page
   text-align: center;
   font-weight: 600;
 }
-.equipments-list:nth-child(3n) {
-  margin: 0;
+@media (max-width: 768px) {
+  .equipments-list {
+    width: 100%;
+  }
 }
 
 .user-wrap {
@@ -115491,15 +115596,36 @@ sub page
 }
 
 .status-text {
-  padding: 0.7rem 1rem;
+  padding: 0.2rem 1rem;
+  border-radius: 25px;
+}
+.status-text.status-confirm {
   border: 1px solid #1E4079;
   background-color: #1E4079;
   color: #fff;
 }
-.status-text .status-confirm-fi {
+.status-text.status-confirm-fi {
   border: 1px solid #00AAF6;
   background-color: #00AAF6;
+  color: #fff;
 }
+.status-text.status-cancel-fi {
+  border: 1px solid #F04438;
+  background-color: #fff;
+  color: #F04438;
+}
+.status-text.status-cancel {
+  border: 1px solid #F04438;
+  background-color: #F04438;
+  color: #fff;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 4ren auto;
+  margin-top: 7rem;
+}
+
 * {
   font-family: "Noto Sans", sans-serif; /*'AppleSDGothicNeo', 'Noto Sans',*/
 }
