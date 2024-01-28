@@ -116072,6 +116072,7 @@ sub page
 }
 .admin-detail tbody tr th {
   height: 6rem;
+  min-width: 200px;
   background-color: #F4F4F4;
 }
 .admin-detail tbody tr th span {
