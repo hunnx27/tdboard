@@ -115335,6 +115335,11 @@ sub page
   overflow: hidden;
   transition: all 0.25s ease-in-out;
 }
+.faq-list .faq-a td .faq-title {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.25s ease-in-out;
+}
 .faq-list .faq-a .flex-box {
   position: absolute;
   right: 1rem;
@@ -115361,6 +115366,7 @@ sub page
 }
 .faq-list .faq-q.on + .faq-a .faq-title {
   padding-bottom: 5rem;
+  height: auto;
 }
 .faq-list .faq-q.on + .faq-a .flex-box .btn {
   display: inline-block;
@@ -115700,10 +115706,12 @@ sub page
 
 .user-wrap {
   width: 380px;
+  padding-top: 96px;
 }
 @media (max-width: 768px) {
   .user-wrap {
     width: 100%;
+    padding-top: 40px;
   }
 }
 
@@ -116064,6 +116072,7 @@ sub page
 }
 .admin-detail tbody tr th {
   height: 6rem;
+  min-width: 200px;
   background-color: #F4F4F4;
 }
 .admin-detail tbody tr th span {
