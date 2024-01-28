@@ -36,6 +36,7 @@ function headerEvent(){
 }
 
 
+headerEvent();
 window.onresize = () => {
   setTimeout(function(){headerEvent()},300);
 }
