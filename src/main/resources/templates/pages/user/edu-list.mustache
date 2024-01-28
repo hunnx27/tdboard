@@ -71,6 +71,9 @@
                       <th class="status">
                         예약 상태
                       </th>
+                      <th class="status">
+                        예약 취소
+                      </th>
                   </tr>
               </thead>
               <tbody id="list-body">
@@ -106,11 +109,10 @@
             </span>
         </td>
         <td>
-            <span>
+            <div class="flex-box justify-center align-center">
                 {{#notApproval}}
                 <em class="status-text status-confirm">승인대기</em>
                 <!--<em class="status-text status-cancel">취소</em>-->
-                <button class="applicationCancelBtn" data-value="{{id}}">취소</button>
                 {{/notApproval}}
                 {{#approval}}
                 <em class="status-text status-confirm-fi">승인완료</em>
@@ -119,7 +121,12 @@
                 <em class="status-text status-cancel-fi">취소완료</em>
                 {{/cancelApplication}}
                 
-            </span>
+            </div>
+        </td>
+        <td>
+            <div class="flex-box justify-center align-center">
+                <button class="applicationCancelBtn cancelBtn btn admin-btn-type-02" data-value="{{id}}">취소</button>
+            </div>
         </td>
     </tr>
 {{/contents}}
