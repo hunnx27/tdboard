@@ -75,24 +75,32 @@ async function fileUpload(){
         
     }
 
-    await useAxios.postMultipart(`/api/v1/files`,
-    formData
-    ,(res)=> {
+    if(formData.get("files")){
+        await useAxios.postMultipart(`/api/v1/files`,
+            formData
+            ,(res)=> {
+                const files = []
+                for (const file of dataTransfer.files) {
+                    if(file.id){
+                        files.push(file.id)
+                    }
+                }
+                res.data?.forEach((file)=>{
+                    files.push(file.id)
+                })
+                // console.log(files)
+                saveApi(files)
+            },(err)=> {
+                console.log('error',err)
+                // alert(err.response.data.message)
+            })
+    }else{
         const files = []
         for (const file of dataTransfer.files) {
-            if(file.id){
-                files.push(file.id)
-            }
-        }
-        res.data?.forEach((file)=>{
             files.push(file.id)
-        })
-        // console.log(files)
-        saveApi(files)
-    },(err)=> {
-        console.log('error',err)
-        // alert(err.response.data.message)
-    })
+        }
+        saveApi(files);
+    }
     
 }
 
