@@ -24,7 +24,7 @@
                     <th> 
                     <span>강의명</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <span>{{name}}</span> 
                     </td>
                 </tr>
@@ -32,7 +32,7 @@
                     <th>
                     <span>정원</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <span>{{capacity}}</span>
                     </td>
                 </tr>
@@ -45,20 +45,23 @@
                         {{location}} <span style="color:red">[연결된 시설 : {{facilityName}}]</span>
                     </span>
                     </td>
+                    
+                </tr>
+                <tr>
                     <th> 
-                    <span>담당교수</span>
+                        <span>담당교수</span>
                     </th>
                     <td>
-                    <span>
-                        {{manager}}
-                    </span>
+                        <span>
+                            {{manager}}
+                        </span>
                     </td>
                 </tr>
                 <tr>
                     <th> 
                     <span>강의기간</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <div class="flex-box gap-16 align-center">
                         <div class="flex-box gap-4 align-center">
                         <span class="text-box">
@@ -83,7 +86,7 @@
                     <th> 
                     <span>접수기간</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <div class="flex-box gap-16 align-center">
                         <div class="flex-box gap-4 align-center">
                         <span class="text-box">
@@ -108,7 +111,7 @@
                     <th> 
                     <span>강의내용</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <span>{{{description}}}</span>
                     </td>
                 </tr>
@@ -116,7 +119,7 @@
                     <th class="vertical-t"> 
                     <span>대표 이미지</span>
                     </th>
-                    <td colspan="3">
+                    <td >
                     <div class="img-box">
                         <img src="/upload{{imageUrl}}" alt="강의실">
                     </div>
