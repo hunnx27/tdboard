@@ -71,7 +71,7 @@ function initElementEvent(){
     const popupCloseBtn = document.getElementById('popupCloseBtn')
     const facilityListBtn = document.getElementById('facilityListBtn')
     facilityListBtn.addEventListener('click',(e) =>{
-        popup.style.display = 'block'
+        popup.style.display = 'flex'
     })
    
     popupCloseBtn.addEventListener('click',(e) =>{
