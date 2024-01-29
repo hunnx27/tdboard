@@ -3,6 +3,7 @@ import useAxios from '/assets/js/api/useAxios.js'
 const userIdRegex = /^[a-z0-9]+[a-z0-9_-]{4,20}$/g;
 const nameRegex = /^[a-zA-Z가-힣\s]+$/;
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+//const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
 

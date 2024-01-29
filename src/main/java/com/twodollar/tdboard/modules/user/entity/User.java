@@ -70,7 +70,7 @@ public class User {
         this.phone = userRequest.getPhone();
         this.birthday = userRequest.getBirthday();
         this.channel = userRequest.getChannel()!=null ? ChannelEnum.valueOf(userRequest.getChannel()) : this.channel;
-        this.role = RoleEnum.valueOf(userRequest.getRole());
+//        this.role = RoleEnum.valueOf(userRequest.getRole());
     }
 
     public void memberUpdate(UserRequest userRequest){

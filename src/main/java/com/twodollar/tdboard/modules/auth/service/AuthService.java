@@ -61,6 +61,11 @@ public class AuthService {
         return userRepository.save(user);
     }
 
+    public User setNewPassword(User user, String plainPassword){
+        user.setPassword(passwordEncoder.encode(plainPassword));
+        return user;
+    }
+
     public User validUser(String userId, String passwordPlain) throws ResponseStatusException{
         String password = passwordEncoder.encode(passwordPlain);
         User user = userRepository.findByUserId(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 정보가 일치하지 않습니다."));

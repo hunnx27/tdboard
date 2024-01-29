@@ -1,5 +1,6 @@
 package com.twodollar.tdboard.modules.user.service;
 
+import com.twodollar.tdboard.modules.auth.service.AuthService;
 import com.twodollar.tdboard.modules.user.controller.request.UserRequest;
 import com.twodollar.tdboard.modules.user.entity.User;
 import com.twodollar.tdboard.modules.user.entity.enums.RoleEnum;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final AuthService authService;
 
     public long getTotalUsersSize(){
         return userRepository.count();
@@ -45,6 +47,9 @@ public class UserService {
     public User update(String userId, UserRequest userRequest) throws ResponseStatusException{
         User user = this.getUserByUserId(userId);
         user.update(userRequest);
+        if(userRequest.getPassword()!=null && !"".equals(userRequest.getPassword())){
+            authService.setNewPassword(user, userRequest.getPassword());
+        }
         userRepository.save(user);
         return user;
     }

@@ -52,3 +52,10 @@ spring:
 # spring:
   servlet.multipart.maxFileSize: 10MB
   servlet.multipart.maxRequestSize: 50MB
+
+
+# 리소스 캐시 설정
+  web:
+    resources:
+      cache:
+        period: 86400 #1일

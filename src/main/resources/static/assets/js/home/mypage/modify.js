@@ -1,9 +1,9 @@
 import useAxios from '/assets/js/api/useAxios.js'
 
-const userIdRegex = /^[a-z]+[a-z0-9]{5,20}$/g;
-const passwordRegex = /^(?=.*[A-Z])(?=.[a-z])(?=.*\d)(?=.*[-`~!@#$%^&*()_+=?/\[\]])[A-Za-z\d\[\]-`~!@#$%^&*()_+=?/]{8,}$/;
+const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+//const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^01[0-9]*\d{3,4}\d{4}$/; 
+const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
 
 window.onload = function() {
     initPasswordCheck()
@@ -131,8 +131,7 @@ async function updateUserApi() {
         "phone": addHyphens(phone),
         "birthday": birthday,
         "channel": selectJoinPathField.dataset.value,
-        "password": password,
-        "role": "ROLE_USER"
+        "password": password
     }
     ,(res)=> {
         alert('정보가 수정되었습니다.')
@@ -184,11 +183,20 @@ function validatePassword(){
     
         if (password && !passwordRegex.test(password)) {
             passwordField.setAttribute('data-status', 'error');
-            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서 사용하세요'
+            passwordFieldChild.innerText = '영문 대 소문자, 숫자, 특수문자를 조합해서(8자이상) 사용하세요.'
          
         } else {
             passwordField.setAttribute('data-status', 'active');
             passwordFieldChild.innerText = '';
+        }
+
+        if(!password){
+            debugger;
+            passwordField.setAttribute('data-status', 'active');
+            passwordFieldChild.innerText = '';
+            confirmPassword.value = '';
+            confirmPasswordField.setAttribute('data-status', 'active');
+            confirmPasswordFieldChild.innerText = '';
         }
         validationButtonVisible()
     });
@@ -201,7 +209,7 @@ function validatePassword(){
 
         if (password !== passwordElement.value) {
             confirmPasswordField.setAttribute('data-status', 'error');
-            confirmPasswordFieldChild.innerText = '입력한 비밀번호와 일치하지 않습니다'
+            confirmPasswordFieldChild.innerText = '입력한 비밀번호와 일치하지 않습니다.'
          
         } else {
             confirmPasswordField.setAttribute('data-status', 'active');
@@ -220,7 +228,7 @@ function validateEmail(){
 
         if (!emailRegex.test(email)) {
             emailField.setAttribute('data-status', 'error');
-            emailFieldChild.innerText = '이메일 형식으로 입력해주세요'
+            emailFieldChild.innerText = '이메일 형식으로 입력해주세요.'
          
         } else {
             emailField.setAttribute('data-status', 'active');
@@ -239,7 +247,7 @@ function validatePhone(){
 
         if (!phoneRegex.test(phone)) {
             phoneField.setAttribute('data-status', 'error');
-            phoneFieldChild.innerText = '휴대전화번호에 맞게 숫자로만 입력해주세요'
+            phoneFieldChild.innerText = '휴대전화번호에 맞게 숫자로만 입력해주세요010-0000-0000).'
          
         } else {
             phoneField.setAttribute('data-status', 'active');
