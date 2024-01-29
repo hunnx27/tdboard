@@ -40,8 +40,8 @@ async function getBoardApi(pageNumber){
                 data.approval = data.approvalYn === 'Y' && data.approvalAt ? true : false //승인완료
                 data.cancelApplication = data.approvalYn === 'N' && data.approvalAt ? true : false //취소완료
 
-                data.startAtText = useFilters().YYYYMMDD(data.startAt)
-                data.endAtText = useFilters().YYYYMMDD(data.endAt)
+                data.startAtText = useFilters().YYYYMMDDHH24(data.startAt)
+                data.endAtText = useFilters().YYYYMMDDHH24(data.endAt)
                 data.createdDateText = useFilters().YYYYMMDD(data.updatedAt || data.createdAt)
                 data.no = firstPostNumber
                 firstPostNumber--;
