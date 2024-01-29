@@ -10,6 +10,9 @@ spring:
     hibernate:
       ddl-auto: validate  # hibernate를 사용해서 DDL을 생성하기 위함.
     show-sql: false  # hibernate가 실행한 SQL 쿼리문을 보기 위함
+    properties:
+      hibernate:
+        show_sql: false
   output:
     ansi:
       enabled: always
@@ -28,6 +31,8 @@ server:
 logging:
   level:
     root: error
+    org:
+      hibernate: INFO
 
 file:
   upload:
