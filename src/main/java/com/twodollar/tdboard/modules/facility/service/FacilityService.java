@@ -19,7 +19,7 @@ public class FacilityService {
     public long getTotalFacilitySize(){
         return facilityRepository.countFacilityByDelYn("N");
     }
-    public List<Facility> getFacilitys(Pageable pageable) {
+    public List<Facility> getFacilities(Pageable pageable) {
         List<Facility> list = facilityRepository.getFacilitiesByDelYnOrderByCreatedAtDesc("N", pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 시설이 없습니다."));
         if(list.size() == 0){
             new IllegalArgumentException("no such data");
@@ -41,8 +41,6 @@ public class FacilityService {
         facility.setName(updateFacility.getName());
         facility.setDescription(updateFacility.getDescription());
         facility.setImageUrl(updateFacility.getImageUrl());
-        facility.setUseYn(updateFacility.getUseYn());
-        facility.setDelYn(updateFacility.getDelYn());
         facility.setUpdatedAt(null);
         return facilityRepository.save(facility);
     }

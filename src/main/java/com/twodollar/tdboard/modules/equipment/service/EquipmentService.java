@@ -21,21 +21,18 @@ public class EquipmentService {
 
 
     public long getTotalEquipmentSize(){
-        return equipmentRepository.count();
+        return equipmentRepository.countEquipmentByDelYn("N");
     }
     public long getTotalEquipmentSize(Long facilityId){
-        return equipmentRepository.countByFacilityId(facilityId);
+        return equipmentRepository.countByFacilityIdAndDelYn(facilityId, "N");
     }
 
     public List<Equipment> getEquipments(Long facilityId, Pageable pageable) {
-        List<Equipment> list = equipmentRepository.getEquipmentsByFacilityId(facilityId, pageable).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "시설에 포함된 장비가 없습니다."));
+        List<Equipment> list = equipmentRepository.getEquipmentsByFacilityIdAndDelYn(facilityId, "N", pageable).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "시설에 포함된 장비가 없습니다."));
         return list;
     }
     public List<Equipment> getEquipments(Pageable pageable) {
-        List<Equipment> list = equipmentRepository.findAll(pageable).getContent();
-        if(list.size() == 0){
-            new IllegalArgumentException("no such data");
-        }
+        List<Equipment> list = equipmentRepository.getEquipmentsByDelYnOrderByCreatedAtDesc("N", pageable).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 장비가 없습니다."));
         return list;
     }
 
@@ -61,8 +58,8 @@ public class EquipmentService {
         equipment.setName(updateEquipment.getName());
         equipment.setDescription(updateEquipment.getDescription());
         equipment.setImageUrl(updateEquipment.getImageUrl());
-        equipment.setUseYn(updateEquipment.getUseYn());
-        equipment.setDelYn(updateEquipment.getDelYn());
+//        equipment.setUseYn(updateEquipment.getUseYn());
+//        equipment.setDelYn(updateEquipment.getDelYn());
         equipment.setUpdatedAt(null);
 
         Long facilityId = updateEquipment.getFacilityId();
