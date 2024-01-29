@@ -98,9 +98,7 @@ public class SecurityConfig {
                         .loginPage("/auth/login") // 로그인 페이지 경로 설정(백엔드, 뷰리졸버)
                         .loginProcessingUrl("/auth/login_proc") // 로그인이 실제 이루어지는 곳(백엔드??)
                         .usernameParameter("userId")
-
-                        //TODO /test > / 로 변경해야함
-                        .defaultSuccessUrl("/test") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
+                        .defaultSuccessUrl("/") // 로그인 성공 후 기본적으로 리다이렉트되는 경로
                         .successHandler(authSuccessHandler) // 성공 후 처리
                         .failureHandler(authFailurHandler)  // 실패 시 처리
                 )
@@ -117,7 +115,7 @@ public class SecurityConfig {
                                 }
                             }
                         })
-                        .logoutSuccessUrl("/test")); //TODO /test > / 로 변경해야함
+                        .logoutSuccessUrl("/"));
         return http.build();
     }
 

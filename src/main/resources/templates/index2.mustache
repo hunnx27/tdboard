@@ -1,4 +1,4 @@
-{[>layout/header]}
+{[>layout/temp/header]}
 
 <section class="content main-content">
     <div class="mian-spot">
@@ -12,8 +12,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         <!--
         <div class="main-slider">
             <ul class="slider">
@@ -30,16 +30,16 @@
     <div class="inner">
         <ul>
             <li>
-              <a href="/contents/share-list">
-                <!--  <a href="javascript:alert('준비 중입니다.')">-->
+                <a href="javascript:alert('준비 중입니다.')">
+                    <!--  <a href="javascript:alert('준비 중입니다.')">-->
                     <span>
                         공유시설예약
                     </span>
                 </a>
             </li>
             <li>
-              <a href="/contents/equipments-list">
-               <!--   <a href="javascript:alert('준비 중입니다.')">-->
+                <a href="javascript:alert('준비 중입니다.')">
+                    <!--   <a href="javascript:alert('준비 중입니다.')">-->
                     <span>
                         공유장비예약
                     </span>
@@ -47,7 +47,7 @@
             </li>
         </ul>
     </div>
-    
+
 </section>
 <section class="main-sect-2">
     <div class="inner">
@@ -56,7 +56,7 @@
                 <span style="font-weight: bold">사업소개</span>
             </h3>
         </div>
-        <div class="flex-box" style="cursor:pointer" onclick="location.href='/contents/about'">
+        <div class="flex-box">
             <div class="main-card main-card-1">
                 <div class="main-card-body">
                     <div>
@@ -71,7 +71,7 @@
                         <img src="" alt="">
                     </div>
                     <p>디지털 훈련 제공</p>
-              </div>
+                </div>
             </div>
             <div class="main-card main-card-3">
                 <div class="main-card-body">
@@ -79,7 +79,7 @@
                         <img src="" alt="">
                     </div>
                     <p>체험 프로그램 운영</p>
-              </div>
+                </div>
             </div>
             <div class="main-card main-card-4">
                 <div class="main-card-body">
@@ -87,7 +87,7 @@
                         <img src="" alt="">
                     </div>
                     <p>장비/시설 무료 제공</p>
-               </div>
+                </div>
             </div>
         </div>
     </div>
@@ -100,40 +100,62 @@
                 <div class="main-title">
                     <h3>
                         <span style="font-weight: bold">공지 사항</span>
-<!--                        <button class="btn" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-prev"></span></button>-->
-                        <button class="btn only-w" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-next"></span></button>
+                        <!--                        <button class="btn" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-prev"></span></button>-->
+                        <button class="btn" onClick="javascript:alert('준비 중입니다.')">더보기<span class="icon-box icon-prev"></span></button>
                     </h3>
                 </div>
             </div>
             <div class="board-list">
-                <div class="table-body">
-                    <table class="board table">
-                        <caption>공지 사항</caption>
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span>번호</span>
-                                </th>
-                                <th>
-                                    <span>제목</span>
-                                </th>
-                                <th>
-                                    <span>작성일</span>
-                                </th>
-                            </tr>   
-                        </thead>
-                        <tbody id="notice-body">
-                            <tr>
-                                <td colspan="4">등록된 글이 없습니다.</td>
-                            </tr>
-                        </tbody>
+                <table class="board table">
+                    <caption>공지 사항</caption>
+                    <thead>
+                    <tr>
+                        <th>
+                            <span>번호</span>
+                        </th>
+                        <th>
+                            <span>제목</span>
+                        </th>
+                        <th>
+                            <span>작성자</span>
+                        </th>
+                        <th>
+                            <span>작성일</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="cursor:pointer" onClick="javascript:alert('준비 중입니다.')">
+                        <td>
+                                <span>
+                                    1
+                                </span>
+                        </td>
+                        <td class="board-title text-left">
+                                <span>
+                                    K-디지털 플랫폼 홈페이지 개설
+                                </span>
+                        </td>
+                        <td>
+                                <span>
+                                    관리자
+                                </span>
+                        </td>
+                        <td>
+                                <span>
+                                    2023-12-21
+                                </span>
+                        </td>
 
-                    </table>
-                </div>
-                
+                    </tr>
+
+
+                    </tbody>
+
+                </table>
             </div>
             <div class="board-bottom">
-                <button class="m-t-20 btn only-m w-full sm-i-h-40" onClick="location.href='/contents/notice'">더보기<span class="icon-box icon-next"></span></button>
+
             </div>
         </div>
         <!-- 게시판 -->
@@ -149,40 +171,17 @@
         <div class="main-body">
             <ul>
                 <li>
-                    <a href="https://www.hrdkorea.or.kr" target="_blank"><img src="/assets/images/main/foot_logo_2.png" alt="한국산업인력공단 로고"></a>
+                    <a href="https://www.hrdkorea.or.kr"><img src="/assets/images/main/foot_logo_2.png" alt="한국산업인력공단 로고" target="_blank"></a>
                 </li>
                 <li>
-                    <a href="https://www.moel.go.kr" target="_blank"><img src="/assets/images/main/foot_logo_1.png" alt="고용노동부 로고"></a>
+                    <a href="https://www.moel.go.kr" ><img src="/assets/images/main/foot_logo_1.png" alt="고용노동부 로고" target="_blank"></a>
                 </li>
                 <li>
-                    <a href="https://www.kdp.or.kr" target="_blank"><img src="/assets/images/main/foot_logo_3.png" alt="KDP 로고"></a>
+                    <a href="https://www.kdp.or.kr"><img src="/assets/images/main/foot_logo_3.png" alt="KDP 로고" target="_blank"></a>
                 </li>
             </ul>
         </div>
     </div>
 </section>
 
-<script id="notice-table-template" type="text/template">
-{{#contents}}
-    <tr>
-        <td>
-            <span>
-                {{no}}
-            </span>
-        </td>
-        <td class="title">
-            <a href="/contents/notice/{{id}}">
-                {{title}}
-            </a>
-        </td>
-        <td>
-            <span>
-                {{createdDateText}}
-            </span>
-        </td>
-    </tr>
-{{/contents}}
-</script>
-
-<script type="module" src="/assets/js/home/main.js"></script>
-{[>layout/footer]}
+{[>layout/temp/footer]}
