@@ -17,7 +17,8 @@ spring:
     ansi:
       enabled: always
 
-tokenValidTimeout: 1800 # 60초(1분)
+#tokenValidTimeout: 1800 # 60초(1분)
+tokenValidTimeout: 43200 # 60초(1분)
 server:
   servlet:
     session:
