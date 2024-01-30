@@ -32,4 +32,11 @@
 
 </head>
 <body>
+{[^userId]}
+<script>
+    console.log('로그인 정보 없음 - 토큰 초기화..');
+    document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+</script>
+{[/userId]}
 <header class="header">{[>layout/navigation]}</header>
