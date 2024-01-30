@@ -75,7 +75,7 @@ public class AuthApiController {
      * @param response
      * @return
      */
-    @GetMapping("/auth/refresh")
+    @PostMapping("/auth/refresh")
     public ResponseEntity<ApiCmnResponse<?>> refresh(HttpServletRequest request, HttpServletResponse response) {
         // 헤더에서 JWT 를 받아옵니다.
         String authorizationHeader = authJwtTokenProvider.resolveToken((HttpServletRequest) request);
