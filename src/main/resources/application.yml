@@ -22,6 +22,11 @@ server:
     session:
       cookie:
         secure: true
+# gzip 요청응답 압축설정(트래픽줄이기위함)
+  compression:
+    enabled: true
+    min-response-size: 1024
+    #mime-types: application/json,application/xml,text/html:
 
 spring:
   mvc:
