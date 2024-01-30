@@ -116,8 +116,32 @@ const setApiInterceptor = (axiosInstance)=>{
         console.log('Response Interceptor:', response);
         return response;
       },
-      error=>{
+      async error => {
+        const {
+          config,
+          response: { status },
+        } = error;
         console.log('Response Error:', error);
+        if (status === 401) {
+          if (error.response.data.message.startsWith("[expired]")) {
+            const originalRequest = config;
+            const refreshToken = getCookieValue('refreshToken');
+            // token refresh 요청
+            const res = await axios.post(
+                `/api/v1/auth/refresh`, // token refresh api
+                {},
+                {headers: {authorization: `Bearer ${refreshToken}`}}
+            );
+            console.log('await', res);
+            // 새로운 토큰 저장
+            // dispatch(userSlice.actions.setAccessToken(data.data.accessToken)); store에 저장
+            console.log('before: ', originalRequest.headers.Authorization);
+            console.log('after : ', res.data.data.accessToken);
+            originalRequest.headers.Authorization = `Bearer ${res.data.data.accessToken}`;
+            // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+            return axios(originalRequest);
+          }
+        }
         return Promise.reject(error);
       }
   );

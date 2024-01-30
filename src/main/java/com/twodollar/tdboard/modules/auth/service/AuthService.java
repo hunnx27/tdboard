@@ -123,7 +123,7 @@ public class AuthService {
             log.info(errorMsg);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, errorMsg);
         } catch (ExpiredJwtException e) {
-            String errorMsg = String.format("Access Token이 만료되었습니다. message : %s", e.getMessage());
+            String errorMsg = String.format("[expired]Access Token이 만료되었습니다. message : %s", e.getMessage());
             log.info("JwtAuthenticationFilter : {}", errorMsg);
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, errorMsg);
         } catch (UnsupportedJwtException e) {

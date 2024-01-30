@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 log.info(errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorMsg);
             } catch (ExpiredJwtException e) {
-                String errorMsg = String.format("Access Token이 만료되었습니다. message : %s", e.getMessage());
+                String errorMsg = String.format("[expired]Access Token이 만료되었습니다. message : %s", e.getMessage());
                 log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_UNAUTHORIZED);
                 response.setContentType(APPLICATION_JSON_VALUE);

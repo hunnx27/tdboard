@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -92,9 +93,23 @@ public class AuthApiController {
             String newToken = newTokens.get("accessToken");
             session.setAttribute("accessToken", newToken);
             String newRefreshToken = newTokens.get("refreshToken");
+
+            // JWT 쿠키 저장(쿠키 명 : token)
+            Cookie cookie1 = new Cookie("accessToken", newToken);
+            cookie1.setPath("/");
+            cookie1.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
+            // cookie1.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+            response.addCookie(cookie1);
+
             if (newRefreshToken != null) {
                 session.setAttribute("refreshToken", refreshToken);
+                Cookie cookie2 = new Cookie("refreshToken", refreshToken);
+                cookie2.setPath("/");
+                cookie2.setMaxAge(60 * 60 * 24 * 1); // 유효기간 1일
+                // cookie2.setHttpOnly(false);// httoOnly 옵션을 추가해 서버만 쿠키에 접근할 수 있게 설정
+                response.addCookie(cookie2);
             }
+
             return ResponseEntity.ok(ApiCmnResponse.success(newTokens));
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
