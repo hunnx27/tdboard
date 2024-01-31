@@ -104888,7 +104888,7 @@ footer .foot-nav p {
 }
 
 .sub-con {
-  min-height: calc(100vh - 30rem);
+  min-height: calc(100vh - 20.1rem);
   padding-bottom: 100px;
 }
 
@@ -115680,13 +115680,19 @@ sub page
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   padding: 2rem;
 }
+.equipments-list > a {
+  display: block;
+}
 .equipments-list .img-box {
+  width: 100%;
   border-radius: 2rem;
   overflow: hidden;
   height: 24rem;
   margin-bottom: 2rem;
 }
 .equipments-list .img-box img {
+  width: 100%;
+  max-height: 100%;
   max-width: 100%;
 }
 .equipments-list .text-box p {
@@ -115716,7 +115722,7 @@ sub page
 }
 
 .status-text {
-  padding: 0.2rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 25px;
 }
 .status-text.status-confirm {
