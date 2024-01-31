@@ -51,13 +51,19 @@ const smHeaderOff = () => {
 function headerEvent(){
   var winWidth = window.innerWidth;
   if(winWidth > 1200){
+    /* PC 처리 */
     smHeaderOff();
     mobile_header_off();
     nav.addEventListener('mouseover',web_nav_over);
     nav.addEventListener('mouseout',web_nav_out);
-    
   }else if(winWidth > 768){
+    /* 태블릿 처리 */
+    smHeaderOff();
+    mobile_header_off();
+    nav.addEventListener('mouseover',web_nav_over);
+    nav.addEventListener('mouseout',web_nav_out);
   }else if(winWidth <= 768){
+    /* 모바일 처리 */
     smHeaderOn();
     nav.removeEventListener('mouseover',web_nav_over);
     nav.removeEventListener('mouseout',web_nav_out);
