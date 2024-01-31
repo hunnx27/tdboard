@@ -94,7 +94,7 @@ public class FacilityApiController {
     ){
         try {
             long totalSize = facilityService.getTotalFacilitySize();
-            List<Facility> facilityList = facilityService.getFacilitys(pageable);
+            List<Facility> facilityList = facilityService.getFacilities(pageable);
             List<FacilityResponse> facilityResponseList = facilityList.stream().map(facility -> {
                 FacilityResponse facilityResponse = facility.toResponse();
                 // 썸네일 이미지

@@ -61,6 +61,11 @@ public class AuthService {
         return userRepository.save(user);
     }
 
+    public User setNewPassword(User user, String plainPassword){
+        user.setPassword(passwordEncoder.encode(plainPassword));
+        return user;
+    }
+
     public User validUser(String userId, String passwordPlain) throws ResponseStatusException{
         String password = passwordEncoder.encode(passwordPlain);
         User user = userRepository.findByUserId(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "등록된 정보가 일치하지 않습니다."));
@@ -118,7 +123,7 @@ public class AuthService {
             log.info(errorMsg);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, errorMsg);
         } catch (ExpiredJwtException e) {
-            String errorMsg = String.format("Access Token이 만료되었습니다. message : %s", e.getMessage());
+            String errorMsg = String.format("[expired]Access Token이 만료되었습니다. message : %s", e.getMessage());
             log.info("JwtAuthenticationFilter : {}", errorMsg);
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, errorMsg);
         } catch (UnsupportedJwtException e) {

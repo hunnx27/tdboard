@@ -15,9 +15,10 @@ public class UserRequest {
     private String birthday;
     private String channel; //유입채널
     private String role;// 권한
+    private String password;
 
     @Builder
-    public UserRequest(String username, String sex, String email, String phone, String birthday, String channel, String role) {
+    public UserRequest(String username, String sex, String email, String phone, String birthday, String channel, String role, String password) {
         this.username = username;
         this.sex = sex;
         this.email = email;
@@ -25,5 +26,6 @@ public class UserRequest {
         this.birthday = birthday;
         this.channel = channel;
         this.role = role;
+        this.password = password;
     }
 }

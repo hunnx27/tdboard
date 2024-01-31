@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     Optional<List<Application>> getApplicationsBy(Pageable pageable);
     Optional<List<Application>> getApplicationsByUser(User user, Pageable pageable);
-
+    int countApplicationByUser(User user);
     int countApplicationByIdAndUser(Long id, User user);
 
 }

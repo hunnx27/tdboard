@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String[] tokens = authorizationHeader!=null? authorizationHeader.split(" ") : null;
         String token = tokens!=null ? tokens[tokens.length-1] : null;
         // 유효한 토큰인지 확인합니다.
-        if (token != null) {
+        if (token != null && !"/api/v1/auth/refresh".equals(request.getRequestURI())) {
             try{
                 authJwtTokenProvider.validateToken(token, false);
                 // 토큰이 유효하면 토큰으로부터 유저 정보를 받아옵니다.
@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 log.info(errorMsg);
                 new ObjectMapper().writeValue(response.getWriter(), errorMsg);
             } catch (ExpiredJwtException e) {
-                String errorMsg = String.format("Access Token이 만료되었습니다. message : %s", e.getMessage());
+                String errorMsg = String.format("[expired]Access Token이 만료되었습니다. message : %s", e.getMessage());
                 log.info("JwtAuthenticationFilter : {}", errorMsg);
                 response.setStatus(SC_UNAUTHORIZED);
                 response.setContentType(APPLICATION_JSON_VALUE);

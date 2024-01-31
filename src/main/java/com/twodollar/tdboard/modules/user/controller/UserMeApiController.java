@@ -235,7 +235,7 @@ public class UserMeApiController {
             if (userId == null || "".equals(userId)) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 회원이 없습니다.");
             }
-            long totalSize = applicationService.getTotalApplicationSize();
+            long totalSize = applicationService.getTotalApplicationSize(userId);
             List<Application> applicationList = applicationService.getApplications(userId, pageable);
             List<ApplicationResponse> applicationResponseList = applicationList.stream().map(application -> application.toResponse()).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(applicationResponseList, pageable, totalSize)));

@@ -14,7 +14,7 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     int countEquipmentByDelYn(String delYn);
     Optional<List<Equipment>> getEquipmentsByDelYnOrderByCreatedAtDesc(String DelYn, Pageable pageable);
 
-    int countByFacilityId(Long facilityId);
-    Optional<List<Equipment>> getEquipmentsByFacilityId(Long facilityId, Pageable pageable);
+    int countByFacilityIdAndDelYn(Long facilityId, String DelYn);
+    Optional<List<Equipment>> getEquipmentsByFacilityIdAndDelYn(Long facilityId, String DelYn, Pageable pageable);
 
 }

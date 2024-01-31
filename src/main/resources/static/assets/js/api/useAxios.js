@@ -28,23 +28,28 @@ export default {
   async get (url, params, success, fail = err => err.response?.data.message, config) {
     const token = getCookieValue('accessToken');
     const authorization = token ? `Bearer ${getCookieValue('accessToken')}` : null;
-    await axios.get(wrap(url),{
+    const api = axios.create({
       headers: {
         Authorization: authorization,
         responseType: 'json'
       },
-      params
-      }, appendAuth(config))
+    });
+    setApiInterceptor(api);
+    await api.get(wrap(url),{params}, appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
   async post (url, body, success, fail = err => err.response?.data.message, config) {
-    await axios.post(wrap(url), body, appendAuth(config))
+    const api = axios.create();
+    setApiInterceptor(api);
+    await api.post(wrap(url), body, appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
   async put (url, body, success, fail = err => err.response?.data.message, config) {
-    await axios.put(wrap(url), body, appendAuth(config))
+    const api = axios.create();
+    setApiInterceptor(api);
+    await api.put(wrap(url), body, appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
@@ -59,7 +64,9 @@ export default {
     } else {
       console.error('unkown type')
     }
-    await axios.post(wrap(url), formData, {
+    const api = axios.create();
+    setApiInterceptor(api);
+    await api.post(wrap(url), formData, {
       headers: {
         'Content-Type': 'multipart/formdata; charset=utf-8',
         'Accept': '*/*'
@@ -70,24 +77,75 @@ export default {
       .catch(fail)
   },
   async delete (url, success, fail = err => err.response.data.message, config) {
-    await axios.delete(wrap(url), appendAuth(config))
+    const api = axios.create();
+    await api.delete(wrap(url), appendAuth(config))
       .then((res)=>success(res.data))
       .catch(fail)
   },
   async postMultipart (url, form, success, fail, config) {
     const configAuth = appendAuth(config);
-    await axios.post(wrap(url), form, appendMultipart(configAuth))
+    const api = axios.create();
+    setApiInterceptor(api);
+    await api.post(wrap(url), form, appendMultipart(configAuth))
       .then((res)=>success(res.data))
       .catch(fail)
   },
   async putMultipart (url, form, success, fail, config) {
     const configAuth = appendAuth(config);
-    await axios.put(wrap(url), form, appendMultipart(configAuth))
+    const api = axios.create();
+    setApiInterceptor(api);
+    await api.put(wrap(url), form, appendMultipart(configAuth))
       .then((res)=>success(res.data))
       .catch(fail)
   },
 }
 
+const setApiInterceptor = (axiosInstance)=>{
+  axiosInstance.interceptors.request.use(
+      config => {
+        console.log('Request Interceptor:', config);
+        return config;
+      },
+      error => {
+        console.log('error : ', error);
+        return Promise.reject(error);
+      }
+  );
+  axiosInstance.interceptors.response.use(
+      response => {
+        console.log('Response Interceptor:', response);
+        return response;
+      },
+      async error => {
+        const {
+          config,
+          response: { status },
+        } = error;
+        console.log('Response Error:', error);
+        if (status === 401) {
+          if (error.response.data.message.startsWith("[expired]")) {
+            const originalRequest = config;
+            const refreshToken = getCookieValue('refreshToken');
+            // token refresh 요청
+            const res = await axios.post(
+                `/api/v1/auth/refresh`, // token refresh api
+                {},
+                {headers: {authorization: `Bearer ${refreshToken}`}}
+            );
+            console.log('await', res);
+            // 새로운 토큰 저장
+            // dispatch(userSlice.actions.setAccessToken(data.data.accessToken)); store에 저장
+            console.log('before: ', originalRequest.headers.Authorization);
+            console.log('after : ', res.data.data.accessToken);
+            originalRequest.headers.Authorization = `Bearer ${res.data.data.accessToken}`;
+            // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+            return axios(originalRequest);
+          }
+        }
+        return Promise.reject(error);
+      }
+  );
+}
 // 쿠키에서 값을 가져오는 함수
 function getCookieValue(cookieName) {
   const cookies = document.cookie.split(';');
