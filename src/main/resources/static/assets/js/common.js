@@ -1,4 +1,5 @@
-
+const Body = document.querySelector('body');
+const BodyW = window.innerWidth;
 // textfield keyup event 
 function textfieldChange(use,e){
 	  let value = use.value;
@@ -68,7 +69,7 @@ function selectboxEvent(){
   // 모든 select 이벤트 on
   selectAll.forEach((select) => {
       let selectBtn = select.querySelector('.select-btn')
-      selectBtn.addEventListener('click',()=>{
+      selectBtn?.addEventListener('click',()=>{
         let thisStatus = selectBtn.parentNode.getAttribute('data-status');
         selectClick(select,selectBtn,thisStatus);
       });
