@@ -20,6 +20,6 @@ public class CustomExceptionHandler {
     @ExceptionHandler
     public ResponseEntity accessDeniedException(AccessDeniedException e) throws AccessDeniedException{
         log.info(e.toString());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error(HttpStatus.FORBIDDEN.toString(), "로그인 후 이용해주세요."));
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiCmnResponse.error(HttpStatus.FORBIDDEN.toString(), "로그인 후 이용해주세요."));
     }
 }
