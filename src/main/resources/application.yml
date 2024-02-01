@@ -9,7 +9,7 @@
 # 2. session attribute? ??? model? ????.
 #spring.mustache.servlet.expose-session-attributes=true
 
-#서버
+# SERVER
 server:
   port: 8080
   servlet:
@@ -28,6 +28,14 @@ server:
     min-response-size: 1024
     #mime-types: application/json,application/xml,text/html:
 
+  error:
+    whitelabel:
+      enabled: false
+    path: /srpingboot-error
+
+
+
+# SPRING
 spring:
   mvc:
     pathmatch:
@@ -44,7 +52,6 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
 
-
   # 세션 프론트에서 노출 허용
   #  - principal.username: { [ SPRING_SECURITY_CONTEXT.Authentication.Principal.username ] }
   #  - accessToken: { [ accessToken ] }
@@ -58,8 +65,14 @@ spring:
   servlet.multipart.maxFileSize: 10MB
   servlet.multipart.maxRequestSize: 50MB
 
+# BasicErrorController 사용하지 못하도록 처리
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 
-# 리소스 캐시 설정
+#  main:
+#    allow-bean-definition-overriding: true
+
+  # 리소스 캐시 설정
   web:
     resources:
       cache:
