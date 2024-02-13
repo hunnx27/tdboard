@@ -40,7 +40,7 @@ public class BookingApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/bookings/{id}/approval")
-    public ResponseEntity<ApiCmnResponse<?>> applicationApproval(
+    public ResponseEntity<ApiCmnResponse<?>> bookingApproval(
             Authentication authentication,
             @PathVariable("id") Long id
     ){
@@ -62,7 +62,7 @@ public class BookingApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @PostMapping("/bookings/{id}/cancel")
-    public ResponseEntity<ApiCmnResponse<?>> applicationCancel(
+    public ResponseEntity<ApiCmnResponse<?>> bookingCancel(
             Authentication authentication,
             @PathVariable("id") Long id
     ){

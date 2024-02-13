@@ -73,7 +73,7 @@ public class SurveyApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/surveys")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> surveyAll(
             Pageable pageable
     ){
         try {

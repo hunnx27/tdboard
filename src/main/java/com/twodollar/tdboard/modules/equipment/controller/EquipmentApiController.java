@@ -84,7 +84,7 @@ public class EquipmentApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/equipments")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> equipmentsAll(
             Pageable pageable
     ){
         try {

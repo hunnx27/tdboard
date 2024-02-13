@@ -81,7 +81,7 @@ public class ApplicationApiController {
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
     @GetMapping("/applications")
-    public ResponseEntity<ApiCmnResponse<?>> noticeAll(
+    public ResponseEntity<ApiCmnResponse<?>> applicationAll(
             Pageable pageable
     ){
         try {
