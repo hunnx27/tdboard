@@ -40,6 +40,7 @@ public class Education {
     private String applicationStartDate;//접수시작일
     private String applicationEndDate; //접수종료일
     private String manager; // 교수명
+    @Column(columnDefinition = "INT(11) UNSIGNED' ")
     private int capacity; //정원
 
     // 사용여부

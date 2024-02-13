@@ -24,8 +24,6 @@ public class EquipmentRequest {
     private String name;
     // 장비설명
     private String description;
-    // imageUrl
-    private String imageUrl;
     private List<Long> files;
     // 사용여부
     private String useYn;
@@ -38,7 +36,6 @@ public class EquipmentRequest {
                 location(this.location).
                 name(this.name).
                 description(this.description).
-                imageUrl(this.imageUrl).
                 useYn(this.useYn).
                 delYn(this.delYn).
                 build();

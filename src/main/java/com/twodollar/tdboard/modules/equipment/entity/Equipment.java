@@ -36,8 +36,6 @@ public class Equipment {
     // 장비설명
     @Column(columnDefinition = "LONGTEXT")
     private String description;
-    // imageUrl
-    private String imageUrl;
     // 사용여부
     @ColumnDefault("'Y'")
     private String useYn;
@@ -58,7 +56,6 @@ public class Equipment {
                 .location(this.location)
                 .name(this.name)
                 .description(this.description)
-                .imageUrl(this.imageUrl)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();

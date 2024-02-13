@@ -57,7 +57,6 @@ public class EquipmentService {
         equipment.setLocation(updateEquipment.getLocation());
         equipment.setName(updateEquipment.getName());
         equipment.setDescription(updateEquipment.getDescription());
-        equipment.setImageUrl(updateEquipment.getImageUrl());
 //        equipment.setUseYn(updateEquipment.getUseYn());
 //        equipment.setDelYn(updateEquipment.getDelYn());
         equipment.setUpdatedAt(null);

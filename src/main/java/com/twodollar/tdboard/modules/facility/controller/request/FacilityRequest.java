@@ -16,8 +16,6 @@ public class FacilityRequest {
     private String name;
     // 시설설명
     private String description;
-    // imageUrl
-    private String imageUrl;
     private List<Long> files;
     // 사용여부
     private String useYn;
@@ -29,7 +27,6 @@ public class FacilityRequest {
                 id(this.id).
                 name(this.name).
                 description(this.description).
-                imageUrl(this.imageUrl).
                 useYn(this.useYn).
                 delYn(this.delYn).
                 build();

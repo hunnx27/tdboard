@@ -40,7 +40,6 @@ public class FacilityService {
         Facility facility = getFacilityById(id);
         facility.setName(updateFacility.getName());
         facility.setDescription(updateFacility.getDescription());
-        facility.setImageUrl(updateFacility.getImageUrl());
         facility.setUpdatedAt(null);
         return facilityRepository.save(facility);
     }

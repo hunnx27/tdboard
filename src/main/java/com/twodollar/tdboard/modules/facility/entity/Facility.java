@@ -28,8 +28,6 @@ public class Facility {
     // 시설설명
     @Column(columnDefinition = "LONGTEXT")
     private String description;
-    // imageUrl
-    private String imageUrl;
     // 사용여부
     @ColumnDefault("'Y'")
     private String useYn;
@@ -49,7 +47,6 @@ public class Facility {
                 .id(this.id)
                 .name(this.name)
                 .description(this.description)
-                .imageUrl(this.imageUrl)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .build();

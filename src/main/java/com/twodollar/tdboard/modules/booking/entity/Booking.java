@@ -35,6 +35,7 @@ public class Booking {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "comment 'NOTICE, QNA, DATA, FAQ' ")
     private BookingType bookingType; // 예약 구분
     private LocalDateTime startAt; // 예약 시작일시
     private LocalDateTime endAt; // 예약 종료일시

@@ -40,6 +40,7 @@ public class Board {
     private long upId;
     // 조회 수
     @ColumnDefault("0")
+    @Column(columnDefinition = "INT(11) UNSIGNED' ")
     private long hit;
     @ColumnDefault("'N'")
     private String delYn;
