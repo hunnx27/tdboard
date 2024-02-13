@@ -115635,10 +115635,21 @@ sub page
 .gallery-detail-body .gallery-detail-con {
   margin-bottom: 7.2rem;
 }
-.gallery-detail-body .gallery-detail-con .img-box {
+.gallery-detail-body .gallery-detail-con .gallery-detail-subimg-list {
+  display: flex;
+  gap: 20px;
+}
+.gallery-detail-body .gallery-detail-con .gallery-detail-subimg-list .img-box {
+  flex: 1 1 auto;
+  max-width: calc(33% - 1.333333rem);
   border: 1px solid #ddd;
 }
-.gallery-detail-body .gallery-detail-con .img-box img {
+.gallery-detail-body .gallery-detail-con .gallery-detail-subimg-list .img-box > div {
+  height: 100%;
+}
+.gallery-detail-body .gallery-detail-con .gallery-detail-subimg-list .img-box img {
+  width: 100%;
+  max-height: 100%;
   max-width: 100%;
 }
 

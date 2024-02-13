@@ -81,7 +81,7 @@
                         <div class="block-text-wrap">
                             <span class="block-text">보유 장비</span>
                         </div>
-                        <div id="list-body" class="flex-box gap-20">
+                        <div id="list-body" class="gallery-detail-subimg-list">
                             
                         </div>
                     </div>
@@ -134,8 +134,10 @@
 </script>
 <script id="table-template" type="text/template">
 {{#contents}}
-<div class="flex-1 img-box">
-    <img src="/upload{{imageUrl}}" alt="장비사진">
+<div class="img-box">
+    <div>
+        <img src="/upload{{imageUrl}}" alt="장비사진">
+    <div>
 </div>
 {{/contents}}
 </script>

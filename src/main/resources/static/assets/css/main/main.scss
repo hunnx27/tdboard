@@ -961,12 +961,24 @@ sub page
     }
     .gallery-detail-con{
         margin-bottom:7.2rem;
-        .img-box{
-            border:1px solid #ddd;
-            img{
-                max-width:100%;
+        .gallery-detail-subimg-list{
+            display:flex;
+            gap:20px;
+            .img-box{
+                flex:1 1 auto;
+                max-width:calc(33% - 1.333333rem);
+                border:1px solid #ddd;
+                > div{
+                    height:100%;
+                }
+                img{
+                    width:100%;
+                    max-height:100%;
+                    max-width:100%;
+                }
             }
         }
+        
     }
 }
 .share-list{
