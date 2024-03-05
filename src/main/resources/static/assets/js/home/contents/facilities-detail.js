@@ -12,11 +12,7 @@ window.onload = function () {
     // init
     const facilitiesId = document.getElementById('facilitiesId').value
     getFacilitiesApi(facilitiesId)
-    getEquipmentsInRacility(1) // 시설에 포함되어있는 장비
-    const today = new Date();
-    const todayText = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    selectedDate = todayText
-    getAvailiableTime(facilitiesId, todayText); // 학습가능 시간 조회
+
     // event
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -49,6 +45,15 @@ async function getFacilitiesApi(id){
                     save(id);
                 }
             })
+
+            const today = new Date();
+            const todayText = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            selectedDate = todayText
+            getAvailiableTime(id, todayText); // 학습가능 시간 조회
+
+            setTimeout(()=>{
+                getEquipmentsInRacility(1) // 시설에 포함되어있는 장비
+            }, 1000)
         }
     },(err)=> {
         console.log('err',err)
@@ -106,6 +111,7 @@ async function getAvailiableTime(id, targetDate){
                         selectedEndHour = Number(option.querySelector('span').innerText);
                     })
                 });
+
             }
         },(err)=> {
             console.log('err',err)

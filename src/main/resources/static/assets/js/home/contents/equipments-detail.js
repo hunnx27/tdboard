@@ -12,10 +12,7 @@ window.onload = function () {
     // init
     const equipmentsId = document.getElementById('equipmentsId').value
     getEquipmentsApi(equipmentsId)
-    const today = new Date();
-    const todayText = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    selectedDate = todayText
-    getAvailiableTime(equipmentsId, todayText); // 학습가능 시간 조회
+
     // event
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -48,6 +45,11 @@ async function getEquipmentsApi(id){
                     save(id);
                 }
             })
+
+            const today = new Date();
+            const todayText = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            selectedDate = todayText
+            getAvailiableTime(id, todayText); // 학습가능 시간 조회
         }
     },(err)=> {
         console.log('err',err)
