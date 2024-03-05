@@ -34,16 +34,16 @@ async function getBoardApi(pageNumber){
         document.getElementById("tableHeadText").innerHTML = tableHeadText
 
 
-
-        const applicationCancelBtn = document.querySelector('.applicationCancelBtn')
-        if(applicationCancelBtn){
-            applicationCancelBtn.addEventListener('click', function() {
-                // 클릭한 버튼의 data-value 속성 값 가져오기
-                const dataValue = this.getAttribute('data-value');
-        
-                // 취소 함수 호출
-                handleApplicationCancel(dataValue);
-            });
+        const applicationCancelBtns = document.querySelectorAll('.applicationCancelBtn')
+        if(applicationCancelBtns){
+            applicationCancelBtns.forEach((elm,idx)=>{
+                elm.addEventListener('click',function(){
+                    // 클릭한 버튼의 data-value 속성 값 가져오기
+                    const dataValue = this.getAttribute('data-value');
+                    // 취소 함수 호출
+                    handleApplicationCancel(dataValue);
+                })
+            })
         }
     },(err)=> {
         console.log('err',err)
