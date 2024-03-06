@@ -3,6 +3,7 @@ import com.twodollar.tdboard.modules.application.entity.Application;
 import com.twodollar.tdboard.modules.booking.controller.request.BookingRequest;
 import com.twodollar.tdboard.modules.booking.entity.Booking;
 import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
+import com.twodollar.tdboard.modules.booking.repository.BookingJdbcTemplateRepository;
 import com.twodollar.tdboard.modules.booking.repository.BookingRepository;
 import com.twodollar.tdboard.modules.education.entity.Education;
 import com.twodollar.tdboard.modules.education.service.EducationService;
@@ -25,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +34,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BookingService {
     private final BookingRepository bookingRepository;
+    private final BookingJdbcTemplateRepository bookingJdbcTemplateRepository;
     private final UserService userService;
     private final EducationService educationService;
     private final FacilityService facilityService;
@@ -80,6 +83,11 @@ public class BookingService {
         }
 
         return extractTimeByBookings(bookings, targetDate);
+    }
+
+    public List<Map<String,String>> getBookingStatus(String bookingType, String month){
+        List<Map<String,String>> list = bookingJdbcTemplateRepository.bookingStatus(bookingType, month);
+        return list;
     }
 
     private List<Integer> extractTimeByBookings(List<Booking> bookings, String targetDate){

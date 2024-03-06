@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -133,6 +134,27 @@ public class BookingApiController {
         try {
             List<Integer> availableTimes = bookingService.getAvailableBookingTimes(bookingType, targetId, targetDate);
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(availableTimes));
+        }catch(ResponseStatusException e){
+            return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiCmnResponse.error("500", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "예약현황(시설/장비)", description = "예약 가능 시간 조회")
+    @ApiResponses(value = {
+            //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
+            //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
+    })
+
+    @GetMapping("/bookings/bookingType/{bookingType}/status")
+    public ResponseEntity<ApiCmnResponse<?>> bookingStatus(
+            @PathVariable(value = "bookingType") BookingType bookingType,
+            @RequestParam(value = "month", required = false) String month
+    ){
+        try {
+            List<Map<String,String>> list = bookingService.getBookingStatus(bookingType.name(), month);
+            return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(list));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
         }catch(Exception e){
