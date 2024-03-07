@@ -30,7 +30,7 @@ public class FacilityAttach {
     @JoinColumn(name="file_id", referencedColumnName = "id")
     private FileInfo fileInfo;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "comment 'THUMB, FILE' ")
+    @Column(columnDefinition = "varchar(255) DEFAULT NULL comment 'THUMB, FILE' ")
     private AttachType attachType;
     @Column(columnDefinition = "INT(11) UNSIGNED' ")
     private int attachOrder;

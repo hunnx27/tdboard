@@ -9,11 +9,14 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Audited // 이력생성
 @ToString
 @Getter
 @Setter
@@ -26,13 +29,16 @@ public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="education_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Education education;
     private String reqPhone;
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="approval_user_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private User approvalUser; // 승인자

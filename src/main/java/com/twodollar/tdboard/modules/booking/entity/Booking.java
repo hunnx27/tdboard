@@ -11,6 +11,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Audited // 이력생성
 @ToString
 @Getter
 @Setter
@@ -31,35 +34,42 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // 시설ID
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "comment 'NOTICE, QNA, DATA, FAQ' ")
+    @Column(columnDefinition = "varchar(255) DEFAULT NULL comment 'NOTICE, QNA, DATA, FAQ' ")
     private BookingType bookingType; // 예약 구분
     private LocalDateTime startAt; // 예약 시작일시
     private LocalDateTime endAt; // 예약 종료일시
     private String reqPhone; // 신청 전화번호
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="approval_user_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private User approvalUser; // 승인자
     @ColumnDefault("'N'")
     private String approvalYn; // 승인여부
     private LocalDateTime approvalAt; // 승인일시
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="education_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Education education;
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="facility_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Facility facility;
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="equipment_id", referencedColumnName = "id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Equipment equipment;
 
+    @NotAudited
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="up_booking_id")
     private Booking upBooking;
 
+    @NotAudited
     @Builder.Default
     @OneToMany(mappedBy = "upBooking", orphanRemoval = true)
     private List<Booking> relatedBooking = new ArrayList<>();

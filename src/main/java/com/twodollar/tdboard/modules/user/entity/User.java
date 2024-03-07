@@ -31,17 +31,17 @@ public class User {
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "comment 'F:여성,M:남성' ")
+    @Column(columnDefinition = "varchar(255) DEFAULT NULL comment 'F:여성,M:남성' ")
     private SexEnum sex;
     private String email;
     private String phone;
     private String birthday;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "comment 'C01: 팜플렛(카테고리),C02: TV광고,C03: 인터넷광고,C04: 엘리베이터 광고,C05: 인터넷 검색,C06: 신문,C07: 현수막,C08: 지인소개,C09: 기타' ")
+    @Column(columnDefinition = "varchar(255) DEFAULT NULL comment 'C01: 팜플렛(카테고리),C02: TV광고,C03: 인터넷광고,C04: 엘리베이터 광고,C05: 인터넷 검색,C06: 신문,C07: 현수막,C08: 지인소개,C09: 기타' ")
     private ChannelEnum channel; //유입채널
     @ColumnDefault("'ROLE_USER'")
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "comment 'ROLE_USER:회원, ROLE_ADMIN:관리자, ROLE_PROFESSOR:교수, ROLE_ORG:기관' ")
+    @Column(columnDefinition = "varchar(255) DEFAULT NULL comment 'ROLE_USER:회원, ROLE_ADMIN:관리자, ROLE_PROFESSOR:교수, ROLE_ORG:기관' ")
     private RoleEnum role; // 권한
     @ColumnDefault("'N'")
     private String delYn;
