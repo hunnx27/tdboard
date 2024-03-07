@@ -29,7 +29,7 @@ public class BookingJdbcTemplateRepository {
                 "WHERE b.booking_type ='" + bookingType +"'\n" +
                 "AND b.approval_yn = 'Y'\n";
 
-        if(yearmonth!=null) query += "AND b.start_at like " + yearmonth + "'%'\n";
+        if(yearmonth!=null) query += "AND b.start_at like '" + yearmonth + "%'\n";
 
         query += "ORDER BY date_format(b.start_at, '%Y-%m-%d'), b.start_at, b.end_at";
         List<Map<String,String>> list = jdbcTemplate.query(query, new RowMapper<Map<String,String>>() {

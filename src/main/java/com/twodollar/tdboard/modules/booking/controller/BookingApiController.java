@@ -8,6 +8,8 @@ import com.twodollar.tdboard.modules.booking.entity.enums.BookingType;
 import com.twodollar.tdboard.modules.booking.service.BookingService;
 import com.twodollar.tdboard.modules.common.dto.CustomPageImpl;
 import com.twodollar.tdboard.modules.common.response.ApiCmnResponse;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -141,16 +143,19 @@ public class BookingApiController {
         }
     }
 
-    @Operation(summary = "예약현황(시설/장비)", description = "예약 가능 시간 조회")
+    @Operation(summary = "예약현황(시설/장비)", description = "예약 현황 조회")
     @ApiResponses(value = {
             //@ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class))),
             //@ApiResponse(responseCode = "400", description = "존재하지 않는 리소스 접근", content = @Content(schema = @Schema(implementation = CompanySearchRequest.class)))
     })
-
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="bookingType", value="예약 타입(FACILITY:시설, EQUIPMENT:장비, EDUCATION:미사용)", required = true),
+            @ApiImplicitParam(name="yearmonth", value="조회월(yyyy-mm)", required = false)
+    })
     @GetMapping("/bookings/bookingType/{bookingType}/status")
     public ResponseEntity<ApiCmnResponse<?>> bookingStatus(
             @PathVariable(value = "bookingType") BookingType bookingType,
-            @RequestParam(value = "yearmonth") String yearmonth
+            @RequestParam(value = "yearmonth", required = false) String yearmonth
     ){
         try {
             List<Map<String,String>> list = bookingService.getBookingStatus(bookingType.name(), yearmonth);
