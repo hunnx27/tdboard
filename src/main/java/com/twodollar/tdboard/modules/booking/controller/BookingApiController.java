@@ -149,11 +149,10 @@ public class BookingApiController {
 
     @GetMapping("/bookings/bookingType/{bookingType}/status")
     public ResponseEntity<ApiCmnResponse<?>> bookingStatus(
-            @PathVariable(value = "bookingType") BookingType bookingType,
-            @RequestParam(value = "month", required = false) String month
+            @PathVariable(value = "bookingType") BookingType bookingType
     ){
         try {
-            List<Map<String,String>> list = bookingService.getBookingStatus(bookingType.name(), month);
+            List<Map<String,String>> list = bookingService.getBookingStatus(bookingType.name());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(list));
         }catch(ResponseStatusException e){
             return ResponseEntity.status(e.getStatus()).body(ApiCmnResponse.error(String.valueOf(e.getStatus()), e.getReason()));
