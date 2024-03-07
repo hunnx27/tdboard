@@ -85,8 +85,8 @@ public class BookingService {
         return extractTimeByBookings(bookings, targetDate);
     }
 
-    public List<Map<String,String>> getBookingStatus(String bookingType){
-        List<Map<String,String>> list = bookingJdbcTemplateRepository.bookingStatus(bookingType);
+    public List<Map<String,String>> getBookingStatus(String bookingType, String yearmonth){
+        List<Map<String,String>> list = bookingJdbcTemplateRepository.bookingStatus(bookingType, yearmonth);
         return list;
     }
 

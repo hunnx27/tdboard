@@ -21,14 +21,17 @@ public class BookingJdbcTemplateRepository {
     }
 
     // TODO month..
-    public List<Map<String,String>> bookingStatus(String bookingType) {
+    public List<Map<String,String>> bookingStatus(String bookingType, String yearmonth) {
         // 간단한 SELECT 쿼리 실행 예시
         String query = "SELECT f.name \"강의실\", date_format(b.start_at, '%Y-%m-%d') \"시작일\" , date_format(b.start_at, '%H:%i') \"시작시\", date_format(b.end_at, '%Y-%m-%d') \"종료일\", date_format(b.end_at, '%H:%i') \"종료시\" \n" +
                 "FROM booking b\n" +
                 "LEFT OUTER JOIN facility f ON b.facility_id = f.id\n" +
                 "WHERE b.booking_type ='" + bookingType +"'\n" +
-                "AND b.approval_yn = 'Y'\n" +
-                "ORDER BY date_format(b.start_at, '%Y-%m-%d'), b.start_at, b.end_at";
+                "AND b.approval_yn = 'Y'\n";
+
+        if(yearmonth!=null) query += "AND b.start_at like " + yearmonth + "'%'\n";
+
+        query += "ORDER BY date_format(b.start_at, '%Y-%m-%d'), b.start_at, b.end_at";
         List<Map<String,String>> list = jdbcTemplate.query(query, new RowMapper<Map<String,String>>() {
             @Override
             public Map<String,String> mapRow(ResultSet rs, int rowNum) throws SQLException {
