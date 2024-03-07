@@ -91,7 +91,7 @@ public class BookingApiController {
             @RequestParam(value = "bookingType") BookingType bookingType
     ){
         try {
-            long totalSize = bookingService.getTotalBookingSize();
+            long totalSize = bookingService.getTotalBookingSize(bookingType);
             List<Booking> bookingList = bookingService.getBookings(bookingType, pageable);
             List<BookingResponse> bookingResponseList = bookingList.stream().map(booking -> booking.toResponse()).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(ApiCmnResponse.success(new CustomPageImpl<>(bookingResponseList, pageable, totalSize)));
