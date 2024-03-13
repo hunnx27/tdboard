@@ -9,7 +9,7 @@ $(function(){
  
     paginationModule.setClickPageNumberHandler((pageNumber)=> {
         console.log(`Page number clicked: ${pageNumber}`);
-        getEducationsApi(pageNumber)
+        getEquipmentsApi(pageNumber)
      })
 })
 async function getEquipmentsApi(pageNumber){
