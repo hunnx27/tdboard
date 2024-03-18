@@ -24,14 +24,14 @@ public class ApplicationService {
 
 
     public long getTotalApplicationSize(){
-        return applicationRepository.count();
+        return applicationRepository.countApplicationsByJPQL();
     }
     public int getTotalApplicationSize(String userId){
         User user = userService.getUserByUserId(userId);
         return applicationRepository.countApplicationByUser(user);
     }
     public List<Application> getApplications(Pageable pageable) {
-        List<Application> list = applicationRepository.getApplicationsBy(pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 신청이 없습니다."));
+        List<Application> list = applicationRepository.getApplicationsByJPQL(pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 신청이 없습니다."));
         return list;
     }
 

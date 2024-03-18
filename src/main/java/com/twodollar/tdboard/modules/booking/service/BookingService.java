@@ -44,7 +44,7 @@ public class BookingService {
         return bookingRepository.count();
     }
     public long getTotalBookingSize(BookingType bookingType){
-        return bookingRepository.countByBookingType(bookingType);
+        return bookingRepository.countByBookingTypeJPQL(bookingType);
     }
 
     public long getTotalBookingSize(User user){
@@ -63,7 +63,7 @@ public class BookingService {
         return list;
     }
     public List<Booking> getBookings(BookingType bookingType, Pageable pageable) {
-        List<Booking> list = bookingRepository.getBookingsByBookingType(bookingType, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+        List<Booking> list = bookingRepository.getBookingsByBookingTypeJPQL(bookingType, pageable).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
         return list;
     }
 
@@ -73,10 +73,10 @@ public class BookingService {
         List<Booking> bookings;
         switch (bookingType.name()){
             case "FACILITY":
-                bookings = bookingRepository.getBookingsAvailableNativeFacility(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+                bookings = bookingRepository.getBookingsAvailableFacilityJPQL(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
                 break;
             case "EQUIPMENT":
-                bookings = bookingRepository.getBookingsAvailableNativeEquipment(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
+                bookings = bookingRepository.getBookingsAvailableEquipmentJPQL(targetId, starttime, endtime).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 예약이 없습니다."));
                 break;
             default:
                 bookings = new ArrayList<>();
