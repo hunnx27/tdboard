@@ -14,7 +14,9 @@ $(function(){
 })
 async function getEquipmentsApi(pageNumber){
     await useAxios.get('/api/v1/equipments',
-        {}
+        {
+            page: pageNumber
+        }
         ,(res)=> {
         if(res.data.paging.totalElements > 0){
            
